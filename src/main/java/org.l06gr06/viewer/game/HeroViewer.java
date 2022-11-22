@@ -6,6 +6,6 @@ import org.l06gr06.model.game.elements.Hero;
 public class HeroViewer implements ElementViewer<Hero> {
     @Override
     public void draw(Hero hero, GUI gui) {
-        //to be implemented...
+        gui.drawHero(hero.getPosition());
     }
 }

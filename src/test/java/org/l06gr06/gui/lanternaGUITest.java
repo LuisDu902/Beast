@@ -79,6 +79,13 @@ public class lanternaGUITest {
         Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(245, 245, 5));
         Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "#");
     }
+    @Test
+    void drawEgg() {
+        gui.drawEgg(new Position(20, 20));
+
+        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(141,5,252));
+        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, ".");
+    }
 
     @Test
     void drawText() {
