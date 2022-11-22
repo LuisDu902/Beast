@@ -10,7 +10,7 @@ import org.l06gr06.states.GameState;
 */
 
 import java.io.IOException;
-
+/*
 public class MenuController extends Controller<Menu> {
     public MenuController(Menu menu) {
         super(menu);
@@ -30,3 +30,4 @@ public class MenuController extends Controller<Menu> {
         }
     }
 }
+*/

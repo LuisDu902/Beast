@@ -11,11 +11,12 @@ public class Arena {
     private final int height;
 
     private Hero hero;
-
     private List<Monster> monsters;
+    private List<Egg> eggs;
     private List<Wall> walls;
     private List<Block> blocks;
     private List<PowerUp> powerUps;
+
 
     public Arena(int width, int height) {
         this.width = width;
@@ -68,26 +69,35 @@ public class Arena {
         this.powerUps = powerUps;
     }
 
-    public boolean isEmpty(Position position) {
-        //to be implemented...
-        return true;
-    }
+    public List<Egg> getEggs() {return eggs;}
 
-    public boolean isMonster(Position position) {
-        //to be implemented...
+    public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
+
+    public boolean isEmpty(Position position) {
+        for (Wall wall : walls)
+            if (wall.getPosition().equals(position))
+                return true;
+        for (Egg egg : eggs)
+            if (egg.getPosition().equals(position))
+                return true;
         return false;
     }
-
-    public boolean isBlock(Position position) {
-        //to be implemented...
-        return true;
+    public boolean isMonster(Position position) {
+        for (Monster monster : monsters)
+            if (monster.getPosition().equals(position))
+                return true;
+        return false;
     }
-    public boolean isWall(Position position) {
-        //to be implemented...
-        return true;
+    public boolean isBlock(Position position) {
+        for (Block block : blocks)
+            if (block.getPosition().equals(position))
+                return true;
+        return false;
     }
     public boolean isPowerUp(Position position) {
-        //to be implemented...
-        return true;
+        for (PowerUp powerUp : powerUps)
+            if (powerUp.getPosition().equals(position))
+                return true;
+        return false;
     }
 }

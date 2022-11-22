@@ -9,7 +9,7 @@ import org.l06gr06.model.game.elements.Monster;
 */
 
 import java.io.IOException;
-
+/*
 public class MonsterController extends GameController {
     private long lastMovement;
 
@@ -36,3 +36,4 @@ public class MonsterController extends GameController {
         }
     }
 }
+*/

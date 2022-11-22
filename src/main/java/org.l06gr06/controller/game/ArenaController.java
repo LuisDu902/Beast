@@ -9,7 +9,7 @@ import org.l06gr06.states.MenuState;
 */
 
 import java.io.IOException;
-
+/*
 public class ArenaController extends GameController {
     private final HeroController heroController;
     private final MonsterController monsterController;
@@ -28,6 +28,7 @@ public class ArenaController extends GameController {
         else {
             heroController.step(game, action, time);
             monsterController.step(game, action, time);
-        }*/
+        }
     }
 }
+*/
