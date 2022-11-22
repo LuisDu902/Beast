@@ -6,7 +6,7 @@ import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 */
-
+/*
 public class HeroController extends GameController {
     public HeroController(Arena arena) {
         super(arena);
@@ -43,3 +43,4 @@ public class HeroController extends GameController {
         if (action == GUI.ACTION.LEFT) moveHeroLeft();
     }
 }
+*/

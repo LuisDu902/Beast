@@ -6,7 +6,7 @@ import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 */
-
+/*
 public class BlockController extends GameController {
     public BlockController(Arena arena) {
         super(arena);
@@ -40,3 +40,4 @@ public class BlockController extends GameController {
         if (action == GUI.ACTION.LEFT) moveBlockLeft();
     }
 }
+*/

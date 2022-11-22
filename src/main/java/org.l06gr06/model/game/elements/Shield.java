@@ -6,5 +6,9 @@ public class Shield extends PowerUp{
         super(x, y);
         this.timer = 10;
     }
+    public void decreaseTimer(){this.timer--;}
 
+    public int getTimer() {
+        return timer;
+    }
 }
