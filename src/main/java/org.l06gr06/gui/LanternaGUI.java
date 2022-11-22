@@ -1,6 +1,8 @@
 package org.l06gr06.gui;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -8,6 +10,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import org.l06gr06.model.Position;
 
 import java.awt.*;
 import java.io.File;
@@ -59,18 +62,51 @@ public class LanternaGUI implements GUI{
         return fontConfig;
     }
 
+    private void drawCharacter(int x, int y, char c, String color) {
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.Factory.fromString(color));
+        tg.putCSIStyledString(x,y+1,"");
+        tg.putString(x, y + 1, "" + c);
+    }
+    @Override
+    public void drawText(Position position, String text, String color){
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.Factory.fromString(color));
+        tg.putString(position.getX(), position.getY(), text);
+    }
+    @Override
+    public void drawHero(Position position){
+        drawCharacter(position.getX(), position.getY(), 'H', "#3333FF");
+    }
+    @Override
+    public void drawShield(Position position){
+        drawCharacter(position.getX(), position.getY(), '£', "#FFFFFF");
+    }
+    @Override
+    public void drawWall(Position position){
+        drawCharacter(position.getX(), position.getY(), '#', "#F5F505");
+    }
+    @Override
+    public void drawHeart(Position position){
+        drawCharacter(position.getX(), position.getY(), '@', "#FC0808");
+    }
+    @Override
+    public void drawMonster(Position position){
+        drawCharacter(position.getX(), position.getY(), 'M', "#E80E0E");
+    }
+    @Override
+    public void drawAdultMonster(Position position){
+        drawCharacter(position.getX(), position.getY(), 'M', "#FFD700");
+    }
+    @Override
+    public void drawEgg(Position position){
+        drawCharacter(position.getX(), position.getY(), '.', "#8D05FC");
+    }
+    @Override
+    public void drawBlock(Position position){
+        drawCharacter(position.getX(), position.getY(), 'O', "#1DC249");
+    }
 
-    /* To be implemented...
-    void drawText(Position position, String text, String color);
-    void drawHero(Position position);
-    void drawShield(Position position);
-    void drawWall(Position position);
-    void drawHeart(Position position);
-    void drawMonster(Position position);
-    void drawAdultMonster(Position position);
-    void drawEgg(Position position);
-    void drawBlock(Position position);
-    */
 
     public ACTION getNextAction() throws IOException {
         KeyStroke keyStroke = screen.pollInput();
