@@ -1,4 +1,4 @@
-package l06gr06;
+package org.l06gr06;
 
 //import org.l06gr06.gui.LanternaGUI;
 
