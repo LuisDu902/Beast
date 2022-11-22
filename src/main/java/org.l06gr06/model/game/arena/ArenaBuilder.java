@@ -8,15 +8,12 @@ public abstract class ArenaBuilder {
     public Arena createArena() {
         Arena arena = new Arena(getWidth(), getHeight());
 
-
-        /* to be implemented...
         arena.setHero(createHero());
         arena.setMonsters(createMonsters());
         arena.setWalls(createWalls());
         arena.setPowerUps(createPowerUps());
         arena.setBlocks(createBlocks());
         arena.setEggs(createEggs());
-        */
         return arena;
     }
 
