@@ -5,7 +5,7 @@ public class Monster extends Element{
 
     public Monster(int x, int y) {
         super(x, y);
-        this.phase = 1;
+        this.phase = 0;
     }
 
     public void evolve() {

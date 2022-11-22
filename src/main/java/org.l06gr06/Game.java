@@ -1,6 +1,6 @@
 package org.l06gr06;
 
-//import org.l06gr06.gui.LanternaGUI;
+import org.l06gr06.gui.LanternaGUI;
 
 import java.awt.*;
 import java.io.IOException;
