@@ -11,13 +11,18 @@ public class RandomArenaBuilder extends ArenaBuilder{
     private final int width;
     private final int height;
     private final int numberOfMonsters;
+    private final int numberOfBlocks;
+    private final int numberOfPowerUps;
+    private final int numberOfEggs;
 
-    public RandomArenaBuilder(int width, int height, int numberOfMonsters) {
+    public RandomArenaBuilder(int width, int height, int numberOfMonsters, int numberOfBlocks, int numberOfPowerUps, int numberOfEggs) {
         this.rng = new Random();
-
         this.width = width;
         this.height = height;
         this.numberOfMonsters = numberOfMonsters;
+        this.numberOfBlocks = numberOfBlocks;
+        this.numberOfPowerUps = numberOfPowerUps;
+        this.numberOfEggs = numberOfEggs;
     }
 
     @Override
@@ -42,8 +47,7 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     @Override
     protected Hero createHero() {
-        //to be implemented...
-        return null;
+        return new Hero(width / 3, height / 3);
     }
 
     @Override
@@ -65,19 +69,36 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     @Override
     protected List<Block> createBlocks() {
-        //to be implemented...
-        return null;
+        List<Block> blocks = new ArrayList<>();
+
+        while (blocks.size() < numberOfBlocks)
+            blocks.add(new Block(rng.nextInt(width - 2) + 1, rng.nextInt(height - 2) + 1));
+
+        return blocks;
+
     }
 
     @Override
     protected List<Egg> createEggs() {
-        //to be implemented
-        return null;
+        List<Egg> eggs = new ArrayList<>();
+
+        while (eggs.size() < numberOfEggs)
+            eggs.add(new Egg(rng.nextInt(width - 2) + 1, rng.nextInt(height - 2) + 1));
+
+        return eggs;
+
     }
 
     @Override
     protected List<PowerUp> createPowerUps() {
-        //to be implemented...
-        return null;
+        List<PowerUp> powerUps = new ArrayList<>();
+
+        while (powerUps.size() < numberOfPowerUps){
+            int a = (int) (Math.random()*2);
+            if (a == 0) powerUps.add(new Shield(rng.nextInt(width - 2) + 1, rng.nextInt(height - 2) + 1));
+            else powerUps.add(new Heart(rng.nextInt(width - 2) + 1, rng.nextInt(height - 2) + 1));
+        }
+
+        return powerUps;
     }
 }
