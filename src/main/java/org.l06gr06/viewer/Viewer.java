@@ -1,0 +1,23 @@
+package org.l06gr06.viewer;
+
+import org.l06gr06.gui.GUI;
+
+import java.io.IOException;
+
+public abstract class Viewer<T> {
+    private final T model;
+
+    public Viewer(T model) {
+        this.model = model;
+    }
+
+    public T getModel() {
+        return model;
+    }
+
+    public void draw(GUI gui) throws IOException {
+        //to be implemented...
+    }
+
+    protected abstract void drawElements(GUI gui);
+}
