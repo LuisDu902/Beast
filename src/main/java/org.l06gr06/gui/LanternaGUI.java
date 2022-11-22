@@ -80,7 +80,7 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawShield(Position position){
-        drawCharacter(position.getX(), position.getY(), '£', "#FFFFFF");
+        drawCharacter(position.getX(), position.getY(), 'e', "#FFFFFF");
     }
     @Override
     public void drawWall(Position position){
