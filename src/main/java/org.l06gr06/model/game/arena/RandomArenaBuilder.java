@@ -32,8 +32,12 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     @Override
     protected List<Monster> createMonsters() {
-        //to be implemented...
-        return null;
+        List<Monster> monsters = new ArrayList<>();
+
+        while (monsters.size() < numberOfMonsters)
+            monsters.add(new Monster(rng.nextInt(width - 2) + 1, rng.nextInt(height - 2) + 1));
+
+        return monsters;
     }
 
     @Override
@@ -44,13 +48,30 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     @Override
     protected List<Wall> createWalls() {
-        //to be implemented...
-        return null;
+        List<Wall> walls = new ArrayList<>();
+
+        for (int x = 0; x < width; x++) {
+            walls.add(new Wall(x, 0));
+            walls.add(new Wall(x, height - 1));
+        }
+
+        for (int y = 1; y < height - 1; y++) {
+            walls.add(new Wall(0, y));
+            walls.add(new Wall(width - 1, y));
+        }
+
+        return walls;
     }
 
     @Override
     protected List<Block> createBlocks() {
         //to be implemented...
+        return null;
+    }
+
+    @Override
+    protected List<Egg> createEggs() {
+        //to be implemented
         return null;
     }
 

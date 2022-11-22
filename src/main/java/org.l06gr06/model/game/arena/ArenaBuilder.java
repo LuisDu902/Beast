@@ -15,6 +15,7 @@ public abstract class ArenaBuilder {
         arena.setWalls(createWalls());
         arena.setPowerUps(createPowerUps());
         arena.setBlocks(createBlocks());
+        arena.setEggs(createEggs());
         */
         return arena;
     }
@@ -30,5 +31,6 @@ public abstract class ArenaBuilder {
     protected abstract Hero createHero();
     protected abstract List<PowerUp> createPowerUps();
     protected abstract List<Block> createBlocks();
+    protected abstract List<Egg> createEggs();
 }
 

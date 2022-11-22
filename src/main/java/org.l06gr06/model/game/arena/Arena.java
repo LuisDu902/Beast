@@ -69,13 +69,9 @@ public class Arena {
         this.powerUps = powerUps;
     }
 
-    public List<Egg> getEggs() {
-        return eggs;
-    }
+    public List<Egg> getEggs() {return eggs;}
 
-    public void setEggs(List<Egg> eggs) {
-        this.eggs = eggs;
-    }
+    public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
 
     public boolean isEmpty(Position position) {
         for (Wall wall : walls)
@@ -85,9 +81,7 @@ public class Arena {
             if (egg.getPosition().equals(position))
                 return true;
         return false;
-
     }
-
     public boolean isMonster(Position position) {
         for (Monster monster : monsters)
             if (monster.getPosition().equals(position))
@@ -100,22 +94,9 @@ public class Arena {
                 return true;
         return false;
     }
-    public boolean isWall(Position position) {
-        for (Wall wall : walls)
-            if (wall.getPosition().equals(position))
-                return true;
-        return false;
-    }
     public boolean isPowerUp(Position position) {
         for (PowerUp powerUp : powerUps)
             if (powerUp.getPosition().equals(position))
-                return true;
-        return false;
-    }
-
-    public boolean isEgg(Position position){
-        for (Egg egg: eggs)
-            if (egg.getPosition().equals(position))
                 return true;
         return false;
     }
