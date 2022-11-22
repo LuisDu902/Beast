@@ -1,10 +1,12 @@
 package org.l06gr06.gui;
 
+import org.l06gr06.model.Position;
+
 import java.io.IOException;
 
 public interface GUI {
 
-    /* To be implemented...
+
     void drawText(Position position, String text, String color);
     void drawHero(Position position);
     void drawShield(Position position);
@@ -14,7 +16,7 @@ public interface GUI {
     void drawAdultMonster(Position position);
     void drawEgg(Position position);
     void drawBlock(Position position);
-    */
+
     ACTION getNextAction() throws IOException;
     void clear();
 
