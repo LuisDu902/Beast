@@ -10,8 +10,8 @@ public class Arena {
     private final int width;
     private final int height;
 
-    private Hero hero;
-    private List<Monster> monsters;
+    private Player player;
+    private List<Beast> beasts;
     private List<Egg> eggs;
     private List<Wall> walls;
     private List<Block> blocks;
@@ -31,20 +31,20 @@ public class Arena {
         return height;
     }
 
-    public Hero getHero() {
-        return hero;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setHero(Hero hero) {
-        this.hero = hero;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
-    public List<Monster> getMonsters() {
-        return monsters;
+    public List<Beast> getBeasts() {
+        return beasts;
     }
 
-    public void setMonsters(List<Monster> monsters) {
-        this.monsters = monsters;
+    public void setBeasts(List<Beast> beasts) {
+        this.beasts = beasts;
     }
 
     public List<Wall> getWalls() {
@@ -82,9 +82,9 @@ public class Arena {
                 return true;
         return false;
     }
-    public boolean isMonster(Position position) {
-        for (Monster monster : monsters)
-            if (monster.getPosition().equals(position))
+    public boolean isBeast(Position position) {
+        for (Beast beast : beasts)
+            if (beast.getPosition().equals(position))
                 return true;
         return false;
     }
@@ -99,5 +99,9 @@ public class Arena {
             if (powerUp.getPosition().equals(position))
                 return true;
         return false;
+    }
+
+    public int getPlayerQuad(){
+        return 1;
     }
 }

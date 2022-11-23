@@ -11,22 +11,22 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class ArenaController extends GameController {
-    private final HeroController heroController;
-    private final MonsterController monsterController;
+    private final PlayerController playerController;
+    private final BeastController beastController;
 
     public ArenaController(Arena arena) {
         super(arena);
-        this.heroController = new HeroController(arena);
-        this.monsterController = new MonsterController(arena);
+        this.playerController = new PlayerController(arena);
+        this.beastController = new BeastController(arena);
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
 
-        if (action == GUI.ACTION.QUIT || getModel().getHero().getEnergy() == 0)
+        if (action == GUI.ACTION.QUIT || getModel().getPlayer().getEnergy() == 0)
             game.setState(new ScoreState(new ScoreMenu(Arrays.asList("Play Again","Exit"))));
         else {
-            heroController.step(game, action, time);
-            monsterController.step(game, action, time);
+            playerController.step(game, action, time);
+            beastController.step(game, action, time);
         }
     }
 }

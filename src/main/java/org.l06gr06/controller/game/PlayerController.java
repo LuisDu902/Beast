@@ -6,31 +6,28 @@ import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Block;
-import org.l06gr06.model.game.elements.Heart;
 import org.l06gr06.model.game.elements.PowerUp;
 
-import java.util.Arrays;
-import java.util.List;
 
-
-public class HeroController extends GameController {
-    public HeroController(Arena arena) {
+public class PlayerController extends GameController {
+    public PlayerController(Arena arena) {
         super(arena);
     }
-    public void moveHeroLeft(GUI.ACTION action) {
-        moveHero(getModel().getHero().getPosition().getLeft(),action);
+
+    public void movePlayerLeft(GUI.ACTION action) {
+        movePlayer(getModel().getPlayer().getPosition().getLeft(),action);
     }
 
-    public void moveHeroRight(GUI.ACTION action) {
-        moveHero(getModel().getHero().getPosition().getRight(),action);
+    public void movePlayerRight(GUI.ACTION action) {
+        movePlayer(getModel().getPlayer().getPosition().getRight(),action);
     }
 
-    public void moveHeroUp(GUI.ACTION action) {
-        moveHero(getModel().getHero().getPosition().getUp(),action);
+    public void movePlayerUp(GUI.ACTION action) {
+        movePlayer(getModel().getPlayer().getPosition().getUp(),action);
     }
 
-    public void moveHeroDown(GUI.ACTION action) {
-        moveHero(getModel().getHero().getPosition().getDown(),action);
+    public void movePlayerDown(GUI.ACTION action) {
+        movePlayer(getModel().getPlayer().getPosition().getDown(),action);
     }
 
     private void moveblock(Position position, GUI.ACTION action){
@@ -43,11 +40,17 @@ public class HeroController extends GameController {
 
                     if (getModel().isEmpty(block.getPosition().getDown())) {
                         block.setPosition(block.getPosition().getDown());
-                        getModel().getHero().setPosition(position);
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else if (getModel().isBeast(block.getPosition().getDown())) {
+                        block.getPosition().goDown();
+                        if (getModel().isBlock(block.getPosition().getDown())){
+                            block.getPosition().goUp();
                     }
                     else{
                         while (getModel().isBlock(block.getPosition().getUp())){
-                            block.getPosition().goUp();
+                                block.getPosition().goUp();
+                            }
                         }
                         if (!block.getPosition().equals(position))
                             block.getPosition().goUp();
@@ -62,7 +65,7 @@ public class HeroController extends GameController {
                     }
                     if (getModel().isEmpty(pos.getUp())) {
                         block.setPosition(pos.getUp());
-                        getModel().getHero().setPosition(position);
+                        getModel().getPlayer().setPosition(position);
                     }
                     else{
                         while (getModel().isBlock(block.getPosition().getDown())){
@@ -79,7 +82,7 @@ public class HeroController extends GameController {
                     }
                     if (getModel().isEmpty(pos.getLeft())) {
                         block.setPosition(pos.getLeft());
-                        getModel().getHero().setPosition(position);
+                        getModel().getPlayer().setPosition(position);
                     }
                     else{
                         while (getModel().isBlock(block.getPosition().getRight())){
@@ -96,7 +99,7 @@ public class HeroController extends GameController {
                     }
                     if (getModel().isEmpty(pos.getRight())) {
                         block.setPosition(pos.getRight());
-                        getModel().getHero().setPosition(position);
+                        getModel().getPlayer().setPosition(position);
                     }
                     else{
                         while (getModel().isBlock(block.getPosition().getLeft())){
@@ -109,10 +112,10 @@ public class HeroController extends GameController {
 
             }}
 
-    private void moveHero(Position position,GUI.ACTION action) {
+    private void movePlayer(Position position,GUI.ACTION action) {
         if (getModel().isEmpty(position) && !getModel().isBlock(position) && !getModel().isPowerUp(position)) {
-            getModel().getHero().setPosition(position);
-            if (getModel().isMonster(position)) getModel().getHero().decreaseEnergy();
+            getModel().getPlayer().setPosition(position);
+            if (getModel().isBeast(position)) getModel().getPlayer().decreaseEnergy();
 
         }
         else if (getModel().isBlock(position)){
@@ -120,8 +123,8 @@ public class HeroController extends GameController {
         }
 
         else if (getModel().isPowerUp(position)){
-            getModel().getHero().setPosition(position);
-            getModel().getHero().increaseEnergy();
+            getModel().getPlayer().setPosition(position);
+            getModel().getPlayer().increaseEnergy();
             int i = 0;
             for (PowerUp powerUp: getModel().getPowerUps()){
                 if (powerUp.getPosition().equals(position)){
@@ -135,9 +138,9 @@ public class HeroController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        if (action == GUI.ACTION.UP) moveHeroUp(action);
-        if (action == GUI.ACTION.RIGHT) moveHeroRight(action);
-        if (action == GUI.ACTION.DOWN) moveHeroDown(action);
-        if (action == GUI.ACTION.LEFT) moveHeroLeft(action);
+        if (action == GUI.ACTION.UP) movePlayerUp(action);
+        if (action == GUI.ACTION.RIGHT) movePlayerRight(action);
+        if (action == GUI.ACTION.DOWN) movePlayerDown(action);
+        if (action == GUI.ACTION.LEFT) movePlayerLeft(action);
     }
 }

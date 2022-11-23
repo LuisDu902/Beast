@@ -26,10 +26,8 @@ public class Menu {
     public boolean isSelected(int i){
         return currentEntry == i;
     }
+    public boolean isSelectedExit(){return isSelected(entries.size()-1);}
     public int getNumberEntries(){
         return this.entries.size();
-    }
-    public boolean isSelectedExit(){
-        return isSelected(entries.size()-1);
     }
 }

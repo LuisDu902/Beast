@@ -3,7 +3,7 @@ package org.l06gr06.controller.menu;
 import org.l06gr06.Game;
 import org.l06gr06.controller.Controller;
 import org.l06gr06.gui.GUI;
-import org.l06gr06.model.game.arena.LoaderArenaBuilder;
+import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.states.GameState;
 
@@ -25,7 +25,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
                 else
-                    game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                    game.setState(new GameState(new RandomArenaBuilder(50,20,5,80,2,3).createArena()));
         }
     }
 }

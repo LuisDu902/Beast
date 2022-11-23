@@ -28,16 +28,16 @@ public class lanternaGUITest {
     }
 
     @Test
-    void drawHero() {
-        gui.drawHero(new Position(20, 20));
+    void drawPlayer() {
+        gui.drawPlayer(new Position(20, 20));
 
         Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(51, 51, 255));
         Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "H");
     }
 
     @Test
-    void drawMonster() {
-        gui.drawMonster(new Position(20, 20));
+    void drawBeast() {
+        gui.drawBeast(0,new Position(20, 20));
 
         Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(232, 14, 14));
         Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "M");
@@ -50,13 +50,7 @@ public class lanternaGUITest {
         Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 255, 255));
         Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "e");
     }
-    @Test
-    void drawAdultMonster() {
-        gui.drawAdultMonster(new Position(20, 20));
 
-        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 215, 0));
-        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "M");
-    }
     @Test
     void drawHeart() {
         gui.drawHeart(new Position(20, 20));

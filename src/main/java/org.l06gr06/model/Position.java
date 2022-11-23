@@ -1,6 +1,7 @@
 package org.l06gr06.model;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Position {
     private  int x;
@@ -39,6 +40,41 @@ public class Position {
         return new Position(x, y + 1);
     }
 
+    public Position getUpLeft() {return new Position(x - 1,y - 1);}
+    public Position getUpRight() {return new Position(x + 1,y - 1);}
+    public Position getDownLeft() {return new Position(x - 1,y + 1);}
+    public Position getDownRight() {return new Position(x + 1,y + 1);}
+
+
+    public Position getCloserToPlayer(int quad) {
+        int n = (int) (Math.random() * 3);
+        switch (quad) {
+            case 1:
+                switch (n){
+                    case 0: return getLeft();
+                    case 1: return getUpLeft();
+                    default: return getUp();
+                }
+            case 2:
+                switch (n){
+                    case 0: return getUp();
+                    case 1: return getUpRight();
+                    default: return getRight();
+                }
+            case 3:
+                switch (n){
+                    case 0: return getRight();
+                    case 1: return getDownRight();
+                    default: return getDown();
+                }
+            default:
+                switch (n){
+                    case 0: return getDown();
+                    case 1: return getDownLeft();
+                    default: return getLeft();
+                }
+        }
+    }
     public Position getRandomNeighbour() {
         int n = (int) (Math.random() * 4);
         switch (n) {
@@ -52,7 +88,6 @@ public class Position {
                 return getLeft();
         }
     }
-
     public int getX() {
         return x;
     }
@@ -72,5 +107,18 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    public int relativeQuad(Position pos2){
+        if (this.getX() > pos2.getX() && this.getY() > pos2.getY()){
+            return 3;
+        }
+        if (this.getX() < pos2.getX() && this.getY() > pos2.getY()){
+            return 4;
+        }
+        if (this.getX() > pos2.getX() && this.getY() < pos2.getY()){
+            return 2;
+        }
+        return 1;
     }
 }

@@ -10,16 +10,16 @@ public class RandomArenaBuilder extends ArenaBuilder{
     private final Random rng;
     private final int width;
     private final int height;
-    private final int numberOfMonsters;
+    private final int numberOfBeasts;
     private final int numberOfBlocks;
     private final int numberOfPowerUps;
     private final int numberOfEggs;
 
-    public RandomArenaBuilder(int width, int height, int numberOfMonsters, int numberOfBlocks, int numberOfPowerUps, int numberOfEggs) {
+    public RandomArenaBuilder(int width, int height, int numberOfBeasts, int numberOfBlocks, int numberOfPowerUps, int numberOfEggs) {
         this.rng = new Random();
         this.width = width;
         this.height = height;
-        this.numberOfMonsters = numberOfMonsters;
+        this.numberOfBeasts = numberOfBeasts;
         this.numberOfBlocks = numberOfBlocks;
         this.numberOfPowerUps = numberOfPowerUps;
         this.numberOfEggs = numberOfEggs;
@@ -36,18 +36,18 @@ public class RandomArenaBuilder extends ArenaBuilder{
     }
 
     @Override
-    protected List<Monster> createMonsters() {
-        List<Monster> monsters = new ArrayList<>();
+    protected List<Beast> createBeasts() {
+        List<Beast> beasts = new ArrayList<>();
 
-        while (monsters.size() < numberOfMonsters)
-            monsters.add(new Monster(rng.nextInt(width - 2) + 1, rng.nextInt(height - 2) + 1));
+        while (beasts.size() < numberOfBeasts)
+            beasts.add(new Beast(rng.nextInt(width - 2) + 1, rng.nextInt(height - 2) + 1));
 
-        return monsters;
+        return beasts;
     }
 
     @Override
-    protected Hero createHero() {
-        return new Hero(width / 3, height / 3);
+    protected Player createPlayer() {
+        return new Player(width / 3, height / 3);
     }
 
     @Override
