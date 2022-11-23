@@ -1,11 +1,17 @@
 package org.l06gr06.states;
 
-public class ScoreState extends MenuState{
-    /* To be implemented...
-    public ScoreState(Menu model);
+import org.l06gr06.controller.Controller;
+import org.l06gr06.controller.menu.ScoreMenuController;
+import org.l06gr06.model.menu.ScoreMenu;
+import org.l06gr06.viewer.Viewer;
+import org.l06gr06.viewer.menu.ScoreMenuViewer;
 
-    protected Viewer<Menu> getViewer();
+public class ScoreState extends State<ScoreMenu>{
 
-    protected Controller<Menu> getController();
-    */
+    public ScoreState(ScoreMenu model){super(model);}
+
+    protected Viewer<ScoreMenu> getViewer(){return new ScoreMenuViewer(getModel());}
+
+    protected Controller<ScoreMenu> getController(){return new ScoreMenuController(getModel());}
+
 }

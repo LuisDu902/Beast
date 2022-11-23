@@ -1,11 +1,17 @@
 package org.l06gr06.states;
 
-public class LevelState extends MenuState{
-    /* To be implemented...
-    public LevelState(Menu model);
+import org.l06gr06.controller.Controller;
+import org.l06gr06.controller.menu.LevelMenuController;
+import org.l06gr06.model.menu.LevelMenu;
+import org.l06gr06.viewer.Viewer;
+import org.l06gr06.viewer.menu.LevelMenuViewer;
 
-    protected Viewer<Menu> getViewer();
+public class LevelState extends State<LevelMenu>{
 
-    protected Controller<Menu> getController();
-    */
+    public LevelState(LevelMenu model){super(model);}
+
+    protected Viewer<LevelMenu> getViewer(){return new LevelMenuViewer(getModel());}
+
+    protected Controller<LevelMenu> getController(){return new LevelMenuController(getModel());}
+
 }
