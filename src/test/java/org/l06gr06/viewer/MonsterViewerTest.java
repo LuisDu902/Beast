@@ -22,6 +22,6 @@ public class MonsterViewerTest {
     @Test
     void drawElement() {
         viewer.draw(monster, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawMonster(monster.getPosition());
+        Mockito.verify(gui, Mockito.times(1)).drawMonster(0,monster.getPosition());
     }
 }

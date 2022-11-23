@@ -45,9 +45,9 @@ public class GameViewerTest {
     void drawMonsters() throws IOException {
         viewer.draw(gui);
 
-        Mockito.verify(gui, Mockito.times(1)).drawMonster(new Position(4, 5));
-        Mockito.verify(gui, Mockito.times(1)).drawMonster(new Position(5, 6));
-        Mockito.verify(gui, Mockito.times(2)).drawMonster(Mockito.any(Position.class));
+        Mockito.verify(gui, Mockito.times(1)).drawMonster(0,new Position(4, 5));
+        Mockito.verify(gui, Mockito.times(1)).drawMonster(0,new Position(5, 6));
+        Mockito.verify(gui, Mockito.times(2)).drawMonster(Mockito.anyInt(),Mockito.any(Position.class));
     }
 
     @Test

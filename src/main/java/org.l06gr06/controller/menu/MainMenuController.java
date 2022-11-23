@@ -2,17 +2,19 @@ package org.l06gr06.controller.menu;
 
 import org.l06gr06.Game;
 import org.l06gr06.controller.Controller;
-/*
+
 import org.l06gr06.gui.GUI;
-import org.l06gr06.model.game.arena.LoaderArenaBuilder;
-import org.l06gr06.model.menu.Menu;
-import org.l06gr06.states.GameState;
-*/
+import org.l06gr06.model.menu.LevelMenu;
+import org.l06gr06.model.menu.MainMenu;
+import org.l06gr06.states.LevelState;
+import org.l06gr06.states.MainState;
 
 import java.io.IOException;
-/*
-public class MenuController extends Controller<Menu> {
-    public MenuController(Menu menu) {
+import java.util.Arrays;
+import java.util.List;
+
+public class MainMenuController extends Controller<MainMenu> {
+    public MainMenuController(MainMenu menu) {
         super(menu);
     }
 
@@ -26,8 +28,8 @@ public class MenuController extends Controller<Menu> {
                 getModel().nextEntry();
                 break;
             case SELECT:
-                //to be implemented...
+                if (getModel().isSelectedExit()) game.setState(null);
+                if (getModel().isSelectedStart()) game.setState(new LevelState(new LevelMenu(Arrays.asList("1","2","3","Exit"))));
         }
     }
 }
-*/

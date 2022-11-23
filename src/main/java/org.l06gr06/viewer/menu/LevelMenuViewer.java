@@ -2,11 +2,11 @@ package org.l06gr06.viewer.menu;
 
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
-import org.l06gr06.model.menu.Menu;
+import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.viewer.Viewer;
 
-public class LevelMenuViewer extends Viewer<Menu> {
-    public LevelMenuViewer(Menu menu) {
+public class LevelMenuViewer extends Viewer<LevelMenu> {
+    public LevelMenuViewer(LevelMenu menu) {
         super(menu);
     }
 

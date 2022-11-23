@@ -10,8 +10,8 @@ public class Arena {
     private final int width;
     private final int height;
 
-    private Hero hero;
-    private List<Monster> monsters;
+    private Player player;
+    private List<Beast> beasts;
     private List<Egg> eggs;
     private List<Wall> walls;
     private List<Block> blocks;
@@ -31,20 +31,20 @@ public class Arena {
         return height;
     }
 
-    public Hero getHero() {
-        return hero;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setHero(Hero hero) {
-        this.hero = hero;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
-    public List<Monster> getMonsters() {
-        return monsters;
+    public List<Beast> getBeasts() {
+        return beasts;
     }
 
-    public void setMonsters(List<Monster> monsters) {
-        this.monsters = monsters;
+    public void setBeasts(List<Beast> beasts) {
+        this.beasts = beasts;
     }
 
     public List<Wall> getWalls() {
@@ -69,6 +69,32 @@ public class Arena {
         this.powerUps = powerUps;
     }
 
+    public Block findBlock(Position position){
+        for (Block block: blocks){
+            if (block.getPosition().equals(position)){
+                return block;
+            }
+        }
+        return null;
+    }
+    public int findBeast(Position position){
+        for (int i = 0; i < beasts.size(); i++){
+            if (beasts.get(i).getPosition().equals(position)){
+                return i;
+            }
+        }
+        return 0;
+    }
+    public int findPowerUp(Position position) {
+        for (int i = 0; i < powerUps.size(); i++){
+            if (powerUps.get(i).getPosition().equals(position)){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+
     public List<Egg> getEggs() {return eggs;}
 
     public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
@@ -76,15 +102,15 @@ public class Arena {
     public boolean isEmpty(Position position) {
         for (Wall wall : walls)
             if (wall.getPosition().equals(position))
-                return true;
+                return false;
         for (Egg egg : eggs)
             if (egg.getPosition().equals(position))
-                return true;
-        return false;
+                return false;
+        return true;
     }
-    public boolean isMonster(Position position) {
-        for (Monster monster : monsters)
-            if (monster.getPosition().equals(position))
+    public boolean isBeast(Position position) {
+        for (Beast beast : beasts)
+            if (beast.getPosition().equals(position))
                 return true;
         return false;
     }

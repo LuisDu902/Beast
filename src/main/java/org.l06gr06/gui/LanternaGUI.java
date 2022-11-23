@@ -75,7 +75,7 @@ public class LanternaGUI implements GUI{
         tg.putString(position.getX(), position.getY(), text);
     }
     @Override
-    public void drawHero(Position position){
+    public void drawPlayer(Position position){
         drawCharacter(position.getX(), position.getY(), 'H', "#3333FF");
     }
     @Override
@@ -84,20 +84,22 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawWall(Position position){
-        drawCharacter(position.getX(), position.getY(), '#', "#F5F505");
+        drawCharacter(position.getX(), position.getY(), 'O', "#F5F505");
     }
     @Override
     public void drawHeart(Position position){
         drawCharacter(position.getX(), position.getY(), '@', "#FC0808");
     }
     @Override
-    public void drawMonster(Position position){
-        drawCharacter(position.getX(), position.getY(), 'M', "#E80E0E");
+    public void drawBeast(int phase, Position position){
+        if (phase == 0) {
+            drawCharacter(position.getX(), position.getY(), 'M', "#E80E0E");
+        }
+        else{
+            drawCharacter(position.getX(), position.getY(), 'M', "#FFD700");
+        }
     }
-    @Override
-    public void drawAdultMonster(Position position){
-        drawCharacter(position.getX(), position.getY(), 'M', "#FFD700");
-    }
+
     @Override
     public void drawEgg(Position position){
         drawCharacter(position.getX(), position.getY(), '.', "#8D05FC");
