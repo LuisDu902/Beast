@@ -1,6 +1,10 @@
 package org.l06gr06.controller.game;
 
 import org.l06gr06.Game;
+import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
+import org.l06gr06.model.game.arena.Arena;
+import org.l06gr06.model.game.elements.Monster;
 /*
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
@@ -9,7 +13,7 @@ import org.l06gr06.model.game.elements.Monster;
 */
 
 import java.io.IOException;
-/*
+
 public class MonsterController extends GameController {
     private long lastMovement;
 
@@ -29,11 +33,11 @@ public class MonsterController extends GameController {
     }
 
     private void moveMonster(Monster monster, Position position) {
-        if (getModel().isEmpty(position)) {
+        if (getModel().isEmpty(position) && !getModel().isBlock(position)) {
             monster.setPosition(position);
             if (getModel().getHero().getPosition().equals(position))
                 getModel().getHero().decreaseEnergy();
         }
     }
+
 }
-*/

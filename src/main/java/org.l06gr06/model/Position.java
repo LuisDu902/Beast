@@ -3,8 +3,8 @@ package org.l06gr06.model;
 import java.util.Objects;
 
 public class Position {
-    private final int x;
-    private final int y;
+    private  int x;
+    private  int y;
 
     public Position(int x, int y) {
         this.x = x;
@@ -17,6 +17,18 @@ public class Position {
 
     public Position getRight() {
         return new Position(x + 1, y);
+    }
+    public void goRight() {
+        x++;
+    }
+    public void goLeft() {
+        x--;
+    }
+    public void goUp() {
+        y--;
+    }
+    public void goDown() {
+        y++;
     }
 
     public Position getUp() {
