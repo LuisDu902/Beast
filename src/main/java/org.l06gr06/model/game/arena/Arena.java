@@ -83,7 +83,7 @@ public class Arena {
                 return i;
             }
         }
-        return 0;
+        return -1;
     }
     public int findPowerUp(Position position) {
         for (int i = 0; i < powerUps.size(); i++){
@@ -91,26 +91,40 @@ public class Arena {
                 return i;
             }
         }
-        return 0;
+        return -1;
     }
 
+    public int findEgg(Position position) {
+        for (int i = 0; i < eggs.size(); i++){
+            if (eggs.get(i).getPosition().equals(position)){
+                return i;
+            }
+        }
+        return 0;
+    }
 
     public List<Egg> getEggs() {return eggs;}
 
     public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
 
     public boolean isEmpty(Position position) {
-        for (Wall wall : walls)
-            if (wall.getPosition().equals(position))
-                return false;
-        for (Egg egg : eggs)
-            if (egg.getPosition().equals(position))
-                return false;
-        return true;
+        return !isEgg(position) && !isWall(position) && !isBlock(position);
     }
     public boolean isBeast(Position position) {
         for (Beast beast : beasts)
             if (beast.getPosition().equals(position))
+                return true;
+        return false;
+    }
+    public boolean isEgg(Position position) {
+        for (Egg egg : eggs)
+            if (egg.getPosition().equals(position))
+                return true;
+        return false;
+    }
+    public boolean isWall(Position position) {
+        for (Wall wall : walls)
+            if (wall.getPosition().equals(position))
                 return true;
         return false;
     }

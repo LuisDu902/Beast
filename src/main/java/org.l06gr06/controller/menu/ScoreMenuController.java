@@ -27,7 +27,7 @@ public class ScoreMenuController extends Controller<ScoreMenu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedPlayAgain()) game.setState(new LevelState(new LevelMenu(Arrays.asList("1","2","3","Exit"))));
+                if (getModel().isSelectedPlayAgain()) game.setState(new LevelState(new LevelMenu(Arrays.asList("Easy", "Medium", "Difficult", "Exit"))));
         }
     }
 }

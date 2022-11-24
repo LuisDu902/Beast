@@ -25,9 +25,13 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                else
-                    game.setState(new GameState(new RandomArenaBuilder(50,20,5,80,20,3).createArena()));
-                    //game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                else if (getModel().isSelected(0))
+                    //game.setState(new GameState(new RandomArenaBuilder(50,20,2,150,15,0,15).createArena()));
+                    game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                else if (getModel().isSelected(1))
+                    game.setState(new GameState(new RandomArenaBuilder(50,20,4,100,10,3,10).createArena()));
+                else if (getModel().isSelected(2))
+                    game.setState(new GameState(new RandomArenaBuilder(50,20,6,50,5,6,5).createArena()));
         }
     }
 }

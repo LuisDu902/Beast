@@ -35,11 +35,12 @@ public class BeastController extends GameController {
     }
 
     private void moveBeast(Beast beast, Position position) {
-        if (getModel().isEmpty(position) && !getModel().isBlock(position)) {
+        if (getModel().isEmpty(position) && !getModel().isBlock(position) && !getModel().isBeast(position)) {
             if (getModel().isPowerUp(position)) {
                 this.speed -= 50;
                 beast.evolve();
-
+                int i = getModel().findPowerUp(position);
+                getModel().getPowerUps().remove(i);
             }
             beast.setPosition(position);
             if (getModel().getPlayer().getPosition().equals(position))

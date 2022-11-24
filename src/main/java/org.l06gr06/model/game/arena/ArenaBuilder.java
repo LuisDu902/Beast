@@ -1,5 +1,6 @@
 package org.l06gr06.model.game.arena;
 
+import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public abstract class ArenaBuilder {
         arena.setEggs(createEggs());
         return arena;
     }
+
 
     protected abstract int getWidth();
 
