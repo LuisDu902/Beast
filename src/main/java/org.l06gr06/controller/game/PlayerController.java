@@ -12,6 +12,7 @@ import org.l06gr06.model.game.elements.PowerUp;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 
 public class PlayerController extends GameController {
@@ -227,8 +228,10 @@ public class PlayerController extends GameController {
             getModel().getPlayer().setPosition(position);
             if (getModel().isBeast(position)) {
                 getModel().getPlayer().decreaseEnergy();
-                getModel().getPlayer().setPosition(new Position((int) (Math.random() * (getModel().getWidth() - 1) + 1), (int) (Math.random() * (getModel().getHeight() - 1) + 2)));
-            }
+                Random rng = new Random();
+                int x = rng.nextInt(getModel().getWidth()-2)+1;
+                int y = rng.nextInt(getModel().getHeight()-3)+2;
+                getModel().getPlayer().setPosition(new Position(x,y));            }
             else if (getModel().isPowerUp(position)) {
                 if (getModel().getPlayer().getEnergy() <= 7) getModel().getPlayer().increaseEnergy();
                 int i = getModel().findPowerUp(position);

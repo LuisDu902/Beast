@@ -14,6 +14,7 @@ import org.l06gr06.model.game.elements.Beast;
 */
 
 import java.io.IOException;
+import java.util.Random;
 
 public class BeastController extends GameController {
     private long lastMovement;
@@ -43,9 +44,12 @@ public class BeastController extends GameController {
                 getModel().getPowerUps().remove(i);
             }
             beast.setPosition(position);
-            if (getModel().getPlayer().getPosition().equals(position))
+            if (getModel().getPlayer().getPosition().equals(position)) {
                 getModel().getPlayer().decreaseEnergy();
-
+                Random rng = new Random();
+                int x = rng.nextInt(getModel().getWidth()-2)+1;
+                int y = rng.nextInt(getModel().getHeight()-3)+2;
+                getModel().getPlayer().setPosition(new Position(x,y));            }
         }
     }
 
