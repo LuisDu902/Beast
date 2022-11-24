@@ -11,11 +11,13 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 Here are some screenshots of our project so far:
 
 docs/MainMenu.png
+
 docs/Gameplay.png
 
 ### Implemented Features
 
 For now, we have implemented most of the main features of our project, such as *moving blocks*, *killing Beasts*, and *catching power-ups*, by either the player or the Beasts.
+
 Some other not so perceivable features include the *Beasts following the player* as it moves, and the *respawning* of the player, whenever it loses a life.
 
 ### Class Diagram (UML)
@@ -25,11 +27,15 @@ Some other not so perceivable features include the *Beasts following the player*
 ### Design
 
 To deal with the design patterns we came across during the course of this project, we have decided to apply the following design patterns:
+
 	- State
+    
 	- Game Loop
+    
 	- Factory Method
+    
 As well as the architectural pattern: Model-View-Controller (MVC).
 
-###More Info
+### More Info
 
 For more information on any of these topics, and many other, please checkout our report (docs/README.md).
