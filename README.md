@@ -10,9 +10,9 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 Here are some screenshots of our project so far:
 
-docs/MainMenu.png
+[!plot](./docs/MainMenu.png)
 
-docs/Gameplay.png
+[!plot](./docs/Gameplay.png)
 
 ### Implemented Features
 
@@ -26,16 +26,8 @@ Some other not so perceivable features include the *Beasts following the player*
 
 ### Design
 
-To deal with the design patterns we came across during the course of this project, we have decided to apply the following design patterns:
-
-	- State
-    
-	- Game Loop
-    
-	- Factory Method
-    
-As well as the architectural pattern: Model-View-Controller (MVC).
+To deal with the design problems we came across during the course of this project, we have decided to apply the following design patterns: State, Game Loop and Factory Method; as well as the architectural pattern: Model-View-Controller (MVC).
 
 ### More Info
 
-For more information on any of these topics, and many other, please checkout our report (docs/README.md).
+For more information on any of these topics, and many other, please check out our report (docs/README.md).
