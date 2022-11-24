@@ -45,7 +45,7 @@ public class BeastController extends GameController {
             }
             beast.setPosition(position);
             if (getModel().getPlayer().getPosition().equals(position)) {
-                getModel().getPlayer().decreaseEnergy();
+                getModel().getPlayer().decreaseLife();
                 Random rng = new Random();
                 int x = rng.nextInt(getModel().getWidth()-2)+1;
                 int y = rng.nextInt(getModel().getHeight()-3)+2;

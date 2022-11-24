@@ -227,13 +227,13 @@ public class PlayerController extends GameController {
         if (getModel().isEmpty(position)) {
             getModel().getPlayer().setPosition(position);
             if (getModel().isBeast(position)) {
-                getModel().getPlayer().decreaseEnergy();
+                getModel().getPlayer().decreaseLife();
                 Random rng = new Random();
                 int x = rng.nextInt(getModel().getWidth()-2)+1;
                 int y = rng.nextInt(getModel().getHeight()-3)+2;
                 getModel().getPlayer().setPosition(new Position(x,y));            }
             else if (getModel().isPowerUp(position)) {
-                if (getModel().getPlayer().getEnergy() <= 7) getModel().getPlayer().increaseEnergy();
+                if (getModel().getPlayer().getLife() <= 7) getModel().getPlayer().increaseLife();
                 int i = getModel().findPowerUp(position);
                 getModel().getPowerUps().remove(i);
             }

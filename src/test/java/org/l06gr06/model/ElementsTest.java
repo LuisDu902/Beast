@@ -10,10 +10,10 @@ import org.l06gr06.model.game.elements.Shield;
 public class ElementsTest {
 
     @Test
-    public void IncreaseEnergy(){
+    public void IncreaseLife(){
         Player player = new Player(20,20);
-        player.increaseEnergy();
-        Assertions.assertEquals(6, player.getEnergy());
+        player.increaseLife();
+        Assertions.assertEquals(6, player.getLife());
     }
 
     @Test
@@ -31,9 +31,9 @@ public class ElementsTest {
     }
 
     @Test
-    public void DecreaseEnergy(){
+    public void DecreaseLife(){
         Player player = new Player(20,20);
-        player.decreaseEnergy();
-        Assertions.assertEquals(4, player.getEnergy());
+        player.decreaseLife();
+        Assertions.assertEquals(4, player.getLife());
     }
 }

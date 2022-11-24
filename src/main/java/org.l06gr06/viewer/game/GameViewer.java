@@ -21,7 +21,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getBlocks(), new BlockViewer());
         drawElements(gui, getModel().getEggs(), new EggViewer());
         drawElements(gui, getModel().getPowerUps(), new PowerUpViewer());
-        gui.drawText(new Position(0, 0), "Energy: " + getModel().getPlayer().getEnergy(), "#FFD700");
+        gui.drawText(new Position(0, 0), "Life: " + getModel().getPlayer().getLife(), "#FFD700");
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
