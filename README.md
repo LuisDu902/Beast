@@ -10,9 +10,9 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 Here are some screenshots of our project so far:
 
-[!plot](./docs/MainMenu.png)
+<img width="1248" alt="MainMenu" src="https://user-images.githubusercontent.com/92641892/203784751-b3f56216-6596-4f74-b34a-6677307d31fe.png">
 
-[!plot](./docs/Gameplay.png)
+<img width="1248" alt="Gameplay" src="https://user-images.githubusercontent.com/92641892/203785165-3cbc57a5-6d96-4ee8-a70d-055e73c6150c.png">
 
 ### Implemented Features
 
@@ -30,4 +30,4 @@ To deal with the design problems we came across during the course of this projec
 
 ### More Info
 
-For more information on any of these topics, and many other, please check out our report (docs/README.md).
+For more information on any of these topics, and many other, please check out our report.
