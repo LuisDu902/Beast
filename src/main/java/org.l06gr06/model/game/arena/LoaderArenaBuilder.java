@@ -56,24 +56,24 @@ public class LoaderArenaBuilder extends ArenaBuilder{
     }
 
     @Override
-    protected List<Monster> createMonsters() {
-        List<Monster> monsters = new ArrayList<>();
+    protected List<Beast> createBeasts() {
+        List<Beast> beasts = new ArrayList<>();
 
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'M') monsters.add(new Monster(x, y));
+                if (line.charAt(x) == 'M') beasts.add(new Beast(x, y));
         }
 
-        return monsters;
+        return beasts;
     }
 
     @Override
-    protected Hero createHero() {
+    protected Player createPlayer() {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'H') return new Hero(x, y);
+                if (line.charAt(x) == 'H') return new Player(x, y);
         }
         return null;
     }

@@ -5,15 +5,12 @@ import org.l06gr06.model.Position;
 import java.io.IOException;
 
 public interface GUI {
-
-
     void drawText(Position position, String text, String color);
-    void drawHero(Position position);
+    void drawPlayer(Position position);
     void drawShield(Position position);
     void drawWall(Position position);
     void drawHeart(Position position);
-    void drawMonster(Position position);
-    void drawAdultMonster(Position position);
+    void drawBeast(int phase, Position position);
     void drawEgg(Position position);
     void drawBlock(Position position);
 
