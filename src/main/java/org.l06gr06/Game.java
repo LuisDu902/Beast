@@ -2,7 +2,7 @@ package org.l06gr06;
 
 import org.l06gr06.gui.LanternaGUI;
 import org.l06gr06.model.menu.MainMenu;
-import org.l06gr06.states.MainState;
+import org.l06gr06.states.MainMenuState;
 import org.l06gr06.states.State;
 
 import java.awt.*;
@@ -16,7 +16,7 @@ public class Game {
 
     public Game() throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGUI(50, 20);
-        this.state = new MainState(new MainMenu((Arrays.asList("[Press enter to play]"))));
+        this.state = new MainMenuState(new MainMenu((Arrays.asList("[Press enter to play]"))));
     }
 
     public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {

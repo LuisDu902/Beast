@@ -4,7 +4,7 @@ import org.l06gr06.Game;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.menu.ScoreMenu;
-import org.l06gr06.states.ScoreState;
+import org.l06gr06.states.ScoreMenuState;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class ArenaController extends GameController {
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
 
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0)
-            game.setState(new ScoreState(new ScoreMenu(Arrays.asList("Play Again","Exit"))));
+            game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again","Exit"))));
         else {
             playerController.step(game, action, time);
             beastController.step(game, action, time);

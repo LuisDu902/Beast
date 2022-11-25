@@ -6,9 +6,9 @@ import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.viewer.Viewer;
 import org.l06gr06.viewer.menu.ScoreMenuViewer;
 
-public class ScoreState extends State<ScoreMenu>{
+public class ScoreMenuState extends State<ScoreMenu>{
 
-    public ScoreState(ScoreMenu model){super(model);}
+    public ScoreMenuState(ScoreMenu model){super(model);}
 
     protected Viewer<ScoreMenu> getViewer(){return new ScoreMenuViewer(getModel());}
 
