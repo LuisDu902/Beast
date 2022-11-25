@@ -116,17 +116,17 @@ Classes:
 
 - [GameController](../src/main/java/org.l06gr06/controller/game/GameController.java)
 - [Arena](../src/main/java/org.l06gr06/model/game/arena/Arena.java)
-- [ArenaController] (../src/main/java/org.l06gr06/controller/game/ArenaController.java)
-- [BeastController] (../src/main/java/org.l06gr06/controller/game/BeastController.java)
-- [PlayerController] (../src/main/java/org.l06gr06/controller/game/PlayerController.java)
+- [ArenaController](../src/main/java/org.l06gr06/controller/game/ArenaController.java)
+- [BeastController](../src/main/java/org.l06gr06/controller/game/BeastController.java)
+- [PlayerController](../src/main/java/org.l06gr06/controller/game/PlayerController.java)
 - [GameViewer](../src/main/java/org.l06gr06/viewer/game/GameViewer.java)
-- [ElementViewer] (../src/main/java/org.l06gr06/viewer/game/ElementViewer.java)
-- [EggViewer] (../src/main/java/org.l06gr06/viewer/game/EggViewer.java)
-- [WallViewer] (../src/main/java/org.l06gr06/viewer/game/WallViewer.java)
-- [PowerUpViewer] (../src/main/java/org.l06gr06/viewer/game/PowerUpViewer.java)
-- [BeastViewer] (../src/main/java/org.l06gr06/viewer/game/BeastViewer.java)
-- [BlockViewer] (../src/main/java/org.l06gr06/viewer/game/BlockViewer.java)
-- [PlayerViewer] (../src/main/java/org.l06gr06/viewer/game/PlayerViewer.java)
+- [ElementViewer](../src/main/java/org.l06gr06/viewer/game/ElementViewer.java)
+- [EggViewer](../src/main/java/org.l06gr06/viewer/game/EggViewer.java)
+- [WallViewer](../src/main/java/org.l06gr06/viewer/game/WallViewer.java)
+- [PowerUpViewer](../src/main/java/org.l06gr06/viewer/game/PowerUpViewer.java)
+- [BeastViewer](../src/main/java/org.l06gr06/viewer/game/BeastViewer.java)
+- [BlockViewer](../src/main/java/org.l06gr06/viewer/game/BlockViewer.java)
+- [PlayerViewer](../src/main/java/org.l06gr06/viewer/game/PlayerViewer.java)
 
 **Consequences**
 
