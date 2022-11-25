@@ -34,7 +34,6 @@ public class lanternaGUITest {
         Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(51, 51, 255));
         Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "H");
     }
-
     @Test
     void drawBeast(){
         gui.drawBeast(0,new Position(20, 20));

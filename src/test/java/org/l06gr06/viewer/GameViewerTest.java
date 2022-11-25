@@ -80,11 +80,16 @@ public class GameViewerTest {
     void drawPowerUps() throws IOException {
         viewer.draw(gui);
 
-        //Mockito.verify(gui, Mockito.times(1)).drawHeart(new Position(1, 1));
+        Mockito.verify(gui, Mockito.times(1)).drawHeart(new Position(1, 1));
         Mockito.verify(gui, Mockito.times(1)).drawShield(new Position(8, 8));
-        //Mockito.verify(gui, Mockito.times(1)).drawHeart(new Position(9, 9));
-        //Mockito.verify(gui, Mockito.times(2)).drawHeart(Mockito.any(Position.class));
-        //Mockito.verify(gui, Mockito.times(1)).drawShield(Mockito.any(Position.class));
+        Mockito.verify(gui, Mockito.times(1)).drawHeart(new Position(9, 9));
+        Mockito.verify(gui, Mockito.times(2)).drawHeart(Mockito.any(Position.class));
+        Mockito.verify(gui, Mockito.times(1)).drawShield(Mockito.any(Position.class));
+    }
+    @Test
+    void drawText() throws IOException {
+        viewer.draw(gui);
+        Mockito.verify(gui, Mockito.times(1)).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
     }
     @Test
     void refreshAndClear() throws IOException {

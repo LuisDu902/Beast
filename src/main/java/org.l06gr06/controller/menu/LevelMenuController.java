@@ -26,8 +26,8 @@ public class LevelMenuController  extends Controller<LevelMenu> {
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
                 else if (getModel().isSelected(0))
-                    //game.setState(new GameState(new RandomArenaBuilder(50,20,2,150,15,0,15).createArena()));
-                    game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                    game.setState(new GameState(new RandomArenaBuilder(50,20,2,150,15,0,15).createArena()));
+                    //game.setState(new GameState(new LoaderArenaBuilder(1).createArena())); makes testing easier :)
                 else if (getModel().isSelected(1))
                     game.setState(new GameState(new RandomArenaBuilder(50,20,4,100,10,3,10).createArena()));
                 else if (getModel().isSelected(2))

@@ -6,36 +6,32 @@ import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Block;
-import org.l06gr06.model.game.elements.Heart;
-import org.l06gr06.model.game.elements.Beast;
-import org.l06gr06.model.game.elements.PowerUp;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 
 public class PlayerController extends GameController {
+    private GUI.ACTION action;
     public PlayerController(Arena arena) {
         super(arena);
     }
-    public void movePlayerLeft(GUI.ACTION action) {
-        movePlayer(getModel().getPlayer().getPosition().getLeft(),action);
+    public void movePlayerLeft() {
+        movePlayer(getModel().getPlayer().getPosition().getLeft());
     }
 
-    public void movePlayerRight(GUI.ACTION action) {
-        movePlayer(getModel().getPlayer().getPosition().getRight(),action);
+    public void movePlayerRight() {movePlayer(getModel().getPlayer().getPosition().getRight());}
+
+    public void movePlayerUp() {
+        movePlayer(getModel().getPlayer().getPosition().getUp());
     }
 
-    public void movePlayerUp(GUI.ACTION action) {
-        movePlayer(getModel().getPlayer().getPosition().getUp(),action);
+    public void movePlayerDown() {
+        movePlayer(getModel().getPlayer().getPosition().getDown());
     }
 
-    public void movePlayerDown(GUI.ACTION action) {
-        movePlayer(getModel().getPlayer().getPosition().getDown(),action);
-    }
+    public void setAction(GUI.ACTION action) {this.action = action;}
 
-    private void moveblock(Position position, GUI.ACTION action){
+    private void moveblock(Position position){
         Block block = getModel().findBlock(position);
         if (action == GUI.ACTION.DOWN){
             while (getModel().isBlock(block.getPosition().getDown())){
@@ -223,7 +219,7 @@ public class PlayerController extends GameController {
 
     }
 
-    private void movePlayer(Position position,GUI.ACTION action) {
+    private void movePlayer(Position position) {
         if (getModel().isEmpty(position)) {
             getModel().getPlayer().setPosition(position);
             if (getModel().isBeast(position)) {
@@ -231,7 +227,7 @@ public class PlayerController extends GameController {
                 Random rng = new Random();
                 int x = rng.nextInt(getModel().getWidth()-2)+1;
                 int y = rng.nextInt(getModel().getHeight()-3)+2;
-                getModel().getPlayer().setPosition(new Position(x,y));            }
+                getModel().getPlayer().setPosition(new Position(x,y));}
             else if (getModel().isPowerUp(position)) {
                 if (getModel().getPlayer().getLife() <= 7) getModel().getPlayer().increaseLife();
                 int i = getModel().findPowerUp(position);
@@ -239,16 +235,17 @@ public class PlayerController extends GameController {
             }
         }
         else if (getModel().isBlock(position)){
-            moveblock(position,action);
+            moveblock(position);
         }
 
     }
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        if (action == GUI.ACTION.UP) movePlayerUp(action);
-        if (action == GUI.ACTION.RIGHT) movePlayerRight(action);
-        if (action == GUI.ACTION.DOWN) movePlayerDown(action);
-        if (action == GUI.ACTION.LEFT) movePlayerLeft(action);
+        this.action = action;
+        if (action == GUI.ACTION.UP) movePlayerUp();
+        if (action == GUI.ACTION.RIGHT) movePlayerRight();
+        if (action == GUI.ACTION.DOWN) movePlayerDown();
+        if (action == GUI.ACTION.LEFT) movePlayerLeft();
     }
 }

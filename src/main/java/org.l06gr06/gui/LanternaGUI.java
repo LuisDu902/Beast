@@ -17,20 +17,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-
 public class LanternaGUI implements GUI{
     private final Screen screen;
-
     public LanternaGUI(Screen screen) {
         this.screen = screen;
     }
-
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
         this.screen = createScreen(terminal);
     }
-
     private Screen createScreen(Terminal terminal) throws IOException {
         final Screen screen;
         screen = new TerminalScreen(terminal);
@@ -39,7 +35,6 @@ public class LanternaGUI implements GUI{
         screen.doResizeIfNecessary();
         return screen;
     }
-
     private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height + 1);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
@@ -48,7 +43,6 @@ public class LanternaGUI implements GUI{
         Terminal terminal = terminalFactory.createTerminal();
         return terminal;
     }
-
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
         URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
         File fontFile = new File(resource.toURI());
@@ -61,7 +55,6 @@ public class LanternaGUI implements GUI{
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
-
     private void drawCharacter(int x, int y, char c, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
@@ -132,12 +125,8 @@ public class LanternaGUI implements GUI{
     }
 
     @Override
-    public void refresh() throws IOException {
-        screen.refresh();
-    }
+    public void refresh() throws IOException { screen.refresh(); }
 
     @Override
-    public void close() throws IOException {
-        screen.close();
-    }
+    public void close() throws IOException { screen.close(); }
 }

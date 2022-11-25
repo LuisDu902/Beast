@@ -9,18 +9,33 @@ import org.l06gr06.viewer.Viewer;
 import java.util.List;
 
 public class GameViewer extends Viewer<Arena> {
+
+    private WallViewer wallViewer;
+    private BeastViewer beastViewer;
+    private PlayerViewer playerViewer;
+    private BlockViewer blockViewer;
+    private EggViewer eggViewer;
+    private PowerUpViewer powerUpViewer;
+
     public GameViewer(Arena arena) {
+
         super(arena);
+        this.playerViewer = new PlayerViewer();
+        this.wallViewer = new WallViewer();
+        this.beastViewer = new BeastViewer();
+        this.eggViewer = new EggViewer();
+        this.blockViewer = new BlockViewer();
+        this.powerUpViewer = new PowerUpViewer();
     }
 
     @Override
     public void drawElements(GUI gui) {
-        drawElements(gui, getModel().getWalls(), new WallViewer());
-        drawElements(gui, getModel().getBeasts(), new BeastViewer());
-        drawElement(gui, getModel().getPlayer(), new PlayerViewer());
-        drawElements(gui, getModel().getBlocks(), new BlockViewer());
-        drawElements(gui, getModel().getEggs(), new EggViewer());
-        drawElements(gui, getModel().getPowerUps(), new PowerUpViewer());
+        drawElements(gui, getModel().getWalls(), wallViewer);
+        drawElements(gui, getModel().getBeasts(), beastViewer);
+        drawElement(gui, getModel().getPlayer(), playerViewer);
+        drawElements(gui, getModel().getBlocks(), blockViewer);
+        drawElements(gui, getModel().getEggs(), eggViewer);
+        drawElements(gui, getModel().getPowerUps(), powerUpViewer);
         gui.drawText(new Position(0, 0), "Life: " + getModel().getPlayer().getLife(), "#FFD700");
     }
 

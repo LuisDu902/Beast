@@ -6,7 +6,6 @@ import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.ScoreState;
 
-import javax.swing.plaf.nimbus.State;
 import java.io.IOException;
 import java.util.Arrays;
 

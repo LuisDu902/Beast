@@ -1,6 +1,5 @@
 package org.l06gr06.states;
 
-import org.l06gr06.Game;
 import org.l06gr06.controller.Controller;
 import org.l06gr06.controller.game.ArenaController;
 import org.l06gr06.model.game.arena.Arena;
