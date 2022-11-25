@@ -1,4 +1,4 @@
-## LPOO_<6><6> - <Beast_1984>
+## LPOO_66 - Beast_1984
 
 Your goal in this game is to kill every Beast that appears in your way, in the shortest time possible. You're trapped in a maze of movable blocks, and the only way to survive is by smashing your enemies between them. This might seem like an easy task, but as eggs evolve to Beasts, and its number increases, you'll soon realise that the power-ups will come in handy.
 
@@ -30,4 +30,4 @@ To deal with the design problems we came across during the course of this projec
 
 ### More Info
 
-For more information on any of these topics, and many other, please check out our report.
+For more information on any of these topics, and many other, please check out our [report](./docs/README.md).
