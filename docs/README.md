@@ -11,7 +11,7 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 **Move blocks** - Whenever the player moves, if it goes against a movable block, every linked block in that direction gets pushed.
 
-<img width="320" alt="Move_Blocks" src="https://user-images.githubusercontent.com/92641892/203945409-cd450b57-fd60-4006-9c7e-0231b148822f.png">
+![MoveBlocks](https://user-images.githubusercontent.com/92641892/203945409-cd450b57-fd60-4006-9c7e-0231b148822f.png)
 
 **Kill Beast** - In order for a Beast to be killed, it has to be smashed between any two blocks or a block and a wall.
 
@@ -165,7 +165,7 @@ The use of the Factory Pattern in the current design promotes the loose-coupling
 
 This project uses a GUI (Lanterna) to display the game and allow input by the player. It would become very confusing to handle the implementation of the game, take the inputs of the player and display everything in the same class. For example, having the Player class hold methods for taking input of the movement, for moving the Player and for showing it on screen would be confusing and hard to work on.
 
-** MVC Pattern**
+**MVC Pattern**
 
 This Architectural pattern separates the implementation of classes into three different groups: 
 The model classes - which represent the data; 
@@ -193,7 +193,7 @@ This way, the program is subdivided in a way that is easier to work on (keeping 
 
 ### TESTING
 
-Here is the link to our mutation testing report.
+Here is the [link](../pitest/index.html) to our mutation testing report.
 
 ![CoverageReport](https://user-images.githubusercontent.com/92641892/204018185-2d468e8b-ec80-40a5-bb08-b884fcaac90a.png)
 
