@@ -15,10 +15,11 @@ public class LevelMenuViewer extends Viewer<LevelMenu> {
 
         gui.drawText(new Position(20, 5), "Levels", "#FFFFFF");
 
-        for (int i = 0; i < getModel().getNumberEntries(); i++)
+        for (int i = 0; i < getModel().getNumberEntries()-1; i++)
             gui.drawText(
                     new Position(20, 10 + i),
                     getModel().getEntry(i),
                     getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+        gui.drawText(new Position(20,15),getModel().getEntry(getModel().getNumberEntries()-1),getModel().isSelected(getModel().getNumberEntries()-1) ? "#FFD700" : "#FFFFFF");
     }
 }

@@ -6,8 +6,6 @@ import org.l06gr06.model.game.elements.PowerUp;
 import org.l06gr06.model.game.elements.Shield;
 
 public class PowerUpViewer implements ElementViewer<PowerUp>{
-    //PowerUpViewer sv = new ShieldViewer();
-    //PowerUpViewer hv = new HeartViewer();
     public void draw(PowerUp powerUp, GUI gui){
         if (powerUp instanceof Shield) gui.drawShield(powerUp.getPosition());
         if (powerUp instanceof Heart) gui.drawHeart(powerUp.getPosition());

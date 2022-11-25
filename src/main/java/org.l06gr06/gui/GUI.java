@@ -3,7 +3,6 @@ package org.l06gr06.gui;
 import org.l06gr06.model.Position;
 
 import java.io.IOException;
-
 public interface GUI {
     void drawText(Position position, String text, String color);
     void drawPlayer(Position position);
@@ -13,14 +12,9 @@ public interface GUI {
     void drawBeast(int phase, Position position);
     void drawEgg(Position position);
     void drawBlock(Position position);
-
     ACTION getNextAction() throws IOException;
     void clear();
-
     void refresh() throws IOException;
-
     void close() throws IOException;
-
     enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT}
-
 }

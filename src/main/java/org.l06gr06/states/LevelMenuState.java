@@ -6,9 +6,9 @@ import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.viewer.Viewer;
 import org.l06gr06.viewer.menu.LevelMenuViewer;
 
-public class LevelState extends State<LevelMenu>{
+public class LevelMenuState extends State<LevelMenu>{
 
-    public LevelState(LevelMenu model){super(model);}
+    public LevelMenuState(LevelMenu model){super(model);}
 
     protected Viewer<LevelMenu> getViewer(){return new LevelMenuViewer(getModel());}
 

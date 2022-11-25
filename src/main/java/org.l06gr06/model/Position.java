@@ -1,7 +1,6 @@
 package org.l06gr06.model;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class Position {
     private  int x;
@@ -15,36 +14,19 @@ public class Position {
     public Position getLeft() {
         return new Position(x - 1, y);
     }
-
     public Position getRight() {
         return new Position(x + 1, y);
     }
-    public void goRight() {
-        x++;
-    }
-    public void goLeft() {
-        x--;
-    }
-    public void goUp() {
-        y--;
-    }
-    public void goDown() {
-        y++;
-    }
-
     public Position getUp() {
         return new Position(x, y - 1);
     }
-
     public Position getDown() {
         return new Position(x, y + 1);
     }
-
     public Position getUpLeft() {return new Position(x - 1,y - 1);}
     public Position getUpRight() {return new Position(x + 1,y - 1);}
     public Position getDownLeft() {return new Position(x - 1,y + 1);}
     public Position getDownRight() {return new Position(x + 1,y + 1);}
-
 
     public Position getCloserToPlayer(int quad) {
         int n = (int) (Math.random() * 3);
@@ -75,23 +57,22 @@ public class Position {
                 }
         }
     }
-    public Position getRandomNeighbour() {
-        int n = (int) (Math.random() * 4);
-        switch (n) {
-            case 0:
-                return getUp();
-            case 1:
-                return getRight();
-            case 2:
-                return getDown();
-            default:
-                return getLeft();
-        }
+    public void goRight() {
+        x++;
     }
+    public void goLeft() {
+        x--;
+    }
+    public void goUp() {
+        y--;
+    }
+    public void goDown() {
+        y++;
+    }
+
     public int getX() {
         return x;
     }
-
     public int getY() {
         return y;
     }

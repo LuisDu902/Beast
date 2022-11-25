@@ -35,14 +35,16 @@ public class PlayerControllerTest {
 
     @Test
     void movePlayerRightEmpty() {
-        controller.movePlayerRight(GUI.ACTION.RIGHT);
+        controller.setAction(GUI.ACTION.RIGHT);
+        controller.movePlayerRight();
         assertEquals(new Position(6, 5), player.getPosition());
     }
 
     @Test
     void movePlayerRightMoveBlock() {
         arena.setBlocks(Arrays.asList(new Block(6, 5)));
-        controller.movePlayerRight(GUI.ACTION.RIGHT);
+        controller.setAction(GUI.ACTION.RIGHT);
+        controller.movePlayerRight();
         assertEquals(new Position(6, 5), player.getPosition());
         assertEquals(new Position(7, 5), arena.getBlocks().get(0).getPosition());
     }
@@ -51,7 +53,8 @@ public class PlayerControllerTest {
     void movePlayerRightNoMoveBlock() {
         arena.setBlocks(Arrays.asList(new Block(6, 5)));
         arena.setWalls(Arrays.asList(new Wall(7, 5)));
-        controller.movePlayerRight(GUI.ACTION.RIGHT);
+        controller.setAction(GUI.ACTION.RIGHT);
+        controller.movePlayerRight();
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(6, 5), arena.getBlocks().get(0).getPosition());
         assertEquals(new Position(7, 5), arena.getWalls().get(0).getPosition());
@@ -60,20 +63,23 @@ public class PlayerControllerTest {
     @Test
     void movePlayerRightWall() {
         arena.setWalls(Arrays.asList(new Wall(6, 5)));
-        controller.movePlayerRight(GUI.ACTION.RIGHT);
+        controller.setAction(GUI.ACTION.RIGHT);
+        controller.movePlayerRight();
         assertEquals(new Position(5, 5), player.getPosition());
     }
 
     @Test
     void movePlayerLeftEmpty() {
-        controller.movePlayerLeft(GUI.ACTION.LEFT);
+        controller.setAction(GUI.ACTION.LEFT);
+        controller.movePlayerLeft();
         assertEquals(new Position(4, 5), player.getPosition());
     }
 
     @Test
     void movePlayerLeftMoveBlock() {
         arena.setBlocks(Arrays.asList(new Block(4, 5)));
-        controller.movePlayerLeft(GUI.ACTION.LEFT);
+        controller.setAction(GUI.ACTION.LEFT);
+        controller.movePlayerLeft();
         assertEquals(new Position(4, 5), player.getPosition());
         assertEquals(new Position(3, 5), arena.getBlocks().get(0).getPosition());
     }
@@ -82,7 +88,8 @@ public class PlayerControllerTest {
     void movePlayerLeftNoMoveBlock() {
         arena.setBlocks(Arrays.asList(new Block(4, 5)));
         arena.setWalls(Arrays.asList(new Wall(3, 5)));
-        controller.movePlayerLeft(GUI.ACTION.LEFT);
+        controller.setAction(GUI.ACTION.LEFT);
+        controller.movePlayerLeft();
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(4, 5), arena.getBlocks().get(0).getPosition());
         assertEquals(new Position(3, 5), arena.getWalls().get(0).getPosition());
@@ -91,20 +98,23 @@ public class PlayerControllerTest {
     @Test
     void movePlayerLeftWall() {
         arena.setWalls(Arrays.asList(new Wall(4, 5)));
-        controller.movePlayerLeft(GUI.ACTION.LEFT);
+        controller.setAction(GUI.ACTION.LEFT);
+        controller.movePlayerLeft();
         assertEquals(new Position(5, 5), player.getPosition());
     }
 
     @Test
     void movePlayerUpEmpty() {
-        controller.movePlayerUp(GUI.ACTION.UP);
+        controller.setAction(GUI.ACTION.UP);
+        controller.movePlayerUp();
         assertEquals(new Position(5, 4), player.getPosition());
     }
 
     @Test
     void movePlayerUpMoveBlock() {
         arena.setBlocks(Arrays.asList(new Block(5, 4)));
-        controller.movePlayerUp(GUI.ACTION.UP);
+        controller.setAction(GUI.ACTION.UP);
+        controller.movePlayerUp();
         assertEquals(new Position(5, 4), player.getPosition());
         assertEquals(new Position(5, 3), arena.getBlocks().get(0).getPosition());
     }
@@ -113,7 +123,8 @@ public class PlayerControllerTest {
     void movePlayerUpNoMoveBlock() {
         arena.setBlocks(Arrays.asList(new Block(5, 4)));
         arena.setWalls(Arrays.asList(new Wall(5, 3)));
-        controller.movePlayerUp(GUI.ACTION.UP);
+        controller.setAction(GUI.ACTION.UP);
+        controller.movePlayerUp();
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(5, 4), arena.getBlocks().get(0).getPosition());
         assertEquals(new Position(5, 3), arena.getWalls().get(0).getPosition());
@@ -122,19 +133,22 @@ public class PlayerControllerTest {
     @Test
     void movePlayerUpWall() {
         arena.setWalls(Arrays.asList(new Wall(5, 4)));
-        controller.movePlayerUp(GUI.ACTION.UP);
+        controller.setAction(GUI.ACTION.UP);
+        controller.movePlayerUp();
         assertEquals(new Position(5, 5), player.getPosition());
     }
     @Test
     void movePlayerDownEmpty() {
-        controller.movePlayerDown(GUI.ACTION.DOWN);
+        controller.setAction(GUI.ACTION.DOWN);
+        controller.movePlayerDown();
         assertEquals(new Position(5, 6), player.getPosition());
     }
 
     @Test
     void movePlayerDownMoveBlock() {
         arena.setBlocks(Arrays.asList(new Block(5, 6)));
-        controller.movePlayerDown(GUI.ACTION.DOWN);
+        controller.setAction(GUI.ACTION.DOWN);
+        controller.movePlayerDown();
         assertEquals(new Position(5, 6), player.getPosition());
         assertEquals(new Position(5, 7), arena.getBlocks().get(0).getPosition());
     }
@@ -143,7 +157,8 @@ public class PlayerControllerTest {
     void movePlayerDownNoMoveBlock() {
         arena.setBlocks(Arrays.asList(new Block(5, 6)));
         arena.setWalls(Arrays.asList(new Wall(5, 7)));
-        controller.movePlayerDown(GUI.ACTION.DOWN);
+        controller.setAction(GUI.ACTION.DOWN);
+        controller.movePlayerDown();
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(5, 6), arena.getBlocks().get(0).getPosition());
         assertEquals(new Position(5, 7), arena.getWalls().get(0).getPosition());
@@ -152,7 +167,8 @@ public class PlayerControllerTest {
     @Test
     void movePlayerDownWall() {
         arena.setWalls(Arrays.asList(new Wall(5, 6)));
-        controller.movePlayerDown(GUI.ACTION.DOWN);
+        controller.setAction(GUI.ACTION.DOWN);
+        controller.movePlayerDown();
         assertEquals(new Position(5, 5), player.getPosition());
     }
 
