@@ -11,7 +11,7 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 **Move blocks** - Whenever the player moves, if it goes against a movable block, every linked block in that direction gets pushed.
 
-![MoveBlocks](https://user-images.githubusercontent.com/92641892/203945409-cd450b57-fd60-4006-9c7e-0231b148822f.png)
+<img width="320" alt="Move_Blocks" src="https://user-images.githubusercontent.com/92641892/203945409-cd450b57-fd60-4006-9c7e-0231b148822f.png">
 
 **Kill Beast** - In order for a Beast to be killed, it has to be smashed between any two blocks or a block and a wall.
 
@@ -64,7 +64,8 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 ### Class Diagram (UML)
 
-//Insert Picture
+![UML_LDTS](https://user-images.githubusercontent.com/92641892/204031997-64967635-d946-4bd1-b2e5-cc4e20640eb2.png)
+
 
 ### DESIGN
 
@@ -80,7 +81,7 @@ This pattern allows an object to modify its behaviour when its internal state ch
 
 **Implementation**
 
-	//Insert Picture
+![StatePattern](https://user-images.githubusercontent.com/92641892/204031328-9aba04ad-06d6-4681-890a-89ac5fdcd4d4.png)
 
 Classes:
 
@@ -109,7 +110,7 @@ This pattern allows a game loop to run continuously during gameplay. Each turn o
 
 **Implementation**
 
-	//Insert Picture
+![GameLoopPattern](https://user-images.githubusercontent.com/92641892/204030885-69ed17c8-352a-4acf-ba92-281d84f3ab15.png)
 
 Classes:
 
@@ -134,7 +135,7 @@ This pattern defines an interface for creating an object, but let subclasses dec
 
 **Implementation**
 
-	//Insert Picture
+![FactoryMethodPattern](https://user-images.githubusercontent.com/92641892/204030890-a847116f-41f2-4859-9f63-a9d8ca98f092.png)
 
 Classes:
 
@@ -174,7 +175,7 @@ The controller classes - which also uses the GUI to get the next action (step) a
 
 **Implementation**
 
-	//Insert Picture
+![MVCPattern](https://user-images.githubusercontent.com/92641892/204032373-4457dad8-e9a3-4913-bb0c-3173d946ef31.png)
 
 Packages:
 
@@ -187,15 +188,12 @@ Packages:
 This way, the program is subdivided in a way that is easier to work on (keeping the code organised) and test.
 
 
-### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
-
-//To be written
-
 ### TESTING
 
 Here is the [link](../pitest/index.html) to our mutation testing report.
 
 ![CoverageReport](https://user-images.githubusercontent.com/92641892/204018185-2d468e8b-ec80-40a5-bb08-b884fcaac90a.png)
+
 
 ### SELF-EVALUATION
 

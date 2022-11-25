@@ -22,7 +22,7 @@ Some other not so perceivable features include the *Beasts following the player*
 
 ### Class Diagram (UML)
 
-//Insert Picture
+![UML_LDTS](https://user-images.githubusercontent.com/92641892/204031997-64967635-d946-4bd1-b2e5-cc4e20640eb2.png)
 
 ### Design
 
