@@ -210,5 +210,5 @@ Here is the [link](../pitest/index.html) to our mutation testing report.
 We believe that, up to the present time, the work was evenly distributed among all group members.
 
 - Athos: 33%
-- Luís: 34%
+- Luís: 33%
 - Sofia: 33%
