@@ -1,4 +1,4 @@
-## LPOO_<6><6> - <Beast_1984>
+## LPOO_66 - Beast_1984
 
 Your goal in this game is to kill every Beast that appears in your way, in the shortest time possible. You're trapped in a maze of movable blocks, and the only way to survive is by smashing your enemies between them. This might seem like an easy task, but as eggs evolve to Beasts, and its number increases, you'll soon realise that the power-ups will come in handy.
 
@@ -27,7 +27,7 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 **Beasts follow player** - The movement of the Beasts is randomised in the direction of the Player (for instance, if the Player is on the top-left of the Beast it can only move up, left or in that diagonal)
 
-<img width="320" alt="BeastsFollow" src="https://user-images.githubusercontent.com/92641892/203945383-aafa0bd3-a649-4709-9a6e-745965f8e42b.png">
+<img width="160" alt="BeastsFollow" src="https://user-images.githubusercontent.com/92641892/203988462-aa79f28e-d967-49cb-ab10-c26e6652b56a.png">
 
 **Respawn** - When the player takes damage it respawns at a random location of the map.
 
@@ -84,11 +84,11 @@ This pattern allows an object to modify its behaviour when its internal state ch
 
 Classes:
 
-- [State](../src/main/java/org.l06gr06/states/State)
-- [MainState](../src/main/java/org.l06gr06/states/MainState)
-- [LevelState](../src/main/java/org.l06gr06/states/LevelState)
-- [ScoreState](../src/main/java/org.l06gr06/states/ScoreState)
-- [GameState](../src/main/java/org.l06gr06/states/GameState)
+- [State](../src/main/java/org.l06gr06/states/State.java)
+- [MainMenuState](../src/main/java/org.l06gr06/states/MainMenuState.java)
+- [LevelMenuState](../src/main/java/org.l06gr06/states/LevelMenuState.java)
+- [ScoreMenuState](../src/main/java/org.l06gr06/states/ScoreMenuState.java)
+- [GameState](../src/main/java/org.l06gr06/states/GameState.java)
 
 
 **Consequences**
@@ -103,9 +103,9 @@ This way, we avoid using conditionals, plus, we make state transitions explicit,
 As the player's goal in this game is to kill every Beast to survive, the game keeps running even when the user isn’t providing input. If you sit staring at the screen, the game doesn’t freeze. Animations keep animating. Visual effects dance and sparkle. If you’re unlucky, beasts catch powerups and keep chomping on your player.
 
 
-**The Pattern**
+**Game Loop Pattern**
 
-We have applied the **Game Loop** pattern. This pattern allows a game loop to run continuously during gameplay. Each turn of the loop, it processes user input without blocking, updates the game state, and renders the game. It tracks the passage of time to control the rate of gameplay. This pattern allows us to address the identified problems because it ensures that the state of the game accurately reflects what it is meant to be, if some time has passed since the last update.
+This pattern allows a game loop to run continuously during gameplay. Each turn of the loop, it processes user input without blocking, updates the game state, and renders the game. It tracks the passage of time to control the rate of gameplay. This pattern allows us to address the identified problems because it ensures that the state of the game accurately reflects what it is meant to be, if some time has passed since the last update.
 
 **Implementation**
 
@@ -113,9 +113,9 @@ We have applied the **Game Loop** pattern. This pattern allows a game loop to ru
 
 Classes:
 
-- [GameController](../src/main/java/org.l06gr06/controller/game/GameController)
-- [Arena](../src/main/java/org.l06gr06/model/game/arena/Arena)
-- [GameViewer]
+- [GameController](../src/main/java/org.l06gr06/controller/game/GameController.java)
+- [Arena](../src/main/java/org.l06gr06/model/game/arena/Arena.java)
+- [GameViewer](../src/main/java/org.l06gr06/viewer/game/GameViewer.java)
 
 **Consequences**
 
@@ -128,9 +128,9 @@ The use of the Game Loop Pattern in the current design decouples progression of 
 
 As the game changes its state, each state has its own controller and viewer. When running, the game doesn't know what "types" of controller and viewer will be required to create.
 
-**The Pattern**
+**Factory Method**
 
-We have applied the **Factory** pattern. This pattern defines an interface for creating an object, but let subclasses decide which class to instantiate. The Factory method lets a class defer instantiation it uses to subclasses. It allowed to address the identified problems as it creates objects without exposing the instantiation logic to the client (therefore allowing for higher abstraction and cleaner code)
+This pattern defines an interface for creating an object, but let subclasses decide which class to instantiate. The Factory method lets a class defer instantiation it uses to subclasses. It allowed to address the identified problems as it creates objects without exposing the instantiation logic to the client (therefore allowing for higher abstraction and cleaner code)
 
 **Implementation**
 
@@ -138,7 +138,21 @@ We have applied the **Factory** pattern. This pattern defines an interface for c
 
 Classes:
 
-- ...
+- [State](../src/main/java/org.l06gr06/states/State.java)
+- [MainMenuState](../src/main/java/org.l06gr06/states/MainMenuState.java)
+- [LevelMenuState](../src/main/java/org.l06gr06/states/LevelMenuState.java)
+- [ScoreMenuState](../src/main/java/org.l06gr06/states/ScoreMenuState.java)
+- [GameState](../src/main/java/org.l06gr06/states/GameState.java)
+- [Controller](../src/main/java/org.l06gr06/controller/Controller.java)
+- [MainMenuController](../src/main/java/org.l06gr06/controller/menu/MainMenuController.java)
+- [LevelMenuController](../src/main/java/org.l06gr06/controller/menu/LevelMenuController.java)
+- [ScoreMenuController](../src/main/java/org.l06gr06/controller/menu/ScoreMenuController.java)
+- [GameController](../src/main/java/org.l06gr06/controller/game/GameState.java)
+- [Viewer](../src/main/java/org.l06gr06/viewer/Viewer.java)
+- [MainMenuController](../src/main/java/org.l06gr06/viewer/menu/MainMenuViewer.java)
+- [LevelMenuController](../src/main/java/org.l06gr06/viewer/menu/LevelMenuViewer.java)
+- [ScoreMenuController](../src/main/java/org.l06gr06/viewer/menu/ScoreMenuViewer.java)
+- [GameController](../src/main/java/org.l06gr06/viewer/game/GameViewer.java)
 
 **Consequences**
 
@@ -168,7 +182,8 @@ Packages:
 - [Viewer Package](../src/main/java/org.l06gr06/viewer)
 - [Controller Package](../src/main/java/org.l06gr06/controller)
 
-**Consequences** 
+**Consequences**
+
 This way, the program is subdivided in a way that is easier to work on (keeping the code organised) and test.
 
 
@@ -178,8 +193,9 @@ This way, the program is subdivided in a way that is easier to work on (keeping 
 
 ### TESTING
 
-- Screenshot of coverage report.
-- Link to mutation testing report.
+Here is the link to our mutation testing report.
+
+![CoverageReport](https://user-images.githubusercontent.com/92641892/204018185-2d468e8b-ec80-40a5-bb08-b884fcaac90a.png)
 
 ### SELF-EVALUATION
 
