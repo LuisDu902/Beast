@@ -64,7 +64,7 @@ public class PlayerController extends GameController {
                         block.getPosition().goDown();
                         getModel().getPlayer().setPosition(position);
                     }
-                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getRight().getRight())){
+                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getDown().getDown())){
                         getModel().getBeasts().remove(i);
                         block.getPosition().goDown();
                         getModel().getPlayer().setPosition(position);
@@ -125,7 +125,7 @@ public class PlayerController extends GameController {
                         block.getPosition().goUp();
                         getModel().getPlayer().setPosition(position);
                     }
-                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getRight().getRight())){
+                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getUp().getUp())){
                         getModel().getBeasts().remove(i);
                         block.getPosition().goUp();
                         getModel().getPlayer().setPosition(position);
@@ -183,7 +183,7 @@ public class PlayerController extends GameController {
                         block.getPosition().goLeft();
                         getModel().getPlayer().setPosition(position);
                     }
-                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getRight().getRight())){
+                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getLeft().getLeft())){
                         getModel().getBeasts().remove(i);
                         block.getPosition().goLeft();
                         getModel().getPlayer().setPosition(position);
@@ -217,10 +217,18 @@ public class PlayerController extends GameController {
             while (getModel().isBlock(pos.getRight())){
                 pos.goRight();
             }
+            /*if (!getModel().isEmpty(pos.getRight())){
+                while (getModel().isBlock(block.getPosition().getLeft())){
+                    block.getPosition().goLeft();
+                }
+                if (!block.getPosition().equals(position))
+                    block.getPosition().goLeft();
+            }*/
             if (getModel().isEmpty(pos.getRight()) && !getModel().isBeast(block.getPosition().getRight()) && !getModel().isPowerUp(block.getPosition().getRight())) {
                 block.getPosition().goRight();
                 getModel().getPlayer().getPosition().goRight();
             }
+
             else if (getModel().isBlock(block.getPosition().getRight().getRight()) || getModel().isWall(block.getPosition().getRight().getRight())){
                 if (getModel().isPowerUp(block.getPosition().getRight())){
                     int i = getModel().findPowerUp(block.getPosition().getRight());
@@ -253,6 +261,13 @@ public class PlayerController extends GameController {
                         if (!block.getPosition().equals(position))
                             block.getPosition().goLeft();
                     }
+                }
+                else{
+                    while (getModel().isBlock(block.getPosition().getLeft())){
+                        block.getPosition().goLeft();
+                    }
+                    if (!block.getPosition().equals(position))
+                        block.getPosition().goLeft();
                 }
             }
             else{
