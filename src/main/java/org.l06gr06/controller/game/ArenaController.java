@@ -14,15 +14,15 @@ import java.util.Arrays;
 public class ArenaController extends GameController {
     private final PlayerController playerController;
     private final BeastController beastController;
-    private long powerUpTimer;
-    private long eggTimer;
+
+    private final PowerUpController powerUpController;
+
 
     public ArenaController(Arena arena) {
         super(arena);
         this.playerController = new PlayerController(arena);
         this.beastController = new BeastController(arena);
-        this.powerUpTimer = 10;
-        this.eggTimer = 10;
+        this.powerUpController = new PowerUpController(arena);
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
@@ -36,11 +36,7 @@ public class ArenaController extends GameController {
             game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("YOU WON","Play Again","Exit"))));
         }
         else {
-            if ((time - getModel().getStartingTime())/1000 == eggTimer) getModel().hatchEggs();
-            if ((time - getModel().getStartingTime())/1000 == powerUpTimer){
-                getModel().createPowerUp();
-                powerUpTimer += 5;
-            }
+            powerUpController.step(game, action, time);
             playerController.step(game, action, time);
             beastController.step(game, action, time);
         }
