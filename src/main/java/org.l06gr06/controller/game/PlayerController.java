@@ -7,6 +7,7 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Block;
 import org.l06gr06.model.game.elements.Heart;
+import org.l06gr06.model.game.elements.Shield;
 
 import java.util.Random;
 
@@ -256,16 +257,22 @@ public class PlayerController extends GameController {
         if (getModel().isEmpty(position)) {
             getModel().getPlayer().setPosition(position);
             if (getModel().isBeast(position)) {
-                getModel().getPlayer().decreaseLife();
-                Random rng = new Random();
-                int x = rng.nextInt(getModel().getWidth()-2)+1;
-                int y = rng.nextInt(getModel().getHeight()-3)+2;
-                getModel().getPlayer().setPosition(new Position(x,y));}
+                if (getModel().getPlayer().getPhase() == 1){
+                    getModel().getPlayer().backToNormal();
+                }
+                else {
+                    getModel().getPlayer().decreaseLife();
+                    Random rng = new Random();
+                    int x = rng.nextInt(getModel().getWidth() - 2) + 1;
+                    int y = rng.nextInt(getModel().getHeight() - 3) + 2;
+                    getModel().getPlayer().setPosition(new Position(x, y));
+                }
+            }
             else if (getModel().isPowerUp(position)) {
                 int i = getModel().findPowerUp(position);
                 if (getModel().getPowerUps().get(i) instanceof Heart &&
                         getModel().getPlayer().getLife() <= 7) getModel().getPlayer().increaseLife();
-                else getModel().getPlayer().becomeImmortal();
+                else if (getModel().getPowerUps().get(i) instanceof Shield)getModel().getPlayer().becomeImmortal();
                 getModel().getPowerUps().remove(i);
             }
         }

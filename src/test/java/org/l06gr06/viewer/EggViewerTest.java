@@ -3,8 +3,6 @@ package org.l06gr06.viewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
-import org.l06gr06.model.game.elements.Egg;
-import org.l06gr06.viewer.game.EggViewer;
 import org.mockito.Mockito;
 
 public class EggViewerTest {

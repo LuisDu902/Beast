@@ -39,11 +39,16 @@ public class BeastController extends GameController {
             }
             beast.setPosition(position);
             if (getModel().getPlayer().getPosition().equals(position)) {
-                getModel().getPlayer().decreaseLife();
-                Random rng = new Random();
-                int x = rng.nextInt(getModel().getWidth()-2)+1;
-                int y = rng.nextInt(getModel().getHeight()-3)+2;
-                getModel().getPlayer().setPosition(new Position(x,y));            }
+                if (getModel().getPlayer().getPhase() == 1){
+                    getModel().getPlayer().backToNormal();
+                }
+                else {
+                    getModel().getPlayer().decreaseLife();
+                    Random rng = new Random();
+                    int x = rng.nextInt(getModel().getWidth() - 2) + 1;
+                    int y = rng.nextInt(getModel().getHeight() - 3) + 2;
+                    getModel().getPlayer().setPosition(new Position(x, y));
+                }        }
         }
     }
 }

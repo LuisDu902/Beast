@@ -15,7 +15,6 @@ public class GameViewer extends Viewer<Arena> {
     private BeastViewer beastViewer;
     private PlayerViewer playerViewer;
     private BlockViewer blockViewer;
-    private EggViewer eggViewer;
     private PowerUpViewer powerUpViewer;
 
     public GameViewer(Arena arena) {
@@ -24,7 +23,6 @@ public class GameViewer extends Viewer<Arena> {
         this.playerViewer = new PlayerViewer();
         this.wallViewer = new WallViewer();
         this.beastViewer = new BeastViewer();
-        this.eggViewer = new EggViewer();
         this.blockViewer = new BlockViewer();
         this.powerUpViewer = new PowerUpViewer();
     }

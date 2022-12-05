@@ -43,7 +43,6 @@ public class ArenaController extends GameController {
             }
             playerController.step(game, action, time);
             beastController.step(game, action, time);
-
         }
     }
 }
