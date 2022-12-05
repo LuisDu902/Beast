@@ -35,17 +35,24 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getBeasts(), beastViewer);
         drawElement(gui, getModel().getPlayer(), playerViewer);
         drawElements(gui, getModel().getBlocks(), blockViewer);
-        //drawElements(gui, getModel().getEggs(), eggViewer);
         drawElements(gui, getModel().getPowerUps(), powerUpViewer);
-        gui.drawText(new Position(0, 0), "Life: " + getModel().getPlayer().getLife(), "#FFD700");
-        long x = (System.currentTimeMillis() - getModel().getStartingTime())/1000;
-        long min = x/60;
-        long sec = x%60;
-        String txt = String.format("Timer: %02d:%02d", min, sec);
-        gui.drawText(new Position(38, 0), txt, "#FFD700");
 
+        drawTimer(gui, getModel().getStartingTime());
+        drawLives(gui, getModel().getPlayer().getLife());
     }
-
+    private void drawLives(GUI gui, int nrLives){
+        gui.drawText(new Position(0,0), "Lives: ", "#FFFFFF");
+        for (int i = 0; i < nrLives+1; i++){
+            gui.drawText(new Position(i+6,0), "@", "#FC0808");
+        }
+    }
+    private void drawTimer(GUI gui, long time){
+        long timer = (System.currentTimeMillis() - time)/1000;
+        long min = timer/60;
+        long sec = timer%60;
+        String txt = String.format("Timer: %02d:%02d", min, sec);
+        gui.drawText(new Position(38, 0), txt, "#FFFFFF");
+    }
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
         for (T element : elements)
             drawElement(gui, element, viewer);
