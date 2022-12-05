@@ -29,6 +29,7 @@ public class BeastController extends GameController {
     }
 
     private void moveBeast(Beast beast, Position position) {
+        if (beast.getPhase() == 0) return;
         if (getModel().isEmpty(position) && !getModel().isBlock(position) && !getModel().isBeast(position)) {
             if (getModel().isPowerUp(position)) {
                 this.speed -= 50;

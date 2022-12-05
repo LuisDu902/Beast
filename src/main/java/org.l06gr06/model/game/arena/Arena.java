@@ -12,7 +12,7 @@ public class Arena {
 
     private Player player;
     private List<Beast> beasts;
-    private List<Egg> eggs;
+    //private List<Egg> eggs;
     private List<Wall> walls;
     private List<Block> blocks;
     private List<PowerUp> powerUps;
@@ -94,18 +94,18 @@ public class Arena {
         return -1;
     }
 
-    public int findEgg(Position position) {
+    /*public int findEgg(Position position) {
         for (int i = 0; i < eggs.size(); i++){
             if (eggs.get(i).getPosition().equals(position)){
                 return i;
             }
         }
         return 0;
-    }
+    }*/
 
-    public List<Egg> getEggs() {return eggs;}
+    //public List<Egg> getEggs() {return eggs;}
 
-    public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
+    //public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
 
     public boolean isEmpty(Position position) {
         return !isEgg(position) && !isWall(position) && !isBlock(position);
@@ -117,8 +117,8 @@ public class Arena {
         return false;
     }
     public boolean isEgg(Position position) {
-        for (Egg egg : eggs)
-            if (egg.getPosition().equals(position))
+        for (Beast beast : beasts)
+            if (beast.getPosition().equals(position) && beast.getPhase() == 0)
                 return true;
         return false;
     }

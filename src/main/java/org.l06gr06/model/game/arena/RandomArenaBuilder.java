@@ -53,7 +53,15 @@ public class RandomArenaBuilder extends ArenaBuilder{
             int x = (rng.nextInt(width - 2) + 1);
             int y = (rng.nextInt(height - 2) + 1);
             if (isAvailable(new Position(x,y))){
-                beasts.add(new Beast(x, y));
+                beasts.add(new Beast(x, y,1));
+                occupied.add(new Position(x, y));
+            }
+        }
+        while (beasts.size() < numberOfBeasts+numberOfEggs) {
+            int x = (rng.nextInt(width - 2) + 1);
+            int y = (rng.nextInt(height - 2) + 1);
+            if (isAvailable(new Position(x,y))){
+                beasts.add(new Beast(x, y,0));
                 occupied.add(new Position(x, y));
             }
         }
@@ -111,7 +119,7 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     }
 
-    @Override
+    /*@Override
     protected List<Egg> createEggs() {
         List<Egg> eggs = new ArrayList<>();
 
@@ -125,7 +133,7 @@ public class RandomArenaBuilder extends ArenaBuilder{
         }
         return eggs;
 
-    }
+    }*/
 
     @Override
     protected List<PowerUp> createPowerUps() {

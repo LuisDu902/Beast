@@ -51,7 +51,7 @@ public class LanternaGUI implements GUI{
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 35);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -69,7 +69,7 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawPlayer(Position position){
-        drawCharacter(position.getX(), position.getY(), 'H', "#3333FF");
+        drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
     }
     @Override
     public void drawShield(Position position){
@@ -85,11 +85,16 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawBeast(int phase, Position position){
-        if (phase == 0) {
-            drawCharacter(position.getX(), position.getY(), 'M', "#E80E0E");
-        }
-        else{
-            drawCharacter(position.getX(), position.getY(), 'M', "#FFD700");
+        switch (phase){
+            case 0:
+                drawCharacter(position.getX(), position.getY(), '.', "#8D05FC");
+                break;
+            case 1:
+                drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
+                break;
+            case 2:
+                drawCharacter(position.getX(), position.getY(), '%', "#FFD700");
+                break;
         }
     }
 
