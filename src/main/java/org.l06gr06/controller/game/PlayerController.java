@@ -6,6 +6,7 @@ import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Block;
+import org.l06gr06.model.game.elements.Heart;
 
 import java.util.Random;
 
@@ -261,8 +262,10 @@ public class PlayerController extends GameController {
                 int y = rng.nextInt(getModel().getHeight()-3)+2;
                 getModel().getPlayer().setPosition(new Position(x,y));}
             else if (getModel().isPowerUp(position)) {
-                if (getModel().getPlayer().getLife() <= 7) getModel().getPlayer().increaseLife();
                 int i = getModel().findPowerUp(position);
+                if (getModel().getPowerUps().get(i) instanceof Heart &&
+                        getModel().getPlayer().getLife() <= 7) getModel().getPlayer().increaseLife();
+                else getModel().getPlayer().becomeImmortal();
                 getModel().getPowerUps().remove(i);
             }
         }

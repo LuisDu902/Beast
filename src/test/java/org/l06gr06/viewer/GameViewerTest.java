@@ -23,10 +23,10 @@ public class GameViewerTest {
         viewer = new GameViewer(arena);
 
         arena.setWalls(Arrays.asList(new Wall(1, 2), new Wall(2, 3), new Wall(3, 4)));
-        arena.setBeasts(Arrays.asList(new Beast(4, 5), new Beast(5, 6)));
+        //arena.setBeasts(Arrays.asList(new Beast(4, 5), new Beast(5, 6)));
         arena.setPlayer(new Player(5, 8));
         arena.setBlocks(Arrays.asList(new Block(6, 7), new Block(7, 7), new Block(7, 8)));
-        arena.setEggs(Arrays.asList(new Egg(6, 6), new Egg(6, 5), new Egg(6, 4)));
+        //arena.setEggs(Arrays.asList(new Egg(6, 6), new Egg(6, 5), new Egg(6, 4)));
         arena.setPowerUps(Arrays.asList(new Heart(1, 1), new Shield(8, 8), new Heart(9, 9)));
     }
 
@@ -54,8 +54,8 @@ public class GameViewerTest {
     void drawPlayer() throws IOException {
         viewer.draw(gui);
 
-        Mockito.verify(gui, Mockito.times(1)).drawPlayer(new Position(5, 8));
-        Mockito.verify(gui, Mockito.times(1)).drawPlayer(Mockito.any(Position.class));
+        Mockito.verify(gui, Mockito.times(1)).drawPlayer(0, new Position(5, 8));
+        Mockito.verify(gui, Mockito.times(1)).drawPlayer(0, Mockito.any(Position.class));
     }
 
     @Test

@@ -69,8 +69,16 @@ public class LanternaGUI implements GUI{
         tg.putString(position.getX(), position.getY(), text);
     }
     @Override
-    public void drawPlayer(Position position){
-        drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
+    public void drawPlayer(int phase, Position position){
+        switch (phase){
+            case 0:
+                drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
+                break;
+            case 1:
+                drawCharacter(position.getX(), position.getY(), '&', "#FFFFFF");
+                break;
+        }
+
     }
     @Override
     public void drawShield(Position position){
@@ -99,10 +107,6 @@ public class LanternaGUI implements GUI{
         }
     }
 
-    @Override
-    public void drawEgg(Position position){
-        drawCharacter(position.getX(), position.getY(), '.', "#8D05FC");
-    }
     @Override
     public void drawBlock(Position position){
         drawCharacter(position.getX(), position.getY(), 'O', "#1DC249");

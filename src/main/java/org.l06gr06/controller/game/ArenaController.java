@@ -27,8 +27,14 @@ public class ArenaController extends GameController {
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
 
-        if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0)
+        if (action == GUI.ACTION.QUIT)
             game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again","Exit"))));
+        else if (getModel().getPlayer().getLife() == 0){
+            game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("GAME OVER","Play Again","Exit"))));
+        }
+        else if (getModel().getBeasts().size() == 0){
+            game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("YOU WON","Play Again","Exit"))));
+        }
         else {
             if ((time - getModel().getStartingTime())/1000 == eggTimer) getModel().hatchEggs();
             if ((time - getModel().getStartingTime())/1000 == powerUpTimer){
