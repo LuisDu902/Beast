@@ -59,10 +59,23 @@ public class PlayerController extends GameController {
                 }
                 else if (getModel().isBeast(block.getPosition().getDown()))  {
                     int i = getModel().findBeast(block.getPosition().getDown());
-                    getModel().getBeasts().remove(i);
-
-                    block.getPosition().goDown();
-                    getModel().getPlayer().setPosition(position);
+                    if (getModel().getBeasts().get(i).getPhase() == 0) {
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goDown();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getRight().getRight())){
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goDown();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else{
+                        while (getModel().isBlock(block.getPosition().getUp())){
+                            block.getPosition().goUp();
+                        }
+                        if (!block.getPosition().equals(position))
+                            block.getPosition().goUp();
+                    }
                 }
                 else{
                     while (getModel().isBlock(block.getPosition().getUp())){
@@ -107,10 +120,23 @@ public class PlayerController extends GameController {
                 }
                 else if (getModel().isBeast(block.getPosition().getUp()))  {
                     int i = getModel().findBeast(block.getPosition().getUp());
-                    getModel().getBeasts().remove(i);
-
-                    block.getPosition().goUp();
-                    getModel().getPlayer().setPosition(position);
+                    if (getModel().getBeasts().get(i).getPhase() == 0) {
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goUp();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getRight().getRight())){
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goUp();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else{
+                        while (getModel().isBlock(block.getPosition().getDown())){
+                            block.getPosition().goDown();
+                        }
+                        if (!block.getPosition().equals(position))
+                            block.getPosition().goDown();
+                    }
                 }
                 else{
                     while (getModel().isBlock(block.getPosition().getDown())){
@@ -152,9 +178,23 @@ public class PlayerController extends GameController {
                 }
                 else if (getModel().isBeast(block.getPosition().getLeft()))  {
                     int i = getModel().findBeast(block.getPosition().getLeft());
-                    getModel().getBeasts().remove(i);
-                    block.getPosition().goLeft();
-                    getModel().getPlayer().setPosition(position);
+                    if (getModel().getBeasts().get(i).getPhase() == 0) {
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goLeft();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getRight().getRight())){
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goLeft();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else{
+                        while (getModel().isBlock(block.getPosition().getRight())){
+                            block.getPosition().goRight();
+                        }
+                        if (!block.getPosition().equals(position))
+                            block.getPosition().goRight();
+                    }
                 }
                 else{
                     while (getModel().isBlock(block.getPosition().getRight())){
@@ -196,16 +236,23 @@ public class PlayerController extends GameController {
                 }
                 else if (getModel().isBeast(block.getPosition().getRight()))  {
                     int i = getModel().findBeast(block.getPosition().getRight());
-                    getModel().getBeasts().remove(i);
-                    block.getPosition().goRight();
-                    getModel().getPlayer().setPosition(position);
-                }
-                else{
-                    while (getModel().isBlock(block.getPosition().getLeft())){
-                        block.getPosition().goLeft();
+                    if (getModel().getBeasts().get(i).getPhase() == 0) {
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goRight();
+                        getModel().getPlayer().setPosition(position);
                     }
-                    if (!block.getPosition().equals(position))
-                        block.getPosition().goLeft();
+                    else if (getModel().getBeasts().get(i).getPhase() == 1 && getModel().isWall(block.getPosition().getRight().getRight())){
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goRight();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else{
+                        while (getModel().isBlock(block.getPosition().getLeft())){
+                            block.getPosition().goLeft();
+                        }
+                        if (!block.getPosition().equals(position))
+                            block.getPosition().goLeft();
+                    }
                 }
             }
             else{

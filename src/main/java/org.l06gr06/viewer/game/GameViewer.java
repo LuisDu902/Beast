@@ -1,5 +1,6 @@
 package org.l06gr06.viewer.game;
 
+import org.l06gr06.Game;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
@@ -37,6 +38,8 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getEggs(), eggViewer);
         drawElements(gui, getModel().getPowerUps(), powerUpViewer);
         gui.drawText(new Position(0, 0), "Life: " + getModel().getPlayer().getLife(), "#FFD700");
+        long x = (System.currentTimeMillis() - Game.tim)/1000;
+        gui.drawText(new Position(10, 0), "Timer: " + x, "#FFD700");
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

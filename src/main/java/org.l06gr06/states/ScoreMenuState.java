@@ -9,9 +9,9 @@ import org.l06gr06.viewer.menu.ScoreMenuViewer;
 public class ScoreMenuState extends State<ScoreMenu>{
 
     public ScoreMenuState(ScoreMenu model){super(model);}
-
+    @Override
     protected Viewer<ScoreMenu> getViewer(){return new ScoreMenuViewer(getModel());}
-
+    @Override
     protected Controller<ScoreMenu> getController(){return new ScoreMenuController(getModel());}
 
 }
