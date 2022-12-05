@@ -17,10 +17,17 @@ public class Arena {
     private List<Block> blocks;
     private List<PowerUp> powerUps;
 
+    private long startingTime;
+
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
+        this.startingTime = System.currentTimeMillis();
+    }
+
+    public long getStartingTime() {
+        return startingTime;
     }
 
     public int getWidth() {

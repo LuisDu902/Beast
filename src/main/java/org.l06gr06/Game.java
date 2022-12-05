@@ -11,7 +11,6 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 
 public class Game {
-    public static long tim = System.currentTimeMillis();
     private final LanternaGUI gui;
     private State state;
 

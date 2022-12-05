@@ -3,6 +3,8 @@ package org.l06gr06.controller.game;
 import org.l06gr06.Game;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.game.arena.Arena;
+import org.l06gr06.model.game.elements.Heart;
+import org.l06gr06.model.game.elements.PowerUp;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.ScoreMenuState;
 
@@ -12,11 +14,13 @@ import java.util.Arrays;
 public class ArenaController extends GameController {
     private final PlayerController playerController;
     private final BeastController beastController;
+    private long powerUpTimer;
 
     public ArenaController(Arena arena) {
         super(arena);
         this.playerController = new PlayerController(arena);
         this.beastController = new BeastController(arena);
+        this.powerUpTimer = 10;
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
@@ -24,8 +28,14 @@ public class ArenaController extends GameController {
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0)
             game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again","Exit"))));
         else {
+            if ((time - getModel().getStartingTime())/1000 == powerUpTimer){
+                getModel().getPowerUps().add(new Heart(10,10));
+
+                powerUpTimer += 5;
+            }
             playerController.step(game, action, time);
             beastController.step(game, action, time);
+
         }
     }
 }

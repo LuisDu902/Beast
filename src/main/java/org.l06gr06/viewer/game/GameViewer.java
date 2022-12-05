@@ -38,7 +38,7 @@ public class GameViewer extends Viewer<Arena> {
         //drawElements(gui, getModel().getEggs(), eggViewer);
         drawElements(gui, getModel().getPowerUps(), powerUpViewer);
         gui.drawText(new Position(0, 0), "Life: " + getModel().getPlayer().getLife(), "#FFD700");
-        long x = (System.currentTimeMillis() - Game.tim)/1000;
+        long x = (System.currentTimeMillis() - getModel().getStartingTime())/1000;
         gui.drawText(new Position(10, 0), "Timer: " + x, "#FFD700");
     }
 
