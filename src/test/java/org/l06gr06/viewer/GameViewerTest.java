@@ -68,15 +68,6 @@ public class GameViewerTest {
         Mockito.verify(gui, Mockito.times(3)).drawBlock(Mockito.any(Position.class));
     }
     @Test
-    void drawEggs() throws IOException {
-        viewer.draw(gui);
-
-        Mockito.verify(gui, Mockito.times(1)).drawEgg(new Position(6, 6));
-        Mockito.verify(gui, Mockito.times(1)).drawEgg(new Position(6, 5));
-        Mockito.verify(gui, Mockito.times(1)).drawEgg(new Position(6, 4));
-        Mockito.verify(gui, Mockito.times(3)).drawEgg(Mockito.any(Position.class));
-    }
-    @Test
     void drawPowerUps() throws IOException {
         viewer.draw(gui);
 

@@ -1,7 +1,5 @@
 package org.l06gr06.model.game.elements;
 
-import org.l06gr06.model.Position;
-
 public class PowerUp extends Element {
     private long duration;
     public PowerUp(int x, int y) {
@@ -12,7 +10,5 @@ public class PowerUp extends Element {
         this.duration --;
     }
 
-    public long getDuration() {
-        return duration;
-    }
+    public long getDuration() {return duration;}
 }

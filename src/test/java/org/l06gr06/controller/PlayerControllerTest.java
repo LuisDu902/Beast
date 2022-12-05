@@ -25,7 +25,6 @@ public class PlayerControllerTest {
         arena.setPlayer(player);
 
         arena.setWalls(Arrays.asList());
-        arena.setEggs(Arrays.asList());
         arena.setPowerUps(Arrays.asList());
         arena.setBlocks(Arrays.asList());
         arena.setBeasts(Arrays.asList());
