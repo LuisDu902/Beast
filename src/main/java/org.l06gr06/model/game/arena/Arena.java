@@ -5,6 +5,7 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.*;
 
 import java.util.List;
+import java.util.Random;
 
 public class Arena {
     private final int width;
@@ -146,5 +147,20 @@ public class Arena {
             if (powerUp.getPosition().equals(position))
                 return true;
         return false;
+    }
+    public void createPowerUp(){
+        Random  rng = new Random();
+        int a = (int) (Math.random()*2);
+        int x = (rng.nextInt(width - 2) + 1);
+        int y = (rng.nextInt(height - 2) + 1);
+        if (isEmpty(new Position(x,y))){
+            if (a == 0) powerUps.add(new Shield(x, y));
+            else powerUps.add(new Heart(x, y));
+        }
+    }
+    public void hatchEggs(){
+        for (Beast beast : beasts){
+            if (beast.getPhase() == 0) beast.evolve();
+        }
     }
 }

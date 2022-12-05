@@ -15,12 +15,14 @@ public class ArenaController extends GameController {
     private final PlayerController playerController;
     private final BeastController beastController;
     private long powerUpTimer;
+    private long eggTimer;
 
     public ArenaController(Arena arena) {
         super(arena);
         this.playerController = new PlayerController(arena);
         this.beastController = new BeastController(arena);
         this.powerUpTimer = 10;
+        this.eggTimer = 10;
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
@@ -28,9 +30,9 @@ public class ArenaController extends GameController {
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0)
             game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again","Exit"))));
         else {
+            if ((time - getModel().getStartingTime())/1000 == eggTimer) getModel().hatchEggs();
             if ((time - getModel().getStartingTime())/1000 == powerUpTimer){
-                getModel().getPowerUps().add(new Heart(10,10));
-
+                getModel().createPowerUp();
                 powerUpTimer += 5;
             }
             playerController.step(game, action, time);

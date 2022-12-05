@@ -39,7 +39,11 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getPowerUps(), powerUpViewer);
         gui.drawText(new Position(0, 0), "Life: " + getModel().getPlayer().getLife(), "#FFD700");
         long x = (System.currentTimeMillis() - getModel().getStartingTime())/1000;
-        gui.drawText(new Position(10, 0), "Timer: " + x, "#FFD700");
+        long min = x/60;
+        long sec = x%60;
+        String txt = String.format("Timer: %02d:%02d", min, sec);
+        gui.drawText(new Position(38, 0), txt, "#FFD700");
+
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
