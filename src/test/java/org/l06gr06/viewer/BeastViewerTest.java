@@ -22,6 +22,6 @@ public class BeastViewerTest {
     @Test
     void drawElement() {
         viewer.draw(beast, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawBeast(0,beast.getPosition());
+        Mockito.verify(gui, Mockito.times(1)).drawBeast(1,beast.getPosition());
     }
 }
