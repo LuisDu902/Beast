@@ -37,12 +37,7 @@ public class ElementsTest {
         player.backToNormal();
         Assertions.assertEquals(0, player.getPhase());
     }
-    @Test
-    public void DecreaseDuration(){
-        PowerUp powerUp = new PowerUp(20,20);
-        powerUp.decreaseDuration();
-        Assertions.assertEquals(9, powerUp.getDuration());
-    }
+
     @Test
     public void Shield(){
         Shield shield = new Shield(20,20);
