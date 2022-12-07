@@ -5,6 +5,7 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.*;
 
 import java.util.List;
+import java.util.Random;
 
 public class Arena {
     private final int width;
@@ -12,15 +13,22 @@ public class Arena {
 
     private Player player;
     private List<Beast> beasts;
-    private List<Egg> eggs;
+    //private List<Egg> eggs;
     private List<Wall> walls;
     private List<Block> blocks;
     private List<PowerUp> powerUps;
+
+    private long startingTime;
 
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
+        this.startingTime = System.currentTimeMillis();
+    }
+
+    public long getStartingTime() {
+        return startingTime;
     }
 
     public int getWidth() {
@@ -94,18 +102,18 @@ public class Arena {
         return -1;
     }
 
-    public int findEgg(Position position) {
+    /*public int findEgg(Position position) {
         for (int i = 0; i < eggs.size(); i++){
             if (eggs.get(i).getPosition().equals(position)){
                 return i;
             }
         }
         return 0;
-    }
+    }*/
 
-    public List<Egg> getEggs() {return eggs;}
+    //public List<Egg> getEggs() {return eggs;}
 
-    public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
+    //public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
 
     public boolean isEmpty(Position position) {
         return !isEgg(position) && !isWall(position) && !isBlock(position);
@@ -117,8 +125,8 @@ public class Arena {
         return false;
     }
     public boolean isEgg(Position position) {
-        for (Egg egg : eggs)
-            if (egg.getPosition().equals(position))
+        for (Beast beast : beasts)
+            if (beast.getPosition().equals(position) && beast.getPhase() == 0)
                 return true;
         return false;
     }
@@ -139,5 +147,20 @@ public class Arena {
             if (powerUp.getPosition().equals(position))
                 return true;
         return false;
+    }
+    public void createPowerUp(){
+        Random  rng = new Random();
+        int a = (int) (Math.random()*2);
+        int x = (rng.nextInt(width - 2) + 1);
+        int y = (rng.nextInt(height - 2) + 1);
+        if (isEmpty(new Position(x,y))){
+            if (a == 0) powerUps.add(new Shield(x, y));
+            else powerUps.add(new Heart(x, y));
+        }
+    }
+    public void hatchEggs(){
+        for (Beast beast : beasts){
+            if (beast.getPhase() == 0) beast.evolve();
+        }
     }
 }

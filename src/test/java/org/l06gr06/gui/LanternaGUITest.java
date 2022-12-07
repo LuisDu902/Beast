@@ -1,17 +1,14 @@
 package org.l06gr06.gui;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.l06gr06.model.Position;
 import org.mockito.Mockito;
 
-public class lanternaGUITest {
+public class LanternaGUITest {
 
     private Screen screen;
     private LanternaGUI gui;
@@ -28,18 +25,39 @@ public class lanternaGUITest {
     }
 
     @Test
-    void drawPlayer() {
-        gui.drawPlayer(new Position(20, 20));
+    void drawNormalPlayer() {
+        gui.drawPlayer(0,new Position(20, 20));
 
-        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(51, 51, 255));
-        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "H");
+        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(0, 255, 239));
+        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "&");
+    }
+    @Test
+    void drawImmortalPlayer() {
+        gui.drawPlayer(1,new Position(20, 20));
+
+        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 255, 255));
+        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "Y");
+    }
+    @Test
+    void drawEgg(){
+        gui.drawBeast(0,new Position(20, 20));
+
+        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(141, 5, 252));
+        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, ".");
     }
     @Test
     void drawBeast(){
-        gui.drawBeast(0,new Position(20, 20));
+        gui.drawBeast(1,new Position(20, 20));
 
         Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(232, 14, 14));
-        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "M");
+        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "%");
+    }
+    @Test
+    void drawStrongerBeast(){
+        gui.drawBeast(2,new Position(20, 20));
+
+        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 215, 0));
+        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "%");
     }
 
     @Test
@@ -70,13 +88,6 @@ public class lanternaGUITest {
 
         Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(245, 245, 5));
         Mockito.verify(tg, Mockito.times(1)).putString(20, 21, "O");
-    }
-    @Test
-    void drawEgg() {
-        gui.drawEgg(new Position(20, 20));
-
-        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(141,5,252));
-        Mockito.verify(tg, Mockito.times(1)).putString(20, 21, ".");
     }
 
     @Test

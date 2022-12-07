@@ -3,8 +3,8 @@ package org.l06gr06.model;
 import java.util.Objects;
 
 public class Position {
-    private  int x;
-    private  int y;
+    private int x;
+    private int y;
 
     public Position(int x, int y) {
         this.x = x;
@@ -91,14 +91,14 @@ public class Position {
     }
 
     public int relativeQuad(Position pos2){
-        if (this.getX() > pos2.getX() && this.getY() > pos2.getY()){
+        if (x > pos2.x && y < pos2.y){
+            return 2;
+        }
+        if (x > pos2.x && y > pos2.y){
             return 3;
         }
-        if (this.getX() < pos2.getX() && this.getY() > pos2.getY()){
+        if (x < pos2.x && y > pos2.y){
             return 4;
-        }
-        if (this.getX() > pos2.getX() && this.getY() < pos2.getY()){
-            return 2;
         }
         return 1;
     }

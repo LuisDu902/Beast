@@ -1,6 +1,5 @@
 package org.l06gr06.model.game.arena;
 
-import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.*;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public abstract class ArenaBuilder {
         arena.setWalls(createWalls());
         arena.setPowerUps(createPowerUps());
         arena.setBlocks(createBlocks());
-        arena.setEggs(createEggs());
+        //arena.setEggs(createEggs());
         return arena;
     }
 
@@ -30,6 +29,6 @@ public abstract class ArenaBuilder {
     protected abstract Player createPlayer();
     protected abstract List<PowerUp> createPowerUps();
     protected abstract List<Block> createBlocks();
-    protected abstract List<Egg> createEggs();
+    //protected abstract List<Egg> createEggs();
 }
 

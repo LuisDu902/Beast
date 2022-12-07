@@ -62,9 +62,13 @@ public class LoaderArenaBuilder extends ArenaBuilder{
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'M') beasts.add(new Beast(x, y));
+                if (line.charAt(x) == 'M') beasts.add(new Beast(x, y,1));
         }
-
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++)
+                if (line.charAt(x) == 'o') beasts.add(new Beast(x, y,0));
+        }
         return beasts;
     }
 
@@ -91,17 +95,6 @@ public class LoaderArenaBuilder extends ArenaBuilder{
         return blocks;
     }
 
-    @Override
-    protected List<Egg> createEggs() {
-        List<Egg> eggs = new ArrayList<>();
-
-        for (int y = 0; y < lines.size(); y++) {
-            String line = lines.get(y);
-            for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'o') eggs.add(new Egg(x, y));
-        }
-        return eggs;
-    }
 
     @Override
     protected List<PowerUp> createPowerUps() {

@@ -44,14 +44,16 @@ public class LanternaGUI implements GUI{
         return terminal;
     }
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
+        //URL resource = getClass().getClassLoader().getResource("fonts/Ldtsone.ttf");
         URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
+        //URL resource = getClass().getClassLoader().getResource("fonts/Ldtstry-Regular.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 35);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -68,8 +70,16 @@ public class LanternaGUI implements GUI{
         tg.putString(position.getX(), position.getY(), text);
     }
     @Override
-    public void drawPlayer(Position position){
-        drawCharacter(position.getX(), position.getY(), 'H', "#3333FF");
+    public void drawPlayer(int phase, Position position){
+        switch (phase){
+            case 0:
+                drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
+                break;
+            case 1:
+                drawCharacter(position.getX(), position.getY(), 'Y', "#FFFFFF");
+                break;
+        }
+
     }
     @Override
     public void drawShield(Position position){
@@ -85,18 +95,19 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawBeast(int phase, Position position){
-        if (phase == 0) {
-            drawCharacter(position.getX(), position.getY(), 'M', "#E80E0E");
-        }
-        else{
-            drawCharacter(position.getX(), position.getY(), 'M', "#FFD700");
+        switch (phase){
+            case 0:
+                drawCharacter(position.getX(), position.getY(), '.', "#8D05FC");
+                break;
+            case 1:
+                drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
+                break;
+            case 2:
+                drawCharacter(position.getX(), position.getY(), '%', "#FFD700");
+                break;
         }
     }
 
-    @Override
-    public void drawEgg(Position position){
-        drawCharacter(position.getX(), position.getY(), '.', "#8D05FC");
-    }
     @Override
     public void drawBlock(Position position){
         drawCharacter(position.getX(), position.getY(), 'O', "#1DC249");

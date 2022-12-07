@@ -1,41 +1,111 @@
 package org.l06gr06.model;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import java.util.Arrays;
-import java.util.List;
 
-public class PositionTest {
-    private Position pos;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @BeforeEach
-    void setUp(){
-        pos = new Position(20,20);
+class PositionTest {
+    @Property
+    void getLeft(@ForAll int x, @ForAll int y) {
+        assertEquals(x - 1, new Position(x, y).getLeft().getX());
+        assertEquals(y, new Position(x, y).getLeft().getY());
+    }
+
+    @Property
+    void getRight(@ForAll int x, @ForAll int y) {
+        assertEquals(x + 1, new Position(x, y).getRight().getX());
+        assertEquals(y, new Position(x, y).getRight().getY());
+    }
+
+    @Property
+    void getUp(@ForAll int x, @ForAll int y) {
+        assertEquals(x, new Position(x, y).getUp().getX());
+        assertEquals(y - 1, new Position(x, y).getUp().getY());
+    }
+
+    @Property
+    void getDown(@ForAll int x, @ForAll int y) {
+        assertEquals(x, new Position(x, y).getDown().getX());
+        assertEquals(y + 1, new Position(x, y).getDown().getY());
+    }
+
+    @Property
+    void getDownLeft(@ForAll int x, @ForAll int y) {
+        assertEquals(x - 1, new Position(x, y).getDownLeft().getX());
+        assertEquals(y + 1, new Position(x, y).getDownLeft().getY());
+    }
+    @Property
+    void getDownRight(@ForAll int x, @ForAll int y) {
+        assertEquals(x + 1, new Position(x, y).getDownRight().getX());
+        assertEquals(y + 1, new Position(x, y).getDownRight().getY());
+    }
+    @Property
+    void getUpLeft(@ForAll int x, @ForAll int y) {
+        assertEquals(x - 1, new Position(x, y).getUpLeft().getX());
+        assertEquals(y - 1, new Position(x, y).getUpLeft().getY());
+    }
+    @Property
+    void getUpRight(@ForAll int x, @ForAll int y) {
+        assertEquals(x + 1, new Position(x, y).getUpRight().getX());
+        assertEquals(y - 1, new Position(x, y).getUpRight().getY());
+    }
+    @Property
+    void goLeft(@ForAll int x, @ForAll int y) {
+        Position position = new Position(x,y);
+        position.goLeft();
+        assertEquals(x-1, position.getX());
+        assertEquals(y, position.getY());
+    }
+    @Property
+    void goRight(@ForAll int x, @ForAll int y) {
+        Position position = new Position(x,y);
+        position.goRight();
+        assertEquals(x+1, position.getX());
+        assertEquals(y, position.getY());
+    }
+    @Property
+    void goUp(@ForAll int x, @ForAll int y) {
+        Position position = new Position(x,y);
+        position.goUp();
+        assertEquals(x, position.getX());
+        assertEquals(y-1, position.getY());
+    }
+    @Property
+    void goDown(@ForAll int x, @ForAll int y) {
+        Position position = new Position(x,y);
+        position.goDown();
+        assertEquals(x, position.getX());
+        assertEquals(y+1, position.getY());
     }
     @Test
-    public void getLeft() {
-        Position test = pos.getLeft();
-        Position expected = new Position(19,20);
-        Assertions.assertEquals(expected, test);
+    void relativeQuad1() {
+        Position position1 = new Position(20,20);
+        Position position2 = new Position(21,21);
+
+        assertEquals(1, position1.relativeQuad(position2));
+    }
+
+    @Test
+    void relativeQuad2() {
+        Position position1 = new Position(20,20);
+        Position position2 = new Position(19,21);
+
+        assertEquals(2, position1.relativeQuad(position2));
     }
     @Test
-    public void getRight() {
-        Position test = pos.getRight();
-        Position expected = new Position(21,20);
-        Assertions.assertEquals(expected, test);
+    void relativeQuad3() {
+        Position position1 = new Position(20,20);
+        Position position2 = new Position(19,19);
+
+        assertEquals(3, position1.relativeQuad(position2));
     }
     @Test
-    public void getUp() {
-        Position test = pos.getUp();
-        Position expected = new Position(20,19);
-        Assertions.assertEquals(expected, test);
-    }
-    @Test
-    public void getDown() {
-        Position test = pos.getDown();
-        Position expected = new Position(20,21);
-        Assertions.assertEquals(expected, test);
+    void relativeQuad4() {
+        Position position1 = new Position(20,20);
+        Position position2 = new Position(21,19);
+
+        assertEquals(4, position1.relativeQuad(position2));
     }
 }

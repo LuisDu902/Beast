@@ -6,6 +6,8 @@ import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Block;
+import org.l06gr06.model.game.elements.Heart;
+import org.l06gr06.model.game.elements.Shield;
 
 import java.util.Random;
 
@@ -50,19 +52,25 @@ public class PlayerController extends GameController {
                     block.getPosition().goDown();
                     getModel().getPlayer().setPosition(position);
                 }
-                else if (getModel().isEgg(block.getPosition().getDown()))  {
-                    int i = getModel().findEgg(block.getPosition().getDown());
-                    getModel().getEggs().remove(i);
-
-                    block.getPosition().goDown();
-                    getModel().getPlayer().setPosition(position);
-                }
                 else if (getModel().isBeast(block.getPosition().getDown()))  {
                     int i = getModel().findBeast(block.getPosition().getDown());
-                    getModel().getBeasts().remove(i);
-
-                    block.getPosition().goDown();
-                    getModel().getPlayer().setPosition(position);
+                    if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goDown();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getDown().getDown())){
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goDown();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else{
+                        while (getModel().isBlock(block.getPosition().getUp())){
+                            block.getPosition().goUp();
+                        }
+                        if (!block.getPosition().equals(position))
+                            block.getPosition().goUp();
+                    }
                 }
                 else{
                     while (getModel().isBlock(block.getPosition().getUp())){
@@ -98,19 +106,26 @@ public class PlayerController extends GameController {
                     block.getPosition().goUp();
                     getModel().getPlayer().setPosition(position);
                 }
-                else if (getModel().isEgg(block.getPosition().getUp()))  {
-                    int i = getModel().findEgg(block.getPosition().getUp());
-                    getModel().getEggs().remove(i);
 
-                    block.getPosition().goUp();
-                    getModel().getPlayer().setPosition(position);
-                }
                 else if (getModel().isBeast(block.getPosition().getUp()))  {
                     int i = getModel().findBeast(block.getPosition().getUp());
-                    getModel().getBeasts().remove(i);
-
-                    block.getPosition().goUp();
-                    getModel().getPlayer().setPosition(position);
+                    if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goUp();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getUp().getUp())){
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goUp();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else{
+                        while (getModel().isBlock(block.getPosition().getDown())){
+                            block.getPosition().goDown();
+                        }
+                        if (!block.getPosition().equals(position))
+                            block.getPosition().goDown();
+                    }
                 }
                 else{
                     while (getModel().isBlock(block.getPosition().getDown())){
@@ -144,17 +159,26 @@ public class PlayerController extends GameController {
                     block.getPosition().goLeft();
                     getModel().getPlayer().setPosition(position);
                 }
-                else if (getModel().isEgg(block.getPosition().getLeft()))  {
-                    int i = getModel().findEgg(block.getPosition().getLeft());
-                    getModel().getEggs().remove(i);
-                    block.getPosition().goLeft();
-                    getModel().getPlayer().setPosition(position);
-                }
+
                 else if (getModel().isBeast(block.getPosition().getLeft()))  {
                     int i = getModel().findBeast(block.getPosition().getLeft());
-                    getModel().getBeasts().remove(i);
-                    block.getPosition().goLeft();
-                    getModel().getPlayer().setPosition(position);
+                    if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goLeft();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getLeft().getLeft())){
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goLeft();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else{
+                        while (getModel().isBlock(block.getPosition().getRight())){
+                            block.getPosition().goRight();
+                        }
+                        if (!block.getPosition().equals(position))
+                            block.getPosition().goRight();
+                    }
                 }
                 else{
                     while (getModel().isBlock(block.getPosition().getRight())){
@@ -181,6 +205,7 @@ public class PlayerController extends GameController {
                 block.getPosition().goRight();
                 getModel().getPlayer().getPosition().goRight();
             }
+
             else if (getModel().isBlock(block.getPosition().getRight().getRight()) || getModel().isWall(block.getPosition().getRight().getRight())){
                 if (getModel().isPowerUp(block.getPosition().getRight())){
                     int i = getModel().findPowerUp(block.getPosition().getRight());
@@ -188,17 +213,26 @@ public class PlayerController extends GameController {
                     block.getPosition().goRight();
                     getModel().getPlayer().setPosition(position);
                 }
-                else if (getModel().isEgg(block.getPosition().getRight()))  {
-                    int i = getModel().findEgg(block.getPosition().getRight());
-                    getModel().getEggs().remove(i);
-                    block.getPosition().goRight();
-                    getModel().getPlayer().setPosition(position);
-                }
+
                 else if (getModel().isBeast(block.getPosition().getRight()))  {
                     int i = getModel().findBeast(block.getPosition().getRight());
-                    getModel().getBeasts().remove(i);
-                    block.getPosition().goRight();
-                    getModel().getPlayer().setPosition(position);
+                    if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goRight();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getRight().getRight())){
+                        getModel().getBeasts().remove(i);
+                        block.getPosition().goRight();
+                        getModel().getPlayer().setPosition(position);
+                    }
+                    else{
+                        while (getModel().isBlock(block.getPosition().getLeft())){
+                            block.getPosition().goLeft();
+                        }
+                        if (!block.getPosition().equals(position))
+                            block.getPosition().goLeft();
+                    }
                 }
                 else{
                     while (getModel().isBlock(block.getPosition().getLeft())){
@@ -223,14 +257,22 @@ public class PlayerController extends GameController {
         if (getModel().isEmpty(position)) {
             getModel().getPlayer().setPosition(position);
             if (getModel().isBeast(position)) {
-                getModel().getPlayer().decreaseLife();
-                Random rng = new Random();
-                int x = rng.nextInt(getModel().getWidth()-2)+1;
-                int y = rng.nextInt(getModel().getHeight()-3)+2;
-                getModel().getPlayer().setPosition(new Position(x,y));}
+                if (getModel().getPlayer().getPhase() == 1){
+                    getModel().getPlayer().backToNormal();
+                }
+                else {
+                    getModel().getPlayer().decreaseLife();
+                    Random rng = new Random();
+                    int x = rng.nextInt(getModel().getWidth() - 2) + 1;
+                    int y = rng.nextInt(getModel().getHeight() - 3) + 2;
+                    getModel().getPlayer().setPosition(new Position(x, y));
+                }
+            }
             else if (getModel().isPowerUp(position)) {
-                if (getModel().getPlayer().getLife() <= 7) getModel().getPlayer().increaseLife();
                 int i = getModel().findPowerUp(position);
+                if (getModel().getPowerUps().get(i) instanceof Heart &&
+                        getModel().getPlayer().getLife() <= 7) getModel().getPlayer().increaseLife();
+                else if (getModel().getPowerUps().get(i) instanceof Shield)getModel().getPlayer().becomeImmortal();
                 getModel().getPowerUps().remove(i);
             }
         }

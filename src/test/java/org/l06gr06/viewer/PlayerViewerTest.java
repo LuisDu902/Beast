@@ -23,6 +23,6 @@ class PlayerViewerTest {
     @Test
     void drawElement() {
         viewer.draw(player, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawPlayer(player.getPosition());
+        Mockito.verify(gui, Mockito.times(1)).drawPlayer(0,player.getPosition());
     }
 }
