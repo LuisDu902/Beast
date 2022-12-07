@@ -5,7 +5,7 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.viewer.Viewer;
 
-public class ScoreMenuViewer extends Viewer<ScoreMenu> {
+public class ScoreMenuViewer extends Viewer<ScoreMenu> { 
     public ScoreMenuViewer(ScoreMenu menu) {
         super(menu);
     }
