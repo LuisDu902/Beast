@@ -6,11 +6,11 @@ import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.viewer.Viewer;
 import org.l06gr06.viewer.game.GameViewer;
 
+import java.io.IOException;
+
 public class GameState extends State<Arena>{
 
-    public GameState(Arena arena) {
-        super(arena);
-    }
+    public GameState(Arena arena) throws IOException {super(arena);}
 
     @Override
     protected Viewer<Arena> getViewer() {

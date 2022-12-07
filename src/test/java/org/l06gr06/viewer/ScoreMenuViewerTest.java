@@ -10,6 +10,7 @@ import org.l06gr06.viewer.Viewer;
 import org.l06gr06.viewer.menu.ScoreMenuViewer;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class ScoreMenuViewerTest {
@@ -17,7 +18,7 @@ public class ScoreMenuViewerTest {
     private Viewer viewer;
     private ScoreMenu scoreMenu;
     @BeforeEach
-    void setUp() {
+    void setUp() throws IOException {
         scoreMenu = new ScoreMenu((Arrays.asList("GameOver","Play Again", "Exit")));
         viewer = new ScoreMenuViewer(scoreMenu);
         gui = Mockito.mock(GUI.class);
@@ -26,6 +27,6 @@ public class ScoreMenuViewerTest {
     @Test
     void drawText(){
         viewer.drawElements(gui);
-        Mockito.verify(gui, Mockito.times(1+scoreMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
+        Mockito.verify(gui, Mockito.times(27+scoreMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
     }
 }

@@ -18,7 +18,7 @@ public class BeastControllerTest {
     private Beast strongerBeast;
     private Arena arena;
 
-    public class BeastControllerStub extends BeastController{
+    /*public class BeastControllerStub extends BeastController{
         public BeastControllerStub(Arena arena) {
             super(arena);
         }
@@ -26,7 +26,7 @@ public class BeastControllerTest {
         public void testMoveBeast(Beast beast, Position pos) {
             moveBeast(beast,pos);
         }
-    }
+    }*/
     @BeforeEach
     void setUp() {
         arena = new Arena(20, 20);
