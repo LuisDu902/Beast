@@ -39,9 +39,9 @@ public class GameViewer extends Viewer<Arena> {
         drawLives(gui, getModel().getPlayer().getLife());
     }
     private void drawLives(GUI gui, int nrLives){
-        gui.drawText(new Position(0,0), "Lives: ", "#FFFFFF");
+        gui.drawText(new Position(1,1), "Lives: ", "#FFFFFF");
         for (int i = 0; i < nrLives+1; i++){
-            gui.drawText(new Position(i+6,0), "@", "#FC0808");
+            gui.drawText(new Position(i+7,1), "@", "#FC0808");
         }
     }
     private void drawTimer(GUI gui, long time){
@@ -49,7 +49,7 @@ public class GameViewer extends Viewer<Arena> {
         long min = timer/60;
         long sec = timer%60;
         String txt = String.format("Timer: %02d:%02d", min, sec);
-        gui.drawText(new Position(38, 0), txt, "#FFFFFF");
+        gui.drawText(new Position(37, 1), txt, "#FFFFFF");
     }
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
         for (T element : elements)

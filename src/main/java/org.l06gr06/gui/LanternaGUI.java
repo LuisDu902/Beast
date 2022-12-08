@@ -36,7 +36,7 @@ public class LanternaGUI implements GUI{
         return screen;
     }
     private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
-        TerminalSize terminalSize = new TerminalSize(width, height + 1);
+        TerminalSize terminalSize = new TerminalSize(width, height + 3);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
@@ -45,23 +45,25 @@ public class LanternaGUI implements GUI{
     }
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
         //URL resource = getClass().getClassLoader().getResource("fonts/Ldtsone.ttf");
-        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
+        //URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
         //URL resource = getClass().getClassLoader().getResource("fonts/Ldtstry-Regular.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/TheFont.otf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 35);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
     private void drawCharacter(int x, int y, char c, String color) {
         TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putCSIStyledString(x,y+1,"");
-        tg.putString(x, y + 1, "" + c);
+        if (c == ' ') tg.setBackgroundColor(TextColor.Factory.fromString(color));
+        else tg.setForegroundColor(TextColor.Factory.fromString(color));
+        tg.putCSIStyledString(x,y+3,"");
+        tg.putString(x, y + 3, "" + c);
     }
     @Override
     public void drawText(Position position, String text, String color){
@@ -76,18 +78,18 @@ public class LanternaGUI implements GUI{
                 drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
                 break;
             case 1:
-                drawCharacter(position.getX(), position.getY(), 'Y', "#FFFFFF");
+                drawCharacter(position.getX(), position.getY(), '&', "#FF9900");
                 break;
         }
 
     }
     @Override
     public void drawShield(Position position){
-        drawCharacter(position.getX(), position.getY(), 'e', "#FFFFFF");
+        drawCharacter(position.getX(), position.getY(), '$', "#a64dff");
     }
     @Override
     public void drawWall(Position position){
-        drawCharacter(position.getX(), position.getY(), 'O', "#F5F505");
+        drawCharacter(position.getX(), position.getY(), ' ', "#FFFF66");
     }
     @Override
     public void drawHeart(Position position){
@@ -97,20 +99,20 @@ public class LanternaGUI implements GUI{
     public void drawBeast(int phase, Position position){
         switch (phase){
             case 0:
-                drawCharacter(position.getX(), position.getY(), '.', "#8D05FC");
+                drawCharacter(position.getX(), position.getY(), '*', "#FFFF66");
                 break;
             case 1:
-                drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
+                drawCharacter(position.getX(), position.getY(), 'H', "#E80E0E");
                 break;
             case 2:
-                drawCharacter(position.getX(), position.getY(), '%', "#FFD700");
+                drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
                 break;
         }
     }
 
     @Override
     public void drawBlock(Position position){
-        drawCharacter(position.getX(), position.getY(), 'O', "#1DC249");
+        drawCharacter(position.getX(), position.getY(), ' ', "#1DC249");
     }
 
 

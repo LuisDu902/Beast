@@ -13,10 +13,11 @@ public class MainMenuViewer extends Viewer<MainMenu> {
         gui.drawText(new Position(5, 3), "HHHH     HHHHH    HHH     HHHH   HHHHH", "#FFFFFF");
         gui.drawText(new Position(5, 4), "H   H    H       H   H   H         H", "#FFFFFF");
         gui.drawText(new Position(5, 5), "H   H    H       H   H   H         H"  , "#FFFFFF");
-        gui.drawText(new Position(5, 6), "HHHH     HHH     HHHHH    HHH      H", "#FFFFFF");
+        gui.drawText(new Position(5, 6), "HHHH     HHH     HH HH    HHH      H", "#FFFFFF");
         gui.drawText(new Position(5, 7), "H   H    H       H   H       H     H", "#FFFFFF");
         gui.drawText(new Position(5, 8), "H   H    H       H   H       H     H", "#FFFFFF");
         gui.drawText(new Position(5, 9), "HHHH     HHHHH   H   H   HHHH      H", "#FFFFFF");
+        gui.drawText(new Position(24, 6), "&", "#00FFEF");
     }
     @Override
     public void drawElements(GUI gui) {
@@ -27,6 +28,6 @@ public class MainMenuViewer extends Viewer<MainMenu> {
             gui.drawText(
                     new Position(13, 18 + i),
                     getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+                    getModel().isSelected(i) ? "#FFFF66" : "#FFFFFF");
     }
 }
