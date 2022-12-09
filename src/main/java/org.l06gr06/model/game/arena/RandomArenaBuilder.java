@@ -13,19 +13,17 @@ public class RandomArenaBuilder extends ArenaBuilder{
     private final int height;
     private final int numberOfBeasts;
     private final int numberOfBlocks;
-    private final int numberOfPowerUps;
     private final int numberOfEggs;
 
     private final int numberOfWalls;
     private List<Position> occupied = new ArrayList<>();
 
-    public RandomArenaBuilder(int width, int height, int numberOfBeasts, int numberOfBlocks, int numberOfPowerUps, int numberOfEggs, int numberOfWalls) {
+    public RandomArenaBuilder(int width, int height, int numberOfBeasts, int numberOfBlocks,  int numberOfEggs, int numberOfWalls) {
         this.rng = new Random();
         this.width = width;
         this.height = height;
         this.numberOfBeasts = numberOfBeasts;
         this.numberOfBlocks = numberOfBlocks;
-        this.numberOfPowerUps = numberOfPowerUps;
         this.numberOfEggs = numberOfEggs;
         this.numberOfWalls = numberOfWalls;
     }
@@ -134,20 +132,4 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     }*/
 
-    @Override
-    protected List<PowerUp> createPowerUps() {
-        List<PowerUp> powerUps = new ArrayList<>();
-
-        while (powerUps.size() < numberOfPowerUps){
-            int a = (int) (Math.random()*2);
-            int x = (rng.nextInt(width - 2) + 1);
-            int y = (rng.nextInt(height - 2) + 1);
-            if (isAvailable(new Position(x,y))){
-                occupied.add(new Position(x, y));
-                if (a == 0) powerUps.add(new Shield(x, y));
-                else powerUps.add(new Heart(x, y));
-            }
-        }
-        return powerUps;
-    }
 }

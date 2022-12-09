@@ -47,7 +47,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                     writer.append(str);
                     writer.append(',');
                     writer.close();
-                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 10, 3, 10).createArena()));
+                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena()));
                 }
                 else if (getModel().isSelected(2)) {
                     URL resource = ArenaController.class.getResource("/levels/score.csv");
@@ -56,7 +56,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                     writer.append(str);
                     writer.append(',');
                     writer.close();
-                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 6, 50, 5, 6, 5).createArena()));
+                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 6, 50, 6, 5).createArena()));
                 }
         }
     }
