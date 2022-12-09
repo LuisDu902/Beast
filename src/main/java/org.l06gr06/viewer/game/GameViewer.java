@@ -39,7 +39,7 @@ public class GameViewer extends Viewer<Arena> {
     }
     private void drawLives(GUI gui, int nrLives){
         gui.drawText(new Position(1,1), "Lives: ", "#FFFFFF");
-        for (int i = 0; i < nrLives+1; i++){
+        for (int i = 0; i < nrLives; i++){
             gui.drawText(new Position(i+7,1), "@", "#FC0808");
         }
     }
