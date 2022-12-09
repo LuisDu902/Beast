@@ -1,6 +1,5 @@
 package org.l06gr06.viewer.game;
 
-import org.l06gr06.Game;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;

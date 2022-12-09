@@ -2,36 +2,17 @@ package org.l06gr06.viewer.menu;
 
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
-
-import org.l06gr06.model.game.arena.LoaderArenaBuilder;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.viewer.Viewer;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ScoreMenuViewer extends Viewer<ScoreMenu>{
 
-    private List<String> lines;
-    public ScoreMenuViewer(ScoreMenu menu) throws IOException {
+    public ScoreMenuViewer(ScoreMenu menu) {
         super(menu);
-        URL resource = ScoreMenuViewer.class.getResource("/score.csv");
-        BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
+    }
 
-        lines = readLines(br);
-    }
-    private List<String> readLines(BufferedReader br) throws IOException {
-        List<String> lines = new ArrayList<>();
-        for (String line; (line = br.readLine()) != null; )
-            lines.add(line);
-        return lines;
-    }
     private void drawTitle(GUI gui){
-        gui.drawText(new Position(2, 2), "ScoreBoard", "#FFFFFF");
+        gui.drawText(new Position(20, 2), "Your Score", "#FFFFFF");
     }
 
     private void drawBoarders(GUI gui){
@@ -45,15 +26,32 @@ public class ScoreMenuViewer extends Viewer<ScoreMenu>{
             gui.drawWall(new Position(49,y));
         }
     }
-    private void drawScores(GUI gui){
-        for (int i = 0; i < lines.size(); i++){
-            String[] line = lines.get(i).split(",");
-            for (int j = 0; j < line.length; j++){
-                gui.drawText(new Position(j*11+7,i+5),line[j],"#FFFFFF");
-            }
-        }
-    }
 
+    private void drawScore(GUI gui){
+        long stats[] = getModel().getStats();
+        for (int i = 0; i < 3; i++){
+            gui.drawText(new Position(28,i+4), stats[i] + " x","#FFFFFF");
+            gui.drawBeast(i,new Position(32,i+1));
+        }
+
+        gui.drawText(new Position(13,5), "Beasts killed: ","#FFFFFF");
+
+        gui.drawText(new Position(28,8), stats[3] + " x","#FFFFFF");
+        gui.drawShield(new Position(32,5));
+
+        gui.drawText(new Position(13,8), "      Shields: ","#FFFFFF");
+
+        gui.drawText(new Position(10,10), " Remaining Lives: ","#FFFFFF");
+        gui.drawText(new Position(28,10), stats[4] + " x","#FFFFFF");
+        gui.drawHeart(new Position(32,7));
+        long min = stats[5]/60;
+        long sec = stats[5]%60;
+        String txt = String.format("%02d:%02d", min, sec);
+        gui.drawText(new Position(13,12), "         Time: " + txt,"#FFFFFF");
+
+        long score = stats[0]*75 + stats[1]* 150 + stats[2] * 300 + stats[3] * 50 + stats[4] * 50 - stats[5];
+        gui.drawText(new Position(13,14), " Final points: " + score,"#a64dff");
+    }
 
     @Override
     public void drawElements(GUI gui) {
@@ -62,13 +60,11 @@ public class ScoreMenuViewer extends Viewer<ScoreMenu>{
 
         drawBoarders(gui);
 
+        drawScore(gui);
 
-        for (int i = 1; i <= 10; i++)
-            gui.drawText(new Position(2,i+5), i+".", "#FFFFFF");
-        drawScores(gui);
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(
-                    new Position(20, 16 + i),
+                    new Position(5+i*17, 17),
                     getModel().getEntry(i),
                     getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
     }

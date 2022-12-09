@@ -4,7 +4,6 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
