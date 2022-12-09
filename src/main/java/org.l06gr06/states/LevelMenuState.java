@@ -6,9 +6,11 @@ import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.viewer.Viewer;
 import org.l06gr06.viewer.menu.LevelMenuViewer;
 
+import java.io.IOException;
+
 public class LevelMenuState extends State<LevelMenu>{
 
-    public LevelMenuState(LevelMenu model){super(model);}
+    public LevelMenuState(LevelMenu model) throws IOException {super(model);}
     @Override
     protected Viewer<LevelMenu> getViewer(){return new LevelMenuViewer(getModel());}
     @Override

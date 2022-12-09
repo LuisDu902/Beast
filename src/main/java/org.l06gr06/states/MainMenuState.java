@@ -6,9 +6,11 @@ import org.l06gr06.model.menu.MainMenu;
 import org.l06gr06.viewer.Viewer;
 import org.l06gr06.viewer.menu.MainMenuViewer;
 
+import java.io.IOException;
+
 public class MainMenuState extends State<MainMenu>{
 
-    public MainMenuState(MainMenu model){super(model);}
+    public MainMenuState(MainMenu model) throws IOException {super(model);}
     @Override
     protected Viewer<MainMenu> getViewer(){return new MainMenuViewer(getModel());}
     @Override

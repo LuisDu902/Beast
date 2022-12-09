@@ -2,7 +2,6 @@ package org.l06gr06.controller.menu;
 
 import org.l06gr06.Game;
 import org.l06gr06.controller.Controller;
-
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.model.menu.MainMenu;
