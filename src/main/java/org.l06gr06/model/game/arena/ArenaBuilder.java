@@ -2,12 +2,14 @@ package org.l06gr06.model.game.arena;
 
 import org.l06gr06.model.game.elements.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ArenaBuilder {
     public Arena createArena() {
         Arena arena = new Arena(getWidth(), getHeight());
-        arena.setPowerUps(List.of());
+        List<PowerUp> powerUps = new ArrayList<>();
+        arena.setPowerUps(powerUps);
         arena.setPlayer(createPlayer());
         arena.setBeasts(createBeasts());
         arena.setWalls(createWalls());

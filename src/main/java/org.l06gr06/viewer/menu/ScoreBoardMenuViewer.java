@@ -40,11 +40,11 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
 
     private void drawBoarders(GUI gui){
         for (int x = 0; x < 50; x++) {
-            gui.drawWall(new Position(x,-1));
+            gui.drawWall(new Position(x,-3));
             gui.drawWall(new Position(x,19));
         }
 
-        for (int y = 0; y < 19; y++) {
+        for (int y = -2; y < 19; y++) {
             gui.drawWall(new Position(0,y));
             gui.drawWall(new Position(49,y));
         }

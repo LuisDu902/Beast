@@ -13,13 +13,11 @@ import java.util.Random;
 
 public class PlayerController extends GameController {
     private GUI.ACTION action;
-    private long[] stats;
-    private long score;
+    private final long[] stats;
     public PlayerController(Arena arena) {
 
         super(arena);
-        this.stats = new long[7];
-        this.score = 99;
+        this.stats = new long[6];
     }
     public void movePlayerLeft() {
         movePlayer(getModel().getPlayer().getPosition().getLeft());
@@ -59,16 +57,18 @@ public class PlayerController extends GameController {
                 else if (getModel().isBeast(block.getPosition().getDown()))  {
                     int i = getModel().findBeast(block.getPosition().getDown());
                     if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goDown();
                         getModel().getPlayer().setPosition(position);
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
+
                     }
                     else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getDown().getDown())){
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goDown();
                         getModel().getPlayer().setPosition(position);
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
+
                     }
                     else{
                         while (getModel().isBlock(block.getPosition().getUp())){
@@ -301,7 +301,6 @@ public class PlayerController extends GameController {
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
         stats[4] = getModel().getPlayer().getLife();
-        stats[6] = score;
         stats[5] = (time - getModel().getStartingTime())/1000;;
         this.action = action;
         if (action == GUI.ACTION.UP) movePlayerUp();
@@ -314,7 +313,4 @@ public class PlayerController extends GameController {
         return stats;
     }
 
-    public long getScore() {
-        return score;
-    }
 }
