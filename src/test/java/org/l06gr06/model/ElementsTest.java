@@ -1,7 +1,6 @@
 package org.l06gr06.model;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.model.game.elements.*;
 

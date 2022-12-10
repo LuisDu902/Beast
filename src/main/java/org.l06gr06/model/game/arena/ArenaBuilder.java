@@ -13,7 +13,6 @@ public abstract class ArenaBuilder {
         arena.setWalls(createWalls());
         arena.setPowerUps(createPowerUps());
         arena.setBlocks(createBlocks());
-        //arena.setEggs(createEggs());
         return arena;
     }
 
