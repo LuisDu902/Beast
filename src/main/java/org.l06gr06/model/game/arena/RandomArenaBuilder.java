@@ -71,7 +71,9 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     @Override
     protected Player createPlayer() {
-        return new Player(width / 3, height / 3);
+        Player player = new Player(width / 3, height / 3);
+        occupied.add(player.getPosition());
+        return player;
     }
 
     @Override
@@ -119,21 +121,6 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     }
 
-    /*@Override
-    protected List<Egg> createEggs() {
-        List<Egg> eggs = new ArrayList<>();
-
-        while (eggs.size() < numberOfEggs){
-            int x = (rng.nextInt(width - 2) + 1);
-            int y = (rng.nextInt(height - 2) + 1);
-            if (isAvailable(new Position(x,y))){
-                eggs.add(new Egg(x, y));
-                occupied.add(new Position(x, y));
-            }
-        }
-        return eggs;
-
-    }*/
 
     @Override
     protected List<PowerUp> createPowerUps() {

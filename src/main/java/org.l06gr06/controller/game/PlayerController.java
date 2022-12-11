@@ -285,6 +285,10 @@ public class PlayerController extends GameController {
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
         this.action = action;
+
+        if (time - getModel().getPlayer().getImmortalTime() > getModel().getPlayer().getImmortalDuration() * 1000){
+            getModel().getPlayer().backToNormal();
+        }
         if (action == GUI.ACTION.UP) movePlayerUp();
         if (action == GUI.ACTION.RIGHT) movePlayerRight();
         if (action == GUI.ACTION.DOWN) movePlayerDown();
