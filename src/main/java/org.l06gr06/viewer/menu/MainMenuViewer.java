@@ -10,14 +10,14 @@ public class MainMenuViewer extends Viewer<MainMenu> {
         super(menu);
     }
     private void drawTitle(GUI gui){
-        gui.drawText(new Position(6, 3), "HHHH     HHHHH    HHH     HHHH   HHHHH", "#FFFFFF");
-        gui.drawText(new Position(6, 4), "H   H    H       H   H   H         H", "#FFFFFF");
-        gui.drawText(new Position(6, 5), "H   H    H       H   H   H         H"  , "#FFFFFF");
-        gui.drawText(new Position(6, 6), "HHHH     HHH     HH HH    HHH      H", "#FFFFFF");
-        gui.drawText(new Position(6, 7), "H   H    H       H   H       H     H", "#FFFFFF");
-        gui.drawText(new Position(6, 8), "H   H    H       H   H       H     H", "#FFFFFF");
-        gui.drawText(new Position(6, 9), "HHHH     HHHHH   H   H   HHHH      H", "#FFFFFF");
-        gui.drawText(new Position(25, 6), "&", "#00FFEF");
+        gui.drawText(new Position(6, 6), "HHHH     HHHHH    HHH     HHHH   HHHHH", "#FFFFFF");
+        gui.drawText(new Position(6, 7), "H   H    H       H   H   H         H", "#FFFFFF");
+        gui.drawText(new Position(6, 8), "H   H    H       H   H   H         H"  , "#FFFFFF");
+        gui.drawText(new Position(6, 9), "HHHH     HHH     HH HH    HHH      H", "#FFFFFF");
+        gui.drawText(new Position(6, 10), "H   H    H       H   H       H     H", "#FFFFFF");
+        gui.drawText(new Position(6, 11), "H   H    H       H   H       H     H", "#FFFFFF");
+        gui.drawText(new Position(6, 12), "HHHH     HHHHH   H   H   HHHH      H", "#FFFFFF");
+        gui.drawText(new Position(25, 9), "&", "#00FFEF");
     }
     private void drawBoarders(GUI gui){
         for (int x = 0; x < 50; x++) {

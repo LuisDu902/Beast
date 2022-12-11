@@ -25,7 +25,7 @@ public class LevelMenuViewer extends Viewer<LevelMenu> {
     @Override
     public void drawElements(GUI gui) {
 
-        gui.drawText(new Position(20, 5), "Levels", "#FFFFFF");
+        gui.drawText(new Position(20, 5), "LEVELS", "#FFFFFF");
 
         drawBoarders(gui);
         for (int i = 0; i < getModel().getNumberEntries()-1; i++)

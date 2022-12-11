@@ -35,7 +35,7 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
         return lines;
     }
     private void drawTitle(GUI gui){
-        gui.drawText(new Position(2, 2), "ScoreBoard", "#FFFFFF");
+        gui.drawText(new Position(2, 2), "SCOREBOARD", "#FFFFFF");
     }
 
     private void drawBoarders(GUI gui){
