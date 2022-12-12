@@ -44,7 +44,8 @@ public class ArenaController extends GameController {
         writer.close();
     }
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-
+        playerController.getStats()[4] = getModel().getPlayer().getLife();
+        playerController.getStats()[5] = (time - getModel().getStartingTime())/1000;
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0) {
             saveScore(Score(time));
             game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again", "ScoreBoard", "Exit"),playerController.getStats())));

@@ -126,8 +126,7 @@ public class PlayerController extends GameController {
     }
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        stats[4] = getModel().getPlayer().getLife();
-        stats[5] = (time - getModel().getStartingTime())/1000;;
+
         this.action = action;
 
         if (time - getModel().getPlayer().getImmortalTime() > getModel().getPlayer().getImmortalDuration() * 1000){
@@ -137,6 +136,9 @@ public class PlayerController extends GameController {
         if (action == GUI.ACTION.RIGHT) movePlayerRight();
         if (action == GUI.ACTION.DOWN) movePlayerDown();
         if (action == GUI.ACTION.LEFT) movePlayerLeft();
+
+        stats[4] = getModel().getPlayer().getLife();
+        stats[5] = (time - getModel().getStartingTime())/1000;
     }
 
     public long[] getStats() {
