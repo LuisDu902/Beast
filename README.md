@@ -14,7 +14,7 @@ Here are some screenshots of our project so far:
 
 <img width="1249" alt="GamePlay" src="https://user-images.githubusercontent.com/92641892/206916884-f199a35a-d53f-4130-8f2f-487fae351567.png">
 
-<img width="1249" alt="ScoreBoard" src="https://user-images.githubusercontent.com/92641892/206917678-0e592aa6-9dc7-4ee4-a133-9ab70dad5e3a.png">
+<img width="1249" alt="ScoreBoard" src="https://user-images.githubusercontent.com/92641892/207031010-e9ba02dc-25f9-4d9f-9975-5bdeacd99cc2.png">
 
 ### Implemented Features
 

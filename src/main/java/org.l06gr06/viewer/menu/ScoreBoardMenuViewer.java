@@ -35,7 +35,7 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
         return lines;
     }
     private void drawTitle(GUI gui){
-        gui.drawText(new Position(2, 2), "SCOREBOARD", "#FFFFFF");
+        gui.drawText(new Position(20, 3), "SCOREBOARD", "#FFFFFF");
     }
 
     private void drawBoarders(GUI gui){
@@ -50,15 +50,15 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
         }
     }
     private void drawScores(GUI gui){
-        gui.drawText(new Position(7,5),"Level","#FFFFFF");
-        gui.drawText(new Position(18,5),"Score","#FFFFFF");
-        gui.drawText(new Position(29,5),"Time","#FFFFFF");
+        gui.drawText(new Position(12,5),"Level","#FFFFFF");
+        gui.drawText(new Position(23,5),"Score","#FFFFFF");
+        gui.drawText(new Position(34,5),"Time","#FFFFFF");
         int size = Math.min(lines.size(), 10);
         for (int i = 0; i < size; i++){
-            gui.drawText(new Position(2,i+7), i+1+".", "#FFFFFF");
+            gui.drawText(new Position(7,i+7), i+1+".", "#FFFFFF");
             String[] line = lines.get(i).split(",");
             for (int j = 0; j < line.length; j++){
-                gui.drawText(new Position(j*11+7,i+7),line[j],"#FFFFFF");
+                gui.drawText(new Position(j*11+12,i+7),line[j],j == 0 ? "#FFFF66" : "#FFFFFF");
             }
         }
     }
@@ -75,8 +75,8 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
 
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(
-                    new Position(20, 16 + i),
+                    new Position(15+i*15, 19),
                     getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+                    getModel().isSelected(i) ? "#FFFF66" : "#FFFFFF");
     }
 }

@@ -1,5 +1,6 @@
 package org.l06gr06.viewer.menu;
 
+import com.googlecode.lanterna.TextColor;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.menu.ScoreMenu;
@@ -49,7 +50,7 @@ public class ScoreMenuViewer extends Viewer<ScoreMenu>{
         gui.drawText(new Position(13,13), "         Time: " + txt,"#FFFFFF");
 
         long score = stats[0]*75 + stats[1]* 150 + stats[2] * 300 + stats[3] * 50 + stats[4] * 50 - stats[5];
-        gui.drawText(new Position(13,15), " Final points: " + score,"#a64dff");
+        gui.drawText(new Position(13,16), "  Final Score: " + score,"#FFFF66");
     }
 
     @Override
@@ -63,8 +64,8 @@ public class ScoreMenuViewer extends Viewer<ScoreMenu>{
 
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(
-                    new Position(5+i*17, 18),
+                    new Position(6+i*15, 19),
                     getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+                    getModel().isSelected(i) ? "#FFFF66" : "#FFFFFF");
     }
 }
