@@ -1,7 +1,6 @@
 package org.l06gr06.model;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.model.game.elements.*;
 
@@ -52,6 +51,17 @@ public class ElementsTest {
         Assertions.assertEquals(2, beast.getPhase());
     }
 
+    @Test
+    public void PowerUpDuration(){
+        PowerUp powerUp = new PowerUp(1,2);
+        Assertions.assertEquals(10,powerUp.getDuration());
+    }
 
+    @Test
+    public void PowerUpCreationTime(){
+        long time = System.currentTimeMillis();
+        PowerUp powerUp = new PowerUp(1,1);
+        Assertions.assertEquals(time,powerUp.getCreationTime());
+    }
 
 }

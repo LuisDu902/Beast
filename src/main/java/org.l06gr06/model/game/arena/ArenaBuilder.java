@@ -30,6 +30,6 @@ public abstract class ArenaBuilder {
     protected abstract Player createPlayer();
 
     protected abstract List<Block> createBlocks();
-    //protected abstract List<Egg> createEggs();
+
 }
 

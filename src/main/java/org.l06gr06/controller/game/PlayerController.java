@@ -303,6 +303,10 @@ public class PlayerController extends GameController {
         stats[4] = getModel().getPlayer().getLife();
         stats[5] = (time - getModel().getStartingTime())/1000;;
         this.action = action;
+
+        if (time - getModel().getPlayer().getImmortalTime() > getModel().getPlayer().getImmortalDuration() * 1000){
+            getModel().getPlayer().backToNormal();
+        }
         if (action == GUI.ACTION.UP) movePlayerUp();
         if (action == GUI.ACTION.RIGHT) movePlayerRight();
         if (action == GUI.ACTION.DOWN) movePlayerDown();
