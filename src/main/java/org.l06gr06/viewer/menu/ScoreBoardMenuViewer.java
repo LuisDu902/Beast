@@ -15,10 +15,10 @@ import java.util.List;
 
 public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
 
-    private List<String> lines;
-    public ScoreBoardMenuViewer(ScoreBoardMenu menu) throws IOException {
+    private final List<String> lines;
+    public ScoreBoardMenuViewer(ScoreBoardMenu menu, String file) throws IOException {
         super(menu);
-        URL resource = ScoreBoardMenu.class.getResource("/levels/score.csv");
+        URL resource = ScoreBoardMenu.class.getResource("/levels/" + file);
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
 
         lines = readLines(br);
@@ -74,9 +74,7 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
         drawScores(gui);
 
         for (int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(
-                    new Position(20, 16 + i),
-                    getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
+            gui.drawText(new Position(20, 16 + i), getModel().getEntry(i), getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
     }
+
 }

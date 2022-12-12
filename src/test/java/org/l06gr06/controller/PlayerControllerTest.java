@@ -1,16 +1,18 @@
 package org.l06gr06.controller;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.l06gr06.controller.game.PlayerController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
-import org.l06gr06.model.game.elements.Block;
-import org.l06gr06.model.game.elements.Player;
-import org.l06gr06.model.game.elements.Wall;
+import org.l06gr06.model.game.elements.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.Arrays;
 
 public class PlayerControllerTest {
     private PlayerController controller;
@@ -19,7 +21,7 @@ public class PlayerControllerTest {
 
     @BeforeEach
     void setUp() {
-        arena = new Arena(10, 10);
+        arena = new Arena(20, 20);
 
         player = new Player(5, 5);
         arena.setPlayer(player);
@@ -33,146 +35,375 @@ public class PlayerControllerTest {
     }
 
     @Test
-    void movePlayerRightEmpty() {
-        controller.setAction(GUI.ACTION.RIGHT);
-        controller.movePlayerRight();
+    void rightEmpty() {
+        controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
         assertEquals(new Position(6, 5), player.getPosition());
     }
 
     @Test
-    void movePlayerRightMoveBlock() {
-        arena.setBlocks(Arrays.asList(new Block(6, 5),new Block(7, 5)));
-        controller.setAction(GUI.ACTION.RIGHT);
-        controller.movePlayerRight();
+    void moveRightBlock() {
+
+        Block block1 = new Block(6, 5);
+        Block block2 = new Block(7, 5);
+        arena.setBlocks(Arrays.asList(block1, block2));
+
+        controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
         assertEquals(new Position(6, 5), player.getPosition());
-        assertEquals(new Position(8, 5), arena.getBlocks().get(0).getPosition());
-        assertEquals(new Position(7, 5), arena.getBlocks().get(1).getPosition());
+        assertEquals(new Position(8, 5), block1.getPosition());
+        assertEquals(new Position(7, 5), block2.getPosition());
     }
 
     @Test
-    void movePlayerRightNoMoveBlock() {
-        arena.setBlocks(Arrays.asList(new Block(6, 5)));
-        arena.setWalls(Arrays.asList(new Wall(7, 5)));
-        controller.setAction(GUI.ACTION.RIGHT);
-        controller.movePlayerRight();
+    void noMoveRightBlock() {
+
+        Block block1 = new Block(6, 5);
+        Block block2 = new Block(7, 5);
+        Block block3 = new Block(8, 5);
+        arena.setBlocks(Arrays.asList(block1, block2,block3));
+
+        Wall wall = new Wall(9,5);
+        arena.setWalls(Arrays.asList(wall));
+
+        controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 5), player.getPosition());
-        assertEquals(new Position(6, 5), arena.getBlocks().get(0).getPosition());
-        assertEquals(new Position(7, 5), arena.getWalls().get(0).getPosition());
+        assertEquals(new Position(6, 5), block1.getPosition());
+        assertEquals(new Position(7, 5), block2.getPosition());
+        assertEquals(new Position(8, 5), block3.getPosition());
+        assertEquals(new Position(9, 5), wall.getPosition());
     }
 
     @Test
-    void movePlayerRightWall() {
-        arena.setWalls(Arrays.asList(new Wall(6, 5)));
-        controller.setAction(GUI.ACTION.RIGHT);
-        controller.movePlayerRight();
+    void rightWall() {
+
+        Wall wall = new Wall(6,5);
+        arena.setWalls(Arrays.asList(wall));
+
+        controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 5), player.getPosition());
+        assertEquals(new Position(6, 5), wall.getPosition());
     }
 
     @Test
-    void movePlayerLeftEmpty() {
-        controller.setAction(GUI.ACTION.LEFT);
-        controller.movePlayerLeft();
+    void leftEmpty() {
+        controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
+
         assertEquals(new Position(4, 5), player.getPosition());
     }
 
     @Test
-    void movePlayerLeftMoveBlock() {
-        arena.setBlocks(Arrays.asList(new Block(4, 5), new Block(3,5)));
-        controller.setAction(GUI.ACTION.LEFT);
-        controller.movePlayerLeft();
+    void moveLeftBlock() {
+
+        Block block1 = new Block(4, 5);
+        Block block2 = new Block(3, 5);
+        arena.setBlocks(Arrays.asList(block1, block2));
+
+        controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
+
         assertEquals(new Position(4, 5), player.getPosition());
-        assertEquals(new Position(2, 5), arena.getBlocks().get(0).getPosition());
-        assertEquals(new Position(3, 5), arena.getBlocks().get(1).getPosition());
+        assertEquals(new Position(2, 5), block1.getPosition());
+        assertEquals(new Position(3, 5), block2.getPosition());
     }
 
     @Test
-    void movePlayerLeftNoMoveBlock() {
-        arena.setBlocks(Arrays.asList(new Block(4, 5)));
-        arena.setWalls(Arrays.asList(new Wall(3, 5)));
-        controller.setAction(GUI.ACTION.LEFT);
-        controller.movePlayerLeft();
+    void noMoveLeftBlock() {
+
+        Block block = new Block(4, 5);
+        arena.setBlocks(Arrays.asList(block));
+
+        Wall wall = new Wall(3,5);
+        arena.setWalls(Arrays.asList(wall));
+
+        controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 5), player.getPosition());
-        assertEquals(new Position(4, 5), arena.getBlocks().get(0).getPosition());
-        assertEquals(new Position(3, 5), arena.getWalls().get(0).getPosition());
+        assertEquals(new Position(4, 5), block.getPosition());
+        assertEquals(new Position(3, 5), wall.getPosition());
     }
 
     @Test
-    void movePlayerLeftWall() {
-        arena.setWalls(Arrays.asList(new Wall(4, 5)));
-        controller.setAction(GUI.ACTION.LEFT);
-        controller.movePlayerLeft();
+    void leftWall() {
+        Wall wall = new Wall(4,5);
+        arena.setWalls(Arrays.asList(wall));
+
+        controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 5), player.getPosition());
+        assertEquals(new Position(4, 5), wall.getPosition());
     }
 
     @Test
-    void movePlayerUpEmpty() {
-        controller.setAction(GUI.ACTION.UP);
-        controller.movePlayerUp();
+    void upEmpty() {
+        controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 4), player.getPosition());
     }
 
     @Test
-    void movePlayerUpMoveBlock() {
-        arena.setBlocks(Arrays.asList(new Block(5, 4), new Block(5,3)));
-        controller.setAction(GUI.ACTION.UP);
-        controller.movePlayerUp();
+    void moveUpBlock() {
+
+        Block block1 = new Block(5, 4);
+        Block block2 = new Block(5, 3);
+        arena.setBlocks(Arrays.asList(block1, block2));
+
+        controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 4), player.getPosition());
-        assertEquals(new Position(5, 2), arena.getBlocks().get(0).getPosition());
-        assertEquals(new Position(5, 3), arena.getBlocks().get(1).getPosition());
+        assertEquals(new Position(5, 2), block1.getPosition());
+        assertEquals(new Position(5, 3), block2.getPosition());
     }
 
     @Test
-    void movePlayerUpNoMoveBlock() {
-        arena.setBlocks(Arrays.asList(new Block(5, 4)));
-        arena.setWalls(Arrays.asList(new Wall(5, 3)));
-        controller.setAction(GUI.ACTION.UP);
-        controller.movePlayerUp();
+    void noMoveUpBlock() {
+
+        Block block = new Block(5, 4);
+        arena.setBlocks(Arrays.asList(block));
+
+        Wall wall = new Wall(5,3);
+        arena.setWalls(Arrays.asList(wall));
+
+        controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 5), player.getPosition());
-        assertEquals(new Position(5, 4), arena.getBlocks().get(0).getPosition());
-        assertEquals(new Position(5, 3), arena.getWalls().get(0).getPosition());
+        assertEquals(new Position(5, 4), block.getPosition());
+        assertEquals(new Position(5, 3), wall.getPosition());
     }
 
     @Test
-    void movePlayerUpWall() {
-        arena.setWalls(Arrays.asList(new Wall(5, 4)));
-        controller.setAction(GUI.ACTION.UP);
-        controller.movePlayerUp();
+    void upWall() {
+        Wall wall = new Wall(5,4);
+        arena.setWalls(Arrays.asList(wall));
+
+        controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 5), player.getPosition());
+        assertEquals(new Position(5, 4), wall.getPosition());
     }
+
     @Test
-    void movePlayerDownEmpty() {
-        controller.setAction(GUI.ACTION.DOWN);
-        controller.movePlayerDown();
+    void downEmpty() {
+        controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 6), player.getPosition());
     }
 
     @Test
-    void movePlayerDownMoveBlock() {
-        arena.setBlocks(Arrays.asList(new Block(5, 6), new Block(5,7)));
-        controller.setAction(GUI.ACTION.DOWN);
-        controller.movePlayerDown();
+    void moveDownBlock() {
+
+        Block block1 = new Block(5, 6);
+        Block block2 = new Block(5, 7);
+        arena.setBlocks(Arrays.asList(block1, block2));
+
+        controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 6), player.getPosition());
-        assertEquals(new Position(5, 8), arena.getBlocks().get(0).getPosition());
-        assertEquals(new Position(5, 7), arena.getBlocks().get(1).getPosition());
+        assertEquals(new Position(5, 8), block1.getPosition());
+        assertEquals(new Position(5, 7), block2.getPosition());
     }
 
     @Test
-    void movePlayerDownNoMoveBlock() {
-        arena.setBlocks(Arrays.asList(new Block(5, 6)));
-        arena.setWalls(Arrays.asList(new Wall(5, 7)));
-        controller.setAction(GUI.ACTION.DOWN);
-        controller.movePlayerDown();
+    void noMoveDownBlock() {
+
+        Block block = new Block(5, 6);
+        arena.setBlocks(Arrays.asList(block));
+
+        Wall wall = new Wall(5,7);
+        arena.setWalls(Arrays.asList(wall));
+
+        controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 5), player.getPosition());
-        assertEquals(new Position(5, 6), arena.getBlocks().get(0).getPosition());
-        assertEquals(new Position(5, 7), arena.getWalls().get(0).getPosition());
+        assertEquals(new Position(5, 6), block.getPosition());
+        assertEquals(new Position(5, 7), wall.getPosition());
     }
 
     @Test
-    void movePlayerDownWall() {
-        arena.setWalls(Arrays.asList(new Wall(5, 6)));
-        controller.setAction(GUI.ACTION.DOWN);
-        controller.movePlayerDown();
+    void downWall() {
+        Wall wall = new Wall(5,6);
+        arena.setWalls(Arrays.asList(wall));
+
+        controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
+
         assertEquals(new Position(5, 5), player.getPosition());
+        assertEquals(new Position(5, 6), wall.getPosition());
     }
 
+    @Test
+    void getStats(){
+        controller.step(null, GUI.ACTION.DOWN,1000+arena.getStartingTime());
+
+        long[] stats = controller.getStats();
+        long nrEggs = stats[0];
+        long nrBeasts = stats[1];
+        long nrStrongBeasts = stats[2];
+        long nrShields = stats[3];
+        long nrLives = stats[4];
+        long time = stats[5];
+
+        assertEquals(0, nrEggs);
+        assertEquals(0, nrBeasts);
+        assertEquals(0, nrStrongBeasts);
+        assertEquals(0, nrShields);
+        assertEquals(5, nrLives);
+        assertEquals(1, time);
+    }
+
+    @Test
+    void backToNormal(){
+        player.becomeImmortal();
+
+        Beast beast = new Beast(6,5,1);
+        arena.setBeasts(Arrays.asList(beast));
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(5, player.getLife());
+        assertEquals(0, player.getPhase());
+    }
+
+    @Test
+    void decreaseLife(){
+
+        Beast beast = new Beast(6,5,1);
+        arena.setBeasts(Arrays.asList(beast));
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(4, player.getLife());
+    }
+
+    @Test
+    void increaseLife(){
+
+        Heart heart = new Heart(6,5);
+        List<PowerUp> powerUps = new ArrayList<>();
+        powerUps.add(heart);
+        arena.setPowerUps(powerUps);
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(6, player.getLife());
+        assertEquals(0, powerUps.size());
+    }
+
+    @Test
+    void becomeImmortal(){
+
+        Shield shield = new Shield(6,5);
+        List<PowerUp> powerUps = new ArrayList<>();
+        powerUps.add(shield);
+        arena.setPowerUps(powerUps);
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(1, player.getPhase());
+        assertEquals(0, powerUps.size());
+    }
+
+    @Test
+    void smashPowerUp(){
+
+        List<PowerUp> powerUps = new ArrayList<>();
+        powerUps.add(new PowerUp(7,5));
+        arena.setPowerUps(powerUps);
+
+        Wall wall = new Wall(8,5);
+        arena.setWalls(Arrays.asList(wall));
+
+        Block block = new Block(6,5);
+        arena.setBlocks(Arrays.asList(block));
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(new Position(6, 5), player.getPosition());
+        assertEquals(new Position(7, 5), block.getPosition());
+        assertEquals(new Position(8, 5), wall.getPosition());
+        assertEquals(0, powerUps.size());
+    }
+
+    @Test
+    void smashEgg(){
+
+        List<Beast> beasts = new ArrayList<>();
+        beasts.add(new Beast(7,5,0));
+        arena.setBeasts(beasts);
+
+        Wall wall = new Wall(8,5);
+        arena.setWalls(Arrays.asList(wall));
+
+        Block block = new Block(6,5);
+        arena.setBlocks(Arrays.asList(block));
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(new Position(6, 5), player.getPosition());
+        assertEquals(new Position(7, 5), block.getPosition());
+        assertEquals(new Position(8, 5), wall.getPosition());
+        assertEquals(0, beasts.size());
+    }
+
+    @Test
+    void smashBeast(){
+
+        List<Beast> beasts = new ArrayList<>();
+        beasts.add(new Beast(7,5,1));
+        arena.setBeasts(beasts);
+
+        Wall wall = new Wall(8,5);
+        arena.setWalls(Arrays.asList(wall));
+
+        Block block = new Block(6,5);
+        arena.setBlocks(Arrays.asList(block));
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(new Position(6, 5), player.getPosition());
+        assertEquals(new Position(7, 5), block.getPosition());
+        assertEquals(new Position(8, 5), wall.getPosition());
+        assertEquals(0, beasts.size());
+    }
+
+    @Test
+    void smashStrongerBeast(){
+
+        List<Beast> beasts = new ArrayList<>();
+        beasts.add(new Beast(7,5,2));
+        arena.setBeasts(beasts);
+
+        Wall wall = new Wall(8,5);
+        arena.setWalls(Arrays.asList(wall));
+
+        Block block = new Block(6,5);
+        arena.setBlocks(Arrays.asList(block));
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(new Position(6, 5), player.getPosition());
+        assertEquals(new Position(7, 5), block.getPosition());
+        assertEquals(new Position(8, 5), wall.getPosition());
+        assertEquals(0, beasts.size());
+    }
+
+    @Test
+    void cantSmashStrongerBeast(){
+
+        List<Beast> beasts = new ArrayList<>();
+        Beast beast = new Beast(7,5,2);
+        beasts.add(beast);
+        arena.setBeasts(beasts);
+
+        Block block1 = new Block(6,5);
+        Block block2 = new Block(8,5);
+        arena.setBlocks(Arrays.asList(block1,block2));
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+
+        assertEquals(new Position(5, 5), player.getPosition());
+        assertEquals(new Position(6, 5), block1.getPosition());
+        assertEquals(new Position(8, 5), block2.getPosition());
+        assertEquals(new Position(7, 5), beast.getPosition());
+    }
 }

@@ -31,6 +31,7 @@ public class Menu {
     public String getEntry(int i){
         return entries.get(i);
     }
+
     public boolean isSelected(int i){
         return currentEntry == i;
     }

@@ -100,10 +100,16 @@ public class Arena {
         }
         return -1;
     }
+<<<<<<< HEAD
 
 
+=======
+    public boolean canMove(Position position){
+        return !isEgg(position) && !isBlock(position) && !isWall(position);
+    }
+>>>>>>> b2a6c57 (Adding some tests)
     public boolean isEmpty(Position position) {
-        return !isEgg(position) && !isWall(position) && !isBlock(position);
+        return !isBlock(position) && !isWall(position) && !isPowerUp(position) && !isBeast(position);
     }
     public boolean isBeast(Position position) {
         for (Beast beast : beasts)
@@ -149,5 +155,12 @@ public class Arena {
         for (Beast beast : beasts){
             if (beast.getPhase() == 0) beast.evolve();
         }
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Arena arena = (Arena) o;
+        return height == arena.height && width == arena.width;
     }
 }

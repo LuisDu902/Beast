@@ -15,258 +15,86 @@ public class PlayerController extends GameController {
     private GUI.ACTION action;
     private final long[] stats;
     public PlayerController(Arena arena) {
-
         super(arena);
         this.stats = new long[6];
     }
-    public void movePlayerLeft() {
+    private void movePlayerLeft() {
         movePlayer(getModel().getPlayer().getPosition().getLeft());
     }
 
-    public void movePlayerRight() {movePlayer(getModel().getPlayer().getPosition().getRight());}
+    private void movePlayerRight() {movePlayer(getModel().getPlayer().getPosition().getRight());}
 
-    public void movePlayerUp() {
+    private void movePlayerUp() {
         movePlayer(getModel().getPlayer().getPosition().getUp());
     }
 
-    public void movePlayerDown() {
+    private void movePlayerDown() {
         movePlayer(getModel().getPlayer().getPosition().getDown());
     }
-
-    public void setAction(GUI.ACTION action) {this.action = action;}
-
+    
+    private void linkedBlocks(Block block){
+        while (getModel().isBlock(block.getPosition().getDirection(action))){
+            block.getPosition().goDirection(action);
+        }
+    }
+    private void restorePosition(Block block, Position position){
+        while (getModel().isBlock(block.getPosition().getDirection(symmetricAction(action))))
+            block.getPosition().goDirection(symmetricAction(action));
+        if (!block.getPosition().equals(position))
+            block.getPosition().goDirection(symmetricAction(action));
+    }
+    private GUI.ACTION symmetricAction(GUI.ACTION action){
+        switch (action){
+            case LEFT -> { return GUI.ACTION.RIGHT; }
+            case UP -> { return GUI.ACTION.DOWN; }
+            case RIGHT -> { return GUI.ACTION.LEFT; } }
+        return GUI.ACTION.UP;
+    }
     private void moveblock(Position position){
         Block block = getModel().findBlock(position);
-        if (action == GUI.ACTION.DOWN){
-            while (getModel().isBlock(block.getPosition().getDown())){
-                block.getPosition().goDown();
-            }
+        linkedBlocks(block);
 
-            if (getModel().isEmpty(block.getPosition().getDown()) && !getModel().isBeast(block.getPosition().getDown()) && !getModel().isPowerUp(block.getPosition().getDown())) {
-                block.getPosition().goDown();
-                getModel().getPlayer().getPosition().goDown();
-            }
-            else if (getModel().isBlock(block.getPosition().getDown().getDown()) || getModel().isWall(block.getPosition().getDown().getDown())){
-                if (getModel().isPowerUp(block.getPosition().getDown())){
-                    int i = getModel().findPowerUp(block.getPosition().getDown());
-                    getModel().getPowerUps().remove(i);
-
-                    block.getPosition().goDown();
-                    getModel().getPlayer().setPosition(position);
-                }
-                else if (getModel().isBeast(block.getPosition().getDown()))  {
-                    int i = getModel().findBeast(block.getPosition().getDown());
-                    if (getModel().getBeasts().get(i).getPhase() < 2) {
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
-                        getModel().getBeasts().remove(i);
-                        block.getPosition().goDown();
-                        getModel().getPlayer().setPosition(position);
-
-                    }
-                    else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getDown().getDown())){
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
-                        getModel().getBeasts().remove(i);
-                        block.getPosition().goDown();
-                        getModel().getPlayer().setPosition(position);
-
-                    }
-                    else{
-                        while (getModel().isBlock(block.getPosition().getUp())){
-                            block.getPosition().goUp();
-                        }
-                        if (!block.getPosition().equals(position))
-                            block.getPosition().goUp();
-                    }
-                }
-                else{
-                    while (getModel().isBlock(block.getPosition().getUp())){
-                        block.getPosition().goUp();
-                    }
-                    if (!block.getPosition().equals(position))
-                        block.getPosition().goUp();
-                }
-            }
-            else{
-                while (getModel().isBlock(block.getPosition().getUp())){
-                    block.getPosition().goUp();
-                }
-                if (!block.getPosition().equals(position))
-                    block.getPosition().goUp();
-            }
-            return;
+        if (getModel().isEmpty(block.getPosition().getDirection(action))) {
+            block.getPosition().goDirection(action);
+            getModel().getPlayer().getPosition().goDirection(action);
         }
-        if (action == GUI.ACTION.UP){
-            Position pos = block.getPosition();
-            while (getModel().isBlock(pos.getUp())){
-                pos.goUp();
-            }
-            if (getModel().isEmpty(pos.getUp()) && !getModel().isBeast(block.getPosition().getUp()) && !getModel().isPowerUp(block.getPosition().getUp())) {
-                block.getPosition().goUp();
-                getModel().getPlayer().getPosition().goUp();
-            }
-            else if (getModel().isBlock(block.getPosition().getUp().getUp()) || getModel().isWall(block.getPosition().getUp().getUp())){
-                if (getModel().isPowerUp(block.getPosition().getUp())){
-                    int i = getModel().findPowerUp(block.getPosition().getUp());
-                    getModel().getPowerUps().remove(i);
+        else if (getModel().isBlock(block.getPosition().getDirection(action).getDirection(action)) || getModel().isWall(block.getPosition().getDirection(action).getDirection(action))){
+            if (getModel().isPowerUp(block.getPosition().getDirection(action))){
+                int i = getModel().findPowerUp(block.getPosition().getDirection(action));
+                getModel().getPowerUps().remove(i);
 
-                    block.getPosition().goUp();
+                block.getPosition().goDirection(action);
+                getModel().getPlayer().setPosition(position);
+            }
+            else if (getModel().isBeast(block.getPosition().getDirection(action)))  {
+                int i = getModel().findBeast(block.getPosition().getDirection(action));
+                if (getModel().getBeasts().get(i).getPhase() < 2) {
+                    stats[getModel().getBeasts().get(i).getPhase()]++;
+                    getModel().getBeasts().remove(i);
+                    block.getPosition().goDirection(action);
                     getModel().getPlayer().setPosition(position);
                 }
-
-                else if (getModel().isBeast(block.getPosition().getUp()))  {
-                    int i = getModel().findBeast(block.getPosition().getUp());
-                    if (getModel().getBeasts().get(i).getPhase() < 2) {
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
-                        getModel().getBeasts().remove(i);
-                        block.getPosition().goUp();
-                        getModel().getPlayer().setPosition(position);
-                    }
-                    else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getUp().getUp())){
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
-                        getModel().getBeasts().remove(i);
-                        block.getPosition().goUp();
-                        getModel().getPlayer().setPosition(position);
-                    }
-                    else{
-                        while (getModel().isBlock(block.getPosition().getDown())){
-                            block.getPosition().goDown();
-                        }
-                        if (!block.getPosition().equals(position))
-                            block.getPosition().goDown();
-                    }
+                else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getDirection(action).getDirection(action))){
+                    stats[getModel().getBeasts().get(i).getPhase()]++;
+                    getModel().getBeasts().remove(i);
+                    block.getPosition().goDirection(action);
+                    getModel().getPlayer().setPosition(position);
                 }
                 else{
-                    while (getModel().isBlock(block.getPosition().getDown())){
-                        block.getPosition().goDown();
-                    }
-                    if (!block.getPosition().equals(position))
-                        block.getPosition().goDown();
+                    restorePosition(block,position);
                 }
             }
             else{
-                while (getModel().isBlock(block.getPosition().getDown())){
-                    block.getPosition().goDown();
-                }
-                if (!block.getPosition().equals(position))
-                    block.getPosition().goDown();
+                restorePosition(block,position);
             }
         }
-        if (action == GUI.ACTION.LEFT){
-            Position pos = block.getPosition();
-            while (getModel().isBlock(pos.getLeft())){
-                pos.goLeft();
-            }
-            if (getModel().isEmpty(pos.getLeft()) && !getModel().isBeast(block.getPosition().getLeft()) && !getModel().isPowerUp(block.getPosition().getLeft())) {
-                block.getPosition().goLeft();
-                getModel().getPlayer().getPosition().goLeft();
-            }
-            else if (getModel().isBlock(block.getPosition().getLeft().getLeft()) || getModel().isWall(block.getPosition().getLeft().getLeft())){
-                if (getModel().isPowerUp(block.getPosition().getLeft())){
-                    int i = getModel().findPowerUp(block.getPosition().getLeft());
-                    getModel().getPowerUps().remove(i);
-                    block.getPosition().goLeft();
-                    getModel().getPlayer().setPosition(position);
-                }
-
-                else if (getModel().isBeast(block.getPosition().getLeft()))  {
-                    int i = getModel().findBeast(block.getPosition().getLeft());
-                    if (getModel().getBeasts().get(i).getPhase() < 2) {
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
-                        getModel().getBeasts().remove(i);
-                        block.getPosition().goLeft();
-                        getModel().getPlayer().setPosition(position);
-                    }
-                    else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getLeft().getLeft())){
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
-                        getModel().getBeasts().remove(i);
-                        block.getPosition().goLeft();
-                        getModel().getPlayer().setPosition(position);
-                    }
-                    else{
-                        while (getModel().isBlock(block.getPosition().getRight())){
-                            block.getPosition().goRight();
-                        }
-                        if (!block.getPosition().equals(position))
-                            block.getPosition().goRight();
-                    }
-                }
-                else{
-                    while (getModel().isBlock(block.getPosition().getRight())){
-                        block.getPosition().goRight();
-                    }
-                    if (!block.getPosition().equals(position))
-                        block.getPosition().goRight();
-                }
-            }
-            else{
-                while (getModel().isBlock(block.getPosition().getRight())){
-                    block.getPosition().goRight();
-                }
-                if (!block.getPosition().equals(position))
-                    block.getPosition().goRight();
-            }
-        }
-        if (action == GUI.ACTION.RIGHT){
-            Position pos = block.getPosition();
-            while (getModel().isBlock(pos.getRight())){
-                pos.goRight();
-            }
-            if (getModel().isEmpty(pos.getRight()) && !getModel().isBeast(block.getPosition().getRight()) && !getModel().isPowerUp(block.getPosition().getRight())) {
-                block.getPosition().goRight();
-                getModel().getPlayer().getPosition().goRight();
-            }
-
-            else if (getModel().isBlock(block.getPosition().getRight().getRight()) || getModel().isWall(block.getPosition().getRight().getRight())){
-                if (getModel().isPowerUp(block.getPosition().getRight())){
-                    int i = getModel().findPowerUp(block.getPosition().getRight());
-                    getModel().getPowerUps().remove(i);
-                    block.getPosition().goRight();
-                    getModel().getPlayer().setPosition(position);
-                }
-
-                else if (getModel().isBeast(block.getPosition().getRight()))  {
-                    int i = getModel().findBeast(block.getPosition().getRight());
-                    if (getModel().getBeasts().get(i).getPhase() < 2) {
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
-                        getModel().getBeasts().remove(i);
-                        block.getPosition().goRight();
-                        getModel().getPlayer().setPosition(position);
-                    }
-                    else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getRight().getRight())){
-                        stats[getModel().getBeasts().get(i).getPhase()]++;
-                        getModel().getBeasts().remove(i);
-                        block.getPosition().goRight();
-                        getModel().getPlayer().setPosition(position);
-                    }
-                    else{
-                        while (getModel().isBlock(block.getPosition().getLeft())){
-                            block.getPosition().goLeft();
-                        }
-                        if (!block.getPosition().equals(position))
-                            block.getPosition().goLeft();
-                    }
-                }
-                else{
-                    while (getModel().isBlock(block.getPosition().getLeft())){
-                        block.getPosition().goLeft();
-                    }
-                    if (!block.getPosition().equals(position))
-                        block.getPosition().goLeft();
-                }
-            }
-            else{
-                while (getModel().isBlock(block.getPosition().getLeft())){
-                    block.getPosition().goLeft();
-                }
-                if (!block.getPosition().equals(position))
-                    block.getPosition().goLeft();
-            }
+        else{
+            restorePosition(block,position);
         }
 
     }
-
     private void movePlayer(Position position) {
-        if (getModel().isEmpty(position)) {
+        if (getModel().canMove(position)) {
             getModel().getPlayer().setPosition(position);
             if (getModel().isBeast(position)) {
                 if (getModel().getPlayer().getPhase() == 1){
@@ -295,9 +123,7 @@ public class PlayerController extends GameController {
         else if (getModel().isBlock(position)){
             moveblock(position);
         }
-
     }
-
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
         stats[4] = getModel().getPlayer().getLife();

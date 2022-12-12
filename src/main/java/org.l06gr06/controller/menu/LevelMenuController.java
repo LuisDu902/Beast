@@ -21,13 +21,9 @@ public class LevelMenuController  extends Controller<LevelMenu> {
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
-            case UP:
-                getModel().previousEntry();
-                break;
-            case DOWN:
-                getModel().nextEntry();
-                break;
-            case SELECT:
+            case UP -> getModel().previousEntry();
+            case DOWN -> getModel().nextEntry();
+            case SELECT -> {
                 if (getModel().isSelectedExit()) game.setState(null);
                 else if (getModel().isSelected(0)) {
                     //game.setState(new GameState(new RandomArenaBuilder(50,20,2,150,15,0,15).createArena()));
@@ -48,8 +44,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                     writer.append(',');
                     writer.close();
                     game.setState(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena()));
-                }
-                else if (getModel().isSelected(2)) {
+                } else if (getModel().isSelected(2)) {
                     URL resource = ArenaController.class.getResource("/levels/score.csv");
                     BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
                     String str = "Difficult";
@@ -58,6 +53,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                     writer.close();
                     game.setState(new GameState(new RandomArenaBuilder(50, 20, 6, 50, 6, 5).createArena()));
                 }
+            }
         }
     }
 }
