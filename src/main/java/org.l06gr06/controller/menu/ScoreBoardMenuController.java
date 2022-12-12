@@ -30,4 +30,3 @@ public class ScoreBoardMenuController extends Controller<ScoreBoardMenu> {
             }
         }
     }
-}
