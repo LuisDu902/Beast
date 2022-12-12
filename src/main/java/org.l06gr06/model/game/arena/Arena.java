@@ -152,6 +152,14 @@ public class Arena {
             if (beast.getPhase() == 0) beast.evolve();
         }
     }
+
+    public void respawnPlayer(){
+        Random rng = new Random();
+        int x = rng.nextInt(width - 2) + 1;
+        int y = rng.nextInt(height - 5) + 4;
+        player.setPosition(new Position(x, y));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

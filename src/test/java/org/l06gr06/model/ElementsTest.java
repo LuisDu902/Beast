@@ -38,13 +38,6 @@ public class ElementsTest {
     }
 
     @Test
-    public void Shield(){
-        Shield shield = new Shield(20,20);
-        shield.decreaseTimer();
-        Assertions.assertEquals(9, shield.getTimer());
-    }
-
-    @Test
     public void Beast(){
         Beast beast = new Beast(20,20,1);
         beast.evolve();
