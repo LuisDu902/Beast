@@ -22,4 +22,11 @@ public class GameState extends State<Arena>{
         return new ArenaController(getModel());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameState gameState = (GameState) o;
+        return getModel().equals(gameState.getModel());
+    }
 }

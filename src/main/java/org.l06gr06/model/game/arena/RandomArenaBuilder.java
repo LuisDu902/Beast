@@ -68,7 +68,9 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     @Override
     protected Player createPlayer() {
-        return new Player(width / 3, height / 3);
+        Player player = new Player(width / 3, height / 3);
+        occupied.add(player.getPosition());
+        return player;
     }
 
     @Override
@@ -115,5 +117,6 @@ public class RandomArenaBuilder extends ArenaBuilder{
         return blocks;
 
     }
+
 
 }

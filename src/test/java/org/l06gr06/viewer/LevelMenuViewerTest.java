@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.menu.LevelMenu;
-import org.l06gr06.viewer.Viewer;
 import org.l06gr06.viewer.menu.LevelMenuViewer;
 import org.mockito.Mockito;
 

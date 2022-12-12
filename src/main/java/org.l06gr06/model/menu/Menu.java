@@ -9,6 +9,15 @@ public class Menu {
     public Menu(List<String> entries){
         this.entries = entries;
     }
+
+    public int getCurrentEntry(){
+        return currentEntry;
+    }
+    public void setCurrentEntry(int i){
+        if (i < entries.size()){
+            currentEntry = i;
+        }
+    }
     public void nextEntry(){
         currentEntry++;
         if (currentEntry > this.entries.size() - 1)
@@ -22,6 +31,7 @@ public class Menu {
     public String getEntry(int i){
         return entries.get(i);
     }
+
     public boolean isSelected(int i){
         return currentEntry == i;
     }

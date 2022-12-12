@@ -12,8 +12,7 @@ import java.util.Random;
 public class BeastController extends GameController {
     private long lastMovement;
     private long speed;
-
-    private long hatchingTime;
+    private final long hatchingTime;
     public BeastController(Arena arena) {
         super(arena);
         this.speed = 500;
@@ -26,14 +25,16 @@ public class BeastController extends GameController {
         if ((time - getModel().getStartingTime())/1000 == hatchingTime) getModel().hatchEggs();
         if (time - lastMovement > speed) {
             for (Beast beast : getModel().getBeasts()){
-                moveBeast(beast, beast.getPosition().getCloserToPlayer(getModel().getPlayer().getPosition().relativeQuad(beast.getPosition())));}
-        this.lastMovement = time;
+                moveBeast(beast,
+                        beast.getPosition().getCloserToPlayer(
+                                getModel().getPlayer().getPosition().relativeQuad(beast.getPosition())));}
+            this.lastMovement = time;
         }
     }
 
     private void moveBeast(Beast beast, Position position) {
         if (beast.getPhase() == 0) return;
-        if (getModel().isEmpty(position) && !getModel().isBlock(position) && !getModel().isBeast(position)) {
+        if (getModel().canMove(position) && !getModel().isBlock(position) && !getModel().isBeast(position)) {
             if (getModel().isPowerUp(position)) {
                 this.speed -= 50;
                 if (beast.getPhase() == 1)
@@ -54,5 +55,9 @@ public class BeastController extends GameController {
                     getModel().getPlayer().setPosition(new Position(x, y));
                 }        }
         }
+    }
+
+    public long getSpeed() {
+        return speed;
     }
 }

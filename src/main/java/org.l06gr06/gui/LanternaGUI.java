@@ -40,8 +40,7 @@ public class LanternaGUI implements GUI{
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
-        Terminal terminal = terminalFactory.createTerminal();
-        return terminal;
+        return terminalFactory.createTerminal();
     }
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
         URL resource = getClass().getClassLoader().getResource("fonts/BeastFont.otf");
@@ -51,9 +50,11 @@ public class LanternaGUI implements GUI{
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
+
         Font loadedFont = font.deriveFont(Font.PLAIN, 25);
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-        return fontConfig;
+
+        return AWTTerminalFontConfiguration.newInstance(loadedFont);
+
     }
     private void drawCharacter(int x, int y, char c, String color) {
         TextGraphics tg = screen.newTextGraphics();
@@ -70,13 +71,9 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawPlayer(int phase, Position position){
-        switch (phase){
-            case 0:
-                drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
-                break;
-            case 1:
-                drawCharacter(position.getX(), position.getY(), '&', "#FF9900");
-                break;
+        switch (phase) {
+            case 0 -> drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
+            case 1 -> drawCharacter(position.getX(), position.getY(), '&', "#FF9900");
         }
 
     }
@@ -94,16 +91,10 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawBeast(int phase, Position position){
-        switch (phase){
-            case 0:
-                drawCharacter(position.getX(), position.getY(), '*', "#FFFF66");
-                break;
-            case 1:
-                drawCharacter(position.getX(), position.getY(), 'H', "#E80E0E");
-                break;
-            case 2:
-                drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
-                break;
+        switch (phase) {
+            case 0 -> drawCharacter(position.getX(), position.getY(), '*', "#FFFF66");
+            case 1 -> drawCharacter(position.getX(), position.getY(), 'H', "#E80E0E");
+            case 2 -> drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
         }
     }
 

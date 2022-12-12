@@ -10,11 +10,11 @@ import java.util.List;
 
 public class GameViewer extends Viewer<Arena> {
 
-    private WallViewer wallViewer;
-    private BeastViewer beastViewer;
-    private PlayerViewer playerViewer;
-    private BlockViewer blockViewer;
-    private PowerUpViewer powerUpViewer;
+    private final WallViewer wallViewer;
+    private final BeastViewer beastViewer;
+    private final PlayerViewer playerViewer;
+    private final BlockViewer blockViewer;
+    private final PowerUpViewer powerUpViewer;
 
     public GameViewer(Arena arena) {
 

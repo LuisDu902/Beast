@@ -13,15 +13,14 @@ public class Arena {
 
     private Player player;
     private List<Beast> beasts;
-    //private List<Egg> eggs;
     private List<Wall> walls;
     private List<Block> blocks;
     private List<PowerUp> powerUps;
 
-    private long startingTime;
+    private final long startingTime;
 
 
-    public Arena(int width, int height) {
+    public Arena(int width, int height) { // ao criar a arena devemos inicializar todas as listas de elementos como listas vazias?
         this.width = width;
         this.height = height;
         this.startingTime = System.currentTimeMillis();
@@ -102,21 +101,11 @@ public class Arena {
         return -1;
     }
 
-    /*public int findEgg(Position position) {
-        for (int i = 0; i < eggs.size(); i++){
-            if (eggs.get(i).getPosition().equals(position)){
-                return i;
-            }
-        }
-        return 0;
-    }*/
-
-    //public List<Egg> getEggs() {return eggs;}
-
-    //public void setEggs(List<Egg> eggs) {this.eggs = eggs;}
-
+    public boolean canMove(Position position){
+        return !isEgg(position) && !isBlock(position) && !isWall(position);
+    }
     public boolean isEmpty(Position position) {
-        return !isEgg(position) && !isWall(position) && !isBlock(position);
+        return !isBlock(position) && !isWall(position) && !isPowerUp(position) && !isBeast(position);
     }
     public boolean isBeast(Position position) {
         for (Beast beast : beasts)
@@ -162,5 +151,12 @@ public class Arena {
         for (Beast beast : beasts){
             if (beast.getPhase() == 0) beast.evolve();
         }
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Arena arena = (Arena) o;
+        return height == arena.height && width == arena.width;
     }
 }
