@@ -53,13 +53,9 @@ public class LanternaGUI implements GUI{
 
 
         Font loadedFont = font.deriveFont(Font.PLAIN, 25);
-<<<<<<< HEAD
 
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-        return fontConfig;
-=======
         return AWTTerminalFontConfiguration.newInstance(loadedFont);
->>>>>>> b2a6c57 (Adding some tests)
+
     }
     private void drawCharacter(int x, int y, char c, String color) {
         TextGraphics tg = screen.newTextGraphics();

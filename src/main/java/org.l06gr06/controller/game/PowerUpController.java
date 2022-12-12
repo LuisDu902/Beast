@@ -9,17 +9,10 @@ import java.io.IOException;
 
 public class PowerUpController extends GameController{
     private long creationTime;
-<<<<<<< HEAD
 
     public PowerUpController(Arena arena){
         super(arena);
         this.creationTime = 5;
-
-=======
-    public PowerUpController(Arena arena){
-        super(arena);
-        this.creationTime = 5;
->>>>>>> b2a6c57 (Adding some tests)
     }
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
 

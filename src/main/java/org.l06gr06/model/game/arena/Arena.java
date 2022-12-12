@@ -100,14 +100,10 @@ public class Arena {
         }
         return -1;
     }
-<<<<<<< HEAD
 
-
-=======
     public boolean canMove(Position position){
         return !isEgg(position) && !isBlock(position) && !isWall(position);
     }
->>>>>>> b2a6c57 (Adding some tests)
     public boolean isEmpty(Position position) {
         return !isBlock(position) && !isWall(position) && !isPowerUp(position) && !isBeast(position);
     }
