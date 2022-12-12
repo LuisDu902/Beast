@@ -1,7 +1,7 @@
 package org.l06gr06.model.game.elements;
 
 public class PowerUp extends Element {
-    private long creationTime;
+    private final long creationTime;
     private long duration;
 
     public PowerUp(int x, int y) {
@@ -14,5 +14,9 @@ public class PowerUp extends Element {
 
     public long getDuration() {
         return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 }

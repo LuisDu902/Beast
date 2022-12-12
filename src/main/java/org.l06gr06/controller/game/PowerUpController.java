@@ -13,7 +13,6 @@ public class PowerUpController extends GameController{
     public PowerUpController(Arena arena){
         super(arena);
         this.creationTime = 5;
-
     }
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
 

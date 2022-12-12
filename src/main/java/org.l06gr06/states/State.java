@@ -29,4 +29,12 @@ public abstract class State<T> {
         GUI.ACTION action = gui.getNextAction();
         controller.step(game, action, time);
         viewer.draw(gui);}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        State state = (State) o;
+        return model == state.model;
+    }
 }

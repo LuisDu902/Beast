@@ -1,36 +1,60 @@
 package org.l06gr06.controller;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.l06gr06.controller.game.PowerUpController;
+import org.l06gr06.gui.GUI;
 import org.l06gr06.model.game.arena.Arena;
-import org.l06gr06.model.game.elements.Beast;
-import org.l06gr06.model.game.elements.Heart;
 import org.l06gr06.model.game.elements.Player;
-import org.l06gr06.model.game.elements.Shield;
+import org.l06gr06.model.game.elements.PowerUp;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PowerUpControllerTest {
     private PowerUpController controller;
-    private Heart heart;
-    private Shield shield;
+    private PowerUp powerUp;
     private Arena arena;
 
     @BeforeEach
     void setUp() {
         arena = new Arena(20, 20);
 
-        heart = new Heart(6, 5);
-        shield = new Shield(7, 5);
+
+        List<PowerUp> powerUps = new ArrayList<>();
+        powerUp = new PowerUp(6,5);
+        powerUps.add(powerUp);
 
         arena.setPlayer(new Player(5, 5));
-
         arena.setWalls(List.of());
-        arena.setPowerUps(List.of(heart, shield));
+        arena.setPowerUps(powerUps);
         arena.setBlocks(List.of());
         arena.setBeasts(List.of());
 
         controller = new PowerUpController(arena);
     }
-    
+
+    @Test
+    void createPowerUp() throws IOException {
+        assertEquals(1, arena.getPowerUps().size());
+
+        controller.step(null, GUI.ACTION.RIGHT,5*1000+ arena.getStartingTime());
+
+        assertEquals(2, arena.getPowerUps().size());
+
+    }
+
+    @Test
+    void removePowerUp() throws IOException {
+        assertEquals(1, arena.getPowerUps().size());
+
+        powerUp.setDuration(2);
+        controller.step(null, GUI.ACTION.RIGHT,2001+ arena.getStartingTime());
+
+        assertEquals(0, arena.getPowerUps().size());
+
+    }
 }
