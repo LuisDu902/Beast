@@ -29,7 +29,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                     //game.setState(new GameState(new RandomArenaBuilder(50,20,2,150,15,0,15).createArena()));
                     URL resource = ArenaController.class.getResource("/levels/score.csv");
                     BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
-                    String str = "Easy";
+                    String str = "~";
                     writer.append(str);
                     writer.append(',');
                     writer.close();
@@ -39,7 +39,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                 else if (getModel().isSelected(1)) {
                     URL resource = ArenaController.class.getResource("/levels/score.csv");
                     BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
-                    String str = "Medium";
+                    String str = "~~";
                     writer.append(str);
                     writer.append(',');
                     writer.close();
@@ -47,7 +47,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                 } else if (getModel().isSelected(2)) {
                     URL resource = ArenaController.class.getResource("/levels/score.csv");
                     BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
-                    String str = "Difficult";
+                    String str = "~~~";
                     writer.append(str);
                     writer.append(',');
                     writer.close();
