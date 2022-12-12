@@ -1,7 +1,6 @@
 package org.l06gr06.controller.game;
 
 import org.l06gr06.Game;
-
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
@@ -14,8 +13,11 @@ import java.util.Random;
 
 public class PlayerController extends GameController {
     private GUI.ACTION action;
+    private final long[] stats;
     public PlayerController(Arena arena) {
+
         super(arena);
+        this.stats = new long[6];
     }
     public void movePlayerLeft() {
         movePlayer(getModel().getPlayer().getPosition().getLeft());
@@ -55,14 +57,18 @@ public class PlayerController extends GameController {
                 else if (getModel().isBeast(block.getPosition().getDown()))  {
                     int i = getModel().findBeast(block.getPosition().getDown());
                     if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goDown();
                         getModel().getPlayer().setPosition(position);
+
                     }
                     else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getDown().getDown())){
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goDown();
                         getModel().getPlayer().setPosition(position);
+
                     }
                     else{
                         while (getModel().isBlock(block.getPosition().getUp())){
@@ -110,11 +116,13 @@ public class PlayerController extends GameController {
                 else if (getModel().isBeast(block.getPosition().getUp()))  {
                     int i = getModel().findBeast(block.getPosition().getUp());
                     if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goUp();
                         getModel().getPlayer().setPosition(position);
                     }
                     else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getUp().getUp())){
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goUp();
                         getModel().getPlayer().setPosition(position);
@@ -163,11 +171,13 @@ public class PlayerController extends GameController {
                 else if (getModel().isBeast(block.getPosition().getLeft()))  {
                     int i = getModel().findBeast(block.getPosition().getLeft());
                     if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goLeft();
                         getModel().getPlayer().setPosition(position);
                     }
                     else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getLeft().getLeft())){
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goLeft();
                         getModel().getPlayer().setPosition(position);
@@ -217,11 +227,13 @@ public class PlayerController extends GameController {
                 else if (getModel().isBeast(block.getPosition().getRight()))  {
                     int i = getModel().findBeast(block.getPosition().getRight());
                     if (getModel().getBeasts().get(i).getPhase() < 2) {
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goRight();
                         getModel().getPlayer().setPosition(position);
                     }
                     else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getRight().getRight())){
+                        stats[getModel().getBeasts().get(i).getPhase()]++;
                         getModel().getBeasts().remove(i);
                         block.getPosition().goRight();
                         getModel().getPlayer().setPosition(position);
@@ -272,8 +284,12 @@ public class PlayerController extends GameController {
                 int i = getModel().findPowerUp(position);
                 if (getModel().getPowerUps().get(i) instanceof Heart &&
                         getModel().getPlayer().getLife() <= 7) getModel().getPlayer().increaseLife();
-                else if (getModel().getPowerUps().get(i) instanceof Shield)getModel().getPlayer().becomeImmortal();
+                else if (getModel().getPowerUps().get(i) instanceof Shield) {
+                    getModel().getPlayer().becomeImmortal();
+                    stats[3]++;
+                }
                 getModel().getPowerUps().remove(i);
+
             }
         }
         else if (getModel().isBlock(position)){
@@ -284,6 +300,8 @@ public class PlayerController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
+        stats[4] = getModel().getPlayer().getLife();
+        stats[5] = (time - getModel().getStartingTime())/1000;;
         this.action = action;
 
         if (time - getModel().getPlayer().getImmortalTime() > getModel().getPlayer().getImmortalDuration() * 1000){
@@ -294,4 +312,9 @@ public class PlayerController extends GameController {
         if (action == GUI.ACTION.DOWN) movePlayerDown();
         if (action == GUI.ACTION.LEFT) movePlayerLeft();
     }
+
+    public long[] getStats() {
+        return stats;
+    }
+
 }

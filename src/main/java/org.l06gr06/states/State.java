@@ -13,13 +13,13 @@ public abstract class State<T> {
     private final Controller<T> controller;
     private final Viewer<T> viewer;
 
-    public State(T model){
+    public State(T model) throws IOException {
         this.model = model;
         this.viewer = getViewer();
         this.controller = getController();
     }
 
-    protected abstract Viewer<T> getViewer();
+    protected abstract Viewer<T> getViewer() throws IOException;
 
     protected abstract Controller<T> getController();
 
