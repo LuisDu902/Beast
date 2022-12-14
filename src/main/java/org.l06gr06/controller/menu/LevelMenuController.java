@@ -31,7 +31,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                 String str = "";
                 if (getModel().isSelected(0)) {
                     str = "~";
-                    game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 2, 150, 1, 15).createArena()));
                 } else if (getModel().isSelected(1)) {
                     str = "~~";
                     game.setState(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena()));
