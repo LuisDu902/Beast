@@ -25,33 +25,23 @@ public class LevelMenuController  extends Controller<LevelMenu> {
             case DOWN -> getModel().nextEntry();
             case SELECT -> {
                 if (getModel().isSelectedExit()) game.setState(null);
-                else if (getModel().isSelected(0)) {
-                    //game.setState(new GameState(new RandomArenaBuilder(50,20,2,150,15,0,15).createArena()));
-                    URL resource = ArenaController.class.getResource("/levels/score.csv");
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
-                    String str = "~";
-                    writer.append(str);
-                    writer.append(',');
-                    writer.close();
-                    game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
-
-                }//makes testing easier :)
-                else if (getModel().isSelected(1)) {
-                    URL resource = ArenaController.class.getResource("/levels/score.csv");
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
-                    String str = "~~";
-                    writer.append(str);
-                    writer.append(',');
-                    writer.close();
+                else{
+                URL resource = ArenaController.class.getResource("/levels/score.csv");
+                BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
+                String str = "";
+                if (getModel().isSelected(0)) {
+                    str = "~";
+                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 2, 150, 1, 15).createArena()));
+                } else if (getModel().isSelected(1)) {
+                    str = "~~";
                     game.setState(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena()));
                 } else if (getModel().isSelected(2)) {
-                    URL resource = ArenaController.class.getResource("/levels/score.csv");
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
-                    String str = "~~~";
-                    writer.append(str);
-                    writer.append(',');
-                    writer.close();
+                    str = "~~~";
                     game.setState(new GameState(new RandomArenaBuilder(50, 20, 6, 50, 6, 5).createArena()));
+                }
+                writer.append(str);
+                writer.append(',');
+                writer.close();
                 }
             }
         }

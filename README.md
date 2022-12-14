@@ -8,7 +8,7 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 ### Screenshots
 
-Here are some screenshots of our project so far:
+Here are some screenshots of our project:
 
 <img width="1249" alt="MainMenu" src="https://user-images.githubusercontent.com/92641892/206917006-f4cb6c7e-de45-48fa-8ad0-40867be384c8.png">
 

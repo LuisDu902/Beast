@@ -11,61 +11,33 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 **Move blocks** - Whenever the player moves, if it goes against a movable block, every linked block in that direction gets pushed.
 
-<img width="320" alt="Move_Blocks" src="https://user-images.githubusercontent.com/92641892/203945409-cd450b57-fd60-4006-9c7e-0231b148822f.png">
-
 **Kill Beast** - In order for a Beast to be killed, it has to be smashed between any two blocks or a block and a wall.
 
-<img width="320" alt="KillBeast" src="https://user-images.githubusercontent.com/92641892/203945404-4ce4b828-c25c-4919-ab96-da2e5d7e4935.png">
+**Kill Stronger Beast** - In order for a Stronger Beast to be killed, it necessarily has to be smashed against a wall.
 
-**Catch Heart** - Hearts will randomly appear on the map as the game progresses. However, they might be inadvertently smashed between blocks. They can either be caught:
-    **by the Player** - In this case, one heart is added to the players lives, unless the maximum number has already been achieved
-    **by the Beasts** - In the unfortunate scenario that a Beast catches a heart, it evolves to a Stronger Beast, unless it is already one.
+![KillStrongerBeast](https://user-images.githubusercontent.com/92641892/207570538-423dafb5-6b25-4696-b5e1-1476d13f0e1b.gif)
 
-<img width="320" alt="CatchHeart" src="https://user-images.githubusercontent.com/92641892/203945401-68a1e6fd-d627-4be4-ae5d-f73a5a42a059.png">
+**Catch Heart** - Hearts will randomly appear in the map as the game progresses. However, they might be inadvertently smashed between blocks. Whenever a player catches a heart, it gets added to the players lives, up to a maximum of 8.
 
-**Catch Shield by Beast** - As beasts are a unified entity, whenever a shield is caught by a Beast, all Beasts get a speed up buff.
+**Catch Shield** - Similarly, shields will randomly appear in the map as the game progresses. However, they might be inadvertently smashed between blocks. They will turn whoever catches them imortal, for a short period of time (which varies according to the level’s difficulty).
+
+**Catch Power-ups by the Beasts** - In the unfortunate scenario that a Beast catches any of the power-ups, it evolves to a Stronger Beast, unless it is already one. However, as beasts are a unified entity, whenever a shield is caught by a Beast, all Beasts get a speed-up buff.
 
 **Beasts follow player** - The movement of the Beasts is randomised in the direction of the Player (for instance, if the Player is on the top-left of the Beast it can only move up, left or in that diagonal)
 
-<img width="160" alt="BeastsFollow" src="https://user-images.githubusercontent.com/92641892/203988462-aa79f28e-d967-49cb-ab10-c26e6652b56a.png">
-
 **Respawn** - When the player takes damage it respawns at a random location of the map.
-
-<img width="320" alt="Respawn" src="https://user-images.githubusercontent.com/92641892/203945412-4fa9f8a7-429d-4c53-bc41-17a0108fb042.png">
-
-
-### PLANNED FEATURES
-
-**Improved graphics** - This is how we expect our characters to look like in the near future:
-
-<img width="320" alt="Characters " src="https://user-images.githubusercontent.com/92641892/203790476-3f3cb113-7137-41bd-b7a8-422e334bdfc5.png">
-
-**Timer** - the longer it takes to kill all Beasts, the fewer points the player scores.
-
-<img width="320" alt="Timer " src="https://user-images.githubusercontent.com/92641892/203790569-01ba51e2-643b-4863-9e92-abdb643e4fbb.png">
-
-**Kill Stronger Beast** - For a Stronger Beast to be killed, it necessarily has to be smashed against a wall.
-
-<img width="320" alt="KillStrongerBeast1 " src="https://user-images.githubusercontent.com/92641892/203790649-75551afc-d337-4dca-8440-05d2faf7730f.png">
-<img width="320" alt="KillStrongerBeast2 " src="https://user-images.githubusercontent.com/92641892/203790656-1706a4b6-0ad1-4324-86fc-8367b29d6c11.png">
-
-**Catch Shield by Player** - A shield will turn the player immortal, for a short period of time (which varies according to the level’s difficulty).
-
-<img width="320" alt="Shield " src="https://user-images.githubusercontent.com/92641892/203790659-721b6c42-b3f9-47ac-9037-657687f1ab0f.png">
 
 **Hatching Eggs** - After some time eggs hatch into Beasts.
 
-<img width="320" alt="Eggs " src="https://user-images.githubusercontent.com/92641892/203790856-e22d13a6-be63-4af2-ade4-46e15439c2d1.png">
-
 **Scoreboard** - At the end of the game, you’ll be presented a scoreboard. The score is calculated based on the number of remaining lives and the amount of Beast’s killed, as well as the time it took the player to do it.
 
-<img width="320" alt="Scoreboard " src="https://user-images.githubusercontent.com/92641892/203790857-d2e2b76f-3809-413e-a69b-f2657daf5980.png">
+### PLANNED FEATURES
 
+There are no more planned features for the near future, since all of them were Beastly implemented.
 
 ### Class Diagram (UML)
 
 ![UML_LDTS](https://user-images.githubusercontent.com/92641892/204031997-64967635-d946-4bd1-b2e5-cc4e20640eb2.png)
-
 
 ### DESIGN
 

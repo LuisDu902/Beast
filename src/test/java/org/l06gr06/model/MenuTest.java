@@ -19,7 +19,8 @@ public class MenuTest {
 
     @Test
     public void scoreMenu(){
-        ScoreMenu scoreMenu = new ScoreMenu(Arrays.asList("Entry1","Entry2","Entry3","Exit"));
+        long[] stats = {1, 2, 3, 4, 5, 6};
+        ScoreMenu scoreMenu = new ScoreMenu(Arrays.asList("Entry1","Entry2","Entry3","Exit"), stats);
         Assertions.assertTrue(scoreMenu.isSelectedPlayAgain());
     }
 
