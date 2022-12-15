@@ -247,8 +247,8 @@ public class PlayerControllerTest {
         assertEquals(0, nrBeasts);
         assertEquals(0, nrStrongBeasts);
         assertEquals(0, nrShields);
-        assertEquals(5, nrLives);
-        assertEquals(1, time);
+        assertEquals(0, nrLives);
+        assertEquals(0, time);
     }
 
     @Test

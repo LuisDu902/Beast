@@ -41,9 +41,7 @@ public class ScoreBoardMenuControllerTest {
     @Test
     void exit() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
-        controller.step(game, GUI.ACTION.DOWN,1);
-        controller.step(game, GUI.ACTION.DOWN,1);
-        controller.step(game, GUI.ACTION.DOWN,1);
+        controller.step(game, GUI.ACTION.RIGHT,1);
         controller.step(game, GUI.ACTION.SELECT,1);
         assertEquals(null,game.getState());
     }

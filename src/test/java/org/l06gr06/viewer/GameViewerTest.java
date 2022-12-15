@@ -78,7 +78,7 @@ public class GameViewerTest {
     @Test
     void drawText() throws IOException {
         viewer.draw(gui);
-        Mockito.verify(gui, Mockito.times(8)).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
+        Mockito.verify(gui, Mockito.times(7)).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
     }
     @Test
     void refreshAndClear() throws IOException {

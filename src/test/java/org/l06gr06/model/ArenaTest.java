@@ -87,6 +87,7 @@ public class ArenaTest {
         arena.setBeasts(new ArrayList<>());
         arena.setWalls(new ArrayList<>());
         arena.setBlocks(new ArrayList<>());
+        arena.setPowerUps(new ArrayList<>());
         for (int i = 0; i <= 10; i++){
             for (int j = 0; j <= 10; j++){
                 Assertions.assertTrue(arena.isEmpty(new Position(i,j)));
