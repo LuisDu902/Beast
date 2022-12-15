@@ -32,69 +32,37 @@ public class PlayerController extends GameController {
     private void movePlayerDown() {
         movePlayer(player.getPosition().getDown());
     }
-    
-    private void linkedBlocks(Block block){
-        while (getModel().isBlock(block.getPosition().getDirection(action)))
-            block.getPosition().goDirection(action);
-    }
-    private void restorePosition(Block block, Position position){
-        while (getModel().isBlock(block.getPosition().getDirection(symmetricAction(action))))
-            block.getPosition().goDirection(symmetricAction(action));
-        if (!block.getPosition().equals(position))
-            block.getPosition().goDirection(symmetricAction(action));
-    }
-    private GUI.ACTION symmetricAction(GUI.ACTION action){
-        switch (action){
-            case LEFT : return GUI.ACTION.RIGHT;
-            case UP : return GUI.ACTION.DOWN;
-            case RIGHT : return GUI.ACTION.LEFT;
-        }
-        return GUI.ACTION.UP;
-    }
+
     private void moveblock(Position position){
         int j = getModel().getBlocks().indexOf(new Block(position));
         Block block = getModel().getBlocks().get(j);
+        Position nextAvailablePos = new Position(position.getX(), position.getY());
 
-        linkedBlocks(block);
+        do nextAvailablePos = nextAvailablePos.getDirection(action);
+        while (getModel().isBlock(nextAvailablePos));
 
-        if (getModel().isEmpty(block.getPosition().getDirection(action))) {
-            block.getPosition().goDirection(action);
-            getModel().getPlayer().getPosition().goDirection(action);
-        }
-        else if (getModel().isBlock(block.getPosition().getDirection(action).getDirection(action)) || getModel().isWall(block.getPosition().getDirection(action).getDirection(action))){
-            if (getModel().isPowerUp(block.getPosition().getDirection(action))){
-                getModel().getPowerUps().remove(new PowerUp(block.getPosition().getDirection(action)));
+        if (getModel().isWall(nextAvailablePos)) return;
 
-                block.getPosition().goDirection(action);
-                getModel().getPlayer().setPosition(position);
+        boolean nextToWall = getModel().isWall(nextAvailablePos.getDirection(action));
+        boolean nextToBlock = getModel().isBlock(nextAvailablePos.getDirection(action));
+
+        if (nextToWall || nextToBlock){
+            if (getModel().isPowerUp(nextAvailablePos)) {
+                getModel().getPowerUps().remove(new PowerUp(nextAvailablePos));
             }
-            else if (getModel().isBeast(block.getPosition().getDirection(action)))  {
-
-                int i = getModel().getBeasts().indexOf(new Beast(block.getPosition().getDirection(action),0));
-                if (getModel().getBeasts().get(i).getPhase() < 2) {
-                    stats[getModel().getBeasts().get(i).getPhase()]++;
+            else if (getModel().isBeast(nextAvailablePos)){
+                int i = getModel().getBeasts().indexOf(new Beast(nextAvailablePos,0));
+                Beast beast = getModel().getBeasts().get(i);
+                if (beast.getPhase() < 2 || nextToWall){
+                    stats[beast.getPhase()]++;
                     getModel().getBeasts().remove(i);
-                    block.getPosition().goDirection(action);
-                    getModel().getPlayer().setPosition(position);
-                }
-                else if (getModel().getBeasts().get(i).getPhase() == 2 && getModel().isWall(block.getPosition().getDirection(action).getDirection(action))){
-                    stats[getModel().getBeasts().get(i).getPhase()]++;
-                    getModel().getBeasts().remove(i);
-                    block.getPosition().goDirection(action);
-                    getModel().getPlayer().setPosition(position);
-                }
-                else{
-                    restorePosition(block,position);
                 }
             }
-            else{
-                restorePosition(block,position);
-            }
         }
-        else{
-            restorePosition(block,position);
-        }
+        if (!getModel().isEmpty(nextAvailablePos)) return;
 
+        block.setPosition(nextAvailablePos);
+        getModel().getPlayer().setPosition(position);
     }
     private void movePlayer(Position position) {
 
@@ -106,7 +74,7 @@ public class PlayerController extends GameController {
         else if (getModel().canMove(position))
             player.setPosition(position);
 
-        if (getModel().isBeast(position))
+        if (getModel().isBeast(position) && !getModel().isEgg(position))
             getModel().hitPlayer();
 
         else if (getModel().isPowerUp(position)) {

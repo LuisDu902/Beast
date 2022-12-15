@@ -67,10 +67,11 @@ public class BeastControllerTest {
     void speedUp() throws IOException {
         for (int i = 14; i <= 16; i++){
             powerUps.add(new PowerUp(new Position(i,14)));
+            powerUps.add(new PowerUp(new Position(i,15)));
             powerUps.add(new PowerUp(new Position(i,16)));
         }
-        powerUps.add(new PowerUp(new Position(14,15)));
-        powerUps.add(new PowerUp(new Position(16,15)));
+
+
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(450, controller.getSpeed());
     }
@@ -78,10 +79,11 @@ public class BeastControllerTest {
     void evolve() throws IOException {
         for (int i = 9; i <= 11; i++){
             powerUps.add(new PowerUp(new Position(i,9)));
+            powerUps.add(new PowerUp(new Position(i,10)));
             powerUps.add(new PowerUp(new Position(i,11)));
         }
-        powerUps.add(new PowerUp(new Position(9,10)));
-        powerUps.add(new PowerUp(new Position(11,10)));
+
+
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(2,beast.getPhase());
     }

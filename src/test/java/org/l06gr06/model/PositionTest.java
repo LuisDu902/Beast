@@ -79,33 +79,5 @@ class PositionTest {
         assertEquals(x, position.getX());
         assertEquals(y+1, position.getY());
     }
-    @Test
-    void relativeQuad1() {
-        Position position1 = new Position(20,20);
-        Position position2 = new Position(21,21);
 
-        assertEquals(1, position1.relativeQuad(position2));
-    }
-
-    @Test
-    void relativeQuad2() {
-        Position position1 = new Position(20,20);
-        Position position2 = new Position(19,21);
-
-        assertEquals(2, position1.relativeQuad(position2));
-    }
-    @Test
-    void relativeQuad3() {
-        Position position1 = new Position(20,20);
-        Position position2 = new Position(19,19);
-
-        assertEquals(3, position1.relativeQuad(position2));
-    }
-    @Test
-    void relativeQuad4() {
-        Position position1 = new Position(20,20);
-        Position position2 = new Position(21,19);
-
-        assertEquals(4, position1.relativeQuad(position2));
-    }
 }

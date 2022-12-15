@@ -22,30 +22,7 @@ public class Position {
         }
         return null;
     }
-    public void goDirection(GUI.ACTION action){
-        switch (action){
-            case UP : {
-                goUp();
-                break;
-            }
-            case DOWN : {
-                goDown();
-                break;
-            }
-            case LEFT :{
-                goLeft();
-                break;
-            }
-            case RIGHT :{
-                goRight();
-                break;
-            }
-        }
-    }
-
-    public Position getLeft() {
-        return new Position(x - 1, y);
-    }
+    public Position getLeft() {return new Position(x - 1, y);}
 
     public Position getRight() {
         return new Position(x + 1, y);
