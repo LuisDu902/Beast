@@ -10,8 +10,8 @@ public interface GUI {
     void drawWall(Position position);
     void drawHeart(Position position);
     void drawBeast(int phase, Position position);
-
     void drawBlock(Position position);
+
     ACTION getNextAction() throws IOException;
     void clear();
     void refresh() throws IOException;

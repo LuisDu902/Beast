@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
 import org.l06gr06.controller.menu.MainMenuController;
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.model.menu.MainMenu;
+import org.l06gr06.states.GameState;
 import org.l06gr06.states.LevelMenuState;
+import org.l06gr06.states.State;
 
 import java.awt.*;
 import java.io.IOException;
@@ -33,7 +36,9 @@ public class MainMenuControllerTest {
     @Test
     void changeState() throws IOException, URISyntaxException, FontFormatException {
         controller.step(game, GUI.ACTION.SELECT,1);
-        assertEquals(new LevelMenuState(new LevelMenu(Arrays.asList("Easy", "Medium", "Difficult", "Exit"))),game.getState());
+        State expected = new LevelMenuState(new LevelMenu(Arrays.asList("Easy", "Medium", "Difficult", "Exit")));
+        State actual = game.getState();
+        assertEquals(expected,actual);
     }
 
 }

@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
 import org.l06gr06.controller.game.ArenaController;
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.GameState;
 import org.l06gr06.states.ScoreMenuState;
+import org.l06gr06.states.State;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -34,7 +36,7 @@ public class ArenaControllerTest {
         arena = new Arena(20, 20);
 
 
-        arena.setPlayer(new Player(5, 5));
+        arena.setPlayer(new Player(new Position(5, 5)));
         arena.setWalls(new ArrayList<>());
         arena.setPowerUps(new ArrayList<>());
         arena.setBlocks(new ArrayList<>());
@@ -48,7 +50,9 @@ public class ArenaControllerTest {
     void quit() throws IOException, URISyntaxException, FontFormatException {
         controller.step(game, GUI.ACTION.QUIT,1000);
         long[] stats = {0};
-        assertEquals(new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again", "ScoreBoard", "Exit"),stats)),game.getState());
+        State expected = new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again", "ScoreBoard", "Exit"),stats));
+        State actual = game.getState();
+        assertEquals(expected,actual);
     }
 
     @Test

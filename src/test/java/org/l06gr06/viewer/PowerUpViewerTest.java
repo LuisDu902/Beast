@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.game.elements.Heart;
 import org.l06gr06.model.game.elements.Shield;
-import org.l06gr06.model.game.elements.Wall;
 import org.l06gr06.viewer.game.PowerUpViewer;
-import org.l06gr06.viewer.game.WallViewer;
+
 import org.mockito.Mockito;
 public class PowerUpViewerTest {
     private Shield shield;

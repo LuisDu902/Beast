@@ -1,14 +1,18 @@
 package org.l06gr06.model.game.elements;
 
 
+import org.l06gr06.model.Position;
+
+import javax.management.loading.ClassLoaderRepository;
+
 public class Player extends Element {
     private int life;
     private int phase;
     private long immortalTime;
-    private long immortalDuration;
+    private final long immortalDuration;
 
-    public Player(int x, int y) {
-        super(x, y);
+    public Player(Position position) {
+        super(position);
         this.life = 5;
         this.phase = 0;
         this.immortalDuration = 10;

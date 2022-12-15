@@ -4,10 +4,7 @@ import org.l06gr06.Game;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
-import org.l06gr06.model.game.elements.Block;
-import org.l06gr06.model.game.elements.Heart;
-import org.l06gr06.model.game.elements.Player;
-import org.l06gr06.model.game.elements.Shield;
+import org.l06gr06.model.game.elements.*;
 
 import java.util.Random;
 
@@ -53,7 +50,8 @@ public class PlayerController extends GameController {
         return GUI.ACTION.UP;
     }
     private void moveblock(Position position){
-        Block block = getModel().findBlock(position);
+        int j = getModel().getBlocks().indexOf(new Block(position));
+        Block block = getModel().getBlocks().get(j);
         linkedBlocks(block);
 
         if (getModel().isEmpty(block.getPosition().getDirection(action))) {
@@ -62,14 +60,15 @@ public class PlayerController extends GameController {
         }
         else if (getModel().isBlock(block.getPosition().getDirection(action).getDirection(action)) || getModel().isWall(block.getPosition().getDirection(action).getDirection(action))){
             if (getModel().isPowerUp(block.getPosition().getDirection(action))){
-                int i = getModel().findPowerUp(block.getPosition().getDirection(action));
+                int i = getModel().getPowerUps().indexOf(new PowerUp(block.getPosition().getDirection(action)));
                 getModel().getPowerUps().remove(i);
 
                 block.getPosition().goDirection(action);
                 getModel().getPlayer().setPosition(position);
             }
             else if (getModel().isBeast(block.getPosition().getDirection(action)))  {
-                int i = getModel().findBeast(block.getPosition().getDirection(action));
+
+                int i = getModel().getBeasts().indexOf(new Beast(block.getPosition().getDirection(action),0));
                 if (getModel().getBeasts().get(i).getPhase() < 2) {
                     stats[getModel().getBeasts().get(i).getPhase()]++;
                     getModel().getBeasts().remove(i);
@@ -108,7 +107,7 @@ public class PlayerController extends GameController {
                 arena.respawnPlayer();
             }
             else if (arena.isPowerUp(position)) {
-                int i = arena.findPowerUp(position);
+                int i = arena.getPowerUps().indexOf(new PowerUp(position));
                 if (arena.getPowerUps().get(i) instanceof Heart && player.getLife() <= 7)
                     player.increaseLife();
                 else {

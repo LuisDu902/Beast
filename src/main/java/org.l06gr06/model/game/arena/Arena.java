@@ -16,11 +16,10 @@ public class Arena {
     private List<Wall> walls;
     private List<Block> blocks;
     private List<PowerUp> powerUps;
-
     private final long startingTime;
 
 
-    public Arena(int width, int height) { // ao criar a arena devemos inicializar todas as listas de elementos como listas vazias?
+    public Arena(int width, int height) {
         this.width = width;
         this.height = height;
         this.startingTime = System.currentTimeMillis();
@@ -76,34 +75,10 @@ public class Arena {
         this.powerUps = powerUps;
     }
 
-    public Block findBlock(Position position){
-        for (Block block: blocks){
-            if (block.getPosition().equals(position)){
-                return block;
-            }
-        }
-        return null;
-    }
-    public int findBeast(Position position){
-        for (int i = 0; i < beasts.size(); i++){
-            if (beasts.get(i).getPosition().equals(position)){
-                return i;
-            }
-        }
-        return -1;
-    }
-    public int findPowerUp(Position position) {
-        for (int i = 0; i < powerUps.size(); i++){
-            if (powerUps.get(i).getPosition().equals(position)){
-                return i;
-            }
-        }
-        return -1;
-    }
-
     public boolean canMove(Position position){
         return !isEgg(position) && !isBlock(position) && !isWall(position);
     }
+
     public boolean isEmpty(Position position) {
         return !isBlock(position) && !isWall(position) && !isPowerUp(position) && !isBeast(position);
     }
@@ -137,27 +112,31 @@ public class Arena {
                 return true;
         return false;
     }
-    public void createPowerUp(){
+    private Position randomAvailablePosition(){
         Random  rng = new Random();
-        int a = (int) (Math.random()*2);
-        int x = (rng.nextInt(width - 2) + 1);
-        int y = (rng.nextInt(height - 2) + 1);
-        if (isEmpty(new Position(x,y))){
-            if (a == 0) powerUps.add(new Shield(x, y));
-            else powerUps.add(new Heart(x, y));
+        int x, y;
+        do {
+            x = (rng.nextInt(width - 2) + 1);
+            y = (rng.nextInt(height - 5) + 4);
         }
+        while (!isEmpty(new Position(x,y)));
+        return new Position(x,y);
+    }
+
+    public void createPowerUp(){
+        int a = (int) (Math.random()*2);
+        Position pos = randomAvailablePosition();
+        if (a == 0) powerUps.add(new Shield(pos));
+        else powerUps.add(new Heart(pos));
     }
     public void hatchEggs(){
-        for (Beast beast : beasts){
+        for (Beast beast : beasts)
             if (beast.getPhase() == 0) beast.evolve();
-        }
     }
 
     public void respawnPlayer(){
-        Random rng = new Random();
-        int x = rng.nextInt(width - 2) + 1;
-        int y = rng.nextInt(height - 5) + 4;
-        player.setPosition(new Position(x, y));
+        Position pos = randomAvailablePosition();
+        player.setPosition(pos);
     }
 
     @Override

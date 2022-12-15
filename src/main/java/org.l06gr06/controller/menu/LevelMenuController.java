@@ -4,7 +4,6 @@ import org.l06gr06.Game;
 import org.l06gr06.controller.Controller;
 import org.l06gr06.controller.game.ArenaController;
 import org.l06gr06.gui.GUI;
-import org.l06gr06.model.game.arena.LoaderArenaBuilder;
 import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.states.GameState;
@@ -32,7 +31,7 @@ public class LevelMenuController  extends Controller<LevelMenu> {
             case SELECT : {
                 if (getModel().isSelectedExit()) game.setState(null);
                 else{
-                URL resource = ArenaController.class.getResource("/levels/score.csv");
+                URL resource = ArenaController.class.getResource("/score/score.csv");
                 BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
                 String str = "";
                 if (getModel().isSelected(0)) {

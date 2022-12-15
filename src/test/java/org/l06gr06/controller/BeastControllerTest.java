@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.controller.game.BeastController;
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Beast;
 import org.l06gr06.model.game.elements.Player;
@@ -87,14 +88,14 @@ public class BeastControllerTest {
 
     @Test
     void hitImmortalPLayer() throws IOException {
-        arena.setBeasts(Arrays.asList(new Beast(5,4,1),
-                new Beast(5,6,1),
-                new Beast(4,4,1),
-                new Beast(4,5,1),
-                new Beast(4,6,1),
-                new Beast(6,4,1),
-                new Beast(6,5,1),
-                new Beast(6,6,1)
+        arena.setBeasts(Arrays.asList(new Beast(new Position(5,4),1),
+                new Beast(new Position(5,6),1),
+                new Beast(new Position(4,4),1),
+                new Beast(new Position(4,5),1),
+                new Beast(new Position(4,6),1),
+                new Beast(new Position(6,4),1),
+                new Beast(new Position(6,5),1),
+                new Beast(new Position(6,6),1)
         ));
         player.becomeImmortal();
         controller.step(null,GUI.ACTION.DOWN, controller.getSpeed()+1);
@@ -103,14 +104,14 @@ public class BeastControllerTest {
     @Test
     void hitNormalPLayer() throws IOException {
 
-        arena.setBeasts(Arrays.asList(new Beast(5,4,1),
-                new Beast(5,6,1),
-                new Beast(4,4,1),
-                new Beast(4,5,1),
-                new Beast(4,6,1),
-                new Beast(6,4,1),
-                new Beast(6,5,1),
-                new Beast(6,6,1)
+        arena.setBeasts(Arrays.asList(new Beast(new Position(5,4),1),
+                new Beast(new Position(5,6),1),
+                new Beast(new Position(4,4),1),
+                new Beast(new Position(4,5),1),
+                new Beast(new Position(4,6),1),
+                new Beast(new Position(6,4),1),
+                new Beast(new Position(6,5),1),
+                new Beast(new Position(6,6),1)
         ));
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(4,player.getLife());

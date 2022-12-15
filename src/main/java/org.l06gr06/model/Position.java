@@ -13,7 +13,6 @@ public class Position {
         this.y = y;
     }
 
-
     public Position getDirection(GUI.ACTION action){
         switch (action) {
             case UP : return getUp();
@@ -43,9 +42,11 @@ public class Position {
             }
         }
     }
+
     public Position getLeft() {
         return new Position(x - 1, y);
     }
+
     public Position getRight() {
         return new Position(x + 1, y);
     }
@@ -89,6 +90,19 @@ public class Position {
                 }
         }
     }
+    public int relativeQuad(Position pos2){
+        if (x > pos2.x && y < pos2.y){
+            return 2;
+        }
+        if (x > pos2.x && y > pos2.y){
+            return 3;
+        }
+        if (x < pos2.x && y > pos2.y){
+            return 4;
+        }
+        return 1;
+    }
+
     public void goRight() {
         x++;
     }
@@ -105,6 +119,7 @@ public class Position {
     public int getX() {
         return x;
     }
+
     public int getY() {
         return y;
     }
@@ -120,18 +135,5 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
-    }
-
-    public int relativeQuad(Position pos2){
-        if (x > pos2.x && y < pos2.y){
-            return 2;
-        }
-        if (x > pos2.x && y > pos2.y){
-            return 3;
-        }
-        if (x < pos2.x && y > pos2.y){
-            return 4;
-        }
-        return 1;
     }
 }

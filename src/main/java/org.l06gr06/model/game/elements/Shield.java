@@ -1,7 +1,9 @@
 package org.l06gr06.model.game.elements;
 
+import org.l06gr06.model.Position;
+
 public class Shield extends PowerUp{
-    public Shield(int x, int y) {
-        super(x, y);
+    public Shield(Position position) {
+        super(position);
     }
 }

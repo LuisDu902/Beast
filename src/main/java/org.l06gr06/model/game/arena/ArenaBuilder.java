@@ -18,7 +18,6 @@ public abstract class ArenaBuilder {
         return arena;
     }
 
-
     protected abstract int getWidth();
 
     protected abstract int getHeight();

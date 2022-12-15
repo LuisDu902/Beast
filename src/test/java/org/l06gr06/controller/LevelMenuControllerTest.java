@@ -9,6 +9,7 @@ import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.states.GameState;
+import org.l06gr06.states.State;
 
 import java.awt.*;
 import java.io.IOException;
@@ -55,22 +56,27 @@ public class LevelMenuControllerTest {
     @Test
     void easy() throws IOException, URISyntaxException, FontFormatException {
         controller.step(game, GUI.ACTION.SELECT,1);
-
-        assertEquals(new GameState(new Arena(50,20)),game.getState());
+        State expected = new GameState(new Arena(50,20));
+        State actual = game.getState();
+        assertEquals(expected,actual);
     }
     @Test
     void medium() throws IOException, URISyntaxException, FontFormatException {
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.SELECT,1);
 
-        assertEquals(new GameState(new Arena(50,20)),game.getState());
+        State expected = new GameState(new Arena(50,20));
+        State actual = game.getState();
+        assertEquals(expected,actual);
     }
     @Test
     void difficult() throws IOException, URISyntaxException, FontFormatException {
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.SELECT,1);
-        assertEquals(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena()),game.getState());
+        State expected = new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena());
+        State actual = game.getState();
+        assertEquals(expected,actual);
     }
 
 }

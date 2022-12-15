@@ -45,7 +45,7 @@ public class ArenaController extends GameController {
     }
 
     private void saveScore(StringBuilder str) throws IOException {
-        URL resource = ArenaController.class.getResource("/levels/score.csv");
+        URL resource = ArenaController.class.getResource("/score/score.csv");
         BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
         writer.append(str.toString());
         writer.close();

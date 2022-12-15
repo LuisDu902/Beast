@@ -5,6 +5,7 @@ import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Beast;
+import org.l06gr06.model.game.elements.PowerUp;
 
 import java.io.IOException;
 import java.util.Random;
@@ -39,7 +40,7 @@ public class BeastController extends GameController {
                 this.speed -= 50;
                 if (beast.getPhase() == 1)
                     beast.evolve();
-                int i = getModel().findPowerUp(position);
+                int i = getModel().getPowerUps().indexOf(new PowerUp(position));
                 getModel().getPowerUps().remove(i);
             }
             beast.setPosition(position);

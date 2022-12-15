@@ -10,6 +10,7 @@ import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.model.menu.ScoreBoardMenu;
 import org.l06gr06.states.GameState;
 import org.l06gr06.states.LevelMenuState;
+import org.l06gr06.states.State;
 import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
 
@@ -36,7 +37,7 @@ public class ScoreBoardMenuControllerTest {
 
     @Test
     void nextEntry() throws IOException {
-        controller.step(null, GUI.ACTION.RIGHT,1);
+        controller.step(null, GUI.ACTION.RIGHT,0);
         assertEquals(1, menu.getCurrentEntry());
     }
 
@@ -57,6 +58,8 @@ public class ScoreBoardMenuControllerTest {
     @Test
     void playAgain() throws IOException, URISyntaxException, FontFormatException {
         controller.step(game, GUI.ACTION.SELECT,1);
-        assertEquals(new LevelMenuState(new LevelMenu(Arrays.asList("Easy", "Medium", "Difficult", "Exit"))),game.getState());
+        State expected = new LevelMenuState(new LevelMenu(Arrays.asList("Easy", "Medium", "Difficult", "Exit")));
+        State actual = game.getState();
+        assertEquals(expected,actual);
     }
 }

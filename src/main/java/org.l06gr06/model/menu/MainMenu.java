@@ -9,5 +9,4 @@ public class MainMenu extends Menu{
     public boolean isSelectedStart(){
         return isSelected(0);
     }
-
 }

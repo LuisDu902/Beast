@@ -1,10 +1,12 @@
 package org.l06gr06.model.game.elements;
 
+import org.l06gr06.model.Position;
+
 public class Beast extends Element{
     private int phase;
 
-    public Beast(int x, int y, int phase) {
-        super(x, y);
+    public Beast(Position position, int phase) {
+        super(position);
         this.phase = phase;
     }
 

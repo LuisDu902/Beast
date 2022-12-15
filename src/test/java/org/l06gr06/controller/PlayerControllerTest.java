@@ -300,6 +300,7 @@ public class PlayerControllerTest {
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
 
         assertEquals(1, player.getPhase());
+        assertEquals(10, player.getImmortalDuration());
         assertEquals(0, powerUps.size());
     }
 

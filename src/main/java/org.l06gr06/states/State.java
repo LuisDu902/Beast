@@ -35,6 +35,6 @@ public abstract class State<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         State state = (State) o;
-        return model == state.model;
+        return getModel().equals(state.getModel());
     }
 }

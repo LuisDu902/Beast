@@ -49,8 +49,7 @@ public class Menu {
         Menu menu = (Menu) o;
         int i = 0;
         for (String entry : entries){
-
-            if (! entry.equals(menu.getEntry(i))) return false;
+            if (!entry.equals(menu.getEntry(i))) return false;
             i++;
         }
         return true;

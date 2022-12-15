@@ -1,6 +1,7 @@
 package org.l06gr06.viewer;
 
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
 
 import java.io.IOException;
 
@@ -22,4 +23,16 @@ public abstract class Viewer<T> {
     }
 
     protected abstract void drawElements(GUI gui);
+
+    protected void drawFrame(GUI gui){
+        for (int x = 0; x < 50; x++) {
+            gui.drawWall(new Position(x,-3));
+            gui.drawWall(new Position(x,19));
+        }
+
+        for (int y = -2; y < 19; y++) {
+            gui.drawWall(new Position(0,y));
+            gui.drawWall(new Position(49,y));
+        }
+    }
 }

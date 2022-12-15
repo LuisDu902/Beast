@@ -56,28 +56,28 @@ public class LanternaGUI implements GUI{
         return AWTTerminalFontConfiguration.newInstance(loadedFont);
 
     }
-    private void drawCharacter(int x, int y, char c, String color) {
+    private void drawCharacter(Position position, char c, String color) {
         TextGraphics tg = screen.newTextGraphics();
         if (c == ' ') tg.setBackgroundColor(TextColor.Factory.fromString(color));
         else tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putCSIStyledString(x,y+3,"");
-        tg.putString(x, y + 3, "" + c);
+        tg.putCSIStyledString(position.getX(),position.getY()+3,"");
+        tg.putString(position.getX(),position.getY() + 3, "" + c);
     }
     @Override
     public void drawText(Position position, String text, String color){
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(position.getX(), position.getY(), text);
+        tg.putString(position.getX(),position.getY(), text);
     }
     @Override
     public void drawPlayer(int phase, Position position){
         switch (phase) {
             case 0 : {
-                drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
+                drawCharacter(position, '&', "#00FFEF");
                 break;
             }
             case 1 : {
-                drawCharacter(position.getX(), position.getY(), '&', "#FF9900");
+                drawCharacter(position, '&', "#FF9900");
                 break;
             }
         }
@@ -85,37 +85,36 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawShield(Position position){
-        drawCharacter(position.getX(), position.getY(), '$', "#a64dff");
+        drawCharacter(position, '$', "#a64dff");
     }
     @Override
     public void drawWall(Position position){
-        drawCharacter(position.getX(), position.getY(), ' ', "#FFFF66");
+        drawCharacter(position, ' ', "#FFFF66");
     }
     @Override
     public void drawHeart(Position position){
-        drawCharacter(position.getX(), position.getY(), '@', "#FC0808");
+        drawCharacter(position, '@', "#FC0808");
     }
+
+    @Override
+    public void drawBlock(Position position){ drawCharacter(position, ' ', "#1DC249");}
+
     @Override
     public void drawBeast(int phase, Position position){
         switch (phase) {
             case 0 : {
-                drawCharacter(position.getX(), position.getY(), '*', "#FFFF66");
+                drawCharacter(position, '*', "#FFFF66");
                 break;
             }
             case 1 : {
-                drawCharacter(position.getX(), position.getY(), 'H', "#E80E0E");
+                drawCharacter(position, 'H', "#E80E0E");
                 break;
             }
             case 2 : {
-                drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
+                drawCharacter(position, '%', "#E80E0E");
                 break;
             }
         }
-    }
-
-    @Override
-    public void drawBlock(Position position){
-        drawCharacter(position.getX(), position.getY(), ' ', "#1DC249");
     }
 
 

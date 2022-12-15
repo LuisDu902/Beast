@@ -12,15 +12,7 @@ public class ScoreMenuState extends State<ScoreMenu>{
 
     public ScoreMenuState(ScoreMenu model) throws IOException {super(model);}
     @Override
-    protected Viewer<ScoreMenu> getViewer() throws IOException {return new ScoreMenuViewer(getModel());}
+    protected Viewer<ScoreMenu> getViewer() {return new ScoreMenuViewer(getModel());}
     @Override
     protected Controller<ScoreMenu> getController(){return new ScoreMenuController(getModel());}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ScoreMenuState scoreMenuState = (ScoreMenuState) o;
-        return getModel().equals(scoreMenuState.getModel());
-    }
 }
