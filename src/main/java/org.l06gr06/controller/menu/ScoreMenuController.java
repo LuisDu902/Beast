@@ -16,6 +16,7 @@ public class ScoreMenuController extends Controller<ScoreMenu> {
     public ScoreMenuController(ScoreMenu menu) {
         super(menu);
     }
+
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {

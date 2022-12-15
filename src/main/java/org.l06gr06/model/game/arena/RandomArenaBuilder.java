@@ -90,11 +90,12 @@ public class RandomArenaBuilder extends ArenaBuilder{
             occupied.add(new Position(0, y));
             occupied.add(new Position(width-1, y));
         }
-
-        while (walls.size() < numberOfWalls) {
+        int i = 0;
+        while (i < numberOfWalls) {
             Position pos = randomAvailablePosition();
             walls.add(new Wall(pos));
             occupied.add(pos);
+            i++;
         }
 
         return walls;

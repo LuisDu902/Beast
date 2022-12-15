@@ -14,7 +14,7 @@ public class MenuTest {
     @Test
     public void mainMenu(){
         MainMenu mainMenu = new MainMenu();
-        Assertions.assertTrue(mainMenu.isSelectedStart());
+        Assertions.assertTrue(mainMenu.isSelected(0));
     }
 
     @Test
