@@ -3,8 +3,8 @@ package org.l06gr06.model.menu;
 import java.util.List;
 
 public class Menu {
-    private final List<String> entries ;
-    private int currentEntry;
+    protected final List<String> entries ;
+    protected int currentEntry;
 
     public Menu(List<String> entries){
         this.entries = entries;

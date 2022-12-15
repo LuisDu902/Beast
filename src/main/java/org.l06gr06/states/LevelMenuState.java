@@ -16,4 +16,11 @@ public class LevelMenuState extends State<LevelMenu>{
     @Override
     protected Controller<LevelMenu> getController(){return new LevelMenuController(getModel());}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LevelMenuState levelMenuState = (LevelMenuState) o;
+        return getModel().equals(levelMenuState.getModel());
+    }
 }

@@ -21,16 +21,19 @@ public class LevelMenuControllerTest {
     private LevelMenuController controller;
 
     private LevelMenu menu;
+
+    private Game game;
     @BeforeEach
-    void setUp(){
+    void setUp() throws IOException, URISyntaxException, FontFormatException {
         menu = new LevelMenu((Arrays.asList("Easy","Medium","Difficult","Exit")));
         controller = new LevelMenuController(menu);
+        game = new Game(null);
     }
 
     @Test
     void nextEntry() throws IOException {
         controller.step(null, GUI.ACTION.DOWN,1);
-        assertEquals("Medium", menu.getEntry(1));
+        assertEquals(1, menu.getCurrentEntry());
     }
 
     @Test
@@ -38,12 +41,11 @@ public class LevelMenuControllerTest {
         controller.step(null, GUI.ACTION.DOWN,1);
         controller.step(null, GUI.ACTION.DOWN,1);
         controller.step(null, GUI.ACTION.UP,1);
-        assertEquals("Medium", menu.getEntry(1));
+        assertEquals(1, menu.getCurrentEntry());
     }
-    /*
+
     @Test
     void exit() throws IOException, URISyntaxException, FontFormatException {
-        Game game = new Game();
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.DOWN,1);
@@ -52,14 +54,12 @@ public class LevelMenuControllerTest {
     }
     @Test
     void easy() throws IOException, URISyntaxException, FontFormatException {
-        Game game = new Game();
         controller.step(game, GUI.ACTION.SELECT,1);
 
         assertEquals(new GameState(new Arena(50,20)),game.getState());
     }
     @Test
     void medium() throws IOException, URISyntaxException, FontFormatException {
-        Game game = new Game();
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.SELECT,1);
 
@@ -67,11 +67,10 @@ public class LevelMenuControllerTest {
     }
     @Test
     void difficult() throws IOException, URISyntaxException, FontFormatException {
-        Game game = new Game();
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.SELECT,1);
         assertEquals(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena()),game.getState());
     }
-    */
+
 }
