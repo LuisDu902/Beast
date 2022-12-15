@@ -41,9 +41,13 @@ public class RandomArenaBuilder extends ArenaBuilder{
         return true;
     }
 
-    private Position randomPosition(){
-        int x = (rng.nextInt(width - 2) + 1);
-        int y = (rng.nextInt(height - 2) + 1);
+    private Position randomAvailablePosition(){
+        int x, y;
+        do {
+            x = (rng.nextInt(width - 2) + 1);
+            y = (rng.nextInt(height - 2) + 1);
+        }
+        while (!isAvailable(new Position(x,y)));
         return new Position(x,y);
     }
 
@@ -51,42 +55,28 @@ public class RandomArenaBuilder extends ArenaBuilder{
     protected List<Beast> createBeasts() {
         List<Beast> beasts = new ArrayList<>();
 
-        while (beasts.size() < numberOfBeasts) {
-            Position pos = randomPosition();
-            if (isAvailable(pos)){
-                beasts.add(new Beast(pos, 1));
-                occupied.add(pos);
-            }
+        while (beasts.size() < numberOfBeasts + numberOfEggs) {
+            Position pos = randomAvailablePosition();
+            if (beasts.size() < numberOfBeasts) beasts.add(new Beast(pos, 1));
+            else beasts.add(new Beast(pos, 0));
+            occupied.add(pos);
         }
-        while (beasts.size() < numberOfBeasts+numberOfEggs) {
-            Position pos = randomPosition();
-            if (isAvailable(pos)){
-                beasts.add(new Beast(pos, 0));
-                occupied.add(pos);
-            }
-        }
+
         return beasts;
     }
 
     @Override
     protected Player createPlayer() {
-        Position pos = randomPosition();
-        while(!isAvailable(pos)) pos = randomPosition();
+        Position pos = randomAvailablePosition();
         Player player = new Player(pos);
-        occupied.add(player.getPosition());
+        occupied.add(pos);
         return player;
     }
 
     @Override
     protected List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
-        while (walls.size() < numberOfWalls) {
-            Position pos = randomPosition();
-            if (isAvailable(pos)) {
-                walls.add(new Wall(pos));
-                occupied.add(pos);
-            }
-        }
+
         for (int x = 0; x < width; x++) {
             walls.add(new Wall(new Position(x, 0)));
             walls.add(new Wall(new Position(x, height - 1)));
@@ -100,6 +90,13 @@ public class RandomArenaBuilder extends ArenaBuilder{
             occupied.add(new Position(0, y));
             occupied.add(new Position(width-1, y));
         }
+
+        while (walls.size() < numberOfWalls) {
+            Position pos = randomAvailablePosition();
+            walls.add(new Wall(pos));
+            occupied.add(pos);
+        }
+
         return walls;
     }
 
@@ -108,11 +105,9 @@ public class RandomArenaBuilder extends ArenaBuilder{
         List<Block> blocks = new ArrayList<>();
 
         while (blocks.size() < numberOfBlocks){
-            Position pos = randomPosition();
-            if (isAvailable(pos)){
-                blocks.add(new Block(pos));
-                occupied.add(pos);
-            }
+            Position pos = randomAvailablePosition();
+            blocks.add(new Block(pos));
+            occupied.add(pos);
         }
         return blocks;
     }

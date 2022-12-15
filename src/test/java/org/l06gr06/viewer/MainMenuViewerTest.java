@@ -16,7 +16,7 @@ public class MainMenuViewerTest {
     private MainMenu mainMenu;
     @BeforeEach
     void setUp() {
-        mainMenu = new MainMenu((Arrays.asList("[Press enter to play]")));
+        mainMenu = new MainMenu();
         viewer = new MainMenuViewer(mainMenu);
         gui = Mockito.mock(GUI.class);
     }

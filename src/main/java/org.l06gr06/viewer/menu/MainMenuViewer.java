@@ -22,7 +22,7 @@ public class MainMenuViewer extends Viewer<MainMenu> {
         gui.drawText(new Position(6, 12), "HHHH     HHHHH   H   H   HHHH      H", "#FFFFFF");
         gui.drawText(new Position(25, 9), "&", "#00FFEF");
 
-       drawFrame(gui);
+        drawFrame(gui);
 
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(

@@ -44,12 +44,12 @@ public class LanternaGUI implements GUI{
     }
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
         URL resource = getClass().getClassLoader().getResource("fonts/BeastFont.otf");
+        assert resource != null;
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
-
 
         Font loadedFont = font.deriveFont(Font.PLAIN, 25);
 
@@ -72,14 +72,8 @@ public class LanternaGUI implements GUI{
     @Override
     public void drawPlayer(int phase, Position position){
         switch (phase) {
-            case 0 : {
-                drawCharacter(position, '&', "#00FFEF");
-                break;
-            }
-            case 1 : {
-                drawCharacter(position, '&', "#FF9900");
-                break;
-            }
+            case 0 : { drawCharacter(position, '&', "#00FFEF"); break; }
+            case 1 : { drawCharacter(position, '&', "#FF9900"); break; }
         }
 
     }
@@ -102,21 +96,11 @@ public class LanternaGUI implements GUI{
     @Override
     public void drawBeast(int phase, Position position){
         switch (phase) {
-            case 0 : {
-                drawCharacter(position, '*', "#FFFF66");
-                break;
-            }
-            case 1 : {
-                drawCharacter(position, 'H', "#E80E0E");
-                break;
-            }
-            case 2 : {
-                drawCharacter(position, '%', "#E80E0E");
-                break;
-            }
+            case 0 : { drawCharacter(position, '*', "#FFFF66"); break;}
+            case 1 : { drawCharacter(position, 'H', "#E80E0E"); break;}
+            case 2 : { drawCharacter(position, '%', "#E80E0E"); break;}
         }
     }
-
 
     public ACTION getNextAction() throws IOException {
         KeyStroke keyStroke = screen.pollInput();

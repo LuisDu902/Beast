@@ -16,7 +16,7 @@ public class LevelMenuViewerTest {
     private LevelMenu levelMenu;
     @BeforeEach
     void setUp() {
-        levelMenu = new LevelMenu(Arrays.asList("Level 1", "Level 2", "Level 3", "Exit"));
+        levelMenu = new LevelMenu();
         viewer = new LevelMenuViewer(levelMenu);
         gui = Mockito.mock(GUI.class);
     }

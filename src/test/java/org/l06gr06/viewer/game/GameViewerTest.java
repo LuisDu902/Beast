@@ -13,19 +13,19 @@ import java.util.Arrays;
 public class GameViewerTest {
     private GUI gui;
     private GameViewer viewer;
-    private Arena arena;
+
 
     @BeforeEach
     void setUp() {
-        arena = new Arena(20, 20);
+        Arena arena = new Arena(20, 20);
         gui = Mockito.mock(GUI.class);
         viewer = new GameViewer(arena);
 
-        arena.setWalls(Arrays.asList(new Wall(1, 2), new Wall(2, 3), new Wall(3, 4)));
-        arena.setBeasts(Arrays.asList(new Beast(4, 5,0), new Beast(5, 6,1)));
-        arena.setPlayer(new Player(5, 8));
-        arena.setBlocks(Arrays.asList(new Block(6, 7), new Block(7, 7), new Block(7, 8)));
-        arena.setPowerUps(Arrays.asList(new Heart(1, 1), new Shield(8, 8), new Heart(9, 9)));
+        arena.setWalls(Arrays.asList(new Wall(new Position(1,2)), new Wall(new Position(2,3)), new Wall(new Position(3,4))));
+        arena.setBeasts(Arrays.asList(new Beast(new Position(4,5), 0), new Beast(new Position(5,6),1)));
+        arena.setPlayer(new Player(new Position(5,8)));
+        arena.setBlocks(Arrays.asList(new Block(new Position(6, 7)), new Block(new Position(7,7)), new Block(new Position(7,8))));
+        arena.setPowerUps(Arrays.asList(new Heart(new Position(1,1)), new Shield(new Position(8,8)), new Heart(new Position(9,9))));
     }
 
 

@@ -30,7 +30,7 @@ public class ScoreBoardMenuControllerTest {
 
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
-        menu = new ScoreBoardMenu((Arrays.asList("Play Again", "Exit")));
+        menu = new ScoreBoardMenu();
         controller = new ScoreBoardMenuController(menu);
         game = new Game(null);
     }
@@ -49,16 +49,16 @@ public class ScoreBoardMenuControllerTest {
     }
 
     @Test
-    void exit() throws IOException, URISyntaxException, FontFormatException {
+    void exit() throws IOException{
         controller.step(game, GUI.ACTION.RIGHT,1);
         controller.step(game, GUI.ACTION.SELECT,1);
         assertEquals(null,game.getState());
     }
 
     @Test
-    void playAgain() throws IOException, URISyntaxException, FontFormatException {
+    void playAgain() throws IOException{
         controller.step(game, GUI.ACTION.SELECT,1);
-        State expected = new LevelMenuState(new LevelMenu(Arrays.asList("Easy", "Medium", "Difficult", "Exit")));
+        State expected = new LevelMenuState(new LevelMenu());
         State actual = game.getState();
         assertEquals(expected,actual);
     }

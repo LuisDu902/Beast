@@ -19,21 +19,15 @@ public class ScoreMenuController extends Controller<ScoreMenu> {
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
-            case LEFT : {
-                getModel().previousEntry();
-                break;
-            }
-            case RIGHT : {
-                getModel().nextEntry();
-                break;
-            }
+            case LEFT : { getModel().previousEntry(); break; }
+            case RIGHT : { getModel().nextEntry(); break; }
             case SELECT : {
-                if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelected(1)) {
-                    game.setState(new ScoreBoardMenuState(new ScoreBoardMenu(Arrays.asList("Play again", "Exit"))));
-                }
+                if (getModel().isSelectedExit())
+                    game.setState(null);
+                if (getModel().isSelectedScoreBoard())
+                    game.setState(new ScoreBoardMenuState(new ScoreBoardMenu()));
                 if (getModel().isSelectedPlayAgain())
-                    game.setState(new LevelMenuState(new LevelMenu(Arrays.asList("Easy", "Medium", "Difficult", "Exit"))));
+                    game.setState(new LevelMenuState(new LevelMenu()));
             }
         }
     }

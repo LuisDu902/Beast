@@ -18,7 +18,7 @@ public class ScoreBoardMenuViewerTest {
     @BeforeEach
     void setUp() throws IOException {
 
-        scoreBoardMenu = new ScoreBoardMenu(Arrays.asList("Play Again","ScoreBoard", "Exit"));
+        scoreBoardMenu = new ScoreBoardMenu();
         viewer = new ScoreBoardMenuViewer(scoreBoardMenu,"score.csv");
         gui = Mockito.mock(GUI.class);
     }

@@ -1,11 +1,15 @@
 package org.l06gr06.model.menu;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Menu {
-    protected final List<String> entries ;
+    protected List<String> entries ;
     protected int currentEntry;
 
+    public Menu() {
+        this.entries = Arrays.asList();
+    }
     public Menu(List<String> entries){
         this.entries = entries;
     }

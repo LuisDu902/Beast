@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.controller.game.PowerUpController;
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.game.elements.PowerUp;
@@ -25,10 +26,10 @@ public class PowerUpControllerTest {
 
 
         List<PowerUp> powerUps = new ArrayList<>();
-        powerUp = new PowerUp(6,5);
+        powerUp = new PowerUp(new Position(6,5));
         powerUps.add(powerUp);
 
-        arena.setPlayer(new Player(5, 5));
+        arena.setPlayer(new Player(new Position(5, 5)));
         arena.setWalls(new ArrayList<>());
         arena.setPowerUps(powerUps);
         arena.setBlocks(new ArrayList<>());

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreMenuControllerTest {
     private ScoreMenuController controller;
@@ -27,7 +27,7 @@ public class ScoreMenuControllerTest {
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
         long[] stats = {0};
-        menu = new ScoreMenu((Arrays.asList("Play Again", "ScoreBoard","Exit")),stats);
+        menu = new ScoreMenu(stats);
         controller = new ScoreMenuController(menu);
         game = new Game(null);
     }
@@ -47,17 +47,17 @@ public class ScoreMenuControllerTest {
     }
 
     @Test
-    void exit() throws IOException, URISyntaxException, FontFormatException {
+    void exit() throws IOException {
         controller.step(game, GUI.ACTION.RIGHT,1);
         controller.step(game, GUI.ACTION.RIGHT,1);
         controller.step(game, GUI.ACTION.SELECT,1);
-        assertEquals(null,game.getState());
+        assertNull(game.getState());
     }
     @Test
-    void playAgain() throws IOException, URISyntaxException, FontFormatException {
+    void playAgain() throws IOException{
 
         controller.step(game, GUI.ACTION.SELECT,1);
-        assertEquals(new LevelMenuState(new LevelMenu(Arrays.asList("Easy", "Medium", "Difficult", "Exit"))),game.getState());
+        assertEquals(new LevelMenuState(new LevelMenu()),game.getState());
     }
     /*
     @Test

@@ -13,20 +13,20 @@ public class MenuTest {
     Menu menu;
     @Test
     public void mainMenu(){
-        MainMenu mainMenu = new MainMenu(Arrays.asList("Entry1","Entry2","Entry3","Exit"));
+        MainMenu mainMenu = new MainMenu();
         Assertions.assertTrue(mainMenu.isSelectedStart());
     }
 
     @Test
     public void scoreMenu(){
         long[] stats = {1, 2, 3, 4, 5, 6};
-        ScoreMenu scoreMenu = new ScoreMenu(Arrays.asList("Entry1","Entry2","Entry3","Exit"), stats);
+        ScoreMenu scoreMenu = new ScoreMenu(stats);
         Assertions.assertTrue(scoreMenu.isSelectedPlayAgain());
     }
 
     @BeforeEach
-    public void helper(){
-        menu = new Menu(Arrays.asList("Entry1","Entry2","Entry3","Exit"));
+    public void setUp(){
+        menu = new Menu(Arrays.asList("Entry 1", "Entry 2", "Entry 3","Exit"));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class MenuTest {
 
     @Test
     public void getEntry(){
-        Assertions.assertEquals("Entry3",menu.getEntry(2));
+        Assertions.assertEquals("Entry 3",menu.getEntry(2));
     }
 
     @Test

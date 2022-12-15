@@ -40,8 +40,7 @@ public class BeastController extends GameController {
                 this.speed -= 50;
                 if (beast.getPhase() == 1)
                     beast.evolve();
-                int i = getModel().getPowerUps().indexOf(new PowerUp(position));
-                getModel().getPowerUps().remove(i);
+                getModel().getPowerUps().remove(new PowerUp(position));
             }
             beast.setPosition(position);
             if (getModel().getPlayer().getPosition().equals(position)) {

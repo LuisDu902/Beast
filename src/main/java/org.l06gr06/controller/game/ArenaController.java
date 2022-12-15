@@ -55,7 +55,7 @@ public class ArenaController extends GameController {
         playerController.getStats()[5] = (time - getModel().getStartingTime())/1000;
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0) {
             saveScore(Score(time));
-            game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again", "ScoreBoard", "Exit"),playerController.getStats())));
+            game.setState(new ScoreMenuState(new ScoreMenu(playerController.getStats())));
         }
         else {
             powerUpController.step(game, action, time);

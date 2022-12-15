@@ -14,13 +14,13 @@ public class PowerUpController extends GameController{
         super(arena);
         this.creationTime = 5;
     }
+
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
 
         if(getModel().getPowerUps().size() != 0) {
             PowerUp powerUp = getModel().getPowerUps().get(0);
-            if (time - powerUp.getCreationTime() > powerUp.getDuration() * 1000) {
+            if (time - powerUp.getCreationTime() > powerUp.getDuration() * 1000)
                 getModel().getPowerUps().remove(powerUp);
-            }
         }
 
         if ((time - getModel().getStartingTime())/1000 == creationTime){

@@ -3,8 +3,6 @@ package org.l06gr06.model.game.elements;
 
 import org.l06gr06.model.Position;
 
-import javax.management.loading.ClassLoaderRepository;
-
 public class Player extends Element {
     private int life;
     private int phase;

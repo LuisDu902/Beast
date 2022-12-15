@@ -9,19 +9,14 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.menu.ScoreMenu;
-import org.l06gr06.states.GameState;
 import org.l06gr06.states.ScoreMenuState;
 import org.l06gr06.states.State;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -47,18 +42,16 @@ public class ArenaControllerTest {
     }
 
     @Test
-    void quit() throws IOException, URISyntaxException, FontFormatException {
+    void quit() throws IOException {
         controller.step(game, GUI.ACTION.QUIT,1000);
         long[] stats = {0};
-        State expected = new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again", "ScoreBoard", "Exit"),stats));
+        State expected = new ScoreMenuState(new ScoreMenu(stats));
         State actual = game.getState();
         assertEquals(expected,actual);
     }
 
     @Test
-    void lose() throws IOException, URISyntaxException, FontFormatException {
+    void lose() throws IOException {
         controller.step(game, GUI.ACTION.RIGHT,1);
     }
-
-
 }

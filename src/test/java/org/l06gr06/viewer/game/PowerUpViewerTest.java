@@ -3,6 +3,7 @@ package org.l06gr06.viewer.game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.Heart;
 import org.l06gr06.model.game.elements.Shield;
 import org.mockito.Mockito;
@@ -14,8 +15,8 @@ public class PowerUpViewerTest {
 
     @BeforeEach
     void setUp() {
-        heart = new Heart(20, 20);
-        shield = new Shield(10,10);
+        heart = new Heart(new Position(20, 20));
+        shield = new Shield(new Position(10,10));
         viewer = new PowerUpViewer();
         gui = Mockito.mock(GUI.class);
     }

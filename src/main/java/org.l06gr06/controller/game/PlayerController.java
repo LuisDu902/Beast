@@ -31,9 +31,8 @@ public class PlayerController extends GameController {
     }
     
     private void linkedBlocks(Block block){
-        while (getModel().isBlock(block.getPosition().getDirection(action))){
+        while (getModel().isBlock(block.getPosition().getDirection(action)))
             block.getPosition().goDirection(action);
-        }
     }
     private void restorePosition(Block block, Position position){
         while (getModel().isBlock(block.getPosition().getDirection(symmetricAction(action))))
@@ -60,8 +59,7 @@ public class PlayerController extends GameController {
         }
         else if (getModel().isBlock(block.getPosition().getDirection(action).getDirection(action)) || getModel().isWall(block.getPosition().getDirection(action).getDirection(action))){
             if (getModel().isPowerUp(block.getPosition().getDirection(action))){
-                int i = getModel().getPowerUps().indexOf(new PowerUp(block.getPosition().getDirection(action)));
-                getModel().getPowerUps().remove(i);
+                getModel().getPowerUps().remove(new PowerUp(block.getPosition().getDirection(action)));
 
                 block.getPosition().goDirection(action);
                 getModel().getPlayer().setPosition(position);

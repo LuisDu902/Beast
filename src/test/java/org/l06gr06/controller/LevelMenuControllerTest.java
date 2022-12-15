@@ -17,6 +17,7 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class LevelMenuControllerTest {
     private LevelMenuController controller;
@@ -26,7 +27,7 @@ public class LevelMenuControllerTest {
     private Game game;
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
-        menu = new LevelMenu((Arrays.asList("Easy","Medium","Difficult","Exit")));
+        menu = new LevelMenu();
         controller = new LevelMenuController(menu);
         game = new Game(null);
     }
@@ -51,7 +52,7 @@ public class LevelMenuControllerTest {
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.SELECT,1);
-        assertEquals(null,game.getState());
+        assertNull(game.getState());
     }
     @Test
     void easy() throws IOException, URISyntaxException, FontFormatException {
