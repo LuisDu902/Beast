@@ -40,7 +40,7 @@ public class LevelMenuControllerTest {
         controller.step(null, GUI.ACTION.UP,1);
         assertEquals("Medium", menu.getEntry(1));
     }
-
+    /*
     @Test
     void exit() throws IOException, URISyntaxException, FontFormatException {
         Game game = new Game();
@@ -73,4 +73,5 @@ public class LevelMenuControllerTest {
         controller.step(game, GUI.ACTION.SELECT,1);
         assertEquals(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena()),game.getState());
     }
+    */
 }

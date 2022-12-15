@@ -21,9 +21,15 @@ public class LevelMenuController  extends Controller<LevelMenu> {
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
-            case UP -> getModel().previousEntry();
-            case DOWN -> getModel().nextEntry();
-            case SELECT -> {
+            case UP : {
+                getModel().previousEntry();
+                break;
+            }
+            case DOWN : {
+                getModel().nextEntry();
+                break;
+            }
+            case SELECT : {
                 if (getModel().isSelectedExit()) game.setState(null);
                 else{
                 URL resource = ArenaController.class.getResource("/levels/score.csv");

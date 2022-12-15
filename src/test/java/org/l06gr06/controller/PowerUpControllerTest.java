@@ -29,10 +29,10 @@ public class PowerUpControllerTest {
         powerUps.add(powerUp);
 
         arena.setPlayer(new Player(5, 5));
-        arena.setWalls(List.of());
+        arena.setWalls(new ArrayList<>());
         arena.setPowerUps(powerUps);
-        arena.setBlocks(List.of());
-        arena.setBeasts(List.of());
+        arena.setBlocks(new ArrayList<>());
+        arena.setBeasts(new ArrayList<>());
 
         controller = new PowerUpController(arena);
     }

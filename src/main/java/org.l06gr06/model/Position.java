@@ -16,27 +16,31 @@ public class Position {
 
     public Position getDirection(GUI.ACTION action){
         switch (action) {
-            case UP -> {
-                return getUp();
-            }
-            case DOWN -> {
-                return getDown();
-            }
-            case LEFT -> {
-                return getLeft();
-            }
-            case RIGHT -> {
-                return getRight();
-            }
+            case UP : return getUp();
+            case DOWN : return getDown();
+            case LEFT : return getLeft();
+            case RIGHT : return getRight();
         }
         return null;
     }
     public void goDirection(GUI.ACTION action){
         switch (action){
-            case UP -> goUp();
-            case DOWN -> goDown();
-            case LEFT -> goLeft();
-            case RIGHT -> goRight();
+            case UP : {
+                goUp();
+                break;
+            }
+            case DOWN : {
+                goDown();
+                break;
+            }
+            case LEFT :{
+                goLeft();
+                break;
+            }
+            case RIGHT :{
+                goRight();
+                break;
+            }
         }
     }
     public Position getLeft() {
@@ -59,34 +63,30 @@ public class Position {
     public Position getCloserToPlayer(int quad) {
         int n = (int) (Math.random() * 3);
         switch (quad) {
-            case 1 -> {
-                return switch (n) {
-                    case 0 -> getLeft();
-                    case 1 -> getUpLeft();
-                    default -> getUp();
-                };
-            }
-            case 2 -> {
-                return switch (n) {
-                    case 0 -> getUp();
-                    case 1 -> getUpRight();
-                    default -> getRight();
-                };
-            }
-            case 3 -> {
-                return switch (n) {
-                    case 0 -> getRight();
-                    case 1 -> getDownRight();
-                    default -> getDown();
-                };
-            }
-            default -> {
-                return switch (n) {
-                    case 0 -> getDown();
-                    case 1 -> getDownLeft();
-                    default -> getLeft();
-                };
-            }
+            case 1:
+                switch (n){
+                    case 0: return getLeft();
+                    case 1: return getUpLeft();
+                    default: return getUp();
+                }
+            case 2:
+                switch (n){
+                    case 0: return getUp();
+                    case 1: return getUpRight();
+                    default: return getRight();
+                }
+            case 3:
+                switch (n){
+                    case 0: return getRight();
+                    case 1: return getDownRight();
+                    default: return getDown();
+                }
+            default:
+                switch (n){
+                    case 0: return getDown();
+                    case 1: return getDownLeft();
+                    default: return getLeft();
+                }
         }
     }
     public void goRight() {

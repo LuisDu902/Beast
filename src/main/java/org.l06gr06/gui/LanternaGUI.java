@@ -72,8 +72,14 @@ public class LanternaGUI implements GUI{
     @Override
     public void drawPlayer(int phase, Position position){
         switch (phase) {
-            case 0 -> drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
-            case 1 -> drawCharacter(position.getX(), position.getY(), '&', "#FF9900");
+            case 0 : {
+                drawCharacter(position.getX(), position.getY(), '&', "#00FFEF");
+                break;
+            }
+            case 1 : {
+                drawCharacter(position.getX(), position.getY(), '&', "#FF9900");
+                break;
+            }
         }
 
     }
@@ -92,9 +98,18 @@ public class LanternaGUI implements GUI{
     @Override
     public void drawBeast(int phase, Position position){
         switch (phase) {
-            case 0 -> drawCharacter(position.getX(), position.getY(), '*', "#FFFF66");
-            case 1 -> drawCharacter(position.getX(), position.getY(), 'H', "#E80E0E");
-            case 2 -> drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
+            case 0 : {
+                drawCharacter(position.getX(), position.getY(), '*', "#FFFF66");
+                break;
+            }
+            case 1 : {
+                drawCharacter(position.getX(), position.getY(), 'H', "#E80E0E");
+                break;
+            }
+            case 2 : {
+                drawCharacter(position.getX(), position.getY(), '%', "#E80E0E");
+                break;
+            }
         }
     }
 

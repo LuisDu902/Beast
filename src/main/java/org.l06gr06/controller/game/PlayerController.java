@@ -46,9 +46,10 @@ public class PlayerController extends GameController {
     }
     private GUI.ACTION symmetricAction(GUI.ACTION action){
         switch (action){
-            case LEFT -> { return GUI.ACTION.RIGHT; }
-            case UP -> { return GUI.ACTION.DOWN; }
-            case RIGHT -> { return GUI.ACTION.LEFT; } }
+            case LEFT : return GUI.ACTION.RIGHT;
+            case UP : return GUI.ACTION.DOWN;
+            case RIGHT : return GUI.ACTION.LEFT;
+        }
         return GUI.ACTION.UP;
     }
     private void moveblock(Position position){

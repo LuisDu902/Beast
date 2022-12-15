@@ -50,7 +50,7 @@ public class BeastControllerTest {
         arena.setWalls(walls);
 
         arena.setPowerUps(powerUps);
-        arena.setBlocks(List.of());
+        arena.setBlocks(new ArrayList<>());
         arena.setBeasts(beasts);
 
         controller = new BeastController(arena);
