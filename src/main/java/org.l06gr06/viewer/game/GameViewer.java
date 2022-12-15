@@ -17,7 +17,6 @@ public class GameViewer extends Viewer<Arena> {
     private final PowerUpViewer powerUpViewer;
 
     public GameViewer(Arena arena) {
-
         super(arena);
         this.playerViewer = new PlayerViewer();
         this.wallViewer = new WallViewer();
@@ -33,15 +32,13 @@ public class GameViewer extends Viewer<Arena> {
         drawElement(gui, getModel().getPlayer(), playerViewer);
         drawElements(gui, getModel().getBlocks(), blockViewer);
         drawElements(gui, getModel().getPowerUps(), powerUpViewer);
-
         drawTimer(gui, getModel().getStartingTime());
         drawLives(gui, getModel().getPlayer().getLife());
     }
     private void drawLives(GUI gui, int nrLives){
         gui.drawText(new Position(1,1), "Lives: ", "#FFFFFF");
-        for (int i = 0; i < nrLives; i++){
+        for (int i = 0; i < nrLives; i++)
             gui.drawText(new Position(i+7,1), "@", "#FC0808");
-        }
     }
     private void drawTimer(GUI gui, long time){
         long timer = (System.currentTimeMillis() - time)/1000;

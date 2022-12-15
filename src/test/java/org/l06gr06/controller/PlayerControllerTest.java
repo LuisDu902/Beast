@@ -23,7 +23,7 @@ public class PlayerControllerTest {
     void setUp() {
         arena = new Arena(20, 20);
 
-        player = new Player(5, 5);
+        player = new Player(new Position(5,5));
         arena.setPlayer(player);
 
         arena.setWalls(Arrays.asList());
@@ -44,8 +44,8 @@ public class PlayerControllerTest {
     @Test
     void moveRightBlock() {
 
-        Block block1 = new Block(6, 5);
-        Block block2 = new Block(7, 5);
+        Block block1 = new Block(new Position(6,5));
+        Block block2 = new Block(new Position(7,5));
         arena.setBlocks(Arrays.asList(block1, block2));
 
         controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -58,12 +58,12 @@ public class PlayerControllerTest {
     @Test
     void noMoveRightBlock() {
 
-        Block block1 = new Block(6, 5);
-        Block block2 = new Block(7, 5);
-        Block block3 = new Block(8, 5);
+        Block block1 = new Block(new Position(6,5));
+        Block block2 = new Block(new Position(7,5));
+        Block block3 = new Block(new Position(8,5));
         arena.setBlocks(Arrays.asList(block1, block2,block3));
 
-        Wall wall = new Wall(9,5);
+        Wall wall = new Wall(new Position(9,5));
         arena.setWalls(Arrays.asList(wall));
 
         controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -78,7 +78,7 @@ public class PlayerControllerTest {
     @Test
     void rightWall() {
 
-        Wall wall = new Wall(6,5);
+        Wall wall = new Wall(new Position(6,5));
         arena.setWalls(Arrays.asList(wall));
 
         controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -97,8 +97,8 @@ public class PlayerControllerTest {
     @Test
     void moveLeftBlock() {
 
-        Block block1 = new Block(4, 5);
-        Block block2 = new Block(3, 5);
+        Block block1 = new Block(new Position(4,5));
+        Block block2 = new Block(new Position(3,5));
         arena.setBlocks(Arrays.asList(block1, block2));
 
         controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
@@ -111,10 +111,10 @@ public class PlayerControllerTest {
     @Test
     void noMoveLeftBlock() {
 
-        Block block = new Block(4, 5);
+        Block block = new Block(new Position(4,5));
         arena.setBlocks(Arrays.asList(block));
 
-        Wall wall = new Wall(3,5);
+        Wall wall = new Wall(new Position(3,5));
         arena.setWalls(Arrays.asList(wall));
 
         controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
@@ -126,7 +126,7 @@ public class PlayerControllerTest {
 
     @Test
     void leftWall() {
-        Wall wall = new Wall(4,5);
+        Wall wall = new Wall(new Position(4,5));
         arena.setWalls(Arrays.asList(wall));
 
         controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
@@ -145,8 +145,8 @@ public class PlayerControllerTest {
     @Test
     void moveUpBlock() {
 
-        Block block1 = new Block(5, 4);
-        Block block2 = new Block(5, 3);
+        Block block1 = new Block(new Position(5,4));
+        Block block2 = new Block(new Position(5,3));
         arena.setBlocks(Arrays.asList(block1, block2));
 
         controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
@@ -159,10 +159,10 @@ public class PlayerControllerTest {
     @Test
     void noMoveUpBlock() {
 
-        Block block = new Block(5, 4);
+        Block block = new Block(new Position(5,4));
         arena.setBlocks(Arrays.asList(block));
 
-        Wall wall = new Wall(5,3);
+        Wall wall = new Wall(new Position(5,3));
         arena.setWalls(Arrays.asList(wall));
 
         controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
@@ -174,7 +174,7 @@ public class PlayerControllerTest {
 
     @Test
     void upWall() {
-        Wall wall = new Wall(5,4);
+        Wall wall = new Wall(new Position(5,4));
         arena.setWalls(Arrays.asList(wall));
 
         controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
@@ -193,8 +193,8 @@ public class PlayerControllerTest {
     @Test
     void moveDownBlock() {
 
-        Block block1 = new Block(5, 6);
-        Block block2 = new Block(5, 7);
+        Block block1 = new Block(new Position(5,6));
+        Block block2 = new Block(new Position(5,7));
         arena.setBlocks(Arrays.asList(block1, block2));
 
         controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
@@ -207,10 +207,10 @@ public class PlayerControllerTest {
     @Test
     void noMoveDownBlock() {
 
-        Block block = new Block(5, 6);
+        Block block = new Block(new Position(5,6));
         arena.setBlocks(Arrays.asList(block));
 
-        Wall wall = new Wall(5,7);
+        Wall wall = new Wall(new Position(5,7));
         arena.setWalls(Arrays.asList(wall));
 
         controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
@@ -222,7 +222,7 @@ public class PlayerControllerTest {
 
     @Test
     void downWall() {
-        Wall wall = new Wall(5,6);
+        Wall wall = new Wall(new Position(5,6));
         arena.setWalls(Arrays.asList(wall));
 
         controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
@@ -247,15 +247,15 @@ public class PlayerControllerTest {
         assertEquals(0, nrBeasts);
         assertEquals(0, nrStrongBeasts);
         assertEquals(0, nrShields);
-        assertEquals(5, nrLives);
-        assertEquals(1, time);
+        assertEquals(0, nrLives);
+        assertEquals(0, time);
     }
 
     @Test
     void backToNormal(){
         player.becomeImmortal();
 
-        Beast beast = new Beast(6,5,1);
+        Beast beast = new Beast(new Position(6,5),1);
         arena.setBeasts(Arrays.asList(beast));
 
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -267,7 +267,7 @@ public class PlayerControllerTest {
     @Test
     void decreaseLife(){
 
-        Beast beast = new Beast(6,5,1);
+        Beast beast = new Beast(new Position(6,5),1);
         arena.setBeasts(Arrays.asList(beast));
 
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -278,7 +278,7 @@ public class PlayerControllerTest {
     @Test
     void increaseLife(){
 
-        Heart heart = new Heart(6,5);
+        Heart heart = new Heart(new Position(6,5));
         List<PowerUp> powerUps = new ArrayList<>();
         powerUps.add(heart);
         arena.setPowerUps(powerUps);
@@ -292,7 +292,7 @@ public class PlayerControllerTest {
     @Test
     void becomeImmortal(){
 
-        Shield shield = new Shield(6,5);
+        Shield shield = new Shield(new Position(6,5));
         List<PowerUp> powerUps = new ArrayList<>();
         powerUps.add(shield);
         arena.setPowerUps(powerUps);
@@ -300,6 +300,7 @@ public class PlayerControllerTest {
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
 
         assertEquals(1, player.getPhase());
+        assertEquals(10, player.getImmortalDuration());
         assertEquals(0, powerUps.size());
     }
 
@@ -307,13 +308,13 @@ public class PlayerControllerTest {
     void smashPowerUp(){
 
         List<PowerUp> powerUps = new ArrayList<>();
-        powerUps.add(new PowerUp(7,5));
+        powerUps.add(new PowerUp(new Position(7,5)));
         arena.setPowerUps(powerUps);
 
-        Wall wall = new Wall(8,5);
+        Wall wall = new Wall(new Position(8,5));
         arena.setWalls(Arrays.asList(wall));
 
-        Block block = new Block(6,5);
+        Block block = new Block(new Position(6,5));
         arena.setBlocks(Arrays.asList(block));
 
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -328,13 +329,13 @@ public class PlayerControllerTest {
     void smashEgg(){
 
         List<Beast> beasts = new ArrayList<>();
-        beasts.add(new Beast(7,5,0));
+        beasts.add(new Beast(new Position(7,5),0));
         arena.setBeasts(beasts);
 
-        Wall wall = new Wall(8,5);
+        Wall wall = new Wall(new Position(8,5));
         arena.setWalls(Arrays.asList(wall));
 
-        Block block = new Block(6,5);
+        Block block = new Block(new Position(6,5));
         arena.setBlocks(Arrays.asList(block));
 
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -349,13 +350,13 @@ public class PlayerControllerTest {
     void smashBeast(){
 
         List<Beast> beasts = new ArrayList<>();
-        beasts.add(new Beast(7,5,1));
+        beasts.add(new Beast(new Position(7,5),1));
         arena.setBeasts(beasts);
 
-        Wall wall = new Wall(8,5);
+        Wall wall = new Wall(new Position(8,5));
         arena.setWalls(Arrays.asList(wall));
 
-        Block block = new Block(6,5);
+        Block block = new Block(new Position(6,5));
         arena.setBlocks(Arrays.asList(block));
 
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -370,13 +371,13 @@ public class PlayerControllerTest {
     void smashStrongerBeast(){
 
         List<Beast> beasts = new ArrayList<>();
-        beasts.add(new Beast(7,5,2));
+        beasts.add(new Beast(new Position(7,5),2));
         arena.setBeasts(beasts);
 
-        Wall wall = new Wall(8,5);
+        Wall wall = new Wall(new Position(8,5));
         arena.setWalls(Arrays.asList(wall));
 
-        Block block = new Block(6,5);
+        Block block = new Block(new Position(6,5));
         arena.setBlocks(Arrays.asList(block));
 
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
@@ -391,12 +392,12 @@ public class PlayerControllerTest {
     void cantSmashStrongerBeast(){
 
         List<Beast> beasts = new ArrayList<>();
-        Beast beast = new Beast(7,5,2);
+        Beast beast = new Beast(new Position(7,5),2);
         beasts.add(beast);
         arena.setBeasts(beasts);
 
-        Block block1 = new Block(6,5);
-        Block block2 = new Block(8,5);
+        Block block1 = new Block(new Position(6,5));
+        Block block2 = new Block(new Position(8,5));
         arena.setBlocks(Arrays.asList(block1,block2));
 
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());

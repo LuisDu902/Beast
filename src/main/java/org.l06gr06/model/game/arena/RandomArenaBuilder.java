@@ -14,9 +14,8 @@ public class RandomArenaBuilder extends ArenaBuilder{
     private final int numberOfBeasts;
     private final int numberOfBlocks;
     private final int numberOfEggs;
-
     private final int numberOfWalls;
-    private List<Position> occupied = new ArrayList<>();
+    private final List<Position> occupied = new ArrayList<>();
 
     public RandomArenaBuilder(int width, int height, int numberOfBeasts, int numberOfBlocks,  int numberOfEggs, int numberOfWalls) {
         this.rng = new Random();
@@ -31,36 +30,36 @@ public class RandomArenaBuilder extends ArenaBuilder{
     protected int getWidth() {
         return width;
     }
-
     @Override
     protected int getHeight() {
         return height;
     }
+
     private boolean isAvailable(Position pos){
-        for (Position position: occupied){
+        for (Position position: occupied)
             if (position.equals(pos)) return false;
-        }
         return true;
     }
+
+    private Position randomAvailablePosition(){
+        int x, y;
+        do {
+            x = (rng.nextInt(width - 2) + 1);
+            y = (rng.nextInt(height - 2) + 1);
+        }
+        while (!isAvailable(new Position(x,y)));
+        return new Position(x,y);
+    }
+
     @Override
     protected List<Beast> createBeasts() {
         List<Beast> beasts = new ArrayList<>();
 
-        while (beasts.size() < numberOfBeasts) {
-            int x = (rng.nextInt(width - 2) + 1);
-            int y = (rng.nextInt(height - 2) + 1);
-            if (isAvailable(new Position(x,y))){
-                beasts.add(new Beast(x, y,1));
-                occupied.add(new Position(x, y));
-            }
-        }
-        while (beasts.size() < numberOfBeasts+numberOfEggs) {
-            int x = (rng.nextInt(width - 2) + 1);
-            int y = (rng.nextInt(height - 2) + 1);
-            if (isAvailable(new Position(x,y))){
-                beasts.add(new Beast(x, y,0));
-                occupied.add(new Position(x, y));
-            }
+        while (beasts.size() < numberOfBeasts + numberOfEggs) {
+            Position pos = randomAvailablePosition();
+            if (beasts.size() < numberOfBeasts) beasts.add(new Beast(pos, 1));
+            else beasts.add(new Beast(pos, 0));
+            occupied.add(pos);
         }
 
         return beasts;
@@ -68,34 +67,34 @@ public class RandomArenaBuilder extends ArenaBuilder{
 
     @Override
     protected Player createPlayer() {
-        Player player = new Player(width / 3, height / 3);
-        occupied.add(player.getPosition());
+        Position pos = randomAvailablePosition();
+        Player player = new Player(pos);
+        occupied.add(pos);
         return player;
     }
 
     @Override
     protected List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
-        while (walls.size() < numberOfWalls) {
-            int x = (rng.nextInt(width - 2) + 1);
-            int y = (rng.nextInt(height - 2) + 1);
-            if (isAvailable(new Position(x,y))) {
-                walls.add(new Wall(x, y));
-                occupied.add(new Position(x, y));
-            }
-        }
+
         for (int x = 0; x < width; x++) {
-            walls.add(new Wall(x, 0));
-            walls.add(new Wall(x, height - 1));
+            walls.add(new Wall(new Position(x, 0)));
+            walls.add(new Wall(new Position(x, height - 1)));
             occupied.add(new Position(x, 0));
             occupied.add(new Position(x, height-1));
         }
 
         for (int y = 1; y < height - 1; y++) {
-            walls.add(new Wall(0, y));
-            walls.add(new Wall(width - 1, y));
+            walls.add(new Wall(new Position(0, y)));
+            walls.add(new Wall(new Position(width - 1, y)));
             occupied.add(new Position(0, y));
             occupied.add(new Position(width-1, y));
+        }
+
+        while (walls.size() < numberOfWalls) {
+            Position pos = randomAvailablePosition();
+            walls.add(new Wall(pos));
+            occupied.add(pos);
         }
 
         return walls;
@@ -106,17 +105,10 @@ public class RandomArenaBuilder extends ArenaBuilder{
         List<Block> blocks = new ArrayList<>();
 
         while (blocks.size() < numberOfBlocks){
-            int x = (rng.nextInt(width - 2) + 1);
-            int y = (rng.nextInt(height - 2) + 1);
-            if (isAvailable(new Position(x,y))){
-                blocks.add(new Block(x, y));
-                occupied.add(new Position(x, y));
-            }
+            Position pos = randomAvailablePosition();
+            blocks.add(new Block(pos));
+            occupied.add(pos);
         }
-
         return blocks;
-
     }
-
-
 }

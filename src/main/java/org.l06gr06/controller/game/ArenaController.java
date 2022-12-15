@@ -2,7 +2,10 @@ package org.l06gr06.controller.game;
 
 import org.l06gr06.Game;
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
+import org.l06gr06.model.game.elements.Element;
+import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.ScoreMenuState;
 
@@ -11,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 
 public class ArenaController extends GameController {
     private final PlayerController playerController;
@@ -35,10 +39,13 @@ public class ArenaController extends GameController {
         long sec = timer%60;
         String txt = String.format("%02d:%02d", min, sec);
         str.append(txt).append('\n');
+
         return str;
+
     }
+
     private void saveScore(StringBuilder str) throws IOException {
-        URL resource = ArenaController.class.getResource("/levels/score.csv");
+        URL resource = ArenaController.class.getResource("/score/score.csv");
         BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
         writer.append(str.toString());
         writer.close();
@@ -48,7 +55,7 @@ public class ArenaController extends GameController {
         playerController.getStats()[5] = (time - getModel().getStartingTime())/1000;
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0) {
             saveScore(Score(time));
-            game.setState(new ScoreMenuState(new ScoreMenu(Arrays.asList("Play Again", "ScoreBoard", "Exit"),playerController.getStats())));
+            game.setState(new ScoreMenuState(new ScoreMenu(playerController.getStats())));
         }
         else {
             powerUpController.step(game, action, time);

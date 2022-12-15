@@ -18,9 +18,9 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
     private final List<String> lines;
     public ScoreBoardMenuViewer(ScoreBoardMenu menu, String file) throws IOException {
         super(menu);
-        URL resource = ScoreBoardMenu.class.getResource("/levels/" + file);
+        URL resource = ScoreBoardMenu.class.getResource("/score/" + file);
+        assert resource != null;
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
-
         lines = readLines(br);
     }
     private List<String> readLines(BufferedReader br) throws IOException {
@@ -34,22 +34,8 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
         }).reversed());
         return lines;
     }
-    private void drawTitle(GUI gui){
-        gui.drawText(new Position(20, 3), "SCOREBOARD", "#FFFFFF");
-    }
 
-    private void drawBoarders(GUI gui){
-        for (int x = 0; x < 50; x++) {
-            gui.drawWall(new Position(x,-3));
-            gui.drawWall(new Position(x,19));
-        }
-
-        for (int y = -2; y < 19; y++) {
-            gui.drawWall(new Position(0,y));
-            gui.drawWall(new Position(49,y));
-        }
-    }
-    private void drawScores(GUI gui){
+    private void drawScoreBoard(GUI gui){
         gui.drawText(new Position(12,5),"Level","#FFFFFF");
         gui.drawText(new Position(23,5),"Score","#FFFFFF");
         gui.drawText(new Position(34,5),"Time","#FFFFFF");
@@ -67,11 +53,9 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
     @Override
     public void drawElements(GUI gui) {
 
-        drawTitle(gui);
-
-        drawBoarders(gui);
-
-        drawScores(gui);
+        gui.drawText(new Position(20, 3), "SCOREBOARD", "#FFFFFF");
+        drawFrame(gui);
+        drawScoreBoard(gui);
 
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(

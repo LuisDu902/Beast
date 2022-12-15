@@ -16,7 +16,11 @@ public class Game {
 
     public Game() throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGUI(50, 20);
-        this.state = new MainMenuState(new MainMenu((Arrays.asList("[Press enter to play]"))));
+        this.state = new MainMenuState(new MainMenu());
+    }
+    public Game(LanternaGUI gui) throws FontFormatException, IOException, URISyntaxException {
+        this.gui = gui;
+        this.state = new MainMenuState(new MainMenu());
     }
 
     public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {

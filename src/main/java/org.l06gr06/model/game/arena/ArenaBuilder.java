@@ -8,16 +8,15 @@ import java.util.List;
 public abstract class ArenaBuilder {
     public Arena createArena() {
         Arena arena = new Arena(getWidth(), getHeight());
-        List<PowerUp> powerUps = new ArrayList<>();
-        arena.setPowerUps(powerUps);
-        arena.setPlayer(createPlayer());
-        arena.setBeasts(createBeasts());
         arena.setWalls(createWalls());
         arena.setBlocks(createBlocks());
+        arena.setPowerUps(new ArrayList<>());
+        arena.setPlayer(createPlayer());
+        arena.setBeasts(createBeasts());
+
 
         return arena;
     }
-
 
     protected abstract int getWidth();
 
@@ -30,6 +29,5 @@ public abstract class ArenaBuilder {
     protected abstract Player createPlayer();
 
     protected abstract List<Block> createBlocks();
-
 }
 

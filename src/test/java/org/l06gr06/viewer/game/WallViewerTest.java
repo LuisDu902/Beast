@@ -3,6 +3,7 @@ package org.l06gr06.viewer.game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.Wall;
 import org.mockito.Mockito;
 
@@ -13,7 +14,7 @@ public class WallViewerTest {
 
     @BeforeEach
     void setUp() {
-        wall = new Wall(20, 20);
+        wall = new Wall(new Position(20,20));
         viewer = new WallViewer();
         gui = Mockito.mock(GUI.class);
     }

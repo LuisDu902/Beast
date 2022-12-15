@@ -15,5 +15,4 @@ public class LevelMenuState extends State<LevelMenu>{
     protected Viewer<LevelMenu> getViewer(){return new LevelMenuViewer(getModel());}
     @Override
     protected Controller<LevelMenu> getController(){return new LevelMenuController(getModel());}
-
 }

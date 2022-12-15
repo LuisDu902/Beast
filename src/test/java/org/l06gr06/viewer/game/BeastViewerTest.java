@@ -3,6 +3,7 @@ package org.l06gr06.viewer.game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
+import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.Beast;
 import org.mockito.Mockito;
 
@@ -13,7 +14,7 @@ public class BeastViewerTest {
 
     @BeforeEach
     void setUp() {
-        beast = new Beast(20, 20,1);
+        beast = new Beast(new Position(20,20),1);
         viewer = new BeastViewer();
         gui = Mockito.mock(GUI.class);
     }

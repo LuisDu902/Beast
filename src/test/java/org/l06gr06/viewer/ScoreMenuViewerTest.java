@@ -17,7 +17,7 @@ public class ScoreMenuViewerTest {
     @BeforeEach
     void setUp() {
         long[] stat = {1,2,3,4,5,6};
-        scoreMenu = new ScoreMenu(Arrays.asList("Play Again","ScoreBoard", "Exit"),stat);
+        scoreMenu = new ScoreMenu(stat);
         viewer = new ScoreMenuViewer(scoreMenu);
         gui = Mockito.mock(GUI.class);
     }

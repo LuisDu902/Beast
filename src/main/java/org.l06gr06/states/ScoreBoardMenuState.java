@@ -15,5 +15,4 @@ public class ScoreBoardMenuState extends State<ScoreBoardMenu>{
     protected Viewer<ScoreBoardMenu> getViewer() throws IOException {return new ScoreBoardMenuViewer(getModel(),"score.csv");}
     @Override
     protected Controller<ScoreBoardMenu> getController(){return new ScoreBoardMenuController(getModel());}
-
 }

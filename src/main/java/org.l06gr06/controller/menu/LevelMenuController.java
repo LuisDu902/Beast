@@ -4,7 +4,6 @@ import org.l06gr06.Game;
 import org.l06gr06.controller.Controller;
 import org.l06gr06.controller.game.ArenaController;
 import org.l06gr06.gui.GUI;
-import org.l06gr06.model.game.arena.LoaderArenaBuilder;
 import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.states.GameState;
@@ -21,27 +20,25 @@ public class LevelMenuController  extends Controller<LevelMenu> {
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
-            case UP -> getModel().previousEntry();
-            case DOWN -> getModel().nextEntry();
-            case SELECT -> {
-                if (getModel().isSelectedExit()) game.setState(null);
-                else{
-                URL resource = ArenaController.class.getResource("/levels/score.csv");
-                BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
-                String str = "";
-                if (getModel().isSelected(0)) {
-                    str = "~";
-                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 2, 150, 1, 15).createArena()));
-                } else if (getModel().isSelected(1)) {
-                    str = "~~";
-                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 4, 100, 3, 10).createArena()));
-                } else if (getModel().isSelected(2)) {
-                    str = "~~~";
-                    game.setState(new GameState(new RandomArenaBuilder(50, 20, 6, 50, 6, 5).createArena()));
-                }
-                writer.append(str);
-                writer.append(',');
-                writer.close();
+            case UP : { getModel().previousEntry(); break; }
+            case DOWN : { getModel().nextEntry(); break; }
+            case SELECT : {
+                if (getModel().isSelectedExit())
+                    game.setState(null);
+                else {
+                    URL resource = ArenaController.class.getResource("/score/score.csv");
+                    assert resource != null;
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
+                    String str = "~";
+                    for (int i = 0; i<3; i++){
+                        if (getModel().isSelected(i)){
+                            str = str.repeat(i+1);
+                            game.setState(new GameState(new RandomArenaBuilder(50, 20, 2 + 2*i, 150 - 50*i, 1 + 3*i, 15 - 5*i).createArena()));
+                            writer.append(str);
+                            writer.append(',');
+                            writer.close();
+                        }
+                    }
                 }
             }
         }
