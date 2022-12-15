@@ -41,4 +41,18 @@ public class Menu {
     public boolean isSelectedExit(){
         return isSelected(entries.size()-1);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Menu menu = (Menu) o;
+        int i = 0;
+        for (String entry : entries){
+
+            if (! entry.equals(menu.getEntry(i))) return false;
+            i++;
+        }
+        return true;
+    }
 }

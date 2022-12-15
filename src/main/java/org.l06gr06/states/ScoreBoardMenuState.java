@@ -16,4 +16,12 @@ public class ScoreBoardMenuState extends State<ScoreBoardMenu>{
     @Override
     protected Controller<ScoreBoardMenu> getController(){return new ScoreBoardMenuController(getModel());}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ScoreBoardMenuState scoreBoardMenuState = (ScoreBoardMenuState) o;
+        return getModel().equals(scoreBoardMenuState.getModel());
+    }
+
 }
