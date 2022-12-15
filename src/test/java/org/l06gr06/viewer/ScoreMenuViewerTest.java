@@ -25,6 +25,7 @@ public class ScoreMenuViewerTest {
     @Test
     void drawText(){
         viewer.drawElements(gui);
+        Mockito.verify(gui, Mockito.times(142)).drawWall(Mockito.any(Position.class));
         Mockito.verify(gui, Mockito.times(11+scoreMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
     }
 }

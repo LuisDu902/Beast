@@ -57,4 +57,9 @@ public class ElementsTest {
         Assertions.assertEquals(time,powerUp.getCreationTime());
     }
 
+    @Test
+    public void Equal(){
+        Element element = new Element(new Position(20,20));
+        Assertions.assertEquals(new Element(new Position(20,20)),element);
+    }
 }

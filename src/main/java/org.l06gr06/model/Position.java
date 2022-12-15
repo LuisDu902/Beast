@@ -18,25 +18,14 @@ public class Position {
             case UP : return getUp();
             case DOWN : return getDown();
             case LEFT : return getLeft();
-            case RIGHT : return getRight();
         }
-        return null;
+        return getRight();
     }
     public Position getLeft() {return new Position(x - 1, y);}
 
-    public Position getRight() {
-        return new Position(x + 1, y);
-    }
-    public Position getUp() {
-        return new Position(x, y - 1);
-    }
-    public Position getDown() {
-        return new Position(x, y + 1);
-    }
-    public Position getUpLeft() {return new Position(x - 1,y - 1);}
-    public Position getUpRight() {return new Position(x + 1,y - 1);}
-    public Position getDownLeft() {return new Position(x - 1,y + 1);}
-    public Position getDownRight() {return new Position(x + 1,y + 1);}
+    public Position getRight() {return new Position(x + 1, y);}
+    public Position getUp() {return new Position(x, y - 1);}
+    public Position getDown() {return new Position(x, y + 1);}
 
     public Position getCloser(Position pos2) {
 
@@ -50,26 +39,9 @@ public class Position {
 
     }
 
-    public void goRight() {
-        x++;
-    }
-    public void goLeft() {
-        x--;
-    }
-    public void goUp() {
-        y--;
-    }
-    public void goDown() {
-        y++;
-    }
+    public int getX() {return x;}
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
+    public int getY() {return y;}
 
     @Override
     public boolean equals(Object o) {

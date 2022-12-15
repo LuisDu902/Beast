@@ -24,10 +24,6 @@ public class MainMenuViewer extends Viewer<MainMenu> {
 
         drawFrame(gui);
 
-        for (int i = 0; i < getModel().getNumberEntries(); i++)
-            gui.drawText(
-                    new Position(15, 18 + i),
-                    getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#FFFF66" : "#FFFFFF");
+        gui.drawText(new Position(15, 18), getModel().getEntry(0), "#FFFF66");
     }
 }

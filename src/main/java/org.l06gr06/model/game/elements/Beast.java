@@ -19,7 +19,4 @@ public class Beast extends Element{
         return phase;
     }
 
-    public void interact(Element element, Arena arena){
-
-    }
 }
