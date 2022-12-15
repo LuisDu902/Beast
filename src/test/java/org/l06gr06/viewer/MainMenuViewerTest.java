@@ -23,15 +23,19 @@ public class MainMenuViewerTest {
     }
 
     @Test
-    void drawElements() {
+    void drawText() {
         viewer.drawElements(gui);
-        Mockito.verify(gui, Mockito.times(142)).drawWall(Mockito.any(Position.class));
         Mockito.verify(gui, Mockito.times(8 + mainMenu.getNumberEntries())).drawText(Mockito.any(Position.class), Mockito.any(String.class), Mockito.any(String.class));
     }
 
+    @Test
+    void drawFrame(){
+        viewer.drawElements(gui);
+        Mockito.verify(gui, Mockito.times(142)).drawWall(Mockito.any(Position.class));
+    }
 
     @Test
-    void entries(){
+    void drawEntry(){
         viewer.drawElements(gui);
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(15, 18), "[Press enter to play]","#FFFF66");
     }

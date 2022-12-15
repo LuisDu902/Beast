@@ -8,8 +8,6 @@ import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.viewer.menu.LevelMenuViewer;
 import org.mockito.Mockito;
 
-import java.util.Arrays;
-
 public class LevelMenuViewerTest {
     private GUI gui;
     private Viewer viewer;
@@ -22,22 +20,28 @@ public class LevelMenuViewerTest {
     }
 
     @Test
-    void drawElements(){
+    void drawText(){
         viewer.drawElements(gui);
-        Mockito.verify(gui, Mockito.times(142)).drawWall(Mockito.any(Position.class));
         Mockito.verify(gui, Mockito.times(7+levelMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
     }
 
     @Test
-    void entries(){
+    void drawFrame(){
+        viewer.drawElements(gui);
+        Mockito.verify(gui, Mockito.times(142)).drawWall(Mockito.any(Position.class));
+    }
+
+    @Test
+    void drawEntries(){
         viewer.drawElements(gui);
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(20, 9), "Easy","#FFFF66");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(20, 11), "Medium","#FFFFFF");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(20, 13), "Difficult","#FFFFFF");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(20, 17), "Exit","#FFFFFF");
     }
 
     @Test
-    void stars(){
+    void drawStars(){
         viewer.drawElements(gui);
 
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(17, 9), "~","#FFFF66");

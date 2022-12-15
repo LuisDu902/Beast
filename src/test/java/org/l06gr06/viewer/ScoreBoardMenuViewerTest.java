@@ -19,13 +19,47 @@ public class ScoreBoardMenuViewerTest {
     void setUp() throws IOException {
 
         scoreBoardMenu = new ScoreBoardMenu();
-        viewer = new ScoreBoardMenuViewer(scoreBoardMenu,"score.csv");
+        viewer = new ScoreBoardMenuViewer(scoreBoardMenu,"scoreTest.csv");
         gui = Mockito.mock(GUI.class);
     }
-    /*
+
     @Test
     void drawText(){
         viewer.drawElements(gui);
-        Mockito.verify(gui, Mockito.times(4+scoreBoardMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
-    }*/
+
+        Mockito.verify(gui, Mockito.times(16+scoreBoardMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
+    }
+
+    @Test
+    void drawFrame(){
+        viewer.drawElements(gui);
+        Mockito.verify(gui, Mockito.times(142)).drawWall(Mockito.any(Position.class));
+    }
+    @Test
+    void drawScoreboard(){
+        viewer.drawElements(gui);
+
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(7, 7), "1.","#FFFFFF");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(7, 8), "2.","#FFFFFF");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(7, 9), "3.","#FFFFFF");
+
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(12, 7), "~~","#FFFF66");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(12, 8), "~","#FFFF66");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(12, 9), "~~~","#FFFF66");
+
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(23, 7), "102","#FFFFFF");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(23, 8), "40","#FFFFFF");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(23, 9), "12","#FFFFFF");
+
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(34, 7), "4:50","#FFFFFF");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(34, 8), "3:49","#FFFFFF");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(34, 9), "23:30","#FFFFFF");
+
+    }
+    @Test
+    void drawEntries(){
+        viewer.drawElements(gui);
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(15, 19), "Play again","#FFFF66");
+        Mockito.verify(gui, Mockito.times(1)).drawText(new Position(30, 19), "Exit","#FFFFFF");
+    }
 }

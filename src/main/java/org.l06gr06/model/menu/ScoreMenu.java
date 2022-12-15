@@ -1,7 +1,6 @@
 package org.l06gr06.model.menu;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class ScoreMenu extends Menu{
     private final long[] stats;
