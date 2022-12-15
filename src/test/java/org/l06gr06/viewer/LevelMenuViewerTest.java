@@ -20,12 +20,12 @@ public class LevelMenuViewerTest {
         viewer = new LevelMenuViewer(levelMenu);
         gui = Mockito.mock(GUI.class);
     }
-    /*
+
     @Test
     void drawText(){
         viewer.drawElements(gui);
-        Mockito.verify(gui, Mockito.times(3+levelMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
-    }*/
+        Mockito.verify(gui, Mockito.times(7+levelMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
+    }
 
 }
 

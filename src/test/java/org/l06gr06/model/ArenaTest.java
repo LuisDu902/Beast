@@ -105,23 +105,4 @@ public class ArenaTest {
         }
     }
 
-    @Test
-    public void CreatePowerUp(){
-        arena.setBeasts(new ArrayList<>());
-        arena.setWalls(new ArrayList<>());
-        arena.setBlocks(new ArrayList<>());
-        arena.setPowerUps(new ArrayList<>());
-        arena.createPowerUp();
-        Assertions.assertEquals(1,arena.getPowerUps().size());
-        arena.createPowerUp();
-        Assertions.assertEquals(2,arena.getPowerUps().size());
-        arena.createPowerUp();
-        Assertions.assertEquals(3,arena.getPowerUps().size());
-        for (PowerUp powerUp : arena.getPowerUps()){
-            Assertions.assertTrue(powerUp.getPosition().getX() > 0
-                    && powerUp.getPosition().getX() < arena.getWidth()
-                    && powerUp.getPosition().getY() < arena.getHeight()
-                    && powerUp.getPosition().getY() > 0 );
-        }
-    }
 }
