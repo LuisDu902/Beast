@@ -6,28 +6,31 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.*;
 
-import java.util.Random;
-
-
 public class PlayerController extends GameController {
     private GUI.ACTION action;
     private final long[] stats;
+
+    private final Player player;
+
     public PlayerController(Arena arena) {
         super(arena);
         this.stats = new long[6];
+        player = getModel().getPlayer();
     }
     private void movePlayerLeft() {
-        movePlayer(getModel().getPlayer().getPosition().getLeft());
+        movePlayer(player.getPosition().getLeft());
     }
 
-    private void movePlayerRight() {movePlayer(getModel().getPlayer().getPosition().getRight());}
+    private void movePlayerRight() {
+        movePlayer(player.getPosition().getRight());
+    }
 
     private void movePlayerUp() {
-        movePlayer(getModel().getPlayer().getPosition().getUp());
+        movePlayer(player.getPosition().getUp());
     }
 
     private void movePlayerDown() {
-        movePlayer(getModel().getPlayer().getPosition().getDown());
+        movePlayer(player.getPosition().getDown());
     }
     
     private void linkedBlocks(Block block){
@@ -51,6 +54,7 @@ public class PlayerController extends GameController {
     private void moveblock(Position position){
         int j = getModel().getBlocks().indexOf(new Block(position));
         Block block = getModel().getBlocks().get(j);
+
         linkedBlocks(block);
 
         if (getModel().isEmpty(block.getPosition().getDirection(action))) {
@@ -93,40 +97,37 @@ public class PlayerController extends GameController {
 
     }
     private void movePlayer(Position position) {
-        Arena arena = getModel();
-        Player player = arena.getPlayer();
 
-        if (arena.canMove(position)) {
-            player.setPosition(position);
-            if (arena.isBeast(position) && player.isImmortal())
-                player.backToNormal();
-            else if (arena.isBeast(position) && !player.isImmortal()){
-                player.decreaseLife();
-                arena.respawnPlayer();
-            }
-            else if (arena.isPowerUp(position)) {
-                int i = arena.getPowerUps().indexOf(new PowerUp(position));
-                if (arena.getPowerUps().get(i) instanceof Heart && player.getLife() <= 7)
-                    player.increaseLife();
-                else {
-                    player.becomeImmortal();
-                    stats[3]++;
-                }
-                arena.getPowerUps().remove(i);
-            }
-        }
-        else if (arena.isBlock(position)){
+        if (getModel().isBlock(position)) {
             moveblock(position);
+            return;
+        }
+
+        else if (getModel().canMove(position))
+            player.setPosition(position);
+
+        if (getModel().isBeast(position))
+            getModel().hitPlayer();
+
+        else if (getModel().isPowerUp(position)) {
+            int i = getModel().getPowerUps().indexOf(new PowerUp(position));
+            if (getModel().getPowerUps().get(i) instanceof Heart && player.getLife() < 8)
+                player.increaseLife();
+            else {
+                player.becomeImmortal();
+                stats[3]++;
+            }
+            getModel().getPowerUps().remove(i);
         }
     }
+
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
 
         this.action = action;
 
-        if (time - getModel().getPlayer().getImmortalTime() > getModel().getPlayer().getImmortalDuration() * 1000){
-            getModel().getPlayer().backToNormal();
-        }
+        if (time - player.getImmortalTime() > player.getImmortalDuration() * 1000)
+            player.backToNormal();
 
         if (action == GUI.ACTION.UP) movePlayerUp();
         if (action == GUI.ACTION.RIGHT) movePlayerRight();

@@ -61,46 +61,16 @@ public class Position {
     public Position getDownLeft() {return new Position(x - 1,y + 1);}
     public Position getDownRight() {return new Position(x + 1,y + 1);}
 
-    public Position getCloserToPlayer(int quad) {
-        int n = (int) (Math.random() * 3);
-        switch (quad) {
-            case 1:
-                switch (n){
-                    case 0: return getLeft();
-                    case 1: return getUpLeft();
-                    default: return getUp();
-                }
-            case 2:
-                switch (n){
-                    case 0: return getUp();
-                    case 1: return getUpRight();
-                    default: return getRight();
-                }
-            case 3:
-                switch (n){
-                    case 0: return getRight();
-                    case 1: return getDownRight();
-                    default: return getDown();
-                }
-            default:
-                switch (n){
-                    case 0: return getDown();
-                    case 1: return getDownLeft();
-                    default: return getLeft();
-                }
-        }
-    }
-    public int relativeQuad(Position pos2){
-        if (x > pos2.x && y < pos2.y){
-            return 2;
-        }
-        if (x > pos2.x && y > pos2.y){
-            return 3;
-        }
-        if (x < pos2.x && y > pos2.y){
-            return 4;
-        }
-        return 1;
+    public Position getCloser(Position pos2) {
+
+        int offsetX = (int) (Math.random()*2);
+        int offsetY = (int) (Math.random()*2);
+
+        if (x < pos2.x && y > pos2.y) return new Position(x+offsetX,y-offsetY);
+        else if (x < pos2.x && y < pos2.y)  return new Position(x+offsetX,y+offsetY);
+        else if (x > pos2.x && y < pos2.y)  return new Position(x-offsetX,y+offsetY);
+        else return new Position(x-offsetX,y-offsetY);
+
     }
 
     public void goRight() {

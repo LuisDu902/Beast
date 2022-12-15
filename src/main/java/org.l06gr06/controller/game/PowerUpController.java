@@ -17,7 +17,7 @@ public class PowerUpController extends GameController{
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
 
-        if(getModel().getPowerUps().size() != 0) {
+        if(!getModel().getPowerUps().isEmpty()) {
             PowerUp powerUp = getModel().getPowerUps().get(0);
             if (time - powerUp.getCreationTime() > powerUp.getDuration() * 1000)
                 getModel().getPowerUps().remove(powerUp);

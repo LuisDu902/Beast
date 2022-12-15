@@ -82,6 +82,11 @@ public class Arena {
     public boolean isEmpty(Position position) {
         return !isBlock(position) && !isWall(position) && !isPowerUp(position) && !isBeast(position);
     }
+
+    public boolean isPlayer(Position position) {
+        return player.getPosition().equals(position);
+    }
+
     public boolean isBeast(Position position) {
         for (Beast beast : beasts)
             if (beast.getPosition().equals(position))
@@ -137,6 +142,14 @@ public class Arena {
     public void respawnPlayer(){
         Position pos = randomAvailablePosition();
         player.setPosition(pos);
+    }
+
+    public void hitPlayer(){
+        if (player.isImmortal()) player.backToNormal();
+        else {
+            player.decreaseLife();
+            respawnPlayer();
+        }
     }
 
     @Override
