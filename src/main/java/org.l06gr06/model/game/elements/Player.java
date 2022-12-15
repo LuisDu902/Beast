@@ -5,7 +5,7 @@ public class Player extends Element {
     private int life;
     private int phase;
     private long immortalTime;
-    private int immortalDuration;
+    private long immortalDuration;
 
     public Player(int x, int y) {
         super(x, y);
@@ -31,11 +31,12 @@ public class Player extends Element {
     }
     public int getPhase(){return phase;}
 
+    public boolean isImmortal() {return phase == 1;}
     public long getImmortalTime(){
         return immortalTime;
     }
 
-    public int getImmortalDuration(){
+    public long getImmortalDuration(){
         return immortalDuration;
     }
 }
