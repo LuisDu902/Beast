@@ -3,6 +3,8 @@ package org.l06gr06.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.l06gr06.model.game.elements.Element;
+import org.l06gr06.model.game.elements.PowerUp;
 import org.l06gr06.model.menu.MainMenu;
 import org.l06gr06.model.menu.Menu;
 import org.l06gr06.model.menu.ScoreMenu;
@@ -11,11 +13,6 @@ import java.util.Arrays;
 
 public class MenuTest {
     Menu menu;
-    @Test
-    public void mainMenu(){
-        MainMenu mainMenu = new MainMenu();
-        Assertions.assertFalse(mainMenu.isSelectedStart());
-    }
 
     @Test
     public void scoreMenu(){
@@ -24,6 +21,14 @@ public class MenuTest {
         Assertions.assertTrue(scoreMenu.isSelectedPlayAgain());
         Assertions.assertFalse(scoreMenu.isSelectedScoreBoard());
         Assertions.assertFalse(scoreMenu.isSelectedExit());
+        scoreMenu.setCurrentEntry(1);
+        Assertions.assertTrue(scoreMenu.isSelectedScoreBoard());
+        Assertions.assertFalse(scoreMenu.isSelectedPlayAgain());
+        Assertions.assertFalse(scoreMenu.isSelectedExit());
+        scoreMenu.setCurrentEntry(2);
+        Assertions.assertTrue(scoreMenu.isSelectedExit());
+        Assertions.assertFalse(scoreMenu.isSelectedPlayAgain());
+        Assertions.assertFalse(scoreMenu.isSelectedScoreBoard());
     }
 
     @BeforeEach
@@ -67,5 +72,29 @@ public class MenuTest {
     public void isSelectedExit(){
         menu.setCurrentEntry(3);
         Assertions.assertTrue(menu.isSelectedExit());
+    }
+
+    @Test
+    public void notEquals(){
+        Menu menu1 = new Menu(Arrays.asList("Entry 1", "Entry 2","Exit"));
+        Assertions.assertNotEquals(menu1,menu);
+    }
+
+    @Test
+    public void nullMenu(){
+        Menu menu1 = null;
+        Assertions.assertNotEquals(menu1,menu);
+    }
+
+    @Test
+    public void differentClass(){
+        Position position = new Position(1,1);
+        Assertions.assertFalse(menu.equals(position));
+    }
+
+    @Test
+    public void equals(){
+        Menu menu1 = menu;
+        Assertions.assertEquals(menu1,menu);
     }
 }

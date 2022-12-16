@@ -27,7 +27,9 @@ public class ElementsTest {
     public void ImmortalPlayer(){
         Player player = new Player(new Position(20,20));
         player.becomeImmortal();
+        player.setImmortalTime(10);
         Assertions.assertEquals(1, player.getPhase());
+        Assertions.assertEquals(10, player.getImmortalTime());
     }
     @Test
     public void NormalPlayer(){
@@ -40,6 +42,13 @@ public class ElementsTest {
     @Test
     public void Beast(){
         Beast beast = new Beast(new Position(20,20),1);
+        beast.evolve();
+        Assertions.assertEquals(2, beast.getPhase());
+    }
+
+    @Test
+    public void StrongerBeast(){
+        Beast beast = new Beast(new Position(20,20),2);
         beast.evolve();
         Assertions.assertEquals(2, beast.getPhase());
     }

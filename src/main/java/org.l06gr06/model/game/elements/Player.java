@@ -38,6 +38,10 @@ public class Player extends Element {
         return immortalTime;
     }
 
+    public void setImmortalTime(long immortalTime) {
+        this.immortalTime = immortalTime;
+    }
+
     public long getImmortalDuration(){
         return immortalDuration;
     }

@@ -17,7 +17,7 @@ public class MainMenuController extends Controller<MainMenu> {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.SELECT && getModel().isSelectedStart())
+        if (action == GUI.ACTION.SELECT)
             game.setState(new LevelMenuState(new LevelMenu()));
     }
 }
