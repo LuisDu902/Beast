@@ -14,7 +14,7 @@ public class MenuTest {
     @Test
     public void mainMenu(){
         MainMenu mainMenu = new MainMenu();
-        Assertions.assertTrue(mainMenu.isSelected(0));
+        Assertions.assertFalse(mainMenu.isSelectedStart());
     }
 
     @Test
@@ -22,6 +22,8 @@ public class MenuTest {
         long[] stats = {1, 2, 3, 4, 5, 6};
         ScoreMenu scoreMenu = new ScoreMenu(stats);
         Assertions.assertTrue(scoreMenu.isSelectedPlayAgain());
+        Assertions.assertFalse(scoreMenu.isSelectedScoreBoard());
+        Assertions.assertFalse(scoreMenu.isSelectedExit());
     }
 
     @BeforeEach

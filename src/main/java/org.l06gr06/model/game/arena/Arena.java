@@ -19,7 +19,6 @@ public class Arena {
 
     private long timer;
 
-
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;

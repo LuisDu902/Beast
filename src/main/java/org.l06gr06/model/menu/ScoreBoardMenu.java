@@ -10,5 +10,4 @@ public class ScoreBoardMenu extends Menu{
     public boolean isSelectedPlayAgain(){
         return isSelected(0);
     }
-
 }

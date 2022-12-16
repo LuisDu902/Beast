@@ -36,7 +36,7 @@ public class PlayerControllerTest {
 
     @Test
     void rightEmpty() {
-        controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(6, 5), player.getPosition());
     }
@@ -48,7 +48,7 @@ public class PlayerControllerTest {
         Block block2 = new Block(new Position(7,5));
         arena.setBlocks(Arrays.asList(block1, block2));
 
-        controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(6, 5), player.getPosition());
         assertEquals(new Position(8, 5), block1.getPosition());
@@ -66,7 +66,7 @@ public class PlayerControllerTest {
         Wall wall = new Wall(new Position(9,5));
         arena.setWalls(Arrays.asList(wall));
 
-        controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(6, 5), block1.getPosition());
@@ -81,7 +81,7 @@ public class PlayerControllerTest {
         Wall wall = new Wall(new Position(6,5));
         arena.setWalls(Arrays.asList(wall));
 
-        controller.step(null,GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(6, 5), wall.getPosition());
@@ -89,7 +89,7 @@ public class PlayerControllerTest {
 
     @Test
     void leftEmpty() {
-        controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.LEFT,1+arena.getTimer());
 
         assertEquals(new Position(4, 5), player.getPosition());
     }
@@ -101,7 +101,7 @@ public class PlayerControllerTest {
         Block block2 = new Block(new Position(3,5));
         arena.setBlocks(Arrays.asList(block1, block2));
 
-        controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.LEFT,1+arena.getTimer());
 
         assertEquals(new Position(4, 5), player.getPosition());
         assertEquals(new Position(2, 5), block1.getPosition());
@@ -117,7 +117,7 @@ public class PlayerControllerTest {
         Wall wall = new Wall(new Position(3,5));
         arena.setWalls(Arrays.asList(wall));
 
-        controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.LEFT,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(4, 5), block.getPosition());
@@ -129,7 +129,7 @@ public class PlayerControllerTest {
         Wall wall = new Wall(new Position(4,5));
         arena.setWalls(Arrays.asList(wall));
 
-        controller.step(null,GUI.ACTION.LEFT,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.LEFT,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(4, 5), wall.getPosition());
@@ -137,7 +137,7 @@ public class PlayerControllerTest {
 
     @Test
     void upEmpty() {
-        controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.UP,1+arena.getTimer());
 
         assertEquals(new Position(5, 4), player.getPosition());
     }
@@ -149,7 +149,7 @@ public class PlayerControllerTest {
         Block block2 = new Block(new Position(5,3));
         arena.setBlocks(Arrays.asList(block1, block2));
 
-        controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.UP,1+arena.getTimer());
 
         assertEquals(new Position(5, 4), player.getPosition());
         assertEquals(new Position(5, 2), block1.getPosition());
@@ -165,7 +165,7 @@ public class PlayerControllerTest {
         Wall wall = new Wall(new Position(5,3));
         arena.setWalls(Arrays.asList(wall));
 
-        controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.UP,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(5, 4), block.getPosition());
@@ -177,7 +177,7 @@ public class PlayerControllerTest {
         Wall wall = new Wall(new Position(5,4));
         arena.setWalls(Arrays.asList(wall));
 
-        controller.step(null,GUI.ACTION.UP,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.UP,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(5, 4), wall.getPosition());
@@ -185,7 +185,7 @@ public class PlayerControllerTest {
 
     @Test
     void downEmpty() {
-        controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.DOWN,1+arena.getTimer());
 
         assertEquals(new Position(5, 6), player.getPosition());
     }
@@ -197,7 +197,7 @@ public class PlayerControllerTest {
         Block block2 = new Block(new Position(5,7));
         arena.setBlocks(Arrays.asList(block1, block2));
 
-        controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.DOWN,1+arena.getTimer());
 
         assertEquals(new Position(5, 6), player.getPosition());
         assertEquals(new Position(5, 8), block1.getPosition());
@@ -213,7 +213,7 @@ public class PlayerControllerTest {
         Wall wall = new Wall(new Position(5,7));
         arena.setWalls(Arrays.asList(wall));
 
-        controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.DOWN,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(5, 6), block.getPosition());
@@ -225,7 +225,7 @@ public class PlayerControllerTest {
         Wall wall = new Wall(new Position(5,6));
         arena.setWalls(Arrays.asList(wall));
 
-        controller.step(null,GUI.ACTION.DOWN,1+arena.getStartingTime());
+        controller.step(null,GUI.ACTION.DOWN,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(5, 6), wall.getPosition());
@@ -233,7 +233,7 @@ public class PlayerControllerTest {
 
     @Test
     void getStats(){
-        controller.step(null, GUI.ACTION.DOWN,1000+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.DOWN,1000+arena.getTimer());
 
         long[] stats = controller.getStats();
         long nrEggs = stats[0];
@@ -258,7 +258,7 @@ public class PlayerControllerTest {
         Beast beast = new Beast(new Position(6,5),1);
         arena.setBeasts(Arrays.asList(beast));
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(5, player.getLife());
         assertEquals(0, player.getPhase());
@@ -270,7 +270,7 @@ public class PlayerControllerTest {
         Beast beast = new Beast(new Position(6,5),1);
         arena.setBeasts(Arrays.asList(beast));
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(4, player.getLife());
     }
@@ -283,7 +283,7 @@ public class PlayerControllerTest {
         powerUps.add(heart);
         arena.setPowerUps(powerUps);
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(6, player.getLife());
         assertEquals(0, powerUps.size());
@@ -297,7 +297,7 @@ public class PlayerControllerTest {
         powerUps.add(shield);
         arena.setPowerUps(powerUps);
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(1, player.getPhase());
         assertEquals(10, player.getImmortalDuration());
@@ -317,7 +317,7 @@ public class PlayerControllerTest {
         Block block = new Block(new Position(6,5));
         arena.setBlocks(Arrays.asList(block));
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(6, 5), player.getPosition());
         assertEquals(new Position(7, 5), block.getPosition());
@@ -338,7 +338,7 @@ public class PlayerControllerTest {
         Block block = new Block(new Position(6,5));
         arena.setBlocks(Arrays.asList(block));
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(6, 5), player.getPosition());
         assertEquals(new Position(7, 5), block.getPosition());
@@ -359,7 +359,7 @@ public class PlayerControllerTest {
         Block block = new Block(new Position(6,5));
         arena.setBlocks(Arrays.asList(block));
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(6, 5), player.getPosition());
         assertEquals(new Position(7, 5), block.getPosition());
@@ -380,7 +380,7 @@ public class PlayerControllerTest {
         Block block = new Block(new Position(6,5));
         arena.setBlocks(Arrays.asList(block));
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(6, 5), player.getPosition());
         assertEquals(new Position(7, 5), block.getPosition());
@@ -400,7 +400,7 @@ public class PlayerControllerTest {
         Block block2 = new Block(new Position(8,5));
         arena.setBlocks(Arrays.asList(block1,block2));
 
-        controller.step(null, GUI.ACTION.RIGHT,1+arena.getStartingTime());
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(5, 5), player.getPosition());
         assertEquals(new Position(6, 5), block1.getPosition());

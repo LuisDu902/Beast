@@ -59,10 +59,11 @@ public class BeastControllerTest {
 
     @Test
     void hatchEgg() throws IOException{
-        controller.step(null, GUI.ACTION.UP, arena.getStartingTime()+10000);
+        for (int i = 0 ; i <= 500; i++) arena.increaseTimer();
+        controller.step(null, GUI.ACTION.UP, 0);
         Assertions.assertEquals(1, egg.getPhase());
     }
-    /*
+
     @Test
     void speedUp() throws IOException {
         for (int i = 14; i <= 16; i++){
@@ -74,7 +75,8 @@ public class BeastControllerTest {
 
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(450, controller.getSpeed());
-    }*/
+    }
+
     @Test
     void evolve() throws IOException {
         for (int i = 9; i <= 11; i++){
@@ -87,7 +89,7 @@ public class BeastControllerTest {
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(2,beast.getPhase());
     }
-    /*
+
     @Test
     void hitImmortalPLayer() throws IOException {
         arena.setBeasts(Arrays.asList(new Beast(new Position(5,4),1),
@@ -117,5 +119,5 @@ public class BeastControllerTest {
         ));
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(4,player.getLife());
-    }*/
+    }
 }

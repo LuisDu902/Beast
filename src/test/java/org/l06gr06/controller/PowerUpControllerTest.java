@@ -41,8 +41,8 @@ public class PowerUpControllerTest {
     @Test
     void createPowerUp() throws IOException {
         assertEquals(1, arena.getPowerUps().size());
-
-        controller.step(null, GUI.ACTION.RIGHT,5*1000+ arena.getStartingTime());
+        for (int i = 0; i <= 250;i++) arena.increaseTimer();
+        controller.step(null, GUI.ACTION.RIGHT, 0);
 
         assertEquals(2, arena.getPowerUps().size());
 
@@ -52,8 +52,8 @@ public class PowerUpControllerTest {
     void removePowerUp() throws IOException {
         assertEquals(1, arena.getPowerUps().size());
 
-        powerUp.setDuration(2);
-        controller.step(null, GUI.ACTION.RIGHT,2001+ arena.getStartingTime());
+        powerUp.setDuration(1);
+        controller.step(null, GUI.ACTION.RIGHT, 1001+ powerUp.getCreationTime());
 
         assertEquals(0, arena.getPowerUps().size());
 
