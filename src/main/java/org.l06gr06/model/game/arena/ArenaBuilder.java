@@ -13,8 +13,6 @@ public abstract class ArenaBuilder {
         arena.setPowerUps(new ArrayList<>());
         arena.setPlayer(createPlayer());
         arena.setBeasts(createBeasts());
-
-
         return arena;
     }
 

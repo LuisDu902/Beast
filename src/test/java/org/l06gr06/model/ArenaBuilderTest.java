@@ -14,6 +14,8 @@ public class ArenaBuilderTest {
         Assertions.assertEquals(20,arena.getWidth());
         Assertions.assertEquals(20,arena.getHeight());
         Assertions.assertEquals(3 + 5,arena.getBeasts().size());
+        Assertions.assertEquals(5,arena.getPlayer().getLife());
+        Assertions.assertEquals(0,arena.getPowerUps().size());
         Assertions.assertEquals(6,arena.getBlocks().size());
         int expected_walls = (arena.getWidth()*2 + (arena.getHeight())*2 -4) + 10;
         Assertions.assertEquals(expected_walls,arena.getWalls().size());

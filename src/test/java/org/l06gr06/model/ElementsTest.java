@@ -67,14 +67,20 @@ public class ElementsTest {
     }
 
     @Test
-    public void Equal(){
+    public void equal(){
         Element element = new Element(new Position(20,20));
         Assertions.assertEquals(new Element(new Position(20,20)),element);
     }
 
     @Test
+    public void notEqual(){
+        Element element = new Element(new Position(20,20));
+        Element element1 = new Element(new Position(21,20));
+        Assertions.assertNotEquals(element, element1);
+    }
+    @Test
     public void nullElement(){
         Element element = new Element(new Position(20,20));
-        Assertions.assertFalse(element.equals(null));
+        Assertions.assertNotEquals(element, null);
     }
 }
