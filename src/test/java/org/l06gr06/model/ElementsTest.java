@@ -71,4 +71,10 @@ public class ElementsTest {
         Element element = new Element(new Position(20,20));
         Assertions.assertEquals(new Element(new Position(20,20)),element);
     }
+
+    @Test
+    public void nullElement(){
+        Element element = new Element(new Position(20,20));
+        Assertions.assertFalse(element.equals(null));
+    }
 }
