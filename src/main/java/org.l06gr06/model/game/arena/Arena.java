@@ -16,17 +16,24 @@ public class Arena {
     private List<Wall> walls;
     private List<Block> blocks;
     private List<PowerUp> powerUps;
-    private final long startingTime;
+
+    private long timer;
 
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
-        this.startingTime = System.currentTimeMillis();
+        this.timer = 0;
     }
 
-    public long getStartingTime() {
-        return startingTime;
+    public void increaseTimer(){timer++;}
+
+    public long getTimer() {
+        return timer;
+    }
+
+    public void setTimer(long timer) {
+        this.timer = timer;
     }
 
     public int getWidth() {

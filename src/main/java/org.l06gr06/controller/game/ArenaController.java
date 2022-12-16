@@ -23,12 +23,12 @@ public class ArenaController extends GameController {
         this.powerUpController = new PowerUpController(arena);
     }
 
-    private StringBuilder Score(long time){
+    private StringBuilder Score(){
         StringBuilder str = new StringBuilder();
         long[] stats = playerController.getStats();
         long score = stats[0]*75 + stats[1]* 150 + stats[2] * 300 + stats[3] * 50 + stats[4] * 50 - stats[5];
         str.append(score).append(',');
-        long timer = (time - getModel().getStartingTime())/1000;
+        long timer = getModel().getTimer()/50;
         long min = timer/60; long sec = timer%60;
         str.append(String.format("%02d:%02d", min, sec)).append('\n');
         return str;
@@ -42,11 +42,11 @@ public class ArenaController extends GameController {
         writer.close();
     }
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-
+        getModel().increaseTimer();
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0) {
-            saveScore(Score(time));
+            saveScore(Score());
             playerController.getStats()[4] = getModel().getPlayer().getLife();
-            playerController.getStats()[5] = (time - getModel().getStartingTime())/1000;
+            playerController.getStats()[5] = getModel().getTimer()/1000;
             game.setState(new ScoreMenuState(new ScoreMenu(playerController.getStats())));
         }
         else {

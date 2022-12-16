@@ -22,7 +22,7 @@ public class BeastController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if ((time - getModel().getStartingTime())/1000 == hatchingTime) getModel().hatchEggs();
+        if (getModel().getTimer()/50 == hatchingTime) getModel().hatchEggs();
         if (time - lastMovement > speed) {
             for (Beast beast : getModel().getBeasts()){
                 Position playerPos = getModel().getPlayer().getPosition();
