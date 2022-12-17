@@ -14,6 +14,7 @@ import org.l06gr06.model.menu.MainMenu;
 import org.l06gr06.model.menu.ScoreBoardMenu;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.*;
+import org.l06gr06.viewer.MainMenuViewerTest;
 import org.l06gr06.viewer.game.GameViewer;
 import org.l06gr06.viewer.menu.LevelMenuViewer;
 import org.l06gr06.viewer.menu.MainMenuViewer;
@@ -60,13 +61,25 @@ public class StateTest {
         assertEquals(new ScoreMenuController(new ScoreMenu(stats)), scoreMenuState.getController());
         assertEquals(new ScoreMenuViewer(new ScoreMenu(stats)), scoreMenuState.getViewer());
     }
-    /*
+
+    @Test
+    void notEqual() throws IOException {
+        long[] stats = {0};
+        assertNotEquals(new ScoreMenuState(new ScoreMenu(stats)),new MainMenuState(new MainMenu()));
+
+    }
+
     @Test
     void step() throws IOException {
         MainMenuState mainMenuState = new MainMenuState(new MainMenu());
+        MainMenuController mainMenuController = mock(MainMenuController.class);
+        MainMenuViewer mainMenuViewer = mock(MainMenuViewer.class);
+        mainMenuState.setController(mainMenuController);
+        mainMenuState.setViewer(mainMenuViewer);
         GUI gui = mock(GUI.class);
         mainMenuState.step(null,gui,0);
-        Mockito.verify(gui, Mockito.times(1)).(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
+        Mockito.verify(mainMenuViewer, Mockito.times(1)).draw(gui);
+        Mockito.verify(mainMenuController, Mockito.times(1)).step(null,null,0);
 
     }
     /*

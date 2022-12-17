@@ -89,6 +89,7 @@ public class LevelMenuControllerTest {
         State expected = new GameState((new RandomArenaBuilder(50, 20, 6, 50, 7, 5).createArena()));
         State actual = game.getState();
         assertEquals(expected,actual);
+        assertNotEquals(new GameState((new RandomArenaBuilder(30, 20, 6, 50, 7, 5).createArena())),actual);
     }
 
 }

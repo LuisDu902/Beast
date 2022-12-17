@@ -52,6 +52,7 @@ public class ArenaTest {
 
     @Test
     public void isPowerUp(){
+        Assertions.assertEquals(0,arena.getPowerUps().size());
         arena.setPowerUps(Arrays.asList(new PowerUp(new Position(1,1)), new Heart(new Position(2,2)),new Shield(new Position(3,3))));
         Assertions.assertTrue(arena.isPowerUp(new Position(3,3)));
         Assertions.assertTrue(arena.isPowerUp(new Position(2,2)));
@@ -82,4 +83,33 @@ public class ArenaTest {
         }
     }
 
+    @Test
+    public void respawnPlayer(){
+        arena.setPlayer(new Player(new Position(1,1)));
+        Position initialPos = arena.getPlayer().getPosition();
+        arena.respawnPlayer();
+        Position finalPos = arena.getPlayer().getPosition();
+        Assertions.assertNotEquals(finalPos,initialPos);
+    }
+
+    @Test
+    public void hitPlayer(){
+        arena.setPlayer(new Player(new Position(1,1)));
+        Position initialPos = arena.getPlayer().getPosition();
+        arena.hitPlayer();
+        Assertions.assertEquals(4,arena.getPlayer().getLife());
+        Position finalPos = arena.getPlayer().getPosition();
+        Assertions.assertNotEquals(finalPos,initialPos);
+    }
+    @Test
+    public void equals(){
+        Arena arena1 = arena;
+        Assertions.assertEquals(arena,arena1);
+    }
+
+    @Test
+    public void nullArena(){
+        Arena arena1 = null;
+        Assertions.assertNotEquals(arena,arena1);
+    }
 }

@@ -42,8 +42,6 @@ public class MainMenuControllerTest {
 
         State state = actual;
         assertEquals(actual,state);
-        long[] stats = {0};
-        assertNotEquals(new ScoreMenuState(new ScoreMenu(stats)),actual);
         assertNotEquals(actual,null);
     }
 

@@ -20,4 +20,5 @@ public class MainMenuController extends Controller<MainMenu> {
         if (action == GUI.ACTION.SELECT)
             game.setState(new LevelMenuState(new LevelMenu()));
     }
+
 }

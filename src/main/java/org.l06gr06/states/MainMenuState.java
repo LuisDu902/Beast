@@ -15,4 +15,5 @@ public class MainMenuState extends State<MainMenu>{
     public Viewer<MainMenu> getViewer(){return new MainMenuViewer(getModel());}
     @Override
     public Controller<MainMenu> getController(){return new MainMenuController(getModel());}
+
 }

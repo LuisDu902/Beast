@@ -10,8 +10,8 @@ import java.io.IOException;
 public abstract class State<T> {
 
     private final T model;
-    private final Controller<T> controller;
-    private final Viewer<T> viewer;
+    private Controller<T> controller;
+    private Viewer<T> viewer;
 
     public State(T model) throws IOException {
         this.model = model;
@@ -24,6 +24,10 @@ public abstract class State<T> {
     protected abstract Controller<T> getController();
 
     public T getModel(){return model;}
+
+    public void setController(Controller<T> controller) {this.controller = controller;}
+
+    public void setViewer(Viewer<T> viewer) {this.viewer = viewer;}
 
     public void step(Game game, GUI gui, long time) throws IOException{
         GUI.ACTION action = gui.getNextAction();

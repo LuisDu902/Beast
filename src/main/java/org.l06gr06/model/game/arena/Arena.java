@@ -27,7 +27,6 @@ public class Arena {
         this.blocks = new ArrayList<>();
         this.beasts = new ArrayList<>();
         this.powerUps = new ArrayList<>();
-        this.player = new Player(new Position(0,0));
         this.timer = 0;
     }
 
