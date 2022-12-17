@@ -28,7 +28,7 @@ Finally, we have also notoriously improved the project's **graphics** and includ
 
 Here is a short video which demonstrates these features:
 
-![Gameplay](https://user-images.githubusercontent.com/92641892/208264930-eb393fa0-4aea-4608-a9bb-9d97d83c08cf.mov)
+https://user-images.githubusercontent.com/92641892/208264930-eb393fa0-4aea-4608-a9bb-9d97d83c08cf.mov
 
 ### Class Diagram (UML)
 
