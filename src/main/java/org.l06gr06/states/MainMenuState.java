@@ -12,7 +12,7 @@ public class MainMenuState extends State<MainMenu>{
 
     public MainMenuState(MainMenu model) throws IOException {super(model);}
     @Override
-    protected Viewer<MainMenu> getViewer(){return new MainMenuViewer(getModel());}
+    public Viewer<MainMenu> getViewer(){return new MainMenuViewer(getModel());}
     @Override
-    protected Controller<MainMenu> getController(){return new MainMenuController(getModel());}
+    public Controller<MainMenu> getController(){return new MainMenuController(getModel());}
 }

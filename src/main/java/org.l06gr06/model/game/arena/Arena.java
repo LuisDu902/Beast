@@ -4,6 +4,7 @@ package org.l06gr06.model.game.arena;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +23,11 @@ public class Arena {
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
+        this.walls = new ArrayList<>();
+        this.blocks = new ArrayList<>();
+        this.beasts = new ArrayList<>();
+        this.powerUps = new ArrayList<>();
+        this.player = new Player(new Position(0,0));
         this.timer = 0;
     }
 

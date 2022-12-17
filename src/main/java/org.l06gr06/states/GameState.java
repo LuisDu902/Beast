@@ -12,12 +12,12 @@ public class GameState extends State<Arena>{
 
     public GameState(Arena arena) throws IOException {super(arena);}
     @Override
-    protected Viewer<Arena> getViewer() {
+    public Viewer<Arena> getViewer() {
         return new GameViewer(getModel());
     }
 
     @Override
-    protected Controller<Arena> getController() {
+    public Controller<Arena> getController() {
         return new ArenaController(getModel());
     }
 }

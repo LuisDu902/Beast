@@ -2,6 +2,7 @@ package org.l06gr06.viewer;
 
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
+import org.l06gr06.states.State;
 
 import java.io.IOException;
 
@@ -34,5 +35,13 @@ public abstract class Viewer<T> {
             gui.drawWall(new Position(0,y));
             gui.drawWall(new Position(49,y));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Viewer viewer = (Viewer) o;
+        return model.equals(viewer.model);
     }
 }

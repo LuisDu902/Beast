@@ -7,7 +7,9 @@ import org.l06gr06.controller.menu.MainMenuController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.model.menu.MainMenu;
+import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.LevelMenuState;
+import org.l06gr06.states.ScoreMenuState;
 import org.l06gr06.states.State;
 
 import java.awt.*;
@@ -15,7 +17,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MainMenuControllerTest {
     private MainMenuController controller;
@@ -37,6 +39,12 @@ public class MainMenuControllerTest {
         State expected = new LevelMenuState(new LevelMenu());
         State actual = game.getState();
         assertEquals(expected,actual);
+
+        State state = actual;
+        assertEquals(actual,state);
+        long[] stats = {0};
+        assertNotEquals(new ScoreMenuState(new ScoreMenu(stats)),actual);
+        assertNotEquals(actual,null);
     }
 
 }

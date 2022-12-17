@@ -1,5 +1,6 @@
 package org.l06gr06.viewer.game;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
@@ -23,10 +24,6 @@ public class GameViewerTest {
         viewer = new GameViewer(arena);
 
         arena.setTimer(3050);
-        arena.setWalls(new ArrayList<>());
-        arena.setBeasts(new ArrayList<>());
-        arena.setBlocks(new ArrayList<>());
-        arena.setPowerUps(new ArrayList<>());
         arena.setPlayer(new Player(new Position(5,8)));
     }
 
@@ -114,5 +111,18 @@ public class GameViewerTest {
         Mockito.verify(gui, Mockito.times(1)).refresh();
     }
 
+    @Test
+    void equal(){
+        GameViewer gameViewer1 = viewer;
+        Assertions.assertEquals(gameViewer1,viewer);
+        GameViewer gameViewer2 = new GameViewer(new Arena(20,20));
+        Assertions.assertEquals(gameViewer2,viewer);
+    }
+    @Test
+    void notEqual(){
 
+        GameViewer gameViewer2 = new GameViewer(new Arena(19,20));
+        Assertions.assertNotEquals(gameViewer2,viewer);
+        Assertions.assertNotEquals(viewer,null);
+    }
 }
