@@ -11,11 +11,13 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 **Move blocks** - Whenever the player moves, if it goes against a movable block, every linked block in that direction gets pushed.
 
+**Hatching Eggs** - After some time eggs hatch into Beasts.
+
 **Kill Beast** - In order for a Beast to be killed, it has to be smashed between any two blocks or a block and a wall.
 
 **Kill Stronger Beast** - In order for a Stronger Beast to be killed, it necessarily has to be smashed against a wall.
 
-![KillStrongerBeast](https://user-images.githubusercontent.com/92641892/207570538-423dafb5-6b25-4696-b5e1-1476d13f0e1b.gif)
+![KillStrongerBeast](https://user-images.githubusercontent.com/92641892/208264166-8f3c3180-67c7-42ea-ae47-0951dd457334.gif)
 
 **Catch Heart** - Hearts will randomly appear in the map as the game progresses. However, they might be inadvertently smashed between blocks. Whenever a player catches a heart, it gets added to the players lives, up to a maximum of 8.
 
@@ -23,13 +25,17 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 **Catch Power-ups by the Beasts** - In the unfortunate scenario that a Beast catches any of the power-ups, it evolves to a Stronger Beast, unless it is already one. However, as beasts are a unified entity, whenever a shield is caught by a Beast, all Beasts get a speed-up buff.
 
+![Power-ups](https://user-images.githubusercontent.com/92641892/208264560-717d1e73-1222-456d-a960-ba6fd2150833.gif)
+
 **Beasts follow player** - The movement of the Beasts is randomised in the direction of the Player (for instance, if the Player is on the top-left of the Beast it can only move up, left or in that diagonal)
 
 **Respawn** - When the player takes damage it respawns at a random location of the map.
 
-**Hatching Eggs** - After some time eggs hatch into Beasts.
+![Respawn](https://user-images.githubusercontent.com/92641892/208264168-f1737858-491f-4281-a286-22a399640040.gif)
 
 **Scoreboard** - At the end of the game, you’ll be presented a scoreboard. The score is calculated based on the number of remaining lives and the amount of Beast’s killed, as well as the time it took the player to do it.
+
+![ScoreBoard](https://user-images.githubusercontent.com/92641892/208264170-464f511d-c4ad-4a8b-b4db-fd3104b1c1ad.gif)
 
 ### PLANNED FEATURES
 

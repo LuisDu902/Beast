@@ -18,9 +18,17 @@ Here are some screenshots of our project:
 
 ### Implemented Features
 
-For now, we have implemented most of the main features of our project, such as *moving blocks*, *killing Beasts*, and *catching power-ups*, by either the player or the Beasts.
+We have implemented all the features we had planned, such as **moving blocks**, **killing Beasts** (of any kind), and *catching power-ups*, by either the player or the Beasts.
 
-Some other not so perceivable features include the *Beasts following the player* as it moves, and the *respawning* of the player, whenever it loses a life.
+Some other not so perceivable features include the **Beasts following the player** as it moves, and the **respawning** of the player, whenever it loses a life.
+
+Finally, we have also notoriously improved the project's **graphics** and included a **scoreboard**, in order to make the game more competitive.
+
+### Gameplay
+
+Here is a short video which demonstrates these features:
+
+![Gameplay](https://user-images.githubusercontent.com/92641892/208264930-eb393fa0-4aea-4608-a9bb-9d97d83c08cf.mov)
 
 ### Class Diagram (UML)
 
