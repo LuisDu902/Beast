@@ -36,7 +36,6 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                         game.setState(new GameState(new RandomArenaBuilder(50, 20, 2 + 2*i, 150 - 50*i, 1 + 3*i, 15 - 5*i).createArena()));
                         writer.append(str);
                         writer.append(',');
-                        writer.close();
                     }
 
             }

@@ -163,6 +163,6 @@ public class Arena {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Arena arena = (Arena) o;
-        return height == arena.height && width == arena.width;
+        return height == arena.height && width == arena.width  && beasts.size() == arena.beasts.size() && blocks.size() == arena.blocks.size() && walls.size() == arena.walls.size();
     }
 }
