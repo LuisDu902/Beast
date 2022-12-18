@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
 import org.l06gr06.controller.game.ArenaController;
+import org.l06gr06.controller.game.BeastController;
+import org.l06gr06.controller.game.PlayerController;
+import org.l06gr06.controller.game.PowerUpController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
@@ -19,9 +22,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
 public class ArenaControllerTest {
     private ArenaController controller;
+
+    private PlayerController playerController;
+
+    private BeastController beastController;
+
+    private PowerUpController powerUpController;
 
     private Arena arena;
     private Game game;
@@ -38,6 +48,9 @@ public class ArenaControllerTest {
         arena.setBeasts(new ArrayList<>());
 
         controller = new ArenaController(arena);
+        playerController = mock(PlayerController.class);
+        beastController = mock(BeastController.class);
+        powerUpController = mock(PowerUpController.class);
         game = new Game(null);
     }
 
@@ -52,6 +65,15 @@ public class ArenaControllerTest {
 
     @Test
     void lose() throws IOException {
+        controller.step(game, GUI.ACTION.RIGHT,1);
+        long[] stats = {0};
+        State expected = new ScoreMenuState(new ScoreMenu(stats));
+        State actual = game.getState();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void step() throws IOException {
         controller.step(game, GUI.ACTION.RIGHT,1);
     }
 }
