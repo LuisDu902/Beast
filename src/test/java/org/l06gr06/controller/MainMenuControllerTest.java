@@ -3,6 +3,7 @@ package org.l06gr06.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
+import org.l06gr06.controller.menu.LevelMenuController;
 import org.l06gr06.controller.menu.MainMenuController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.menu.LevelMenu;
@@ -43,6 +44,15 @@ public class MainMenuControllerTest {
         State state = actual;
         assertEquals(actual,state);
         assertNotEquals(actual,null);
+    }
+
+    @Test
+    void equals(){
+        MainMenuController mainMenuController = controller;
+        assertEquals(mainMenuController,controller);
+        assertNotEquals(controller,null);
+        MainMenuController mainMenuController1 = new MainMenuController(new MainMenu(Arrays.asList("")));
+        assertNotEquals(controller,mainMenuController1);
     }
 
 }

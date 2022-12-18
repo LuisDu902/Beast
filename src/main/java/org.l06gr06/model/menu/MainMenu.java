@@ -7,4 +7,7 @@ public class MainMenu extends Menu{
     public MainMenu(){
         entries = Arrays.asList("[Press enter to play]");
     }
+    public MainMenu(List<String> entries){
+        this.entries = entries;
+    }
 }

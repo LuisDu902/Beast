@@ -35,7 +35,6 @@ public class StateTest {
         MainMenuState mainMenuState = new MainMenuState(new MainMenu());
         assertEquals(new MainMenuController(new MainMenu()), mainMenuState.getController());
         assertEquals(new MainMenuViewer(new MainMenu()), mainMenuState.getViewer());
-
     }
 
     @Test
@@ -66,7 +65,6 @@ public class StateTest {
     void notEqual() throws IOException {
         long[] stats = {0};
         assertNotEquals(new ScoreMenuState(new ScoreMenu(stats)),new MainMenuState(new MainMenu()));
-
     }
 
     @Test
