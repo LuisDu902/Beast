@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ArenaController extends GameController {
-    private final PlayerController playerController;
-    private final BeastController beastController;
-    private final PowerUpController powerUpController;
+    private PlayerController playerController;
+    private BeastController beastController;
+    private PowerUpController powerUpController;
 
     public ArenaController(Arena arena) {
         super(arena);
@@ -23,16 +23,32 @@ public class ArenaController extends GameController {
         this.powerUpController = new PowerUpController(arena);
     }
 
+    public void setBeastController(BeastController beastController) {
+        this.beastController = beastController;
+    }
 
-    private void saveScore() throws IOException {
+
+
+    public PlayerController getPlayerController() {
+        return playerController;
+    }
+
+    public void setPowerUpController(PowerUpController powerUpController) {
+        this.powerUpController = powerUpController;
+    }
+
+    public void setPlayerController(PlayerController playerController) {
+        this.playerController = playerController;
+    }
+
+    private void saveScore(String file) throws IOException {
         StringBuilder str = new StringBuilder();
         long[] stats = playerController.getStats();
         long score = stats[0]*75 + stats[1]* 150 + stats[2] * 300 + stats[3] * 50 + stats[4] * 50 - stats[5];
-        str.append(score).append(',');
         long timer = getModel().getTimer()/50;
         long min = timer/60; long sec = timer%60;
-        str.append(String.format("%02d:%02d", min, sec)).append('\n');
-        URL resource = ArenaController.class.getResource("/score/score.csv");
+        str.append(score).append(',').append(String.format("%02d:%02d", min, sec)).append('\n');
+        URL resource = ArenaController.class.getResource("/score/" + file);
         assert resource != null;
         BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
         writer.append(str.toString());
@@ -43,7 +59,7 @@ public class ArenaController extends GameController {
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0) {
             playerController.getStats()[4] = getModel().getPlayer().getLife();
             playerController.getStats()[5] = getModel().getTimer()/50;
-            saveScore();
+            saveScore("score.csv");
             game.setState(new ScoreMenuState(new ScoreMenu(playerController.getStats())));
         }
         else {

@@ -24,7 +24,6 @@ public class PowerUpControllerTest {
     void setUp() {
         arena = new Arena(20, 20);
 
-
         List<PowerUp> powerUps = new ArrayList<>();
         powerUp = new PowerUp(new Position(6,5));
         powerUps.add(powerUp);
