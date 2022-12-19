@@ -48,7 +48,7 @@ public class ArenaControllerTest {
     private Game game;
 
     private Method saveScoreMethod() throws NoSuchMethodException {
-        Method method = ArenaController.class.getDeclaredMethod("saveScore",String.class);
+        Method method = ArenaController.class.getDeclaredMethod("saveScore");
         method.setAccessible(true);
         return method;
     }
@@ -115,8 +115,8 @@ public class ArenaControllerTest {
         controller.setPlayerController(playerController);
         long[] stats = {10,10,10,10,10,10};
         when(playerController.getStats()).thenReturn(stats);
-        saveScoreMethod().invoke(controller,"saveScore.csv");
-        URL resource = ScoreBoardMenu.class.getResource("/score/saveScore.csv");
+        saveScoreMethod().invoke(controller);
+        URL resource = ScoreBoardMenu.class.getResource("/score/score.csv");
         assert resource != null;
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
         List<String> lines = new ArrayList<>();
