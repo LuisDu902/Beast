@@ -34,12 +34,13 @@ class PositionTest {
 
     @Test
     void getCloser(){
-        Position position1 = new Position(1,1);
-        Position position2 = new Position(2,2);
-        Position position3 = new Position(2,2);
-        Position pos = position1.getCloser(position2);
-        assertEquals(1,pos.getX(),1);
-        assertEquals(1,pos.getY(),1);
+        Position position = new Position(1,1);
+
+        Position position1 = new Position(2,2);
+        Position pos1 = position.getCloser(position1);
+
+        assertEquals(2,pos1.getX(),1);
+        assertEquals(2,pos1.getY(),1);
     }
     @Property
     void hashCode(@ForAll int x, @ForAll int y){
@@ -52,5 +53,13 @@ class PositionTest {
         assertEquals(position3,position4);
         assertEquals(position3.hashCode(),position4.hashCode());
         assertNotEquals(position3.hashCode(),position1.hashCode());
+    }
+
+    @Test
+    void equals(){
+        Position position = new Position(0,0);
+        Position position1 = position;
+        assertEquals(position,position1);
+        assertNotEquals(position,null);
     }
 }

@@ -88,6 +88,13 @@ public class ArenaControllerTest {
         State expected = new ScoreMenuState(new ScoreMenu(stats));
         State actual = game.getState();
         assertEquals(expected,actual);
+        /*URL resource = ScoreBoardMenu.class.getResource("/score/score.csv");
+        assert resource != null;
+        BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
+        List<String> lines = new ArrayList<>();
+        for (String line; (line = br.readLine()) != null;) lines.add(line);
+        String lastScore = lines.get(lines.size()-1);
+        assertEquals("189,01:01",lastScore);*/
     }
 
     @Test
