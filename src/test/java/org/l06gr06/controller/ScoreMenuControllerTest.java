@@ -64,14 +64,8 @@ public class ScoreMenuControllerTest {
     @Test
     void scoreBoard() throws IOException, URISyntaxException, FontFormatException {
         controller.step(game, GUI.ACTION.RIGHT,1);
-
-        try{
-            controller.step(game, GUI.ACTION.SELECT,1);
-            //State expected = new ScoreBoardMenuState(new ScoreBoardMenu());
-            //assertEquals(expected,game.getState());
-        } catch (Exception e){}
-
+        controller.step(game, GUI.ACTION.SELECT,1);
+        State expected = new ScoreBoardMenuState(new ScoreBoardMenu());
+        assertEquals(expected,game.getState());
     }
-
-
 }

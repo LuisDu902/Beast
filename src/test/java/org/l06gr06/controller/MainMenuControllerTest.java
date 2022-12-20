@@ -10,6 +10,7 @@ import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.model.menu.MainMenu;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.LevelMenuState;
+import org.l06gr06.states.MainMenuState;
 import org.l06gr06.states.ScoreMenuState;
 import org.l06gr06.states.State;
 
@@ -36,9 +37,12 @@ public class MainMenuControllerTest {
 
     @Test
     void changeState() throws IOException{
+        State initial = new MainMenuState(new MainMenu());
+        State actual = game.getState();
+        assertEquals(initial,actual);
         controller.step(game, GUI.ACTION.SELECT,1);
         State expected = new LevelMenuState(new LevelMenu());
-        State actual = game.getState();
+        actual = game.getState();
         assertEquals(expected,actual);
 
         State state = actual;

@@ -31,17 +31,27 @@ class PositionTest {
         assertEquals(x, new Position(x, y).getDown().getX());
         assertEquals(y + 1, new Position(x, y).getDown().getY());
     }
-/*
+
     @Test
     void getCloser(){
         Position position = new Position(1,1);
 
         Position position1 = new Position(2,2);
-        Position pos1 = position.getCloser(position1);
-
+        Position pos1 = position1.getCloser(position);
         assertEquals(2,pos1.getX(),1);
         assertEquals(2,pos1.getY(),1);
-    }*/
+
+        Position position2 = new Position(0,0);
+        Position pos2 = position2.getCloser(position);
+        assertEquals(0,pos2.getX(),1);
+        assertEquals(0,pos2.getY(),1);
+
+        Position position3 = new Position(2,0);
+        Position pos3 = position3.getCloser(position);
+        assertEquals(2,pos3.getX(),1);
+        assertEquals(0,pos3.getY(),1);
+
+    }
     @Property
     void hashCode(@ForAll int x, @ForAll int y){
         Position position1 = new Position(x,y);

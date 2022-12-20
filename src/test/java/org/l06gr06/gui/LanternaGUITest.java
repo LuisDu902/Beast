@@ -89,6 +89,7 @@ public class LanternaGUITest {
 
         Mockito.verify(tg, Mockito.times(1)).setBackgroundColor(new TextColor.RGB(29, 194, 73));
         Mockito.verify(tg, Mockito.times(1)).putString(20, 23, " ");
+        Mockito.verify(tg,Mockito.times(1)).putCSIStyledString(20,23,"");
     }
 
     @Test
