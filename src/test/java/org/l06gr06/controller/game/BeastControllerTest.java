@@ -1,4 +1,4 @@
-package org.l06gr06.controller;
+package org.l06gr06.controller.game;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

@@ -14,6 +14,11 @@ import java.util.Arrays;
 public class MenuTest {
     Menu menu;
 
+    @BeforeEach
+    public void setUp(){
+        menu = new Menu(Arrays.asList("Entry 1", "Entry 2", "Entry 3","Exit"));
+    }
+
     @Test
     public void scoreMenu(){
         long[] stats = {1, 2, 3, 4, 5, 6};
@@ -31,10 +36,6 @@ public class MenuTest {
         Assertions.assertFalse(scoreMenu.isSelectedScoreBoard());
     }
 
-    @BeforeEach
-    public void setUp(){
-        menu = new Menu(Arrays.asList("Entry 1", "Entry 2", "Entry 3","Exit"));
-    }
 
     @Test
     public void nextEntry(){

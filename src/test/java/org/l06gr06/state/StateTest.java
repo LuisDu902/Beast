@@ -1,30 +1,13 @@
-package org.l06gr06;
+package org.l06gr06.state;
 
 import org.junit.jupiter.api.Test;
-import org.l06gr06.controller.game.ArenaController;
-import org.l06gr06.controller.game.GameController;
-import org.l06gr06.controller.menu.LevelMenuController;
 import org.l06gr06.controller.menu.MainMenuController;
-import org.l06gr06.controller.menu.ScoreBoardMenuController;
-import org.l06gr06.controller.menu.ScoreMenuController;
-import org.l06gr06.model.Position;
-import org.l06gr06.model.game.arena.Arena;
-import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.model.menu.MainMenu;
-import org.l06gr06.model.menu.ScoreBoardMenu;
-import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.*;
-import org.l06gr06.viewer.MainMenuViewerTest;
-import org.l06gr06.viewer.game.GameViewer;
-import org.l06gr06.viewer.menu.LevelMenuViewer;
 import org.l06gr06.viewer.menu.MainMenuViewer;
-import org.l06gr06.viewer.menu.ScoreBoardMenuViewer;
-import org.l06gr06.viewer.menu.ScoreMenuViewer;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 import org.l06gr06.gui.GUI;
 import org.mockito.Mockito;
 

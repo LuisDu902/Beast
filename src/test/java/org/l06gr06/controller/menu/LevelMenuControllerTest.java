@@ -1,4 +1,4 @@
-package org.l06gr06.controller;
+package org.l06gr06.controller.menu;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
