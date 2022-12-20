@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class PowerUpControllerTest {
     private PowerUpController controller;
@@ -39,6 +41,7 @@ public class PowerUpControllerTest {
 
     @Test
     void createPowerUp() throws IOException {
+        
         assertEquals(1, arena.getPowerUps().size());
         arena.setTimer(250);
         controller.step(null, GUI.ACTION.RIGHT, 0);

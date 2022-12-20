@@ -99,6 +99,13 @@ public class Arena {
         return player.getPosition().equals(position);
     }
 
+    /*
+    public boolean isElement(List<? extends Element> elements, Position position){
+        for (Element element : elements)
+            if (element.getPosition().equals(position))
+                return true;
+        return false;
+    }*/
     public boolean isBeast(Position position) {
         for (Beast beast : beasts)
             if (beast.getPosition().equals(position))
