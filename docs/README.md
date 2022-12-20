@@ -4,7 +4,7 @@ Your goal in this game is to kill every Beast that appears in your way, in the s
 
 There's the option to choose from three different levels of difficulty but, regardless of your choice, the map will always be randomised. Once you win (or lose) the game, you'll be presented a scoreboard so that you can keep track of your performance improvements.
 
-This project is being Beastly developed by Athos Freitas (up202108792), Luís Du (up202105385) and Sofia Pinto (up202108682) for LP00 2022/2023.
+This project was Beastly developed by Athos Freitas (up202108792), Luís Du (up202105385) and Sofia Pinto (up202108682) for LP00 2022/2023.
 
 
 ### IMPLEMENTED FEATURES
@@ -185,8 +185,8 @@ Here is the [link](../pitest/index.html) to our mutation testing report.
 
 ### SELF-EVALUATION
 
-We believe that, up to the present time, the work was evenly distributed among all group members.
+We believe that, throughout the development of this project, the work was evenly distributed among all group members.
 
-- Athos: 33%
-- Luís: 33%
-- Sofia: 33%
+- Athos Freitas: 33%
+- Luís Du: 33%
+- Sofia Pinto: 33%
