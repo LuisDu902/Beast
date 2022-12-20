@@ -6,8 +6,10 @@ import org.l06gr06.controller.game.PlayerController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
+import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.game.elements.*;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +20,12 @@ public class PlayerControllerTest {
     private PlayerController controller;
     private Player player;
     private Arena arena;
+
+    private Method moveBlockMethod() throws NoSuchMethodException {
+        Method method = PlayerController.class.getDeclaredMethod("moveblock", Position.class);
+        method.setAccessible(true);
+        return method;
+    }
 
     @BeforeEach
     void setUp() {

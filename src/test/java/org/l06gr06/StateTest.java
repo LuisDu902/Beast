@@ -62,6 +62,21 @@ public class StateTest {
     }
 
     @Test
+    void scoreBoardMenuState() {
+    try {
+
+        ScoreBoardMenuState scoreBoardMenuState = new ScoreBoardMenuState(new ScoreBoardMenu());
+        //assertEquals(new ScoreBoardMenuController(new ScoreBoardMenu()), scoreBoardMenuState.getController());
+        //assertEquals(new ScoreBoardMenuViewer(new ScoreBoardMenu(), "score.csv"), scoreBoardMenuState.getViewer());
+        assertNotEquals(scoreBoardMenuState.getViewer(), null);
+        assertNotEquals(scoreBoardMenuState.getController(), null);
+    }
+    catch (Exception e){
+        System.out.println(1);
+    }
+
+    }
+    @Test
     void notEqual() throws IOException {
         long[] stats = {0};
         assertNotEquals(new ScoreMenuState(new ScoreMenu(stats)),new MainMenuState(new MainMenu()));
@@ -80,12 +95,4 @@ public class StateTest {
         Mockito.verify(mainMenuController, Mockito.times(1)).step(null,null,0);
 
     }
-    /*
-    @Test
-    void scoreboardMenuState() throws IOException {
-
-        ScoreBoardMenuState scoreBoardMenuState = new ScoreBoardMenuState(new ScoreBoardMenu());
-        assertEquals(new ScoreBoardMenuController(new ScoreBoardMenu()), scoreBoardMenuState.getController());
-        //assertEquals(new ScoreBoardMenuViewer(new ScoreBoardMenu()), scoreBoardMenuState.getViewer());
-    }*/
 }

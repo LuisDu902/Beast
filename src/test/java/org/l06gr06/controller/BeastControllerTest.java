@@ -17,12 +17,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class BeastControllerTest {
     private BeastController controller;
     private Beast egg;
     private Beast beast;
     private Beast strongerBeast;
-    private List<PowerUp> powerUps;
     private Arena arena;
     private Player player;
 
@@ -35,22 +37,17 @@ public class BeastControllerTest {
 
         beast = new Beast(new Position(10,10),1);
 
-        strongerBeast = new Beast(new Position(15,15),2);
-
         player = new Player(new Position(5,5));
 
-        List<Wall> walls = new ArrayList<>();
-        this.powerUps = new ArrayList<>();
-        List<Beast> beasts = new ArrayList<>();
 
+        List<Beast> beasts = new ArrayList<>();
         beasts.add(egg);
         beasts.add(beast);
-        beasts.add(strongerBeast);
 
         arena.setPlayer(player);
-        arena.setWalls(walls);
+        arena.setWalls(new ArrayList<>());
 
-        arena.setPowerUps(powerUps);
+        arena.setPowerUps(new ArrayList<>());
         arena.setBlocks(new ArrayList<>());
         arena.setBeasts(beasts);
 
@@ -59,19 +56,19 @@ public class BeastControllerTest {
 
     @Test
     void hatchEgg() throws IOException{
-        for (int i = 0 ; i <= 500; i++) arena.increaseTimer();
+        arena.setTimer(500);
         controller.step(null, GUI.ACTION.UP, 0);
         Assertions.assertEquals(1, egg.getPhase());
     }
 
     @Test
     void speedUp() throws IOException {
-        for (int i = 14; i <= 16; i++){
-            powerUps.add(new PowerUp(new Position(i,14)));
-            powerUps.add(new PowerUp(new Position(i,15)));
-            powerUps.add(new PowerUp(new Position(i,16)));
-        }
 
+        Position position = mock(Position.class);
+        beast.setPosition(position);
+
+        arena.getPowerUps().add(new PowerUp(new Position(10,9)));
+        when(position.getCloser(player.getPosition())).thenReturn(new Position(10,9));
 
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(450, controller.getSpeed());
@@ -79,45 +76,57 @@ public class BeastControllerTest {
 
     @Test
     void evolve() throws IOException {
-        for (int i = 9; i <= 11; i++){
-            powerUps.add(new PowerUp(new Position(i,9)));
-            powerUps.add(new PowerUp(new Position(i,10)));
-            powerUps.add(new PowerUp(new Position(i,11)));
-        }
+        Position position = mock(Position.class);
+        beast.setPosition(position);
 
+        arena.getPowerUps().add(new PowerUp(new Position(10,9)));
+        when(position.getCloser(player.getPosition())).thenReturn(new Position(10,9));
 
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(2,beast.getPhase());
+        Assertions.assertEquals(5,player.getLife());
     }
 
     @Test
-    void hitImmortalPLayer() throws IOException {
-        arena.setBeasts(Arrays.asList(new Beast(new Position(5,4),1),
-                new Beast(new Position(5,6),1),
-                new Beast(new Position(4,4),1),
-                new Beast(new Position(4,5),1),
-                new Beast(new Position(4,6),1),
-                new Beast(new Position(6,4),1),
-                new Beast(new Position(6,5),1),
-                new Beast(new Position(6,6),1)
-        ));
+    void hitImmortalPlayer() throws IOException {
+        Position position = mock(Position.class);
+        beast.setPosition(position);
+        player.setPosition(new Position(10,9));
         player.becomeImmortal();
-        controller.step(null,GUI.ACTION.DOWN, controller.getSpeed()+1);
+
+        when(position.getCloser(player.getPosition())).thenReturn(new Position(10,9));
+
+        controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(0,player.getPhase());
     }
-    @Test
-    void hitNormalPLayer() throws IOException {
 
-        arena.setBeasts(Arrays.asList(new Beast(new Position(5,4),1),
-                new Beast(new Position(5,6),1),
-                new Beast(new Position(4,4),1),
-                new Beast(new Position(4,5),1),
-                new Beast(new Position(4,6),1),
-                new Beast(new Position(6,4),1),
-                new Beast(new Position(6,5),1),
-                new Beast(new Position(6,6),1)
-        ));
+    @Test
+    void hitNormalPlayer() throws IOException {
+
+        Position position = mock(Position.class);
+        beast.setPosition(position);
+        player.setPosition(new Position(10,9));
+
+        when(position.getCloser(player.getPosition())).thenReturn(new Position(10,9));
+
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
+        Assertions.assertEquals(0,player.getPhase());
         Assertions.assertEquals(4,player.getLife());
+    }
+
+    @Test
+    void moveBeast() throws IOException {
+        Position position = mock(Position.class);
+        beast.setPosition(position);
+
+        player.setPosition(new Position(10,9));
+
+        when(position.getCloser(player.getPosition())).thenReturn(new Position(10,9));
+
+        controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
+
+        Assertions.assertEquals(new Position(1,1),egg.getPosition());
+        Assertions.assertEquals(new Position(10,9),beast.getPosition());
+
     }
 }
