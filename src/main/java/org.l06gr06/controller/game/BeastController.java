@@ -53,4 +53,8 @@ public class BeastController extends GameController {
     public long getSpeed() {
         return speed;
     }
+
+    public long getLastMovement() {
+        return lastMovement;
+    }
 }

@@ -133,6 +133,13 @@ public class LanternaGUITest {
     }
 
     @Test
+    void nextActionNull() throws IOException {
+
+        when(screen.pollInput()).thenReturn(null);
+        Assertions.assertEquals(GUI.ACTION.NONE, gui.getNextAction());
+    }
+
+    @Test
     void nextActionUp() throws IOException {
         KeyStroke keyStroke = mock(KeyStroke.class);
         when(keyStroke.getKeyType()).thenReturn(KeyType.ArrowUp);

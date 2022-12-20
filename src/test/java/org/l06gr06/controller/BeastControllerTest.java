@@ -24,7 +24,6 @@ public class BeastControllerTest {
     private BeastController controller;
     private Beast egg;
     private Beast beast;
-    private Beast strongerBeast;
     private Arena arena;
     private Player player;
 
@@ -72,6 +71,7 @@ public class BeastControllerTest {
 
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
         Assertions.assertEquals(450, controller.getSpeed());
+        Assertions.assertEquals(501,controller.getLastMovement());
     }
 
     @Test
@@ -114,6 +114,14 @@ public class BeastControllerTest {
         Assertions.assertEquals(4,player.getLife());
     }
 
+    @Test
+    void noMove() throws IOException {
+
+        controller.step(null, GUI.ACTION.UP,500);
+        Assertions.assertEquals(new Position(1,1),egg.getPosition());
+        Assertions.assertEquals(new Position(10,10),beast.getPosition());
+        Assertions.assertEquals(0,controller.getLastMovement());
+    }
     @Test
     void moveBeast() throws IOException {
         Position position = mock(Position.class);

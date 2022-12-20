@@ -18,7 +18,7 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
     private final List<String> lines;
     public ScoreBoardMenuViewer(ScoreBoardMenu menu, String file) throws IOException {
         super(menu);
-        URL resource = ScoreBoardMenu.class.getResource("/score/" + file);
+        URL resource = ScoreBoardMenuViewer.class.getResource("/score/" + file);
         assert resource != null;
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
         lines = readLines(br);

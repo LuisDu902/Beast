@@ -3,6 +3,7 @@ package org.l06gr06.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
+import org.l06gr06.controller.game.ArenaController;
 import org.l06gr06.controller.menu.LevelMenuController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.game.arena.Arena;
@@ -12,8 +13,11 @@ import org.l06gr06.states.GameState;
 import org.l06gr06.states.State;
 
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,6 +67,12 @@ public class LevelMenuControllerTest {
         State expected = new GameState((new RandomArenaBuilder(50, 20, 2, 150, 1, 15).createArena()));
         State actual = game.getState();
         assertEquals(expected,actual);
+
+        URL resource = ArenaController.class.getResource("/score/score.csv");
+        assert resource != null;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
+        writer.append("");
+        writer.close();
     }
     @Test
     void medium() throws IOException, URISyntaxException, FontFormatException {
@@ -76,6 +86,12 @@ public class LevelMenuControllerTest {
         State expected = new GameState((new RandomArenaBuilder(50, 20, 4, 100, 4, 10).createArena()));
         State actual = game.getState();
         assertEquals(expected,actual);
+
+        URL resource = ArenaController.class.getResource("/score/score.csv");
+        assert resource != null;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
+        writer.append("");
+        writer.close();
     }
     @Test
     void difficult() throws IOException, URISyntaxException, FontFormatException {
@@ -90,6 +106,12 @@ public class LevelMenuControllerTest {
         State actual = game.getState();
         assertEquals(expected,actual);
         assertNotEquals(new GameState((new RandomArenaBuilder(30, 20, 6, 50, 7, 5).createArena())),actual);
+
+        URL resource = ArenaController.class.getResource("/score/score.csv");
+        assert resource != null;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
+        writer.append("");
+        writer.close();
     }
 
 }

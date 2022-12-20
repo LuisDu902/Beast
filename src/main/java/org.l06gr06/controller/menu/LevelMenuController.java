@@ -30,10 +30,9 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                 assert resource != null;
                 BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
                 String str = "";
-                for (int i = 0; i<3; i++) {
+                for (int i = 0; i < 3; i++) {
                     str = str + "~";
                     if (getModel().isSelected(i)) {
-                        //str = str.repeat(i+1);
                         game.setState(new GameState(new RandomArenaBuilder(50, 20, 2 + 2 * i, 150 - 50 * i, 1 + 3 * i, 15 - 5 * i).createArena()));
                         writer.append(str);
                         writer.append(',');

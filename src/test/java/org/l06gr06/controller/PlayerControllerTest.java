@@ -200,16 +200,15 @@ public class PlayerControllerTest {
 
     @Test
     void moveDownBlock() {
-
         Block block1 = new Block(new Position(5,6));
-        Block block2 = new Block(new Position(5,7));
+        Block block2 = new Block(new Position(5,8));
         arena.setBlocks(Arrays.asList(block1, block2));
 
         controller.step(null,GUI.ACTION.DOWN,1+arena.getTimer());
 
         assertEquals(new Position(5, 6), player.getPosition());
-        assertEquals(new Position(5, 8), block1.getPosition());
-        assertEquals(new Position(5, 7), block2.getPosition());
+        assertEquals(new Position(5, 7), block1.getPosition());
+        assertEquals(new Position(5, 8), block2.getPosition());
     }
 
     @Test
@@ -248,15 +247,11 @@ public class PlayerControllerTest {
         long nrBeasts = stats[1];
         long nrStrongBeasts = stats[2];
         long nrShields = stats[3];
-        long nrLives = stats[4];
-        long time = stats[5];
 
         assertEquals(0, nrEggs);
         assertEquals(0, nrBeasts);
         assertEquals(0, nrStrongBeasts);
         assertEquals(0, nrShields);
-        assertEquals(0, nrLives);
-        assertEquals(0, time);
     }
 
     @Test
@@ -298,6 +293,42 @@ public class PlayerControllerTest {
     }
 
     @Test
+    void noIncreaseLife(){
+
+        Heart heart = new Heart(new Position(6,5));
+        List<PowerUp> powerUps = new ArrayList<>();
+        powerUps.add(heart);
+        arena.setPowerUps(powerUps);
+
+        player.increaseLife();
+        player.increaseLife();
+        player.increaseLife();
+
+        controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
+
+        assertEquals(8, player.getLife());
+        assertEquals(0, powerUps.size());
+    }
+
+    @Test
+    void immortalTimeout(){
+        player.becomeImmortal();
+        player.setImmortalTime(1);
+
+        controller.step(null, GUI.ACTION.RIGHT,10002);
+        assertEquals(5, player.getLife());
+        assertEquals(0, player.getPhase());
+    }
+
+    @Test
+    void boundaryImmortalTime(){
+        player.becomeImmortal();
+        player.setImmortalTime(1);
+
+        controller.step(null, GUI.ACTION.RIGHT,10001);
+        assertEquals(1, player.getPhase());
+    }
+    @Test
     void becomeImmortal(){
 
         Shield shield = new Shield(new Position(6,5));
@@ -310,6 +341,10 @@ public class PlayerControllerTest {
         assertEquals(1, player.getPhase());
         assertEquals(10, player.getImmortalDuration());
         assertEquals(0, powerUps.size());
+
+        long[] stats = controller.getStats();
+        long nrShields = stats[3];
+        assertEquals(1, nrShields);
     }
 
     @Test
@@ -340,18 +375,21 @@ public class PlayerControllerTest {
         beasts.add(new Beast(new Position(7,5),0));
         arena.setBeasts(beasts);
 
-        Wall wall = new Wall(new Position(8,5));
-        arena.setWalls(Arrays.asList(wall));
-
-        Block block = new Block(new Position(6,5));
-        arena.setBlocks(Arrays.asList(block));
+        Block block1 = new Block(new Position(6,5));
+        Block block2 = new Block(new Position(8,5));
+        arena.setBlocks(Arrays.asList(block1,block2));
 
         controller.step(null, GUI.ACTION.RIGHT,1+arena.getTimer());
 
         assertEquals(new Position(6, 5), player.getPosition());
-        assertEquals(new Position(7, 5), block.getPosition());
-        assertEquals(new Position(8, 5), wall.getPosition());
+        assertEquals(new Position(7, 5), block1.getPosition());
+        assertEquals(new Position(8, 5), block2.getPosition());
         assertEquals(0, beasts.size());
+
+        long[] stats = controller.getStats();
+        long nrEggs = stats[0];
+        assertEquals(1, nrEggs);
+
     }
 
     @Test
@@ -373,6 +411,11 @@ public class PlayerControllerTest {
         assertEquals(new Position(7, 5), block.getPosition());
         assertEquals(new Position(8, 5), wall.getPosition());
         assertEquals(0, beasts.size());
+
+        long[] stats = controller.getStats();
+        long nrBeasts = stats[1];
+        assertEquals(1, nrBeasts);
+
     }
 
     @Test
@@ -394,6 +437,10 @@ public class PlayerControllerTest {
         assertEquals(new Position(7, 5), block.getPosition());
         assertEquals(new Position(8, 5), wall.getPosition());
         assertEquals(0, beasts.size());
+
+        long[] stats = controller.getStats();
+        long nrStrongBeasts = stats[2];
+        assertEquals(1, nrStrongBeasts);
     }
 
     @Test
@@ -414,5 +461,9 @@ public class PlayerControllerTest {
         assertEquals(new Position(6, 5), block1.getPosition());
         assertEquals(new Position(8, 5), block2.getPosition());
         assertEquals(new Position(7, 5), beast.getPosition());
+
+        long[] stats = controller.getStats();
+        long nrStrongBeasts = stats[2];
+        assertEquals(0, nrStrongBeasts);
     }
 }

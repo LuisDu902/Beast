@@ -20,9 +20,7 @@ import org.l06gr06.states.State;
 import org.mockito.Mockito;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
@@ -33,6 +31,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class ArenaControllerTest {
@@ -78,23 +77,28 @@ public class ArenaControllerTest {
     }
 
     @Test
-    void lose() throws IOException {
+    void win() throws IOException {
         arena.setTimer(3050);
 
         controller.step(game, GUI.ACTION.RIGHT,1);
         assertEquals(5,controller.getPlayerController().getStats()[4]);
         assertEquals(61,controller.getPlayerController().getStats()[5]);
-        long[] stats = {0};
-        State expected = new ScoreMenuState(new ScoreMenu(stats));
+
+        State expected = new ScoreMenuState(new ScoreMenu(controller.getPlayerController().getStats()));
         State actual = game.getState();
         assertEquals(expected,actual);
-        /*URL resource = ScoreBoardMenu.class.getResource("/score/score.csv");
+
+        URL resource = ScoreBoardMenu.class.getResource("/score/score.csv");
         assert resource != null;
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
-        List<String> lines = new ArrayList<>();
-        for (String line; (line = br.readLine()) != null;) lines.add(line);
-        String lastScore = lines.get(lines.size()-1);
-        assertEquals("189,01:01",lastScore);*/
+
+        String lastScore = br.readLine();
+        assertEquals("189,01:01",lastScore);
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
+        writer.append("");
+        writer.close();
+
     }
 
     @Test
@@ -123,6 +127,7 @@ public class ArenaControllerTest {
         long[] stats = {10,10,10,10,10,10};
         when(playerController.getStats()).thenReturn(stats);
         saveScoreMethod().invoke(controller);
+
         URL resource = ScoreBoardMenu.class.getResource("/score/score.csv");
         assert resource != null;
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
@@ -130,5 +135,9 @@ public class ArenaControllerTest {
         for (String line; (line = br.readLine()) != null;) lines.add(line);
         String lastScore = lines.get(lines.size()-1);
         assertEquals("6240,01:01",lastScore);
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
+        writer.append("");
+        writer.close();
     }
 }

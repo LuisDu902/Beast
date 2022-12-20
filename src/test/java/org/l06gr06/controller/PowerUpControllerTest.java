@@ -73,7 +73,7 @@ public class PowerUpControllerTest {
     @Test
     void noRemovePowerUp() throws IOException {
         assertEquals(1, arena.getPowerUps().size());
-
+        powerUp.setDuration(1);
         controller.step(null, GUI.ACTION.RIGHT, 1000 + powerUp.getCreationTime());
 
         assertEquals(1, arena.getPowerUps().size());

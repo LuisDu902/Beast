@@ -27,8 +27,6 @@ public class ArenaController extends GameController {
         this.beastController = beastController;
     }
 
-
-
     public PlayerController getPlayerController() {
         return playerController;
     }
