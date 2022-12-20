@@ -127,14 +127,13 @@ public class BeastControllerTest {
         Position position = mock(Position.class);
         beast.setPosition(position);
 
-        player.setPosition(new Position(10,9));
-
         when(position.getCloser(player.getPosition())).thenReturn(new Position(10,9));
 
         controller.step(null,GUI.ACTION.UP, controller.getSpeed()+1);
 
         Assertions.assertEquals(new Position(1,1),egg.getPosition());
         Assertions.assertEquals(new Position(10,9),beast.getPosition());
+        Assertions.assertEquals(5,player.getLife());
 
     }
 }

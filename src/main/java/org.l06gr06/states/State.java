@@ -25,7 +25,7 @@ public abstract class State<T> {
 
     public T getModel(){return model;}
 
-    public void setController(Controller<T> controller) {this.controller = controller;}
+    //public void setController(Controller<T> controller) {this.controller = controller;}
 
     public void setViewer(Viewer<T> viewer) {this.viewer = viewer;}
 
@@ -39,6 +39,6 @@ public abstract class State<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         State state = (State) o;
-        return getModel().equals(state.getModel());
+        return getModel().equals(state.getModel()) && viewer.equals(state.viewer) && controller.equals(state.controller);
     }
 }
