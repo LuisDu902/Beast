@@ -8,8 +8,6 @@ import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.viewer.menu.ScoreMenuViewer;
 import org.mockito.Mockito;
 
-import java.util.Arrays;
-
 public class ScoreMenuViewerTest {
     private GUI gui;
     private Viewer viewer;
@@ -37,7 +35,6 @@ public class ScoreMenuViewerTest {
     @Test
     void drawBeastStats(){
         viewer.drawElements(gui);
-
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(28, 5), "1 x","#FFFFFF");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(28, 6), "2 x","#FFFFFF");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(28, 7), "3 x","#FFFFFF");
@@ -49,7 +46,6 @@ public class ScoreMenuViewerTest {
     @Test
     void drawShieldStat(){
         viewer.drawElements(gui);
-
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(28, 9), "4 x","#FFFFFF");
         Mockito.verify(gui, Mockito.times(1)).drawShield(new Position(32,6));
     }
@@ -57,7 +53,6 @@ public class ScoreMenuViewerTest {
     @Test
     void drawHeartStat(){
         viewer.drawElements(gui);
-
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(28, 11), "5 x","#FFFFFF");
         Mockito.verify(gui, Mockito.times(1)).drawHeart(new Position(32,8));
     }
@@ -65,14 +60,12 @@ public class ScoreMenuViewerTest {
     @Test
     void drawTimer(){
         viewer.drawElements(gui);
-
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(22, 13), "Time: 01:01","#FFFFFF");
     }
 
     @Test
     void drawScore(){
         viewer.drawElements(gui);
-
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(15, 16), "Final Score: 1664","#FFFF66");
     }
 

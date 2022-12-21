@@ -16,7 +16,6 @@ public class ScoreboardMenuViewerTest {
     private ScoreboardMenu scoreBoardMenu;
     @BeforeEach
     void setUp() throws IOException {
-
         scoreBoardMenu = new ScoreboardMenu();
         viewer = new ScoreboardMenuViewer(scoreBoardMenu,"scoreTest.csv");
         gui = Mockito.mock(GUI.class);
@@ -25,10 +24,8 @@ public class ScoreboardMenuViewerTest {
     @Test
     void drawText(){
         viewer.drawElements(gui);
-
         Mockito.verify(gui, Mockito.times(16+scoreBoardMenu.getNumberEntries())).drawText(Mockito.any(Position.class),Mockito.any(String.class),Mockito.any(String.class));
     }
-
     @Test
     void drawFrame(){
         viewer.drawElements(gui);
@@ -53,7 +50,6 @@ public class ScoreboardMenuViewerTest {
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(34, 7), "4:50","#FFFFFF");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(34, 8), "3:49","#FFFFFF");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(34, 9), "23:30","#FFFFFF");
-
     }
     @Test
     void drawEntries(){

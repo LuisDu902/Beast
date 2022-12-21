@@ -6,25 +6,25 @@ import org.l06gr06.model.game.elements.*;
 
 public class ElementsTest {
     @Test
-    public void Element(){
+    public void element(){
         Element element = new Element(new Position(20,20));
         element.setPosition(new Position(21,20));
         Assertions.assertEquals(new Position(21,20), element.getPosition());
     }
     @Test
-    public void IncreaseLife(){
+    public void increaseLife(){
         Player player = new Player(new Position(20,20));
         player.increaseLife();
         Assertions.assertEquals(6, player.getLife());
     }
     @Test
-    public void DecreaseLife(){
+    public void decreaseLife(){
         Player player = new Player(new Position(20,20));
         player.decreaseLife();
         Assertions.assertEquals(4, player.getLife());
     }
     @Test
-    public void ImmortalPlayer(){
+    public void immortalPlayer(){
         Player player = new Player(new Position(20,20));
         player.becomeImmortal();
         player.setImmortalTime(10);
@@ -32,7 +32,7 @@ public class ElementsTest {
         Assertions.assertEquals(10, player.getImmortalTime());
     }
     @Test
-    public void NormalPlayer(){
+    public void normalPlayer(){
         Player player = new Player(new Position(20,20));
         player.becomeImmortal();
         player.backToNormal();
@@ -40,40 +40,47 @@ public class ElementsTest {
     }
 
     @Test
-    public void Beast(){
+    public void eggEvolve(){
+        Beast beast = new Beast(new Position(20,20),0);
+        beast.evolve();
+        Assertions.assertEquals(1, beast.getPhase());
+    }
+
+    @Test
+    public void beastEvolve(){
         Beast beast = new Beast(new Position(20,20),1);
         beast.evolve();
         Assertions.assertEquals(2, beast.getPhase());
     }
 
     @Test
-    public void StrongerBeast(){
+    public void strongerBeastEvolve(){
         Beast beast = new Beast(new Position(20,20),2);
         beast.evolve();
         Assertions.assertEquals(2, beast.getPhase());
     }
 
     @Test
-    public void PowerUpDuration(){
+    public void powerUpDuration(){
         PowerUp powerUp = new PowerUp(new Position(20,20));
         Assertions.assertEquals(10,powerUp.getDuration());
     }
 
     @Test
-    public void PowerUpCreationTime(){
+    public void powerUpCreationTime(){
         long time = System.currentTimeMillis();
         PowerUp powerUp = new PowerUp(new Position(20,20));
         Assertions.assertEquals(time,powerUp.getCreationTime());
     }
 
     @Test
-    public void equal(){
+    public void equals(){
         Element element = new Element(new Position(20,20));
         Assertions.assertEquals(new Element(new Position(20,20)),element);
     }
 
     @Test
-    public void notEqual(){
+    public void notEquals(){
         Element element = new Element(new Position(20,20));
         Element element1 = new Element(new Position(21,20));
         Assertions.assertNotEquals(element, element1);

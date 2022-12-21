@@ -13,54 +13,32 @@ class PositionTest {
         assertEquals(x - 1, new Position(x, y).getLeft().getX());
         assertEquals(y, new Position(x, y).getLeft().getY());
     }
-
     @Property
     void getRight(@ForAll int x, @ForAll int y) {
         assertEquals(x + 1, new Position(x, y).getRight().getX());
         assertEquals(y, new Position(x, y).getRight().getY());
     }
-
     @Property
     void getUp(@ForAll int x, @ForAll int y) {
         assertEquals(x, new Position(x, y).getUp().getX());
         assertEquals(y - 1, new Position(x, y).getUp().getY());
     }
-
     @Property
     void getDown(@ForAll int x, @ForAll int y) {
         assertEquals(x, new Position(x, y).getDown().getX());
         assertEquals(y + 1, new Position(x, y).getDown().getY());
     }
-/*
-    @Test
-    void getCloser(){
-        Position position = new Position(1,1);
-
-        Position position1 = new Position(2,2);
-        Position pos1 = position1.getCloser(position);
-        assertEquals(2,pos1.getX(),1);
-        assertEquals(2,pos1.getY(),1);
-
-        Position position2 = new Position(0,0);
-        Position pos2 = position2.getCloser(position);
-        assertEquals(0,pos2.getX(),1);
-        assertEquals(0,pos2.getY(),1);
-
-        Position position3 = new Position(2,0);
-        Position pos3 = position3.getCloser(position);
-        assertEquals(2,pos3.getX(),1);
-        assertEquals(0,pos3.getY(),1);
-
-    }*/
     @Property
     void hashCode(@ForAll int x, @ForAll int y){
         Position position1 = new Position(x,y);
         Position position2 = new Position(x,y);
-        assertEquals(position1,position2);
-        assertEquals(position1.hashCode(),position2.hashCode());
         Position position3 = new Position(x+1,y+1);
         Position position4 = new Position(x+1,y+1);
+
+        assertEquals(position1,position2);
         assertEquals(position3,position4);
+
+        assertEquals(position1.hashCode(),position2.hashCode());
         assertEquals(position3.hashCode(),position4.hashCode());
         assertNotEquals(position3.hashCode(),position1.hashCode());
     }
@@ -68,8 +46,7 @@ class PositionTest {
     @Test
     void equals(){
         Position position = new Position(0,0);
-        Position position1 = position;
-        assertEquals(position,position1);
+        assertEquals(position, position);
         assertNotEquals(position,null);
     }
 }

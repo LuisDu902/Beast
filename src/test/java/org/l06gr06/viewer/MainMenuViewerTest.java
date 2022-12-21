@@ -8,8 +8,6 @@ import org.l06gr06.model.menu.MainMenu;
 import org.l06gr06.viewer.menu.MainMenuViewer;
 import org.mockito.Mockito;
 
-import java.util.Arrays;
-
 public class MainMenuViewerTest {
     private GUI gui;
     private Viewer viewer;

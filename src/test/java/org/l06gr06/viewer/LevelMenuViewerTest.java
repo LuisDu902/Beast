@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.menu.LevelMenu;
-import org.l06gr06.viewer.Viewer;
 import org.l06gr06.viewer.menu.LevelMenuViewer;
 import org.mockito.Mockito;
 
@@ -53,7 +52,6 @@ public class LevelMenuViewerTest {
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(15, 13), "~","#FFFF66");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(16, 13), "~","#FFFF66");
         Mockito.verify(gui, Mockito.times(1)).drawText(new Position(17, 13), "~","#FFFF66");
-
     }
 }
 

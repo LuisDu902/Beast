@@ -18,7 +18,6 @@ import static org.mockito.Mockito.mock;
 
 public class ScoreboardMenuControllerTest {
     private ScoreboardMenuController controller;
-
     private ScoreboardMenu menu;
     private  Game game;
 

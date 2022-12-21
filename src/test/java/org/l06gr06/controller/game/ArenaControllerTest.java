@@ -1,16 +1,12 @@
 package org.l06gr06.controller.game;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
-import org.l06gr06.controller.game.ArenaController;
-import org.l06gr06.controller.game.BeastController;
-import org.l06gr06.controller.game.PlayerController;
-import org.l06gr06.controller.game.PowerUpController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
-import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.game.elements.Beast;
 import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.menu.ScoreboardMenu;
@@ -27,21 +23,14 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class ArenaControllerTest {
     private ArenaController controller;
-
     private PlayerController playerController;
-
-    private BeastController beastController;
-
-    private PowerUpController powerUpController;
 
     private Arena arena;
     private Game game;
@@ -54,8 +43,6 @@ public class ArenaControllerTest {
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
         arena = new Arena(20, 20);
-
-
         arena.setPlayer(new Player(new Position(5, 5)));
         arena.setWalls(new ArrayList<>());
         arena.setPowerUps(new ArrayList<>());
@@ -94,18 +81,13 @@ public class ArenaControllerTest {
 
         String lastScore = br.readLine();
         assertEquals("189,01:01",lastScore);
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
-        writer.append("");
-        writer.close();
-
     }
 
     @Test
     void step() throws IOException {
         playerController = mock(PlayerController.class);
-        beastController = mock(BeastController.class);
-        powerUpController = mock(PowerUpController.class);
+        BeastController beastController = mock(BeastController.class);
+        PowerUpController powerUpController = mock(PowerUpController.class);
         controller.setPlayerController(playerController);
         controller.setBeastController(beastController);
         controller.setPowerUpController(powerUpController);
@@ -116,7 +98,6 @@ public class ArenaControllerTest {
         verify(playerController,Mockito.times(1)).step(game,GUI.ACTION.RIGHT,1);
         verify(beastController,Mockito.times(1)).step(game,GUI.ACTION.RIGHT,1);
         verify(powerUpController,Mockito.times(1)).step(game,GUI.ACTION.RIGHT,1);
-
     }
 
     @Test
@@ -135,7 +116,11 @@ public class ArenaControllerTest {
         for (String line; (line = br.readLine()) != null;) lines.add(line);
         String lastScore = lines.get(lines.size()-1);
         assertEquals("6240,01:01",lastScore);
+    }
 
+    @AfterEach
+    void cleanUp() throws IOException {
+        URL resource = ScoreboardMenu.class.getResource("/score/score.csv");
         BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
         writer.append("");
         writer.close();

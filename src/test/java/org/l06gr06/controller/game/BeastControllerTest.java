@@ -3,18 +3,15 @@ package org.l06gr06.controller.game;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.l06gr06.controller.game.BeastController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Beast;
 import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.game.elements.PowerUp;
-import org.l06gr06.model.game.elements.Wall;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
@@ -27,17 +24,12 @@ public class BeastControllerTest {
     private Arena arena;
     private Player player;
 
-
     @BeforeEach
     void setUp() {
         arena = new Arena(20, 20);
-
         egg = new Beast(new Position(1,1),0);
-
         beast = new Beast(new Position(10,10),1);
-
         player = new Player(new Position(5,5));
-
 
         List<Beast> beasts = new ArrayList<>();
         beasts.add(egg);
@@ -45,7 +37,6 @@ public class BeastControllerTest {
 
         arena.setPlayer(player);
         arena.setWalls(new ArrayList<>());
-
         arena.setPowerUps(new ArrayList<>());
         arena.setBlocks(new ArrayList<>());
         arena.setBeasts(beasts);
@@ -62,7 +53,6 @@ public class BeastControllerTest {
 
     @Test
     void speedUp() throws IOException {
-
         Position position = mock(Position.class);
         beast.setPosition(position);
 
@@ -102,7 +92,6 @@ public class BeastControllerTest {
 
     @Test
     void hitNormalPlayer() throws IOException {
-
         Position position = mock(Position.class);
         beast.setPosition(position);
         player.setPosition(new Position(10,9));
@@ -116,7 +105,6 @@ public class BeastControllerTest {
 
     @Test
     void noMove() throws IOException {
-
         controller.step(null, GUI.ACTION.UP,500);
         Assertions.assertEquals(new Position(1,1),egg.getPosition());
         Assertions.assertEquals(new Position(10,10),beast.getPosition());
@@ -134,6 +122,5 @@ public class BeastControllerTest {
         Assertions.assertEquals(new Position(1,1),egg.getPosition());
         Assertions.assertEquals(new Position(10,9),beast.getPosition());
         Assertions.assertEquals(5,player.getLife());
-
     }
 }

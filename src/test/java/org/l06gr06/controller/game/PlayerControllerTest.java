@@ -2,11 +2,9 @@ package org.l06gr06.controller.game;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.l06gr06.controller.game.PlayerController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
-import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.game.elements.*;
 
 import java.lang.reflect.Method;
@@ -21,11 +19,6 @@ public class PlayerControllerTest {
     private Player player;
     private Arena arena;
 
-    private Method moveBlockMethod() throws NoSuchMethodException {
-        Method method = PlayerController.class.getDeclaredMethod("moveblock", Position.class);
-        method.setAccessible(true);
-        return method;
-    }
 
     @BeforeEach
     void setUp() {
@@ -45,13 +38,11 @@ public class PlayerControllerTest {
     @Test
     void rightEmpty() {
         controller.step(null,GUI.ACTION.RIGHT,1+arena.getTimer());
-
         assertEquals(new Position(6, 5), player.getPosition());
     }
 
     @Test
     void moveRightBlock() {
-
         Block block1 = new Block(new Position(6,5));
         Block block2 = new Block(new Position(7,5));
         arena.setBlocks(Arrays.asList(block1, block2));
@@ -65,7 +56,6 @@ public class PlayerControllerTest {
 
     @Test
     void noMoveRightBlock() {
-
         Block block1 = new Block(new Position(6,5));
         Block block2 = new Block(new Position(7,5));
         Block block3 = new Block(new Position(8,5));
@@ -85,7 +75,6 @@ public class PlayerControllerTest {
 
     @Test
     void rightWall() {
-
         Wall wall = new Wall(new Position(6,5));
         arena.setWalls(Arrays.asList(wall));
 
@@ -98,13 +87,11 @@ public class PlayerControllerTest {
     @Test
     void leftEmpty() {
         controller.step(null,GUI.ACTION.LEFT,1+arena.getTimer());
-
         assertEquals(new Position(4, 5), player.getPosition());
     }
 
     @Test
     void moveLeftBlock() {
-
         Block block1 = new Block(new Position(4,5));
         Block block2 = new Block(new Position(3,5));
         arena.setBlocks(Arrays.asList(block1, block2));
@@ -118,7 +105,6 @@ public class PlayerControllerTest {
 
     @Test
     void noMoveLeftBlock() {
-
         Block block = new Block(new Position(4,5));
         arena.setBlocks(Arrays.asList(block));
 
@@ -146,13 +132,11 @@ public class PlayerControllerTest {
     @Test
     void upEmpty() {
         controller.step(null,GUI.ACTION.UP,1+arena.getTimer());
-
         assertEquals(new Position(5, 4), player.getPosition());
     }
 
     @Test
     void moveUpBlock() {
-
         Block block1 = new Block(new Position(5,4));
         Block block2 = new Block(new Position(5,3));
         arena.setBlocks(Arrays.asList(block1, block2));
@@ -166,7 +150,6 @@ public class PlayerControllerTest {
 
     @Test
     void noMoveUpBlock() {
-
         Block block = new Block(new Position(5,4));
         arena.setBlocks(Arrays.asList(block));
 
@@ -194,7 +177,6 @@ public class PlayerControllerTest {
     @Test
     void downEmpty() {
         controller.step(null,GUI.ACTION.DOWN,1+arena.getTimer());
-
         assertEquals(new Position(5, 6), player.getPosition());
     }
 
@@ -213,7 +195,6 @@ public class PlayerControllerTest {
 
     @Test
     void noMoveDownBlock() {
-
         Block block = new Block(new Position(5,6));
         arena.setBlocks(Arrays.asList(block));
 
@@ -269,7 +250,6 @@ public class PlayerControllerTest {
 
     @Test
     void decreaseLife(){
-
         Beast beast = new Beast(new Position(6,5),1);
         arena.setBeasts(Arrays.asList(beast));
 
@@ -280,7 +260,6 @@ public class PlayerControllerTest {
 
     @Test
     void increaseLife(){
-
         Heart heart = new Heart(new Position(6,5));
         List<PowerUp> powerUps = new ArrayList<>();
         powerUps.add(heart);
@@ -294,7 +273,6 @@ public class PlayerControllerTest {
 
     @Test
     void noIncreaseLife(){
-
         Heart heart = new Heart(new Position(6,5));
         List<PowerUp> powerUps = new ArrayList<>();
         powerUps.add(heart);
@@ -330,7 +308,6 @@ public class PlayerControllerTest {
     }
     @Test
     void becomeImmortal(){
-
         Shield shield = new Shield(new Position(6,5));
         List<PowerUp> powerUps = new ArrayList<>();
         powerUps.add(shield);
@@ -349,7 +326,6 @@ public class PlayerControllerTest {
 
     @Test
     void smashPowerUp(){
-
         List<PowerUp> powerUps = new ArrayList<>();
         powerUps.add(new PowerUp(new Position(7,5)));
         arena.setPowerUps(powerUps);
@@ -370,7 +346,6 @@ public class PlayerControllerTest {
 
     @Test
     void smashEgg(){
-
         List<Beast> beasts = new ArrayList<>();
         beasts.add(new Beast(new Position(7,5),0));
         arena.setBeasts(beasts);
@@ -389,12 +364,10 @@ public class PlayerControllerTest {
         long[] stats = controller.getStats();
         long nrEggs = stats[0];
         assertEquals(1, nrEggs);
-
     }
 
     @Test
     void smashBeast(){
-
         List<Beast> beasts = new ArrayList<>();
         beasts.add(new Beast(new Position(7,5),1));
         arena.setBeasts(beasts);
@@ -415,12 +388,10 @@ public class PlayerControllerTest {
         long[] stats = controller.getStats();
         long nrBeasts = stats[1];
         assertEquals(1, nrBeasts);
-
     }
 
     @Test
     void smashStrongerBeast(){
-
         List<Beast> beasts = new ArrayList<>();
         beasts.add(new Beast(new Position(7,5),2));
         arena.setBeasts(beasts);
@@ -445,7 +416,6 @@ public class PlayerControllerTest {
 
     @Test
     void cantSmashStrongerBeast(){
-
         List<Beast> beasts = new ArrayList<>();
         Beast beast = new Beast(new Position(7,5),2);
         beasts.add(beast);

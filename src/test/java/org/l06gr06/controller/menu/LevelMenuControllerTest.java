@@ -1,12 +1,11 @@
 package org.l06gr06.controller.menu;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
 import org.l06gr06.controller.game.ArenaController;
-import org.l06gr06.controller.menu.LevelMenuController;
 import org.l06gr06.gui.GUI;
-import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.menu.LevelMenu;
 import org.l06gr06.states.GameState;
@@ -18,7 +17,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,7 +48,7 @@ public class LevelMenuControllerTest {
     }
 
     @Test
-    void exit() throws IOException, URISyntaxException, FontFormatException {
+    void exit() throws IOException {
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.DOWN,1);
@@ -58,7 +56,7 @@ public class LevelMenuControllerTest {
         assertNull(game.getState());
     }
     @Test
-    void easy() throws IOException, URISyntaxException, FontFormatException {
+    void easy() throws IOException {
         controller.step(game, GUI.ACTION.SELECT,1);
         assertTrue(menu.isSelected(0));
         assertFalse(menu.isSelected(1));
@@ -67,15 +65,9 @@ public class LevelMenuControllerTest {
         State expected = new GameState((new RandomArenaBuilder(50, 20, 2, 150, 1, 15).createArena()));
         State actual = game.getState();
         assertEquals(expected,actual);
-
-        URL resource = ArenaController.class.getResource("/score/score.csv");
-        assert resource != null;
-        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
-        writer.append("");
-        writer.close();
     }
     @Test
-    void medium() throws IOException, URISyntaxException, FontFormatException {
+    void medium() throws IOException {
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.SELECT,1);
         assertFalse(menu.isSelected(0));
@@ -86,15 +78,9 @@ public class LevelMenuControllerTest {
         State expected = new GameState((new RandomArenaBuilder(50, 20, 4, 100, 4, 10).createArena()));
         State actual = game.getState();
         assertEquals(expected,actual);
-
-        URL resource = ArenaController.class.getResource("/score/score.csv");
-        assert resource != null;
-        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
-        writer.append("");
-        writer.close();
     }
     @Test
-    void difficult() throws IOException, URISyntaxException, FontFormatException {
+    void difficult() throws IOException {
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.DOWN,1);
         controller.step(game, GUI.ACTION.SELECT,1);
@@ -106,7 +92,10 @@ public class LevelMenuControllerTest {
         State actual = game.getState();
         assertEquals(expected,actual);
         assertNotEquals(new GameState((new RandomArenaBuilder(30, 20, 6, 50, 7, 5).createArena())),actual);
+    }
 
+    @AfterEach
+    void cleanUp() throws IOException {
         URL resource = ArenaController.class.getResource("/score/score.csv");
         assert resource != null;
         BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));

@@ -1,15 +1,10 @@
 package org.l06gr06.model;
 
-
-import net.bytebuddy.description.method.ParameterList;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.model.game.arena.Arena;
-import org.l06gr06.model.game.arena.ArenaBuilder;
 import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.game.elements.Beast;
 import org.l06gr06.model.game.elements.Block;
-import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.game.elements.Wall;
 
 import java.lang.reflect.InvocationTargetException;
@@ -48,7 +43,6 @@ public class ArenaBuilderTest {
     @Test
     void isAvailable() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         RandomArenaBuilder arenaBuilder = new RandomArenaBuilder(20,20,3,6, 5,10);
-
         arenaBuilder.setOccupied(Arrays.asList(new Position(0,0),new Position(1,1)));
         assertFalse((Boolean) isAvailableMethod().invoke(arenaBuilder,new Position(0,0)));
         assertTrue((Boolean) isAvailableMethod().invoke(arenaBuilder,new Position(2,2)));
@@ -124,7 +118,6 @@ public class ArenaBuilderTest {
         assertEquals(new Position(0,3),arenaBuilder.getOccupied().get(14));
         assertEquals(new Position(4,3),arenaBuilder.getOccupied().get(15));
         assertEquals(16, arenaBuilder.getOccupied().size());
-
     }
 
     @Test

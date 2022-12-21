@@ -2,23 +2,17 @@ package org.l06gr06.controller.game;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.l06gr06.controller.game.PowerUpController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.game.elements.PowerUp;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class PowerUpControllerTest {
     private PowerUpController controller;
@@ -34,8 +28,8 @@ public class PowerUpControllerTest {
         powerUps.add(powerUp);
 
         arena.setPlayer(new Player(new Position(5, 5)));
-        arena.setWalls(new ArrayList<>());
         arena.setPowerUps(powerUps);
+        arena.setWalls(new ArrayList<>());
         arena.setBlocks(new ArrayList<>());
         arena.setBeasts(new ArrayList<>());
 
@@ -44,26 +38,23 @@ public class PowerUpControllerTest {
 
     @Test
     void createPowerUp() throws IOException {
-
         assertEquals(1, arena.getPowerUps().size());
+
         arena.setTimer(250);
         controller.step(null, GUI.ACTION.RIGHT, 0);
-
         assertEquals(2, arena.getPowerUps().size());
     }
     @Test
     void createTwoPowerUps() throws IOException {
         assertEquals(1, arena.getPowerUps().size());
+
         arena.setTimer(250);
         controller.step(null, GUI.ACTION.RIGHT, 0);
-
         assertEquals(2, arena.getPowerUps().size());
 
         arena.setTimer(500);
         controller.step(null, GUI.ACTION.RIGHT, 0);
-
         assertEquals(3, arena.getPowerUps().size());
-
     }
 
     @Test
@@ -74,15 +65,14 @@ public class PowerUpControllerTest {
         controller.step(null, GUI.ACTION.RIGHT, 1001+ powerUp.getCreationTime());
 
         assertEquals(0, arena.getPowerUps().size());
-
     }
     @Test
     void noRemovePowerUp() throws IOException {
         assertEquals(1, arena.getPowerUps().size());
+
         powerUp.setDuration(1);
         controller.step(null, GUI.ACTION.RIGHT, 1000 + powerUp.getCreationTime());
 
         assertEquals(1, arena.getPowerUps().size());
-
     }
 }

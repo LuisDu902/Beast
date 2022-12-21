@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ArenaTest {
-    Arena arena;
+    private Arena arena;
 
     @BeforeEach
     public void setArena(){
         arena = new Arena(10,10);
     }
-
 
     @Test
     public void isEgg(){
@@ -66,21 +65,17 @@ public class ArenaTest {
         arena.setWalls(new ArrayList<>());
         arena.setBlocks(new ArrayList<>());
         arena.setPowerUps(new ArrayList<>());
-        for (int i = 0; i <= 10; i++){
-            for (int j = 0; j <= 10; j++){
+        for (int i = 0; i <= 10; i++)
+            for (int j = 0; j <= 10; j++)
                 Assertions.assertTrue(arena.isEmpty(new Position(i,j)));
-            }
-        }
     }
 
     @Test
     public void hatchEggs(){
-        arena.setBeasts(Arrays.asList(new Beast(new Position(1,1) ,0), new Beast(new Position(2,2),1),
-                new Beast(new Position(3,3),0), new Beast(new Position(2,4),1)));
+        arena.setBeasts(Arrays.asList(new Beast(new Position(1,1) ,0), new Beast(new Position(2,2),1), new Beast(new Position(3,3),0), new Beast(new Position(2,4),1)));
         arena.hatchEggs();
-        for (Beast beast : arena.getBeasts()){
+        for (Beast beast : arena.getBeasts())
             Assertions.assertTrue(beast.getPhase() != 0);
-        }
     }
 
     @Test
@@ -109,7 +104,6 @@ public class ArenaTest {
 
     @Test
     public void nullArena(){
-        Arena arena1 = null;
-        Assertions.assertNotEquals(arena,arena1);
+        Assertions.assertNotEquals(arena, null);
     }
 }

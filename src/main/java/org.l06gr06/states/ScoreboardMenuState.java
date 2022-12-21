@@ -13,16 +13,8 @@ public class ScoreboardMenuState extends State<ScoreboardMenu>{
     public ScoreboardMenuState(ScoreboardMenu model) throws IOException {
         super(model);
     }
-    /*
-    public ScoreboardMenuState(ScoreboardMenu model, ScoreboardMenuViewer viewer, ScoreboardMenuController controller) throws IOException {
-        super(model,viewer,controller);
-    }
-
-    public void setFile(String s) {this.file = s;}*/
-
     @Override
-    public Viewer<ScoreboardMenu> getViewer() throws IOException {
-        return new ScoreboardMenuViewer(getModel(),"score.csv");}
+    public Viewer<ScoreboardMenu> getViewer() throws IOException {return new ScoreboardMenuViewer(getModel(),"score.csv");}
 
     @Override
     public Controller<ScoreboardMenu> getController(){return new ScoreboardMenuController(getModel());}
