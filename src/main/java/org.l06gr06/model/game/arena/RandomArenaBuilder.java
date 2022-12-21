@@ -15,7 +15,7 @@ public class RandomArenaBuilder extends ArenaBuilder{
     private final int numberOfBlocks;
     private final int numberOfEggs;
     private final int numberOfWalls;
-    private final List<Position> occupied = new ArrayList<>();
+    private List<Position> occupied = new ArrayList<>();
 
     public RandomArenaBuilder(int width, int height, int numberOfBeasts, int numberOfBlocks,  int numberOfEggs, int numberOfWalls) {
         this.rng = new Random();
@@ -41,6 +41,10 @@ public class RandomArenaBuilder extends ArenaBuilder{
         return true;
     }
 
+    public void setOccupied(List<Position> occupied) {
+        this.occupied = occupied;
+    }
+
     private Position randomAvailablePosition(){
         int x, y;
         do {
@@ -61,7 +65,6 @@ public class RandomArenaBuilder extends ArenaBuilder{
             else beasts.add(new Beast(pos, 0));
             occupied.add(pos);
         }
-
         return beasts;
     }
 
@@ -112,4 +115,9 @@ public class RandomArenaBuilder extends ArenaBuilder{
         }
         return blocks;
     }
+
+    public List<Position> getOccupied() {
+        return occupied;
+    }
+
 }

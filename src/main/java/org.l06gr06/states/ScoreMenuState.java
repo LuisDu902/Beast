@@ -12,7 +12,7 @@ public class ScoreMenuState extends State<ScoreMenu>{
 
     public ScoreMenuState(ScoreMenu model) throws IOException {super(model);}
     @Override
-    protected Viewer<ScoreMenu> getViewer() {return new ScoreMenuViewer(getModel());}
+    public Viewer<ScoreMenu> getViewer() {return new ScoreMenuViewer(getModel());}
     @Override
-    protected Controller<ScoreMenu> getController(){return new ScoreMenuController(getModel());}
+    public Controller<ScoreMenu> getController(){return new ScoreMenuController(getModel());}
 }

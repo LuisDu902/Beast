@@ -12,7 +12,7 @@ public class LevelMenuState extends State<LevelMenu>{
 
     public LevelMenuState(LevelMenu model) throws IOException {super(model);}
     @Override
-    protected Viewer<LevelMenu> getViewer(){return new LevelMenuViewer(getModel());}
+    public Viewer<LevelMenu> getViewer(){return new LevelMenuViewer(getModel());}
     @Override
-    protected Controller<LevelMenu> getController(){return new LevelMenuController(getModel());}
+    public Controller<LevelMenu> getController(){return new LevelMenuController(getModel());}
 }

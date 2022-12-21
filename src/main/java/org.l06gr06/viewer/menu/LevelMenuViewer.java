@@ -25,6 +25,6 @@ public class LevelMenuViewer extends Viewer<LevelMenu> {
                 gui.drawText( new Position(15+j, 13 - 2 * i), "~", "#FFFF66");
         }
 
-        gui.drawText(new Position(20,17),getModel().getEntry(getModel().getNumberEntries()-1),getModel().isSelected(getModel().getNumberEntries()-1) ? "#FFFF66" : "#FFFFFF");
+        gui.drawText(new Position(20,17),getModel().getEntry(getModel().getNumberEntries()-1),getModel().isSelectedExit() ? "#FFFF66" : "#FFFFFF");
     }
 }

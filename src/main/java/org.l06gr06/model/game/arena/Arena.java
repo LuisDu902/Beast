@@ -4,6 +4,7 @@ package org.l06gr06.model.game.arena;
 import org.l06gr06.model.Position;
 import org.l06gr06.model.game.elements.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,17 +17,28 @@ public class Arena {
     private List<Wall> walls;
     private List<Block> blocks;
     private List<PowerUp> powerUps;
-    private final long startingTime;
+
+    private long timer;
 
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
-        this.startingTime = System.currentTimeMillis();
+        this.walls = new ArrayList<>();
+        this.blocks = new ArrayList<>();
+        this.beasts = new ArrayList<>();
+        this.powerUps = new ArrayList<>();
+        this.timer = 0;
     }
 
-    public long getStartingTime() {
-        return startingTime;
+    public void increaseTimer(){timer++;}
+
+    public long getTimer() {
+        return timer;
+    }
+
+    public void setTimer(long timer) {
+        this.timer = timer;
     }
 
     public int getWidth() {
@@ -87,6 +99,13 @@ public class Arena {
         return player.getPosition().equals(position);
     }
 
+    /*
+    public boolean isElement(List<? extends Element> elements, Position position){
+        for (Element element : elements)
+            if (element.getPosition().equals(position))
+                return true;
+        return false;
+    }*/
     public boolean isBeast(Position position) {
         for (Beast beast : beasts)
             if (beast.getPosition().equals(position))
@@ -157,6 +176,6 @@ public class Arena {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Arena arena = (Arena) o;
-        return height == arena.height && width == arena.width;
+        return height == arena.height && width == arena.width  && beasts.size() == arena.beasts.size() && blocks.size() == arena.blocks.size() && walls.size() == arena.walls.size();
     }
 }

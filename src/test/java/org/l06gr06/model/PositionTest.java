@@ -5,6 +5,7 @@ import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class PositionTest {
     @Property
@@ -12,72 +13,40 @@ class PositionTest {
         assertEquals(x - 1, new Position(x, y).getLeft().getX());
         assertEquals(y, new Position(x, y).getLeft().getY());
     }
-
     @Property
     void getRight(@ForAll int x, @ForAll int y) {
         assertEquals(x + 1, new Position(x, y).getRight().getX());
         assertEquals(y, new Position(x, y).getRight().getY());
     }
-
     @Property
     void getUp(@ForAll int x, @ForAll int y) {
         assertEquals(x, new Position(x, y).getUp().getX());
         assertEquals(y - 1, new Position(x, y).getUp().getY());
     }
-
     @Property
     void getDown(@ForAll int x, @ForAll int y) {
         assertEquals(x, new Position(x, y).getDown().getX());
         assertEquals(y + 1, new Position(x, y).getDown().getY());
     }
+    @Property
+    void hashCode(@ForAll int x, @ForAll int y){
+        Position position1 = new Position(x,y);
+        Position position2 = new Position(x,y);
+        Position position3 = new Position(x+1,y+1);
+        Position position4 = new Position(x+1,y+1);
 
-    @Property
-    void getDownLeft(@ForAll int x, @ForAll int y) {
-        assertEquals(x - 1, new Position(x, y).getDownLeft().getX());
-        assertEquals(y + 1, new Position(x, y).getDownLeft().getY());
-    }
-    @Property
-    void getDownRight(@ForAll int x, @ForAll int y) {
-        assertEquals(x + 1, new Position(x, y).getDownRight().getX());
-        assertEquals(y + 1, new Position(x, y).getDownRight().getY());
-    }
-    @Property
-    void getUpLeft(@ForAll int x, @ForAll int y) {
-        assertEquals(x - 1, new Position(x, y).getUpLeft().getX());
-        assertEquals(y - 1, new Position(x, y).getUpLeft().getY());
-    }
-    @Property
-    void getUpRight(@ForAll int x, @ForAll int y) {
-        assertEquals(x + 1, new Position(x, y).getUpRight().getX());
-        assertEquals(y - 1, new Position(x, y).getUpRight().getY());
-    }
-    @Property
-    void goLeft(@ForAll int x, @ForAll int y) {
-        Position position = new Position(x,y);
-        position.goLeft();
-        assertEquals(x-1, position.getX());
-        assertEquals(y, position.getY());
-    }
-    @Property
-    void goRight(@ForAll int x, @ForAll int y) {
-        Position position = new Position(x,y);
-        position.goRight();
-        assertEquals(x+1, position.getX());
-        assertEquals(y, position.getY());
-    }
-    @Property
-    void goUp(@ForAll int x, @ForAll int y) {
-        Position position = new Position(x,y);
-        position.goUp();
-        assertEquals(x, position.getX());
-        assertEquals(y-1, position.getY());
-    }
-    @Property
-    void goDown(@ForAll int x, @ForAll int y) {
-        Position position = new Position(x,y);
-        position.goDown();
-        assertEquals(x, position.getX());
-        assertEquals(y+1, position.getY());
+        assertEquals(position1,position2);
+        assertEquals(position3,position4);
+
+        assertEquals(position1.hashCode(),position2.hashCode());
+        assertEquals(position3.hashCode(),position4.hashCode());
+        assertNotEquals(position3.hashCode(),position1.hashCode());
     }
 
+    @Test
+    void equals(){
+        Position position = new Position(0,0);
+        assertEquals(position, position);
+        assertNotEquals(position,null);
+    }
 }

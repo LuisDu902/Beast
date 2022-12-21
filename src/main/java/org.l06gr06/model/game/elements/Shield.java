@@ -6,4 +6,5 @@ public class Shield extends PowerUp{
     public Shield(Position position) {
         super(position);
     }
+
 }

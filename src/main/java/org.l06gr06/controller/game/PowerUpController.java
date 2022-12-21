@@ -23,7 +23,7 @@ public class PowerUpController extends GameController{
                 getModel().getPowerUps().remove(powerUp);
         }
 
-        if ((time - getModel().getStartingTime())/1000 == creationTime){
+        if (getModel().getTimer()/50 == creationTime){
             getModel().createPowerUp();
             creationTime += 5;
         }

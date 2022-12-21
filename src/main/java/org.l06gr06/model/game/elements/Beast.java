@@ -11,15 +11,10 @@ public class Beast extends Element{
         this.phase = phase;
     }
 
-    public void evolve() {
-        this.phase++;
-    }
+    public void evolve() {if (phase < 2) this.phase++;}
 
     public int getPhase() {
         return phase;
     }
 
-    public void interact(Element element, Arena arena){
-
-    }
 }

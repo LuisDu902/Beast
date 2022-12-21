@@ -1,37 +1,30 @@
-package org.l06gr06.controller;
+package org.l06gr06.controller.menu;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
-import org.l06gr06.controller.menu.ScoreBoardMenuController;
 import org.l06gr06.gui.GUI;
-import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.menu.LevelMenu;
-import org.l06gr06.model.menu.ScoreBoardMenu;
-import org.l06gr06.states.GameState;
+import org.l06gr06.model.menu.ScoreboardMenu;
 import org.l06gr06.states.LevelMenuState;
 import org.l06gr06.states.State;
-import org.mockito.MockedConstruction;
-import org.mockito.Mockito;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
-public class ScoreBoardMenuControllerTest {
-    private ScoreBoardMenuController controller;
-
-    private ScoreBoardMenu menu;
+public class ScoreboardMenuControllerTest {
+    private ScoreboardMenuController controller;
+    private ScoreboardMenu menu;
     private  Game game;
 
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
-        menu = new ScoreBoardMenu();
-        controller = new ScoreBoardMenuController(menu);
+        menu = new ScoreboardMenu();
+        controller = new ScoreboardMenuController(menu);
         game = new Game(null);
     }
 

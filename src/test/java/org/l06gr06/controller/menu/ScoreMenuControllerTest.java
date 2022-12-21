@@ -1,20 +1,19 @@
-package org.l06gr06.controller;
+package org.l06gr06.controller.menu;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.Game;
-import org.l06gr06.controller.menu.ScoreMenuController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.menu.LevelMenu;
-import org.l06gr06.model.menu.ScoreBoardMenu;
+import org.l06gr06.model.menu.ScoreboardMenu;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.LevelMenuState;
-import org.l06gr06.states.ScoreBoardMenuState;
+import org.l06gr06.states.ScoreboardMenuState;
+import org.l06gr06.states.State;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,19 +53,16 @@ public class ScoreMenuControllerTest {
         assertNull(game.getState());
     }
     @Test
-    void playAgain() throws IOException{
-
+    void playAgain() throws IOException {
         controller.step(game, GUI.ACTION.SELECT,1);
         assertEquals(new LevelMenuState(new LevelMenu()),game.getState());
     }
-    /*
+
     @Test
-    void scoreBoard() throws IOException, URISyntaxException, FontFormatException {
+    void scoreboard() throws IOException {
         controller.step(game, GUI.ACTION.RIGHT,1);
         controller.step(game, GUI.ACTION.SELECT,1);
-
-        assertEquals(new ScoreBoardMenuState(new ScoreBoardMenu(Arrays.asList("Play again", "Exit"))),game.getState());
-    }*/
-
-
+        State expected = new ScoreboardMenuState(new ScoreboardMenu());
+        assertEquals(expected,game.getState());
+    }
 }

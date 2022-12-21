@@ -10,11 +10,8 @@ public abstract class ArenaBuilder {
         Arena arena = new Arena(getWidth(), getHeight());
         arena.setWalls(createWalls());
         arena.setBlocks(createBlocks());
-        arena.setPowerUps(new ArrayList<>());
         arena.setPlayer(createPlayer());
         arena.setBeasts(createBeasts());
-
-
         return arena;
     }
 

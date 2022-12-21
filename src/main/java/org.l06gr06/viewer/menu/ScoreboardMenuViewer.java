@@ -2,7 +2,7 @@ package org.l06gr06.viewer.menu;
 
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
-import org.l06gr06.model.menu.ScoreBoardMenu;
+import org.l06gr06.model.menu.ScoreboardMenu;
 import org.l06gr06.viewer.Viewer;
 
 import java.io.BufferedReader;
@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
+public class ScoreboardMenuViewer extends Viewer<ScoreboardMenu>{
 
     private final List<String> lines;
-    public ScoreBoardMenuViewer(ScoreBoardMenu menu, String file) throws IOException {
+    public ScoreboardMenuViewer(ScoreboardMenu menu, String file) throws IOException {
         super(menu);
-        URL resource = ScoreBoardMenu.class.getResource("/score/" + file);
+        URL resource = ScoreboardMenuViewer.class.getResource("/score/" + file);
         assert resource != null;
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
         lines = readLines(br);
@@ -35,7 +35,7 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
         return lines;
     }
 
-    private void drawScoreBoard(GUI gui){
+    private void drawScoreboard(GUI gui){
         gui.drawText(new Position(12,5),"Level","#FFFFFF");
         gui.drawText(new Position(23,5),"Score","#FFFFFF");
         gui.drawText(new Position(34,5),"Time","#FFFFFF");
@@ -49,13 +49,12 @@ public class ScoreBoardMenuViewer extends Viewer<ScoreBoardMenu>{
         }
     }
 
-
     @Override
     public void drawElements(GUI gui) {
 
         gui.drawText(new Position(20, 3), "SCOREBOARD", "#FFFFFF");
         drawFrame(gui);
-        drawScoreBoard(gui);
+        drawScoreboard(gui);
 
         for (int i = 0; i < getModel().getNumberEntries(); i++)
             gui.drawText(

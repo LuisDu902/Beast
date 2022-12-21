@@ -10,18 +10,14 @@ public class Menu {
     public Menu() {
         this.entries = Arrays.asList();
     }
-    public Menu(List<String> entries){
-        this.entries = entries;
-    }
 
     public int getCurrentEntry(){
         return currentEntry;
     }
-    public void setCurrentEntry(int i){
-        if (i < entries.size()){
-            currentEntry = i;
-        }
-    }
+    public void setCurrentEntry(int i){currentEntry = i;}
+
+    public void setEntries(List<String> entries) {this.entries = entries;}
+
     public void nextEntry(){
         currentEntry++;
         if (currentEntry > this.entries.size() - 1)

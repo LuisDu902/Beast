@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ArenaTest {
-    Arena arena;
+    private Arena arena;
 
     @BeforeEach
     public void setArena(){
         arena = new Arena(10,10);
     }
-
 
     @Test
     public void isEgg(){
@@ -52,6 +51,7 @@ public class ArenaTest {
 
     @Test
     public void isPowerUp(){
+        Assertions.assertEquals(0,arena.getPowerUps().size());
         arena.setPowerUps(Arrays.asList(new PowerUp(new Position(1,1)), new Heart(new Position(2,2)),new Shield(new Position(3,3))));
         Assertions.assertTrue(arena.isPowerUp(new Position(3,3)));
         Assertions.assertTrue(arena.isPowerUp(new Position(2,2)));
@@ -65,21 +65,45 @@ public class ArenaTest {
         arena.setWalls(new ArrayList<>());
         arena.setBlocks(new ArrayList<>());
         arena.setPowerUps(new ArrayList<>());
-        for (int i = 0; i <= 10; i++){
-            for (int j = 0; j <= 10; j++){
+        for (int i = 0; i <= 10; i++)
+            for (int j = 0; j <= 10; j++)
                 Assertions.assertTrue(arena.isEmpty(new Position(i,j)));
-            }
-        }
     }
 
     @Test
     public void hatchEggs(){
-        arena.setBeasts(Arrays.asList(new Beast(new Position(1,1) ,0), new Beast(new Position(2,2),1),
-                new Beast(new Position(3,3),0), new Beast(new Position(2,4),1)));
+        arena.setBeasts(Arrays.asList(new Beast(new Position(1,1) ,0), new Beast(new Position(2,2),1), new Beast(new Position(3,3),0), new Beast(new Position(2,4),1)));
         arena.hatchEggs();
-        for (Beast beast : arena.getBeasts()){
+        for (Beast beast : arena.getBeasts())
             Assertions.assertTrue(beast.getPhase() != 0);
-        }
     }
 
+    @Test
+    public void respawnPlayer(){
+        arena.setPlayer(new Player(new Position(1,1)));
+        Position initialPos = arena.getPlayer().getPosition();
+        arena.respawnPlayer();
+        Position finalPos = arena.getPlayer().getPosition();
+        Assertions.assertNotEquals(finalPos,initialPos);
+    }
+
+    @Test
+    public void hitPlayer(){
+        arena.setPlayer(new Player(new Position(1,1)));
+        Position initialPos = arena.getPlayer().getPosition();
+        arena.hitPlayer();
+        Assertions.assertEquals(4,arena.getPlayer().getLife());
+        Position finalPos = arena.getPlayer().getPosition();
+        Assertions.assertNotEquals(finalPos,initialPos);
+    }
+    @Test
+    public void equals(){
+        Arena arena1 = arena;
+        Assertions.assertEquals(arena,arena1);
+    }
+
+    @Test
+    public void nullArena(){
+        Assertions.assertNotEquals(arena, null);
+    }
 }
