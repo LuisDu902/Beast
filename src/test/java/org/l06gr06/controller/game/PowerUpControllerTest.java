@@ -8,6 +8,9 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.Player;
 import org.l06gr06.model.game.elements.PowerUp;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +44,7 @@ public class PowerUpControllerTest {
 
     @Test
     void createPowerUp() throws IOException {
-        
+
         assertEquals(1, arena.getPowerUps().size());
         arena.setTimer(250);
         controller.step(null, GUI.ACTION.RIGHT, 0);

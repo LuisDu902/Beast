@@ -4,22 +4,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.Position;
-import org.l06gr06.model.menu.ScoreBoardMenu;
-import org.l06gr06.viewer.menu.ScoreBoardMenuViewer;
+import org.l06gr06.model.menu.ScoreboardMenu;
+import org.l06gr06.viewer.menu.ScoreboardMenuViewer;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-import java.util.Arrays;
 
-public class ScoreBoardMenuViewerTest {
+public class ScoreboardMenuViewerTest {
     private GUI gui;
     private Viewer viewer;
-    private ScoreBoardMenu scoreBoardMenu;
+    private ScoreboardMenu scoreBoardMenu;
     @BeforeEach
     void setUp() throws IOException {
 
-        scoreBoardMenu = new ScoreBoardMenu();
-        viewer = new ScoreBoardMenuViewer(scoreBoardMenu,"scoreTest.csv");
+        scoreBoardMenu = new ScoreboardMenu();
+        viewer = new ScoreboardMenuViewer(scoreBoardMenu,"scoreTest.csv");
         gui = Mockito.mock(GUI.class);
     }
 

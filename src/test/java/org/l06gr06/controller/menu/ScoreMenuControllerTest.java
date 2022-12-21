@@ -6,10 +6,10 @@ import org.l06gr06.Game;
 import org.l06gr06.controller.menu.ScoreMenuController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.menu.LevelMenu;
-import org.l06gr06.model.menu.ScoreBoardMenu;
+import org.l06gr06.model.menu.ScoreboardMenu;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.LevelMenuState;
-import org.l06gr06.states.ScoreBoardMenuState;
+import org.l06gr06.states.ScoreboardMenuState;
 import org.l06gr06.states.State;
 
 import java.awt.*;
@@ -65,7 +65,7 @@ public class ScoreMenuControllerTest {
     void scoreBoard() throws IOException, URISyntaxException, FontFormatException {
         controller.step(game, GUI.ACTION.RIGHT,1);
         controller.step(game, GUI.ACTION.SELECT,1);
-        State expected = new ScoreBoardMenuState(new ScoreBoardMenu());
+        State expected = new ScoreboardMenuState(new ScoreboardMenu());
         assertEquals(expected,game.getState());
     }
 }

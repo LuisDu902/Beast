@@ -13,7 +13,7 @@ import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.arena.RandomArenaBuilder;
 import org.l06gr06.model.game.elements.Beast;
 import org.l06gr06.model.game.elements.Player;
-import org.l06gr06.model.menu.ScoreBoardMenu;
+import org.l06gr06.model.menu.ScoreboardMenu;
 import org.l06gr06.model.menu.ScoreMenu;
 import org.l06gr06.states.ScoreMenuState;
 import org.l06gr06.states.State;
@@ -88,7 +88,7 @@ public class ArenaControllerTest {
         State actual = game.getState();
         assertEquals(expected,actual);
 
-        URL resource = ScoreBoardMenu.class.getResource("/score/score.csv");
+        URL resource = ScoreboardMenu.class.getResource("/score/score.csv");
         assert resource != null;
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
 
@@ -128,7 +128,7 @@ public class ArenaControllerTest {
         when(playerController.getStats()).thenReturn(stats);
         saveScoreMethod().invoke(controller);
 
-        URL resource = ScoreBoardMenu.class.getResource("/score/score.csv");
+        URL resource = ScoreboardMenu.class.getResource("/score/score.csv");
         assert resource != null;
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
         List<String> lines = new ArrayList<>();

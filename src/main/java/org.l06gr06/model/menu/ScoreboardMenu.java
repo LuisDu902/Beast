@@ -1,10 +1,9 @@
 package org.l06gr06.model.menu;
 
 import java.util.Arrays;
-import java.util.List;
 
-public class ScoreBoardMenu extends Menu{
-    public ScoreBoardMenu(){
+public class ScoreboardMenu extends Menu{
+    public ScoreboardMenu(){
         entries = Arrays.asList("Play again", "Exit");
     }
     public boolean isSelectedPlayAgain(){

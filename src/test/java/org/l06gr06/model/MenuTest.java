@@ -24,16 +24,16 @@ public class MenuTest {
         long[] stats = {1, 2, 3, 4, 5, 6};
         ScoreMenu scoreMenu = new ScoreMenu(stats);
         Assertions.assertTrue(scoreMenu.isSelectedPlayAgain());
-        Assertions.assertFalse(scoreMenu.isSelectedScoreBoard());
+        Assertions.assertFalse(scoreMenu.isSelectedScoreboard());
         Assertions.assertFalse(scoreMenu.isSelectedExit());
         scoreMenu.setCurrentEntry(1);
-        Assertions.assertTrue(scoreMenu.isSelectedScoreBoard());
+        Assertions.assertTrue(scoreMenu.isSelectedScoreboard());
         Assertions.assertFalse(scoreMenu.isSelectedPlayAgain());
         Assertions.assertFalse(scoreMenu.isSelectedExit());
         scoreMenu.setCurrentEntry(2);
         Assertions.assertTrue(scoreMenu.isSelectedExit());
         Assertions.assertFalse(scoreMenu.isSelectedPlayAgain());
-        Assertions.assertFalse(scoreMenu.isSelectedScoreBoard());
+        Assertions.assertFalse(scoreMenu.isSelectedScoreboard());
     }
 
 

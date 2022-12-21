@@ -13,7 +13,7 @@ public class ScoreMenu extends Menu{
         return isSelected(0);
     }
 
-    public boolean isSelectedScoreBoard() { return isSelected(1);}
+    public boolean isSelectedScoreboard() { return isSelected(1);}
 
     public long[] getStats() {
         return stats;

@@ -4,14 +4,13 @@ import org.l06gr06.Game;
 import org.l06gr06.controller.Controller;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.model.menu.LevelMenu;
-import org.l06gr06.model.menu.ScoreBoardMenu;
+import org.l06gr06.model.menu.ScoreboardMenu;
 import org.l06gr06.states.LevelMenuState;
 
 import java.io.IOException;
-import java.util.Arrays;
 
-public class ScoreBoardMenuController extends Controller<ScoreBoardMenu> {
-    public ScoreBoardMenuController(ScoreBoardMenu menu) {
+public class ScoreboardMenuController extends Controller<ScoreboardMenu> {
+    public ScoreboardMenuController(ScoreboardMenu menu) {
         super(menu);
     }
 

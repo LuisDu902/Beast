@@ -21,14 +21,13 @@ public abstract class State<T> {
     }
 
     protected abstract Viewer<T> getViewer() throws IOException;
-
     protected abstract Controller<T> getController();
 
     public T getModel(){return model;}
 
-    //public void setController(Controller<T> controller) {this.controller = controller;}
-
     public void setViewer(Viewer<T> viewer) {this.viewer = viewer;}
+
+    public void setController(Controller<T> controller) { this.controller = controller;}
 
     public void step(Game game, GUI gui, long time) throws IOException{
         GUI.ACTION action = gui.getNextAction();
@@ -40,9 +39,6 @@ public abstract class State<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         State state = (State) o;
-        return getModel().equals(state.getModel()) && viewer.equals(state.viewer) && controller.equals(state.controller);
+        return model.equals(state.model) && viewer.equals(state.viewer) && controller.equals(state.controller);
     }
-
-    public void setController(Controller<T> controller) { this.controller = controller;}
-
 }
