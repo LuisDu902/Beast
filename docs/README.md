@@ -21,9 +21,9 @@ This project was Beastly developed by Athos Freitas (up202108792), Luís Du (up2
 
 **Catch Heart** - Hearts will randomly appear in the map as the game progresses. However, they might be inadvertently smashed between blocks. Whenever a player catches a heart, it gets added to the players lives, up to a maximum of 8.
 
-**Catch Shield** - Similarly, shields will randomly appear in the map as the game progresses. However, they might be inadvertently smashed between blocks. They will turn whoever catches them imortal, for a short period of time (which varies according to the level’s difficulty).
+**Catch Shield** - Similarly, shields will randomly appear in the map as the game progresses. However, they might be inadvertently smashed between blocks. They will turn whoever catches them immortal, for a short period of time.
 
-**Catch Power-ups by the Beasts** - In the unfortunate scenario that a Beast catches any of the power-ups, it evolves to a Stronger Beast, unless it is already one. However, as beasts are a unified entity, whenever a shield is caught by a Beast, all Beasts get a speed-up buff.
+**Catch Power-ups by the Beasts** - In the unfortunate scenario that a Beast catches any of the power-ups, it evolves to a Stronger Beast, unless it is already one. However, as beasts are a unified entity, whenever a power-up is caught by a Beast, all Beasts get a speed-up buff.
 
 ![Power-ups](https://user-images.githubusercontent.com/92641892/208264560-717d1e73-1222-456d-a960-ba6fd2150833.gif)
 
@@ -33,7 +33,7 @@ This project was Beastly developed by Athos Freitas (up202108792), Luís Du (up2
 
 ![Respawn](https://user-images.githubusercontent.com/92641892/208264168-f1737858-491f-4281-a286-22a399640040.gif)
 
-**Scoreboard** - At the end of the game, you’ll be presented a scoreboard. The score is calculated based on the number of remaining lives and the amount of Beast’s killed, as well as the time it took the player to do it.
+**Scoreboard** - At the end of the game, you’ll be presented a scoreboard. The score is calculated based on the amount of Beast’s killed, the number of remaining lives and the number of shields caught, as well as the time it took the player to win (or lose).
 
 ![ScoreBoard](https://user-images.githubusercontent.com/92641892/208264170-464f511d-c4ad-4a8b-b4db-fd3104b1c1ad.gif)
 
@@ -49,7 +49,7 @@ In case you wish to check this diagram in more detail, please click [here](https
 
 ### DESIGN
 
-#### Game and Menu States
+#### GAME AND MENU STATES
 
 **Problem in Context**
 
@@ -66,9 +66,10 @@ This pattern allows an object to modify its behaviour when its internal state ch
 Classes:
 
 - [State](../src/main/java/org.l06gr06/states/State.java)
+- [ScoreboardMenuState](../src/main/java/org.l06gr06/states/ScoreboardMenuState.java)
 - [MainMenuState](../src/main/java/org.l06gr06/states/MainMenuState.java)
-- [LevelMenuState](../src/main/java/org.l06gr06/states/LevelMenuState.java)
 - [ScoreMenuState](../src/main/java/org.l06gr06/states/ScoreMenuState.java)
+- [LevelMenuState](../src/main/java/org.l06gr06/states/LevelMenuState.java)
 - [GameState](../src/main/java/org.l06gr06/states/GameState.java)
 
 
@@ -81,7 +82,7 @@ This way, we avoid using conditionals, plus, we make state transitions explicit,
 
 **Problem in Context**
 
-As the player's goal in this game is to kill every Beast to survive, the game keeps running even when the user isn’t providing input. If you sit staring at the screen, the game doesn’t freeze. Animations keep animating. Visual effects dance and sparkle. If you’re unlucky, beasts catch powerups and keep chomping on your player.
+As the player's goal in this game is to kill every Beast in order to survive, the game keeps running even when the user isn’t providing input. If you sit staring at the screen, the game doesn’t freeze. Every object that's supposed to move, keeps doing so. If you’re unlucky, beasts catch powerups and keep attacking your player, until you lose.
 
 
 **Game Loop Pattern**
@@ -95,28 +96,29 @@ This pattern allows a game loop to run continuously during gameplay. Each turn o
 Classes:
 
 - [GameController](../src/main/java/org.l06gr06/controller/game/GameController.java)
-- [Arena](../src/main/java/org.l06gr06/model/game/arena/Arena.java)
-- [ArenaController](../src/main/java/org.l06gr06/controller/game/ArenaController.java)
 - [BeastController](../src/main/java/org.l06gr06/controller/game/BeastController.java)
+- [PowerUpController](../src/main/java/org.l06gr06/controller/game/PowerUpController.java)
+- [ArenaController](../src/main/java/org.l06gr06/controller/game/ArenaController.java)
 - [PlayerController](../src/main/java/org.l06gr06/controller/game/PlayerController.java)
+- [Arena](../src/main/java/org.l06gr06/model/game/arena/Arena.java)
 - [GameViewer](../src/main/java/org.l06gr06/viewer/game/GameViewer.java)
 - [ElementViewer](../src/main/java/org.l06gr06/viewer/game/ElementViewer.java)
-- [WallViewer](../src/main/java/org.l06gr06/viewer/game/WallViewer.java)
-- [PowerUpViewer](../src/main/java/org.l06gr06/viewer/game/PowerUpViewer.java)
+- [PlayerViewer](../src/main/java/org.l06gr06/viewer/game/PlayerViewer.java)
 - [BeastViewer](../src/main/java/org.l06gr06/viewer/game/BeastViewer.java)
 - [BlockViewer](../src/main/java/org.l06gr06/viewer/game/BlockViewer.java)
-- [PlayerViewer](../src/main/java/org.l06gr06/viewer/game/PlayerViewer.java)
+- [WallViewer](../src/main/java/org.l06gr06/viewer/game/WallViewer.java)
+- [PowerUpViewer](../src/main/java/org.l06gr06/viewer/game/PowerUpViewer.java)
 
 **Consequences**
 
-The use of the Game Loop Pattern in the current design decouples progression of game time from user input and processor speed.
+The use of the Game Loop Pattern, in the current design, decouples progression of game time from user input and processor speed.
 
 
 #### CONTROLLERS AND VIEWERS
 
 **Problem in Context**
 
-As the game changes its state, each state has its own controller and viewer. When running, the game doesn't know what "types" of controller and viewer will be required to create.
+As the game changes its state, each of them has its own controller and viewer. When running, the game doesn't know what "types" of controller and viewer will be required to create.
 
 **Factory Method**
 
@@ -131,25 +133,28 @@ Classes:
 - [State](../src/main/java/org.l06gr06/states/State.java)
 - [MainMenuState](../src/main/java/org.l06gr06/states/MainMenuState.java)
 - [LevelMenuState](../src/main/java/org.l06gr06/states/LevelMenuState.java)
-- [ScoreMenuState](../src/main/java/org.l06gr06/states/ScoreMenuState.java)
 - [GameState](../src/main/java/org.l06gr06/states/GameState.java)
+- [ScoreMenuState](../src/main/java/org.l06gr06/states/ScoreMenuState.java)
+- [ScoreboardMenuState](../src/main/java/org.l06gr06/states/ScoreboardMenuState.java)
 - [Controller](../src/main/java/org.l06gr06/controller/Controller.java)
 - [MainMenuController](../src/main/java/org.l06gr06/controller/menu/MainMenuController.java)
 - [LevelMenuController](../src/main/java/org.l06gr06/controller/menu/LevelMenuController.java)
-- [ScoreMenuController](../src/main/java/org.l06gr06/controller/menu/ScoreMenuController.java)
 - [GameController](../src/main/java/org.l06gr06/controller/game/GameController.java)
+- [ScoreMenuController](../src/main/java/org.l06gr06/controller/menu/ScoreMenuController.java)
+- [ScoreboardMenuController](../src/main/java/org.l06gr06/controller/menu/ScoreboardMenuController.java)
 - [Viewer](../src/main/java/org.l06gr06/viewer/Viewer.java)
 - [MainMenuViewer](../src/main/java/org.l06gr06/viewer/menu/MainMenuViewer.java)
 - [LevelMenuViewer](../src/main/java/org.l06gr06/viewer/menu/LevelMenuViewer.java)
-- [ScoreMenuViewer](../src/main/java/org.l06gr06/viewer/menu/ScoreMenuViewer.java)
 - [GameViewer](../src/main/java/org.l06gr06/viewer/game/GameViewer.java)
+- [ScoreMenuViewer](../src/main/java/org.l06gr06/viewer/menu/ScoreMenuViewer.java)
+- [ScoreboardMenuViewer](../src/main/java/org.l06gr06/viewer/menu/ScoreboardMenuViewer.java)
 
 **Consequences**
 
 The use of the Factory Pattern in the current design promotes the loose-coupling by eliminating the need to bind application-specific classes into the code. That means the code interacts solely with the resultant interface or abstract class, so that it will work with any classes that implement that interface or that extends that abstract class.
 
 
-#### MVC - Model, View, Controller
+#### MVC - MODEL, VIEW, CONTROLLER
 
 **Problem in Context** 
 
@@ -181,10 +186,10 @@ This way, the program is subdivided in a way that is easier to work on (keeping 
 
 #### Feature Envy
 
-Due to the MVC architectural pattern that we have implemented, classes from packages **Viewer** and **Controller** both access data from the **Model** package more than their own data.
-This violates the Encapsulation principle plus, it may make the code harder to maintain, since methods from **Viewer** and **Controller** packages relly heavily on **Model**'s data.
+Due to the MVC architectural pattern that we have implemented, classes from packages `Viewer` and `Controller` both access data from the `Model` package more than their own.
+This violates the Encapsulation principle, plus it may make the code harder to maintain, since methods from `Viewer` and `Controller` packages rely heavily on `Model`'s data.
 
-This could be solved by **extracting** or **moving methods** from the first two packages to de later one, which would preclude the use of the MVC architectural pattern.
+This could be solved by **extracting** or **moving methods** from the first two packages to the later one, which would preclude the use of the MVC architectural pattern.
 
 #### Shotgun Surgery
 
@@ -195,7 +200,7 @@ A way to improve the code would be to **move** all of those **methods** to a new
 
 #### Parallel Inheritance Hierarchies
 
-Whenever we wish to add a new class to the **Model** package, we then must add a new class to both **Viewer** and **Controller** packages. This makes the code harder to maintain and increases its fragility (tendency of software to break in multiple places whenever it is changed).
+Whenever we wish to add a new class to the `Model` package, we then must add a new class to both `Viewer` and `Controller` packages. This makes the code harder to maintain and increases its fragility (tendency of software to break in multiple places whenever it is changed).
 
 To remove these hierarchies we could **move fields** or **methods** to one of the packages, which would once more violate the MVC architectural pattern.
 
@@ -215,7 +220,7 @@ By **extracting** from these **methods**, we could make them smaller but, simult
 
 The constructor of the `RandomArenaBuilder` class has a large amount of parameters, which can make the code harder to understand.
 
-We could solve this by **introducing** a **parameter object** that would turn out to be a Data Class, hence the reason why we didn't do it.
+We could solve this by **introducing** a **parameter object** which would turn out to be a Data Class, hence the reason why we didn't do it.
 
 ### TESTING
 
