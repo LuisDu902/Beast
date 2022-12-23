@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 
 public class MainMenuViewerTest {
     private GUI gui;
-    private Viewer viewer;
+    private MainMenuViewer viewer;
     private MainMenu mainMenu;
 
     @BeforeEach

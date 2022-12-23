@@ -35,14 +35,18 @@ public class RandomArenaBuilder extends ArenaBuilder{
         return height;
     }
 
+    public void setOccupied(List<Position> occupied) {
+        this.occupied = occupied;
+    }
+
+    public List<Position> getOccupied() {
+        return occupied;
+    }
+
     private boolean isAvailable(Position pos){
         for (Position position: occupied)
             if (position.equals(pos)) return false;
         return true;
-    }
-
-    public void setOccupied(List<Position> occupied) {
-        this.occupied = occupied;
     }
 
     private Position randomAvailablePosition(){
@@ -116,8 +120,5 @@ public class RandomArenaBuilder extends ArenaBuilder{
         return blocks;
     }
 
-    public List<Position> getOccupied() {
-        return occupied;
-    }
 
 }

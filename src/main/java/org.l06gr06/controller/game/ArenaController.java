@@ -23,43 +23,43 @@ public class ArenaController extends GameController {
         this.powerUpController = new PowerUpController(arena);
     }
 
-    public void setBeastController(BeastController beastController) {
-        this.beastController = beastController;
-    }
+    public void setBeastController(BeastController beastController) { this.beastController = beastController; }
 
-    public PlayerController getPlayerController() {
-        return playerController;
-    }
+    public PlayerController getPlayerController() { return playerController; }
 
-    public void setPowerUpController(PowerUpController powerUpController) {
-        this.powerUpController = powerUpController;
-    }
+    public void setPowerUpController(PowerUpController powerUpController) { this.powerUpController = powerUpController; }
 
-    public void setPlayerController(PlayerController playerController) {
-        this.playerController = playerController;
-    }
+    public void setPlayerController(PlayerController playerController) { this.playerController = playerController; }
 
     private void saveScore() throws IOException {
+
+        playerController.getStats()[4] = getModel().getPlayer().getLife();
+        playerController.getStats()[5] = getModel().getTimer()/50;
+
         StringBuilder str = new StringBuilder();
         long[] stats = playerController.getStats();
-        long score = stats[0]*75 + stats[1]* 150 + stats[2] * 300 + stats[3] * 50 + stats[4] * 50 - stats[5];
-        long timer = getModel().getTimer()/50;
-        long min = timer/60; long sec = timer%60;
+        long nrEggs = stats[0], nrBeasts = stats[1], nrStrongBeasts = stats[2], nrShields = stats[3], nrLives = stats[4], time = stats[5];
+        long score = nrEggs * 75 + nrBeasts * 150 + nrStrongBeasts * 300 + nrShields * 50 + nrLives * 50 - time;
+        long min = time/60, sec = time%60;
+
         str.append(score).append(',').append(String.format("%02d:%02d", min, sec)).append('\n');
+
         URL resource = ArenaController.class.getResource("/score/score.csv");
         assert resource != null;
         BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), true));
         writer.append(str.toString());
         writer.close();
     }
+
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
+
         getModel().increaseTimer();
+
         if (action == GUI.ACTION.QUIT || getModel().getPlayer().getLife() == 0 || getModel().getBeasts().size() == 0) {
-            playerController.getStats()[4] = getModel().getPlayer().getLife();
-            playerController.getStats()[5] = getModel().getTimer()/50;
             saveScore();
             game.setState(new ScoreMenuState(new ScoreMenu(playerController.getStats())));
         }
+
         else {
             powerUpController.step(game, action, time);
             playerController.step(game, action, time);

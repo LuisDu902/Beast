@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
 public class LanternaGUI implements GUI{
     private final Screen screen;
     public LanternaGUI(Screen screen) {
@@ -54,7 +55,6 @@ public class LanternaGUI implements GUI{
         Font loadedFont = font.deriveFont(Font.PLAIN, 25);
 
         return AWTTerminalFontConfiguration.newInstance(loadedFont);
-
     }
     private void drawCharacter(Position position, char c, String color) {
         TextGraphics tg = screen.newTextGraphics();
@@ -71,11 +71,8 @@ public class LanternaGUI implements GUI{
     }
     @Override
     public void drawPlayer(int phase, Position position){
-        switch (phase) {
-            case 0 : { drawCharacter(position, '&', "#00FFEF"); break; }
-            case 1 : { drawCharacter(position, '&', "#FF9900"); break; }
-        }
-
+        if (phase == 0)  drawCharacter(position, '&', "#00FFEF");
+        else  drawCharacter(position, '&', "#FF9900");
     }
     @Override
     public void drawShield(Position position){
@@ -89,9 +86,8 @@ public class LanternaGUI implements GUI{
     public void drawHeart(Position position){
         drawCharacter(position, '@', "#FC0808");
     }
-
     @Override
-    public void drawBlock(Position position){ drawCharacter(position, ' ', "#1DC249");}
+    public void drawBlock(Position position) { drawCharacter(position, ' ', "#1DC249"); }
 
     @Override
     public void drawBeast(int phase, Position position){

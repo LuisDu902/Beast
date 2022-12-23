@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 
 public class ScoreMenuViewerTest {
     private GUI gui;
-    private Viewer viewer;
+    private ScoreMenuViewer viewer;
     private ScoreMenu scoreMenu;
     @BeforeEach
     void setUp() {

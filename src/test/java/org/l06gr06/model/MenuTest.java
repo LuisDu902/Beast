@@ -3,9 +3,6 @@ package org.l06gr06.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.l06gr06.model.game.elements.Element;
-import org.l06gr06.model.game.elements.PowerUp;
-import org.l06gr06.model.menu.MainMenu;
 import org.l06gr06.model.menu.Menu;
 import org.l06gr06.model.menu.ScoreMenu;
 
@@ -90,7 +87,7 @@ public class MenuTest {
     @Test
     public void differentClass(){
         Position position = new Position(1,1);
-        Assertions.assertFalse(menu.equals(position));
+        Assertions.assertNotEquals(menu, position);
     }
 
     @Test

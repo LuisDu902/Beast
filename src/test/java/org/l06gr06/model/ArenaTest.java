@@ -28,35 +28,35 @@ public class ArenaTest {
     @Test
     public void isBeast(){
         arena.setBeasts(Arrays.asList(new Beast(new Position(1,1),2), new Beast(new Position(2,2),1),new Beast(new Position(3,3),0)));
-        Assertions.assertTrue(arena.isBeast(new Position(1,1)));
-        Assertions.assertTrue(arena.isBeast(new Position(3,3)));
-        Assertions.assertFalse(arena.isBeast(new Position(4,4)));
+        Assertions.assertTrue(arena.isElement(arena.getBeasts(),new Position(1,1)));
+        Assertions.assertTrue(arena.isElement(arena.getBeasts(),new Position(3,3)));
+        Assertions.assertFalse(arena.isElement(arena.getBeasts(),new Position(4,4)));
     }
 
     @Test
     public void isWall(){
         arena.setWalls(Arrays.asList(new Wall(new Position(1,1)), new Wall(new Position(2,2)),new Wall(new Position(3,3))));
-        Assertions.assertTrue(arena.isWall(new Position(3,3)));
-        Assertions.assertTrue(arena.isWall(new Position(1,1)));
-        Assertions.assertFalse(arena.isWall(new Position(4,4)));
+        Assertions.assertTrue(arena.isElement(arena.getWalls(),new Position(3,3)));
+        Assertions.assertTrue(arena.isElement(arena.getWalls(),new Position(1,1)));
+        Assertions.assertFalse(arena.isElement(arena.getWalls(),new Position(4,4)));
     }
 
     @Test
     public void isBlock(){
         arena.setBlocks(Arrays.asList(new Block(new Position(1,1)), new Block(new Position(2,2)),new Block(new Position(3,3))));
-        Assertions.assertTrue(arena.isBlock(new Position(3,3)));
-        Assertions.assertTrue(arena.isBlock(new Position(1,1)));
-        Assertions.assertFalse(arena.isBlock(new Position(4,4)));
+        Assertions.assertTrue(arena.isElement(arena.getBlocks(),new Position(3,3)));
+        Assertions.assertTrue(arena.isElement(arena.getBlocks(),new Position(1,1)));
+        Assertions.assertFalse(arena.isElement(arena.getBlocks(),new Position(4,4)));
     }
 
     @Test
     public void isPowerUp(){
         Assertions.assertEquals(0,arena.getPowerUps().size());
         arena.setPowerUps(Arrays.asList(new PowerUp(new Position(1,1)), new Heart(new Position(2,2)),new Shield(new Position(3,3))));
-        Assertions.assertTrue(arena.isPowerUp(new Position(3,3)));
-        Assertions.assertTrue(arena.isPowerUp(new Position(2,2)));
-        Assertions.assertTrue(arena.isPowerUp(new Position(1,1)));
-        Assertions.assertFalse(arena.isPowerUp(new Position(4,4)));
+        Assertions.assertTrue(arena.isElement(arena.getPowerUps(),new Position(3,3)));
+        Assertions.assertTrue(arena.isElement(arena.getPowerUps(),new Position(2,2)));
+        Assertions.assertTrue(arena.isElement(arena.getPowerUps(),new Position(1,1)));
+        Assertions.assertFalse(arena.isElement(arena.getPowerUps(),new Position(4,4)));
     }
 
     @Test

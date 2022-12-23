@@ -10,10 +10,16 @@ import java.io.IOException;
 
 public class MainMenuState extends State<MainMenu>{
 
-    public MainMenuState(MainMenu model) throws IOException {super(model);}
+    public MainMenuState(MainMenu model) throws IOException {
+        super(model);
+    }
     @Override
-    public Viewer<MainMenu> getViewer(){return new MainMenuViewer(getModel());}
+    public Viewer<MainMenu> getViewer() {
+        return new MainMenuViewer(getModel());
+    }
     @Override
-    public Controller<MainMenu> getController(){return new MainMenuController(getModel());}
+    public Controller<MainMenu> getController() {
+        return new MainMenuController(getModel());
+    }
 
 }

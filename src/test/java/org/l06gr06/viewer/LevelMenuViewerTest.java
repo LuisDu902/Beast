@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 
 public class LevelMenuViewerTest {
     private GUI gui;
-    private Viewer viewer;
+    private LevelMenuViewer viewer;
     private LevelMenu levelMenu;
     @BeforeEach
     void setUp() {

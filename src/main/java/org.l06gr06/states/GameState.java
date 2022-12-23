@@ -10,7 +10,9 @@ import java.io.IOException;
 
 public class GameState extends State<Arena>{
 
-    public GameState(Arena arena) throws IOException {super(arena);}
+    public GameState(Arena arena) throws IOException {
+        super(arena);
+    }
     @Override
     public Viewer<Arena> getViewer() {
         return new GameViewer(getModel());

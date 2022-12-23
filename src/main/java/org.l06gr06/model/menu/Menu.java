@@ -11,12 +11,11 @@ public class Menu {
         this.entries = Arrays.asList();
     }
 
-    public int getCurrentEntry(){
-        return currentEntry;
-    }
-    public void setCurrentEntry(int i){currentEntry = i;}
-
-    public void setEntries(List<String> entries) {this.entries = entries;}
+    public int getCurrentEntry(){ return currentEntry; }
+    public String getEntry(int i) { return entries.get(i); }
+    public int getNumberEntries() { return this.entries.size(); }
+    public void setEntries(List<String> entries) { this.entries = entries; }
+    public void setCurrentEntry(int i) { currentEntry = i; }
 
     public void nextEntry(){
         currentEntry++;
@@ -28,16 +27,11 @@ public class Menu {
         if (currentEntry < 0)
             currentEntry = this.entries.size() - 1;
     }
-    public String getEntry(int i){
-        return entries.get(i);
-    }
 
     public boolean isSelected(int i){
         return currentEntry == i;
     }
-    public int getNumberEntries(){
-        return this.entries.size();
-    }
+
     public boolean isSelectedExit(){
         return isSelected(entries.size()-1);
     }

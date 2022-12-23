@@ -41,7 +41,7 @@ public abstract class Viewer<T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Viewer viewer = (Viewer) o;
+        Viewer<?> viewer = (Viewer<?>) o;
         return model.equals(viewer.model);
     }
 }

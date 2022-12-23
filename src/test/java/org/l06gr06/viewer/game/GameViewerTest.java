@@ -10,7 +10,6 @@ import org.l06gr06.model.game.elements.*;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 public class GameViewerTest {
     private GUI gui;

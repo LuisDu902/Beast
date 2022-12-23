@@ -14,12 +14,8 @@ public class PowerUp extends Element {
 
     public long getCreationTime(){ return creationTime; }
 
-    public long getDuration() {
-        return duration;
-    }
+    public long getDuration() { return duration; }
 
-    public void setDuration(long duration) {
-        this.duration = duration;
-    }
+    public void setDuration(long duration) { this.duration = duration; }
 
 }
