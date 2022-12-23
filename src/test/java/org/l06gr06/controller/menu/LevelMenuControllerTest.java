@@ -43,6 +43,12 @@ public class LevelMenuControllerTest {
         menu = new LevelMenu();
         controller = new LevelMenuController(menu);
         game = new Game(null);
+        
+        URL resource = ArenaController.class.getResource("/score/score.csv");
+        assert resource != null;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
+        writer.append("");
+        writer.close();
     }
 
     @Test
