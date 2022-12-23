@@ -6,6 +6,7 @@ public class ScoreboardMenu extends Menu{
     public ScoreboardMenu(){
         entries = Arrays.asList("Play again", "Exit");
     }
+
     public boolean isSelectedPlayAgain(){
         return isSelected(0);
     }

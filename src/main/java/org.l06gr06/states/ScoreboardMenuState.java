@@ -14,8 +14,11 @@ public class ScoreboardMenuState extends State<ScoreboardMenu>{
         super(model);
     }
     @Override
-    public Viewer<ScoreboardMenu> getViewer() throws IOException {return new ScoreboardMenuViewer(getModel(),"score.csv");}
-
+    public Viewer<ScoreboardMenu> getViewer() throws IOException {
+        return new ScoreboardMenuViewer(getModel(),"score.csv");
+    }
     @Override
-    public Controller<ScoreboardMenu> getController(){return new ScoreboardMenuController(getModel());}
+    public Controller<ScoreboardMenu> getController(){
+        return new ScoreboardMenuController(getModel());
+    }
 }

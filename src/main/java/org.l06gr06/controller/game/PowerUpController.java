@@ -17,14 +17,16 @@ public class PowerUpController extends GameController{
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
 
-        if(!getModel().getPowerUps().isEmpty()) {
-            PowerUp powerUp = getModel().getPowerUps().get(0);
+        Arena arena = getModel();
+
+        if(!arena.getPowerUps().isEmpty()) {
+            PowerUp powerUp = arena.getPowerUps().get(0);
             if (time - powerUp.getCreationTime() > powerUp.getDuration() * 1000)
-                getModel().getPowerUps().remove(powerUp);
+                arena.getPowerUps().remove(powerUp);
         }
 
-        if (getModel().getTimer()/50 == creationTime){
-            getModel().createPowerUp();
+        if (arena.getTimer()/50 == creationTime){
+            arena.createPowerUp();
             creationTime += 5;
         }
     }

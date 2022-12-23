@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class ScoreboardMenuViewerTest {
     private GUI gui;
-    private Viewer viewer;
+    private ScoreboardMenuViewer viewer;
     private ScoreboardMenu scoreBoardMenu;
     @BeforeEach
     void setUp() throws IOException {

@@ -5,13 +5,16 @@ import org.l06gr06.gui.GUI;
 import java.util.Objects;
 
 public class Position {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
+
+    public int getX() {return x;}
+    public int getY() {return y;}
 
     public Position getDirection(GUI.ACTION action){
         switch (action) {
@@ -21,8 +24,8 @@ public class Position {
         }
         return getRight();
     }
-    public Position getLeft() {return new Position(x - 1, y);}
 
+    public Position getLeft() {return new Position(x - 1, y);}
     public Position getRight() {return new Position(x + 1, y);}
     public Position getUp() {return new Position(x, y - 1);}
     public Position getDown() {return new Position(x, y + 1);}
@@ -32,16 +35,14 @@ public class Position {
         int offsetX = (int) (Math.random()*2);
         int offsetY = (int) (Math.random()*2);
 
-        if (x < pos2.x && y > pos2.y) return new Position(x+offsetX,y-offsetY);
-        else if (x < pos2.x && y < pos2.y)  return new Position(x+offsetX,y+offsetY);
-        else if (x > pos2.x && y < pos2.y)  return new Position(x-offsetX,y+offsetY);
-        else return new Position(x-offsetX,y-offsetY);
-
+        if (x < pos2.x && y > pos2.y)
+            return new Position(x+offsetX,y-offsetY);
+        if (x < pos2.x && y < pos2.y)
+            return new Position(x+offsetX,y+offsetY);
+        if (x > pos2.x && y < pos2.y)
+            return new Position(x-offsetX,y+offsetY);
+        return new Position(x-offsetX,y-offsetY);
     }
-
-    public int getX() {return x;}
-
-    public int getY() {return y;}
 
     @Override
     public boolean equals(Object o) {

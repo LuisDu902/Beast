@@ -17,12 +17,14 @@ public class BeastController extends GameController {
         super(arena);
         this.speed = 500;
         this.lastMovement = 0;
-        this.hatchingTime = 10;
+        this.hatchingTime = 40;
     }
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (getModel().getTimer()/50 == hatchingTime) getModel().hatchEggs();
+        if (getModel().getTimer()/50 == hatchingTime)
+            getModel().hatchEggs();
+
         if (time - lastMovement > speed) {
             for (Beast beast : getModel().getBeasts()){
                 Position playerPos = getModel().getPlayer().getPosition();
@@ -35,17 +37,18 @@ public class BeastController extends GameController {
 
     private void moveBeast(Beast beast, Position position) {
 
-        if (!getModel().canMove(position) || getModel().isBeast(position)) return;
+        Arena arena = getModel();
 
-        else if (getModel().isPowerUp(position)) {
-        //else if (getModel().isElement(getModel().getPowerUps(),position)){
+        if (!arena.canMove(position) || arena.isElement(arena.getBeasts(),position)) return;
+
+        else if (arena.isElement(arena.getPowerUps(),position)) {
             this.speed -= 50;
             beast.evolve();
-            getModel().getPowerUps().remove(new PowerUp(position));
+            arena.getPowerUps().remove(new PowerUp(position));
         }
 
-        else if (getModel().isPlayer(position))
-            getModel().hitPlayer();
+        else if (arena.isPlayer(position))
+            arena.hitPlayer();
 
         beast.setPosition(position);
     }

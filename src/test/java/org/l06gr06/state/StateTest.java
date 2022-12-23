@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.l06gr06.controller.menu.MainMenuController;
 import org.l06gr06.model.menu.MainMenu;
 import org.l06gr06.states.*;
-import org.l06gr06.viewer.MainMenuViewerTest;
 import org.l06gr06.viewer.menu.MainMenuViewer;
 
 import java.io.IOException;

@@ -46,7 +46,7 @@ public class BeastControllerTest {
 
     @Test
     void hatchEgg() throws IOException{
-        arena.setTimer(500);
+        arena.setTimer(2000);
         controller.step(null, GUI.ACTION.UP, 0);
         Assertions.assertEquals(1, egg.getPhase());
     }

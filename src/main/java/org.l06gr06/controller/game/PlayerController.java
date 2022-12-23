@@ -6,80 +6,86 @@ import org.l06gr06.model.Position;
 import org.l06gr06.model.game.arena.Arena;
 import org.l06gr06.model.game.elements.*;
 
+import java.util.List;
+
 public class PlayerController extends GameController {
     private GUI.ACTION action;
     private final long[] stats;
 
-    private final Player player;
-
     public PlayerController(Arena arena) {
         super(arena);
         this.stats = new long[6];
-        player = getModel().getPlayer();
     }
     private void movePlayerLeft() {
-        movePlayer(player.getPosition().getLeft());
+        movePlayer(getModel().getPlayer().getPosition().getLeft());
     }
 
     private void movePlayerRight() {
-        movePlayer(player.getPosition().getRight());
+        movePlayer(getModel().getPlayer().getPosition().getRight());
     }
 
     private void movePlayerUp() {
-        movePlayer(player.getPosition().getUp());
+        movePlayer(getModel().getPlayer().getPosition().getUp());
     }
 
     private void movePlayerDown() {
-        movePlayer(player.getPosition().getDown());
+        movePlayer(getModel().getPlayer().getPosition().getDown());
     }
 
     private void moveblock(Position position){
-        int j = getModel().getBlocks().indexOf(new Block(position));
-        Block block = getModel().getBlocks().get(j);
+
+        Arena arena = getModel();
+        List<Block> blocks = arena.getBlocks();
+
+        int j = blocks.indexOf(new Block(position));
+        Block block = blocks.get(j);
+
         Position nextAvailablePos = new Position(position.getX(), position.getY());
-
         do nextAvailablePos = nextAvailablePos.getDirection(action);
-        while (getModel().isBlock(nextAvailablePos));
+        while (arena.isElement(blocks,nextAvailablePos));
 
-        if (getModel().isWall(nextAvailablePos)) return;
+        if (arena.isElement(arena.getWalls(),nextAvailablePos)) return;
 
-        boolean nextToWall = getModel().isWall(nextAvailablePos.getDirection(action));
-        boolean nextToBlock = getModel().isBlock(nextAvailablePos.getDirection(action));
+        boolean nextToWall = arena.isElement(arena.getWalls(),nextAvailablePos.getDirection(action));
+        boolean nextToBlock = arena.isElement(blocks,nextAvailablePos.getDirection(action));
 
         if (nextToWall || nextToBlock){
-            if (getModel().isPowerUp(nextAvailablePos)) {
-                getModel().getPowerUps().remove(new PowerUp(nextAvailablePos));
-            }
-            else if (getModel().isBeast(nextAvailablePos)){
-                int i = getModel().getBeasts().indexOf(new Beast(nextAvailablePos,0));
-                Beast beast = getModel().getBeasts().get(i);
+            if (arena.isElement(arena.getPowerUps(),nextAvailablePos))
+                arena.getPowerUps().remove(new PowerUp(nextAvailablePos));
+
+            else if (arena.isElement(arena.getBeasts(),nextAvailablePos)){
+                int i = arena.getBeasts().indexOf(new Beast(nextAvailablePos,0));
+                Beast beast = arena.getBeasts().get(i);
                 if (beast.getPhase() < 2 || nextToWall){
                     stats[beast.getPhase()]++;
-                    getModel().getBeasts().remove(i);
+                    arena.getBeasts().remove(i);
                 }
             }
         }
-        if (!getModel().isEmpty(nextAvailablePos)) return;
-
+        if (!arena.isEmpty(nextAvailablePos)) return;
         block.setPosition(nextAvailablePos);
-        getModel().getPlayer().setPosition(position);
+        arena.getPlayer().setPosition(position);
     }
     private void movePlayer(Position position) {
 
-        if (getModel().isBlock(position)) {
+        Arena arena = getModel();
+
+        if (arena.isElement(arena.getBlocks(),position)) {
             moveblock(position);
             return;
         }
 
-        else if (getModel().canMove(position))
+        Player player = arena.getPlayer();
+
+        if (arena.canMove(position))
             player.setPosition(position);
 
-        if (getModel().isBeast(position) && !getModel().isEgg(position))
+        if (arena.isElement(arena.getBeasts(),position) && !arena.isEgg(position))
             getModel().hitPlayer();
 
-        else if (getModel().isPowerUp(position)) {
-            int i = getModel().getPowerUps().indexOf(new PowerUp(position));
-            if (getModel().getPowerUps().get(i) instanceof Heart && player.getLife() < 8)
+        else if (arena.isElement(arena.getPowerUps(),position)) {
+            int i = arena.getPowerUps().indexOf(new PowerUp(position));
+            if (arena.getPowerUps().get(i) instanceof Heart && player.getLife() < 8)
                 player.increaseLife();
             else {
                 player.becomeImmortal();
@@ -94,8 +100,8 @@ public class PlayerController extends GameController {
 
         this.action = action;
 
-        if (time - player.getImmortalTime() > player.getImmortalDuration() * 1000)
-            player.backToNormal();
+        if (time - getModel().getPlayer().getImmortalTime() > getModel().getPlayer().getImmortalDuration() * 1000)
+            getModel().getPlayer().backToNormal();
 
         if (action == GUI.ACTION.UP) movePlayerUp();
         if (action == GUI.ACTION.RIGHT) movePlayerRight();
@@ -106,5 +112,4 @@ public class PlayerController extends GameController {
     public long[] getStats() {
         return stats;
     }
-
 }

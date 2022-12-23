@@ -10,7 +10,6 @@ import org.l06gr06.states.LevelMenuState;
 import org.l06gr06.states.ScoreboardMenuState;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class ScoreMenuController extends Controller<ScoreMenu> {
     public ScoreMenuController(ScoreMenu menu) {
