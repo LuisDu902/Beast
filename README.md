@@ -18,7 +18,7 @@ Here are some screenshots of our project:
 
 ### Implemented Features
 
-We have implemented all the features we had planned, such as **moving blocks**, **killing Beasts** (of any kind), and *catching power-ups*, by either the player or the Beasts.
+We have implemented all the features we had planned, such as **moving blocks**, **killing Beasts** (of any kind), and **catching power-ups**, by either the player or the Beasts.
 
 Some other not so perceivable features include the **Beasts following the player** as it moves, and the **respawning** of the player, whenever it loses a life.
 
