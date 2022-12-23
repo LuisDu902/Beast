@@ -51,6 +51,12 @@ public class ArenaControllerTest {
 
         controller = new ArenaController(arena);
         game = new Game(null);
+        
+        URL resource = ArenaController.class.getResource("/score/score.csv");
+        assert resource != null;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
+        writer.append("");
+        writer.close();
     }
 
     @Test
