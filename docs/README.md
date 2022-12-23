@@ -45,7 +45,7 @@ There are no more planned features for the near future, since all of them were B
 
 In case you wish to check this diagram in more detail, please click [here](https://drive.google.com/file/d/181DXBcOBJZ6juCrQZg_XRwyEjpPJujS6/view?usp=sharing).
 
-![UML_LDTS](https://user-images.githubusercontent.com/92641892/204031997-64967635-d946-4bd1-b2e5-cc4e20640eb2.png)
+![UML](https://user-images.githubusercontent.com/92641892/209367077-e1f91bfc-f03e-4630-bc03-1c0a93a2c72a.jpg)
 
 ### DESIGN
 
@@ -61,7 +61,7 @@ This pattern allows an object to modify its behaviour when its internal state ch
 
 **Implementation**
 
-![StatePattern](https://user-images.githubusercontent.com/92641892/204031328-9aba04ad-06d6-4681-890a-89ac5fdcd4d4.png)
+![StatePattern](https://user-images.githubusercontent.com/92641892/209367931-7fe93eb9-228e-41e4-bf0c-2e0c71b04afb.jpg)
 
 Classes:
 
@@ -90,7 +90,7 @@ This pattern allows a game loop to run continuously during gameplay. Each turn o
 
 **Implementation**
 
-![GameLoopPattern](https://user-images.githubusercontent.com/92641892/204030885-69ed17c8-352a-4acf-ba92-281d84f3ab15.png)
+![GameLoopPattern](https://user-images.githubusercontent.com/92641892/209367925-93fc595d-a250-4b73-9fc6-ffd534bfced5.jpg)
 
 Classes:
 
@@ -125,7 +125,7 @@ This pattern defines an interface for creating an object, but let subclasses dec
 
 **Implementation**
 
-![FactoryMethodPattern](https://user-images.githubusercontent.com/92641892/204030890-a847116f-41f2-4859-9f63-a9d8ca98f092.png)
+![FactoryMethodPattern](https://user-images.githubusercontent.com/92641892/209367924-b72a9693-df53-487f-ab36-bbab237a123f.jpg)
 
 Classes:
 
@@ -165,7 +165,7 @@ The controller classes - which also uses the GUI to get the next action (step) a
 
 **Implementation**
 
-![MVCPattern](https://user-images.githubusercontent.com/92641892/204032373-4457dad8-e9a3-4913-bb0c-3173d946ef31.png)
+![MVCPattern](https://user-images.githubusercontent.com/92641892/209367929-a23fb045-db95-4a10-ae65-bb9569176c9e.jpg)
 
 Packages:
 
@@ -220,10 +220,15 @@ We could solve this by **introducing** a **parameter object** that would turn ou
 
 ### TESTING
 
+#### Coverage Report
+
+![CoverageReport](https://user-images.githubusercontent.com/92641892/209370489-92e63aec-3fef-4dda-a207-442a90fedd44.png)
+
+#### Mutation Testing Report
+
 Here is the [link](../pitest/index.html) to our mutation testing report.
 
-![CoverageReport](https://user-images.githubusercontent.com/92641892/204018185-2d468e8b-ec80-40a5-bb08-b884fcaac90a.png)
-
+![MutationTesting](https://user-images.githubusercontent.com/92641892/209371738-2f206f68-0fd4-4172-a4dd-bed47077356c.png)
 
 ### SELF-EVALUATION
 

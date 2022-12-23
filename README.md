@@ -34,7 +34,7 @@ https://user-images.githubusercontent.com/92641892/208264930-eb393fa0-4aea-4608-
 
 In case you wish to check this diagram in more detail, please click [here](https://drive.google.com/file/d/181DXBcOBJZ6juCrQZg_XRwyEjpPJujS6/view?usp=sharing).
 
-![UML_LDTS](https://user-images.githubusercontent.com/92641892/204031997-64967635-d946-4bd1-b2e5-cc4e20640eb2.png)
+![UML](https://user-images.githubusercontent.com/92641892/209367077-e1f91bfc-f03e-4630-bc03-1c0a93a2c72a.jpg)
 
 ### Design
 
