@@ -4,18 +4,20 @@ Your goal in this game is to kill every Beast that appears in your way, in the s
 
 There's the option to choose from three different levels of difficulty but, regardless of your choice, the map will always be randomised. Once you win (or lose) the game, you'll be presented a scoreboard so that you can keep track of your performance improvements.
 
-This project is being Beastly developed by Athos Freitas (up202108792), Luís Du (up202105385) and Sofia Pinto (up202108682) for LP00 2022/2023.
+This project was Beastly developed by Athos Freitas (up202108792), Luís Du (up202105385) and Sofia Pinto (up202108682) for LP00 2022/2023.
 
 
 ### IMPLEMENTED FEATURES
 
 **Move blocks** - Whenever the player moves, if it goes against a movable block, every linked block in that direction gets pushed.
 
+**Hatching Eggs** - After some time eggs hatch into Beasts.
+
 **Kill Beast** - In order for a Beast to be killed, it has to be smashed between any two blocks or a block and a wall.
 
 **Kill Stronger Beast** - In order for a Stronger Beast to be killed, it necessarily has to be smashed against a wall.
 
-![KillStrongerBeast](https://user-images.githubusercontent.com/92641892/207570538-423dafb5-6b25-4696-b5e1-1476d13f0e1b.gif)
+![KillStrongerBeast](https://user-images.githubusercontent.com/92641892/208264166-8f3c3180-67c7-42ea-ae47-0951dd457334.gif)
 
 **Catch Heart** - Hearts will randomly appear in the map as the game progresses. However, they might be inadvertently smashed between blocks. Whenever a player catches a heart, it gets added to the players lives, up to a maximum of 8.
 
@@ -23,13 +25,17 @@ This project is being Beastly developed by Athos Freitas (up202108792), Luís Du
 
 **Catch Power-ups by the Beasts** - In the unfortunate scenario that a Beast catches any of the power-ups, it evolves to a Stronger Beast, unless it is already one. However, as beasts are a unified entity, whenever a shield is caught by a Beast, all Beasts get a speed-up buff.
 
+![Power-ups](https://user-images.githubusercontent.com/92641892/208264560-717d1e73-1222-456d-a960-ba6fd2150833.gif)
+
 **Beasts follow player** - The movement of the Beasts is randomised in the direction of the Player (for instance, if the Player is on the top-left of the Beast it can only move up, left or in that diagonal)
 
 **Respawn** - When the player takes damage it respawns at a random location of the map.
 
-**Hatching Eggs** - After some time eggs hatch into Beasts.
+![Respawn](https://user-images.githubusercontent.com/92641892/208264168-f1737858-491f-4281-a286-22a399640040.gif)
 
 **Scoreboard** - At the end of the game, you’ll be presented a scoreboard. The score is calculated based on the number of remaining lives and the amount of Beast’s killed, as well as the time it took the player to do it.
+
+![ScoreBoard](https://user-images.githubusercontent.com/92641892/208264170-464f511d-c4ad-4a8b-b4db-fd3104b1c1ad.gif)
 
 ### PLANNED FEATURES
 
@@ -37,7 +43,9 @@ There are no more planned features for the near future, since all of them were B
 
 ### Class Diagram (UML)
 
-![UML_LDTS](https://user-images.githubusercontent.com/92641892/204031997-64967635-d946-4bd1-b2e5-cc4e20640eb2.png)
+In case you wish to check this diagram in more detail, please click [here](https://drive.google.com/file/d/181DXBcOBJZ6juCrQZg_XRwyEjpPJujS6/view?usp=sharing).
+
+![UML](https://user-images.githubusercontent.com/92641892/209367077-e1f91bfc-f03e-4630-bc03-1c0a93a2c72a.jpg)
 
 ### DESIGN
 
@@ -53,7 +61,7 @@ This pattern allows an object to modify its behaviour when its internal state ch
 
 **Implementation**
 
-![StatePattern](https://user-images.githubusercontent.com/92641892/204031328-9aba04ad-06d6-4681-890a-89ac5fdcd4d4.png)
+![StatePattern](https://user-images.githubusercontent.com/92641892/209367931-7fe93eb9-228e-41e4-bf0c-2e0c71b04afb.jpg)
 
 Classes:
 
@@ -82,7 +90,7 @@ This pattern allows a game loop to run continuously during gameplay. Each turn o
 
 **Implementation**
 
-![GameLoopPattern](https://user-images.githubusercontent.com/92641892/204030885-69ed17c8-352a-4acf-ba92-281d84f3ab15.png)
+![GameLoopPattern](https://user-images.githubusercontent.com/92641892/209367925-93fc595d-a250-4b73-9fc6-ffd534bfced5.jpg)
 
 Classes:
 
@@ -117,7 +125,7 @@ This pattern defines an interface for creating an object, but let subclasses dec
 
 **Implementation**
 
-![FactoryMethodPattern](https://user-images.githubusercontent.com/92641892/204030890-a847116f-41f2-4859-9f63-a9d8ca98f092.png)
+![FactoryMethodPattern](https://user-images.githubusercontent.com/92641892/209367924-b72a9693-df53-487f-ab36-bbab237a123f.jpg)
 
 Classes:
 
@@ -157,7 +165,7 @@ The controller classes - which also uses the GUI to get the next action (step) a
 
 **Implementation**
 
-![MVCPattern](https://user-images.githubusercontent.com/92641892/204032373-4457dad8-e9a3-4913-bb0c-3173d946ef31.png)
+![MVCPattern](https://user-images.githubusercontent.com/92641892/209367929-a23fb045-db95-4a10-ae65-bb9569176c9e.jpg)
 
 Packages:
 
@@ -170,17 +178,62 @@ Packages:
 This way, the program is subdivided in a way that is easier to work on (keeping the code organised) and test.
 
 
+### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
+
+#### Feature Envy
+
+Due to the MVC architectural pattern that we have implemented, classes from packages **Viewer** and **Controller** both access data from the **Model** package more than their own data.
+This violates the Encapsulation principle plus, it may make the code harder to maintain, since methods from **Viewer** and **Controller** packages relly heavily on **Model**'s data.
+
+This could be solved by **extracting** or **moving methods** from the first two packages to de later one, which would preclude the use of the MVC architectural pattern.
+
+#### Shotgun Surgery
+
+For instance, in case you wish to change the behaviour of a Heart, you would not only have to do that, but also change the way other objects interact with it, and maybe even the way it is drawn.
+Some examples of methods you would have to alter include: `isEmpty()`, `canMove()`, `createPowerUp()` all in the `Arena` class; `drawHeart()` in the `LanternaGui` class; `step()` in both `PlayerController`and `BeastController`classes.
+
+A way to improve the code would be to **move** all of those **methods** to a new appropriate class.
+
+#### Parallel Inheritance Hierarchies
+
+Whenever we wish to add a new class to the **Model** package, we then must add a new class to both **Viewer** and **Controller** packages. This makes the code harder to maintain and increases its fragility (tendency of software to break in multiple places whenever it is changed).
+
+To remove these hierarchies we could **move fields** or **methods** to one of the packages, which would once more violate the MVC architectural pattern.
+
+#### Switch Statements
+
+The `PlayerController` class contains complex if...else statements in both `moveBlock()`and `movePlayer()` methods. This makes the code harder to read and understand.
+
+A possible solution for this would be to **decompose the conditional**, which would imply the creation of new methods that would only be used in those particular cases.
+
+#### Long Method
+
+The `PlayerController` class includes the `moveBlock()`and `movePlayer()` methods, which are extensive and make the code hard to comprehend.
+
+By **extracting** from these **methods**, we could make them smaller but, simultaneously, we would be creating methods of singular use.
+
+#### Long Parameter List
+
+The constructor of the `RandomArenaBuilder` class has a large amount of parameters, which can make the code harder to understand.
+
+We could solve this by **introducing** a **parameter object** that would turn out to be a Data Class, hence the reason why we didn't do it.
+
 ### TESTING
+
+#### Coverage Report
+
+![CoverageReport](https://user-images.githubusercontent.com/92641892/209370489-92e63aec-3fef-4dda-a207-442a90fedd44.png)
+
+#### Mutation Testing Report
 
 Here is the [link](../pitest/index.html) to our mutation testing report.
 
-![CoverageReport](https://user-images.githubusercontent.com/92641892/204018185-2d468e8b-ec80-40a5-bb08-b884fcaac90a.png)
-
+![MutationTesting](https://user-images.githubusercontent.com/92641892/209371738-2f206f68-0fd4-4172-a4dd-bed47077356c.png)
 
 ### SELF-EVALUATION
 
-We believe that, up to the present time, the work was evenly distributed among all group members.
+We believe that, throughout the development of this project, the work was evenly distributed among all group members.
 
-- Athos: 33%
-- Luís: 33%
-- Sofia: 33%
+- Athos Freitas: 33%
+- Luís Du: 33%
+- Sofia Pinto: 33%
