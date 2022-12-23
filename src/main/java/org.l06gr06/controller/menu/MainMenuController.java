@@ -8,7 +8,6 @@ import org.l06gr06.model.menu.MainMenu;
 import org.l06gr06.states.LevelMenuState;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class MainMenuController extends Controller<MainMenu> {
     public MainMenuController(MainMenu menu) {
