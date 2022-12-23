@@ -4,7 +4,7 @@ Your goal in this game is to kill every Beast that appears in your way, in the s
 
 There's the option to choose from three different levels of difficulty but, regardless of your choice, the map will always be randomised. Once you win (or lose) the game, you'll be presented a scoreboard so that you can keep track of your performance improvements.
 
-This project is being Beastly developed by Athos Freitas (up202108792), Luís Du (up202105385) and Sofia Pinto (up202108682) for LP00 2022/2023.
+This project was Beastly developed by Athos Freitas (up202108792), Luís Du (up202105385) and Sofia Pinto (up202108682) for LP00 2022/2023.
 
 ### Screenshots
 
@@ -18,13 +18,23 @@ Here are some screenshots of our project:
 
 ### Implemented Features
 
-For now, we have implemented most of the main features of our project, such as *moving blocks*, *killing Beasts*, and *catching power-ups*, by either the player or the Beasts.
+We have implemented all the features we had planned, such as **moving blocks**, **killing Beasts** (of any kind), and *catching power-ups*, by either the player or the Beasts.
 
-Some other not so perceivable features include the *Beasts following the player* as it moves, and the *respawning* of the player, whenever it loses a life.
+Some other not so perceivable features include the **Beasts following the player** as it moves, and the **respawning** of the player, whenever it loses a life.
+
+Finally, we have also notoriously improved the project's **graphics** and included a **scoreboard**, in order to make the game more competitive.
+
+### Gameplay
+
+Here is a short video which demonstrates these features:
+
+https://user-images.githubusercontent.com/92641892/208264930-eb393fa0-4aea-4608-a9bb-9d97d83c08cf.mov
 
 ### Class Diagram (UML)
 
-![UML_LDTS](https://user-images.githubusercontent.com/92641892/204031997-64967635-d946-4bd1-b2e5-cc4e20640eb2.png)
+In case you wish to check this diagram in more detail, please click [here](https://drive.google.com/file/d/181DXBcOBJZ6juCrQZg_XRwyEjpPJujS6/view?usp=sharing).
+
+![UML](https://user-images.githubusercontent.com/92641892/209367077-e1f91bfc-f03e-4630-bc03-1c0a93a2c72a.jpg)
 
 ### Design
 
