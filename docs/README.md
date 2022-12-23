@@ -43,6 +43,8 @@ There are no more planned features for the near future, since all of them were B
 
 ### Class Diagram (UML)
 
+In case you wish to check this diagram in more detail, please click [here](https://drive.google.com/file/d/181DXBcOBJZ6juCrQZg_XRwyEjpPJujS6/view?usp=sharing).
+
 ![UML_LDTS](https://user-images.githubusercontent.com/92641892/204031997-64967635-d946-4bd1-b2e5-cc4e20640eb2.png)
 
 ### DESIGN
@@ -175,6 +177,46 @@ Packages:
 
 This way, the program is subdivided in a way that is easier to work on (keeping the code organised) and test.
 
+
+### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
+
+#### Feature Envy
+
+Due to the MVC architectural pattern that we have implemented, classes from packages **Viewer** and **Controller** both access data from the **Model** package more than their own data.
+This violates the Encapsulation principle plus, it may make the code harder to maintain, since methods from **Viewer** and **Controller** packages relly heavily on **Model**'s data.
+
+This could be solved by **extracting** or **moving methods** from the first two packages to de later one, which would preclude the use of the MVC architectural pattern.
+
+#### Shotgun Surgery
+
+For instance, in case you wish to change the behaviour of a Heart, you would not only have to do that, but also change the way other objects interact with it, and maybe even the way it is drawn.
+Some examples of methods you would have to alter include: `isEmpty()`, `canMove()`, `createPowerUp()` all in the `Arena` class; `drawHeart()` in the `LanternaGui` class; `step()` in both `PlayerController`and `BeastController`classes.
+
+A way to improve the code would be to **move** all of those **methods** to a new appropriate class.
+
+#### Parallel Inheritance Hierarchies
+
+Whenever we wish to add a new class to the **Model** package, we then must add a new class to both **Viewer** and **Controller** packages. This makes the code harder to maintain and increases its fragility (tendency of software to break in multiple places whenever it is changed).
+
+To remove these hierarchies we could **move fields** or **methods** to one of the packages, which would once more violate the MVC architectural pattern.
+
+#### Switch Statements
+
+The `PlayerController` class contains complex if...else statements in both `moveBlock()`and `movePlayer()` methods. This makes the code harder to read and understand.
+
+A possible solution for this would be to **decompose the conditional**, which would imply the creation of new methods that would only be used in those particular cases.
+
+#### Long Method
+
+The `PlayerController` class includes the `moveBlock()`and `movePlayer()` methods, which are extensive and make the code hard to comprehend.
+
+By **extracting** from these **methods**, we could make them smaller but, simultaneously, we would be creating methods of singular use.
+
+#### Long Parameter List
+
+The constructor of the `RandomArenaBuilder` class has a large amount of parameters, which can make the code harder to understand.
+
+We could solve this by **introducing** a **parameter object** that would turn out to be a Data Class, hence the reason why we didn't do it.
 
 ### TESTING
 
