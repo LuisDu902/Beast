@@ -2,7 +2,6 @@ package org.l06gr06.states;
 
 import org.l06gr06.Game;
 import org.l06gr06.controller.Controller;
-import org.l06gr06.controller.menu.MainMenuController;
 import org.l06gr06.gui.GUI;
 import org.l06gr06.viewer.Viewer;
 
@@ -38,7 +37,7 @@ public abstract class State<T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        State state = (State) o;
+        State<?> state = (State<?>) o;
         return model.equals(state.model) && viewer.equals(state.viewer) && controller.equals(state.controller);
     }
 }

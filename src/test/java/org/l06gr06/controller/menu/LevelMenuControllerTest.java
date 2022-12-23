@@ -26,6 +26,7 @@ public class LevelMenuControllerTest {
     private LevelMenu menu;
 
     private Game game;
+
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
         menu = new LevelMenu();
@@ -55,6 +56,7 @@ public class LevelMenuControllerTest {
         controller.step(game, GUI.ACTION.SELECT,1);
         assertNull(game.getState());
     }
+
     @Test
     void easy() throws IOException {
         controller.step(game, GUI.ACTION.SELECT,1);
@@ -62,10 +64,11 @@ public class LevelMenuControllerTest {
         assertFalse(menu.isSelected(1));
         assertFalse(menu.isSelected(2));
         assertFalse(menu.isSelected(3));
-        State expected = new GameState((new RandomArenaBuilder(50, 20, 2, 150, 1, 15).createArena()));
-        State actual = game.getState();
+        State<?> expected = new GameState((new RandomArenaBuilder(50, 20, 2, 150, 1, 15).createArena()));
+        State<?> actual = game.getState();
         assertEquals(expected,actual);
     }
+
     @Test
     void medium() throws IOException {
         controller.step(game, GUI.ACTION.DOWN,1);
@@ -75,10 +78,11 @@ public class LevelMenuControllerTest {
         assertFalse(menu.isSelected(2));
         assertFalse(menu.isSelected(3));
 
-        State expected = new GameState((new RandomArenaBuilder(50, 20, 4, 100, 4, 10).createArena()));
-        State actual = game.getState();
+        State<?> expected = new GameState((new RandomArenaBuilder(50, 20, 4, 100, 4, 10).createArena()));
+        State<?> actual = game.getState();
         assertEquals(expected,actual);
     }
+
     @Test
     void difficult() throws IOException {
         controller.step(game, GUI.ACTION.DOWN,1);
@@ -88,8 +92,8 @@ public class LevelMenuControllerTest {
         assertFalse(menu.isSelected(1));
         assertTrue(menu.isSelected(2));
         assertFalse(menu.isSelected(3));
-        State expected = new GameState((new RandomArenaBuilder(50, 20, 6, 50, 7, 5).createArena()));
-        State actual = game.getState();
+        State<?> expected = new GameState((new RandomArenaBuilder(50, 20, 6, 50, 7, 5).createArena()));
+        State<?> actual = game.getState();
         assertEquals(expected,actual);
         assertNotEquals(new GameState((new RandomArenaBuilder(30, 20, 6, 50, 7, 5).createArena())),actual);
     }
@@ -102,5 +106,4 @@ public class LevelMenuControllerTest {
         writer.append("");
         writer.close();
     }
-
 }

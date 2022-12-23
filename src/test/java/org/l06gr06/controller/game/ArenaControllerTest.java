@@ -58,8 +58,8 @@ public class ArenaControllerTest {
         controller.step(game, GUI.ACTION.QUIT,1);
         assertEquals(1,arena.getTimer());
         long[] stats = {0};
-        State expected = new ScoreMenuState(new ScoreMenu(stats));
-        State actual = game.getState();
+        State<?> expected = new ScoreMenuState(new ScoreMenu(stats));
+        State<?> actual = game.getState();
         assertEquals(expected,actual);
     }
 
@@ -71,8 +71,8 @@ public class ArenaControllerTest {
         assertEquals(5,controller.getPlayerController().getStats()[4]);
         assertEquals(61,controller.getPlayerController().getStats()[5]);
 
-        State expected = new ScoreMenuState(new ScoreMenu(controller.getPlayerController().getStats()));
-        State actual = game.getState();
+        State<?> expected = new ScoreMenuState(new ScoreMenu(controller.getPlayerController().getStats()));
+        State<?> actual = game.getState();
         assertEquals(expected,actual);
 
         URL resource = ScoreboardMenu.class.getResource("/score/score.csv");
@@ -121,6 +121,7 @@ public class ArenaControllerTest {
     @AfterEach
     void cleanUp() throws IOException {
         URL resource = ScoreboardMenu.class.getResource("/score/score.csv");
+        assert resource != null;
         BufferedWriter writer = new BufferedWriter(new FileWriter(resource.getFile(), false));
         writer.append("");
         writer.close();

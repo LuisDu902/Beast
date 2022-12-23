@@ -31,17 +31,17 @@ public class MainMenuControllerTest {
 
     @Test
     void changeState() throws IOException{
-        State initial = new MainMenuState(new MainMenu());
-        State actual = game.getState();
+        State<?> initial = new MainMenuState(new MainMenu());
+        State<?> actual = game.getState();
         assertEquals(initial,actual);
 
         controller.step(game, GUI.ACTION.SELECT,1);
 
-        State expected = new LevelMenuState(new LevelMenu());
+        State<?> expected = new LevelMenuState(new LevelMenu());
         actual = game.getState();
         assertEquals(expected,actual);
 
-        State state = actual;
+        State<?> state = actual;
         assertEquals(actual,state);
         assertNotEquals(actual,null);
     }
@@ -60,5 +60,4 @@ public class MainMenuControllerTest {
         MainMenuController mainMenuController1 = new MainMenuController(mainMenu);
         assertNotEquals(controller,mainMenuController1);
     }
-
 }

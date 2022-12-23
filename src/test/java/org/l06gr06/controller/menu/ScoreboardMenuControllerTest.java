@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ScoreboardMenuControllerTest {
     private ScoreboardMenuController controller;
@@ -45,14 +45,14 @@ public class ScoreboardMenuControllerTest {
     void exit() throws IOException{
         controller.step(game, GUI.ACTION.RIGHT,1);
         controller.step(game, GUI.ACTION.SELECT,1);
-        assertEquals(null,game.getState());
+        assertNull(game.getState());
     }
 
     @Test
     void playAgain() throws IOException{
         controller.step(game, GUI.ACTION.SELECT,1);
-        State expected = new LevelMenuState(new LevelMenu());
-        State actual = game.getState();
+        State<?> expected = new LevelMenuState(new LevelMenu());
+        State<?> actual = game.getState();
         assertEquals(expected,actual);
     }
 }

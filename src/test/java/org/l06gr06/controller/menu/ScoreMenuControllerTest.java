@@ -62,7 +62,7 @@ public class ScoreMenuControllerTest {
     void scoreboard() throws IOException {
         controller.step(game, GUI.ACTION.RIGHT,1);
         controller.step(game, GUI.ACTION.SELECT,1);
-        State expected = new ScoreboardMenuState(new ScoreboardMenu());
+        State<?> expected = new ScoreboardMenuState(new ScoreboardMenu());
         assertEquals(expected,game.getState());
     }
 }
