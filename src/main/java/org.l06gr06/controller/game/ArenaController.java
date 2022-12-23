@@ -33,11 +33,12 @@ public class ArenaController extends GameController {
 
     private void saveScore() throws IOException {
 
-        playerController.getStats()[4] = getModel().getPlayer().getLife();
-        playerController.getStats()[5] = getModel().getTimer()/50;
+        long[] stats = playerController.getStats();
+        stats[4] = getModel().getPlayer().getLife();
+        stats[5] = getModel().getTimer()/50;
 
         StringBuilder str = new StringBuilder();
-        long[] stats = playerController.getStats();
+
         long nrEggs = stats[0], nrBeasts = stats[1], nrStrongBeasts = stats[2], nrShields = stats[3], nrLives = stats[4], time = stats[5];
         long score = nrEggs * 75 + nrBeasts * 150 + nrStrongBeasts * 300 + nrShields * 50 + nrLives * 50 - time;
         long min = time/60, sec = time%60;

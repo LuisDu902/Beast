@@ -45,7 +45,7 @@ There are no more planned features for the near future, since all of them were B
 
 In case you wish to check this diagram in more detail, please click [here](https://drive.google.com/file/d/181DXBcOBJZ6juCrQZg_XRwyEjpPJujS6/view?usp=sharing).
 
-![UML](https://user-images.githubusercontent.com/92641892/209367077-e1f91bfc-f03e-4630-bc03-1c0a93a2c72a.jpg)
+![UML](https://user-images.githubusercontent.com/92641892/209376441-091917a5-edb0-4393-a486-8892ec54bb82.jpg)
 
 ### DESIGN
 
@@ -61,7 +61,7 @@ This pattern allows an object to modify its behaviour when its internal state ch
 
 **Implementation**
 
-![StatePattern](https://user-images.githubusercontent.com/92641892/209367931-7fe93eb9-228e-41e4-bf0c-2e0c71b04afb.jpg)
+![StatePattern](https://user-images.githubusercontent.com/92641892/209376446-537a37e8-739b-4fb2-8b67-04e5ccf4fa1f.jpg)
 
 Classes:
 
@@ -74,7 +74,7 @@ Classes:
 
 **Consequences**
 
-This way, we avoid using conditionals, plus, we make state transitions explicit, by creating a sub-class (state) for each one of them.
+This way, we avoid using conditionals, plus, we make state transitions explicit, by creating a subclass (state) for each one of them.
 
 
 #### THE GAME SHOULD RUN SMOOTHLY REGARDLESS OF A USER'S INPUT, OR LACK THEREOF.
@@ -101,7 +101,6 @@ Classes:
 - [PlayerController](../src/main/java/org.l06gr06/controller/game/PlayerController.java)
 - [GameViewer](../src/main/java/org.l06gr06/viewer/game/GameViewer.java)
 - [ElementViewer](../src/main/java/org.l06gr06/viewer/game/ElementViewer.java)
-- [EggViewer](../src/main/java/org.l06gr06/viewer/game/EggViewer.java)
 - [WallViewer](../src/main/java/org.l06gr06/viewer/game/WallViewer.java)
 - [PowerUpViewer](../src/main/java/org.l06gr06/viewer/game/PowerUpViewer.java)
 - [BeastViewer](../src/main/java/org.l06gr06/viewer/game/BeastViewer.java)
@@ -125,7 +124,7 @@ This pattern defines an interface for creating an object, but let subclasses dec
 
 **Implementation**
 
-![FactoryMethodPattern](https://user-images.githubusercontent.com/92641892/209367924-b72a9693-df53-487f-ab36-bbab237a123f.jpg)
+![FactoryMethodPattern](https://user-images.githubusercontent.com/92641892/209376450-b7f585d9-2e10-46d8-a11c-c5619bd247a3.jpg)
 
 Classes:
 
@@ -138,7 +137,7 @@ Classes:
 - [MainMenuController](../src/main/java/org.l06gr06/controller/menu/MainMenuController.java)
 - [LevelMenuController](../src/main/java/org.l06gr06/controller/menu/LevelMenuController.java)
 - [ScoreMenuController](../src/main/java/org.l06gr06/controller/menu/ScoreMenuController.java)
-- [GameController](../src/main/java/org.l06gr06/controller/game/GameState.java)
+- [GameController](../src/main/java/org.l06gr06/controller/game/GameController.java)
 - [Viewer](../src/main/java/org.l06gr06/viewer/Viewer.java)
 - [MainMenuViewer](../src/main/java/org.l06gr06/viewer/menu/MainMenuViewer.java)
 - [LevelMenuViewer](../src/main/java/org.l06gr06/viewer/menu/LevelMenuViewer.java)

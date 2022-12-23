@@ -44,8 +44,8 @@ public class LevelMenuController  extends Controller<LevelMenu> {
                         game.setState(new GameState(arena));
                         return;
                     }
-                if (getModel().isSelectedExit()) { game.setState(null); break; }
-
+                if (getModel().isSelectedExit())
+                    game.setState(null);
             }
         }
     }
