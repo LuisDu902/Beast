@@ -8,7 +8,6 @@ import org.l06gr06.states.State;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 
 public class Game {
     private final LanternaGUI gui;

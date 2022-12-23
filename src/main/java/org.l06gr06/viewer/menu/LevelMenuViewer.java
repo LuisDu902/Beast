@@ -21,10 +21,14 @@ public class LevelMenuViewer extends Viewer<LevelMenu> {
                     new Position(20, 9 + 2 * i),
                     getModel().getEntry(i),
                     getModel().isSelected(i) ? "#FFFF66" : "#FFFFFF");
+
             for (int j = i; j < getModel().getNumberEntries()-1; j++)
                 gui.drawText( new Position(15+j, 13 - 2 * i), "~", "#FFFF66");
         }
 
-        gui.drawText(new Position(20,17),getModel().getEntry(getModel().getNumberEntries()-1),getModel().isSelectedExit() ? "#FFFF66" : "#FFFFFF");
+        gui.drawText(
+                new Position(20,17),
+                getModel().getEntry(getModel().getNumberEntries()-1),
+                getModel().isSelectedExit() ? "#FFFF66" : "#FFFFFF");
     }
 }
